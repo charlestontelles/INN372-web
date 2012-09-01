@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
  * Bean that represents a Calculator
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 @ManagedBean
 @SessionScoped
@@ -58,13 +58,13 @@ public class Calculator implements Serializable {
 		//this.result = equipment.getCost() * equipment.getSize();
 		Location location = new Location();
 		location = customer.getLocation();
-		this.solarPower = ((equipment.getSize() * location.getRoof().getPercentageNorth()
-				*(1-location.getRoof().getEfficiencyLossNorth()))
-					+(equipment.getSize()*location.getRoof().getEfficiencyLossWest()
-						*(1-location.getRoof().getEfficiencyLossWest())))
-							//*equipment.getPanels().get(1).getEfficiency()
-								*equipment.getInverter().getEfficiency()
-									*location.getSunLightHours();
+		this.solarPower =((equipment.getSize()
+				*(location.getRoof().getPercentageNorth()/100)
+				*(1-(location.getRoof().getEfficiencyLossNorth()/100)))
+				+(equipment.getSize()*
+						(location.getRoof().getPercentageWest()/100)
+						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
+						*100/100*(equipment.getInverter().getEfficiency()/100)*location.getSunLightHours();
 	}
 	
 	public double calculateNetSolarPower(){

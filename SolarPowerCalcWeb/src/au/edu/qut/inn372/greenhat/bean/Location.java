@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  * 
  * Bean that represents a location
  * @author Martin Daniel
- *
+ * @version 1.0
  */
 
 @ManagedBean

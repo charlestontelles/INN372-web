@@ -17,7 +17,7 @@ import javax.xml.soap.SOAPMessage;
 /**
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 @SuppressWarnings("serial")
 public class CalculatorSOAPServerServlet extends HttpServlet {

@@ -12,7 +12,7 @@ import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 /**
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 @WebService
 public class CalculatorControllerWS {

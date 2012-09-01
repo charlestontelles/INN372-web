@@ -16,13 +16,6 @@ public class CalculatorTest {
 	private Calculator calculator;
 	private Equipment equipment;
 	private Customer customer;
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -98,7 +91,7 @@ public class CalculatorTest {
 	@Test
 	public void testCalculatorSolarPower() {
 		calculator.calculateSolarPower();
-		assertEquals(calculator.getSolarPower(), 9.918, 0.001);
+		assertEquals(calculator.getSolarPower(), 0.003415725, 0.001);
 	}
 	
 	@Test

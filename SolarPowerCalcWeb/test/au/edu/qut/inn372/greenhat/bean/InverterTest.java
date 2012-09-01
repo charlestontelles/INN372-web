@@ -14,14 +14,6 @@ public class InverterTest {
 	private static final double LIFESPAN = 25.0;
 	private static final double EFFICIENCY = 0.95;
 	private Inverter inverter;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {

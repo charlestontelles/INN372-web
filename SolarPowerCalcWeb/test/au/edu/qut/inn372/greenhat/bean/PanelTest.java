@@ -17,13 +17,6 @@ public class PanelTest {
 	private static final double EFFICIENCY = 0.3;
 	private Panel panel;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {

@@ -31,5 +31,6 @@
 		</h:panelGrid>
 	</h:form>
 </f:view>
+
 </body>
 </html>

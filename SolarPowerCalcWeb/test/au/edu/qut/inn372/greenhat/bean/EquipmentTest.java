@@ -17,14 +17,6 @@ public class EquipmentTest {
 	private Equipment equipment;
 	private Inverter inverter;
 	private ArrayList<Panel> panels;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {

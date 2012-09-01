@@ -8,7 +8,7 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculationResponse;
 /**
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 public class CalculatorAdapter {
 	private CalculatorControllerWS controller = new CalculatorControllerWS();

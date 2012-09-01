@@ -19,7 +19,7 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 /**
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 public class CalculatorSOAPHandler {
 	  private static final String NAMESPACE_URI = "http://ws.greenhat.inn372.qut.edu.au/";

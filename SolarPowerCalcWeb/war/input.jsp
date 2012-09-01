@@ -9,9 +9,7 @@
 <LINK href="<%=request.getContextPath()%>/css/greenhat_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  		<h3 align = "center"> Solar Calculator </h3>
-
-	
+  		<h3 align = "center"> Provide the following details: </h3>
 		<f:view>
 		    <h:form styleClass="input">
 		    <table style="width: 400px;" align="center">
@@ -33,14 +31,14 @@
 						<td style="width: 250px;"><h:outputText value="Inverter Efficiency (%):"></h:outputText></td>
 						<td><h:inputText value="#{inverter.efficiency}"></h:inputText></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td style="width: 250px;"><h:outputText value="Number of Panels"></h:outputText></td>
 						<td>
 							<h:selectOneMenu validatorMessage="required">
 		        				<f:selectItems value="#{calculatorController.panels}" />
 		      				</h:selectOneMenu>
 						</td>
-					</tr>
+					</tr> -->
 				</table>
 				</fieldset>
 				
@@ -89,10 +87,10 @@
 						<td style="width: 250px;"><h:outputText value="Energy Used Per Day:"></h:outputText></td>
 						<td><h:inputText value="#{electricityUsage.dailyAverageUsage}"></h:inputText></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td style="width: 250px;"><h:outputText value="Energy Used Per DayLight Hours:"></h:outputText></td>
 						<td><h:inputText value="#{electricityUsage.dayTimeHourlyUsage}"></h:inputText></td>
-					</tr>
+					</tr> -->
 				</table>
 				</fieldset>
 				
@@ -114,5 +112,6 @@
 			</table>
 			</h:form>
 		</f:view>
+		
  </body>
   </html>

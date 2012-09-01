@@ -6,6 +6,11 @@ import javax.faces.bean.SessionScoped;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 
+/**
+ * 
+ * @author Charleston Telles
+ * @version 1.0
+ */
 @ManagedBean
 @SessionScoped
 public class CalculatorDAOImpl implements CalculatorDAO {

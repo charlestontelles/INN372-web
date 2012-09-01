@@ -32,5 +32,4 @@ public class SaveCalculation {
     public void setCalculator(au.edu.qut.inn372.greenhat.bean.Calculator calculator) {
         this.calculator = calculator;
     }
-
 }

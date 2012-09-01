@@ -4,8 +4,8 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 /**
  * Data Access Object to provide operations related to the Calculator
  * 
- * @author Charleston
- *
+ * @author Charleston Telles
+ * @version 1.0
  */
 public interface CalculatorDAO {
 	public void saveCalculation(Calculator calculator);

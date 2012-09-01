@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
  * Bean that represents a Panel
  * 
  * @author Charleston Telles
- *
+ * @version 1.0
  */
 @ManagedBean
 @SessionScoped

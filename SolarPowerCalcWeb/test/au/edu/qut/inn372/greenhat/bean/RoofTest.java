@@ -17,14 +17,6 @@ public class RoofTest {
 	private static final double EFFICIENCY_LOSS_WEST = 0.8;
 	private static final double EFFICIENCY_LOSS_NORTH = 0.9;
 	private Roof roof;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -88,4 +80,5 @@ public class RoofTest {
 		roof.setPercentageWest(newPercentageWest);
 		assertEquals(roof.getPercentageWest(), newPercentageWest, 0.0);
 	}
+	
 }

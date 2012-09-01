@@ -55,5 +55,6 @@
       <xs:element name="result" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
+  
 </xs:schema>
 

@@ -12,7 +12,7 @@
 <f:view>
     <h:form>
 		<h:panelGrid columns="2" styleClass="input">
-			<h:outputText value="User"></h:outputText>
+			<h:outputText value="Username"></h:outputText>
 			<h:inputText value="charles@greenhat.com"></h:inputText>
 			
 			<h:outputText value="Password"></h:outputText>
@@ -22,9 +22,10 @@
 			<h:commandButton action="input.jsp" value="Login"></h:commandButton>
 			
 			<h:outputText value="New User?"></h:outputText>
-			<h:outputLink>register</h:outputLink>
+			<h:outputLink>Register</h:outputLink>
 		</h:panelGrid>
 	</h:form>
 </f:view>
+
 </body>
 </html>
