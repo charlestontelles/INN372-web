@@ -24,36 +24,53 @@ public class Calculator implements Serializable {
 	
 	private double solarPower;
 	
-	/**
-	 * @return the customer
-	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	/**
-	 * @param customer the customer to set
+	 * Set the customer
+	 * @param customer
 	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+	
+	/**
+	 * Get the solar power
+	 * @return solarPower
+	 */
 	public double getSolarPower() {
 		return solarPower;
 	}
 
+	/**
+	 * Set the solar power
+	 * @param solarPower
+	 */
 	public void setSolarPower(double solarPower) {
 		this.solarPower = solarPower;
 	}
 
+	/**
+	 * Set the equipment
+	 * @param equipment
+	 */
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
 	
+	/**
+	 * Get the equipment
+	 * @return equipment
+	 */
 	public Equipment getEquipment() {
 		return equipment;
 	}
 	
+	/**
+	 * Calculate the daily solar power generated
+	 */
 	public void calculateSolarPower(){
 		//this.result = equipment.getCost() * equipment.getSize();
 		Location location = new Location();
@@ -65,13 +82,5 @@ public class Calculator implements Serializable {
 						(location.getRoof().getPercentageWest()/100)
 						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
 						*100/100*(equipment.getInverter().getEfficiency()/100)*location.getSunLightHours();
-	}
-	
-	public double calculateNetSolarPower(){
-		return (this.solarPower - customer.getElectricityUsage().getDailyAverageUsage());
-	}
-	
-	public double calculateAnnualSolarPower(){
-		return getSolarPower() * 365;
 	}
 }

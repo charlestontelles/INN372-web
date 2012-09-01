@@ -1,13 +1,8 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CalculatorTest {
@@ -60,10 +55,6 @@ public class CalculatorTest {
 		
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test 
 	public void testGetSetCustomer() {
 		assertEquals(calculator.getCustomer(), customer);
@@ -93,10 +84,4 @@ public class CalculatorTest {
 		calculator.calculateSolarPower();
 		assertEquals(calculator.getSolarPower(), 0.003415725, 0.001);
 	}
-	
-	@Test
-	public void testCalculateAnnualSolarPower() {
-		assertEquals(calculator.calculateAnnualSolarPower(), SOLAR_POWER * 365, 0.0001);
-	}
-	
 }

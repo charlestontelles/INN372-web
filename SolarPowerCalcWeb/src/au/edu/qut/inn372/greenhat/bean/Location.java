@@ -28,18 +28,34 @@ public class Location implements Serializable{
 	@ManagedProperty (value = "#{roof}")
 	private Roof roof;
 
+	/**
+	 * Get the roof
+	 * @return roof
+	 */
 	public Roof getRoof() {
 		return roof;
 	}
 
+	/**
+	 * Set the roof
+	 * @param roof
+	 */
 	public void setRoof(Roof roof) {
 		this.roof = roof;
 	}
 
+	/**
+	 * Get the sunlight hours
+	 * @return sunLightHours
+	 */
 	public double getSunLightHours() {
 		return sunLightHours;
 	}
 
+	/**
+	 * Set the sunLightHours
+	 * @param sunLightHours
+	 */
 	public void setSunLightHours(double sunLightHours) {
 		this.sunLightHours = sunLightHours;
 	}

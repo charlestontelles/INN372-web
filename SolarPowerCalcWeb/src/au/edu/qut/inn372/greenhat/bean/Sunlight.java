@@ -24,10 +24,18 @@ public class Sunlight implements Serializable {
 	
 	private double sunLightHours;
 
+	/**
+	 * Get the sun light hours
+	 * @return sunLightHours
+	 */
 	public double getSunLightHours() {
 		return sunLightHours;
 	}
 
+	/**
+	 * Set the sun light hours
+	 * @param sunLightHours
+	 */
 	public void setSunLightHours(double sunLightHours) {
 		this.sunLightHours = sunLightHours;
 	}

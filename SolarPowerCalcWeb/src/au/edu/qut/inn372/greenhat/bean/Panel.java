@@ -24,61 +24,80 @@ public class Panel implements Serializable {
 	private double efficiencyLoss;
 	
 	/**
-	 * @return the id
+	 * Get the id
+	 * @return id
 	 */
 	public int getId() {
 		return id;
 	}
+	
 	/**
-	 * @param id the id to set
+	 * Set the id
+	 * @param id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	/**
-	 * @return the width
+	 * Get the width
+	 * @return width
 	 */
 	public double getWidth() {
 		return width;
 	}
+	
 	/**
-	 * @param width the width to set
+	 * Set the width
+	 * @param width
 	 */
 	public void setWidth(double width) {
 		this.width = width;
 	}
+	
 	/**
-	 * @return the height
+	 * Get the height
+	 * @return height
 	 */
 	public double getHeight() {
 		return height;
 	}
+	
 	/**
-	 * @param height the height to set
+	 * Set the height
+	 * @param height
 	 */
 	public void setHeight(double height) {
 		this.height = height;
 	}
+	
 	/**
-	 * @return the efficiency
+	 * Get the efficiency
+	 * @return efficiency
 	 */
 	public double getEfficiency() {
 		return efficiency;
 	}
+	
 	/**
-	 * @param efficiency the efficiency to set
+	 * Set the efficiency
+	 * @param efficiency
 	 */
 	public void setEfficiency(double efficiency) {
 		this.efficiency = efficiency;
 	}
+	
 	/**
-	 * @return the efficiencyLoss
+	 * Get the efficiency
+	 * @return efficiencyLoss
 	 */
 	public double getEfficiencyLoss() {
 		return efficiencyLoss;
 	}
+	
 	/**
-	 * @param efficiencyLoss the efficiencyLoss to set
+	 * Set the efficiency loss
+	 * @param efficiencyLoss
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {
 		this.efficiencyLoss = efficiencyLoss;

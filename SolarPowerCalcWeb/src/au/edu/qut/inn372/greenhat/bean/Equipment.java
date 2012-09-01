@@ -24,36 +24,67 @@ public class Equipment implements Serializable{
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
 	
-
 	/**
+	 * Get the inverter
 	 * @return the inverter
 	 */
 	public Inverter getInverter() {
 		return inverter;
 	}
+	
 	/**
-	 * @param inverter the inverter to set
+	 * Set the inverter
+	 * @param inverter
 	 */
 	public void setInverter(Inverter inverter) {
 		this.inverter = inverter;
 	}
+	
+	/**
+	 * Get the panels
+	 * @return panels
+	 */
 	public ArrayList<Panel> getPanels() {
 		return panels;
 	}
+	
+	/**
+	 * Set the panels
+	 * @param panels
+	 */
 	public void setPanels(ArrayList<Panel> panels) {
 		this.panels = panels;
 	}
+	
+	/**
+	 * Get the cost
+	 * @return
+	 */
 	public double getCost() {
 		return cost;
 	}
+	
+	/**
+	 * Set the cost
+	 * @param cost
+	 */
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	
+	/**
+	 * Get the size of the system
+	 * @return
+	 */
 	public double getSize() {
 		return size;
 	}
+	
+	/**
+	 * Set the size of the system
+	 * @param size
+	 */
 	public void setSize(double size) {
 		this.size = size;
 	}
-	
 }

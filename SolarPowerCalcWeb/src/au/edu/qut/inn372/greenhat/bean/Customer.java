@@ -32,21 +32,50 @@ public class Customer implements Serializable {
 	@ManagedProperty (value = "#{electricityUsage}")
 	private ElectricityUsage electricityUsage;
 	
+	/**
+	 * Get the location
+	 * @return location
+	 */
 	public Location getLocation() {
 		return location;
 	}
+	
+	/**
+	 * Set the location
+	 * @param location
+	 */
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+	
+	/**
+	 * Get the tariff
+	 * @return tariff
+	 */
 	public Tariff getTariff() {
 		return tariff;
 	}
+	
+	/**
+	 * Set the tariff
+	 * @param tariff
+	 */
 	public void setTariff(Tariff tariff) {
 		this.tariff = tariff;
 	}
+	
+	/**
+	 * Get the electricity usage
+	 * @return electricityUsage
+	 */
 	public ElectricityUsage getElectricityUsage() {
 		return electricityUsage;
 	}
+	
+	/**
+	 * Set the electricity usage
+	 * @param electricityUsage
+	 */
 	public void setElectricityUsage(ElectricityUsage electricityUsage) {
 		this.electricityUsage = electricityUsage;
 	}

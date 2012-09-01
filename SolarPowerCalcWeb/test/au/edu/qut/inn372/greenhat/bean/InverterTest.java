@@ -1,11 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class InverterTest {
@@ -21,10 +17,6 @@ public class InverterTest {
 		inverter.setEfficiency(EFFICIENCY);
 		inverter.setLifespan(LIFESPAN);
 		inverter.setReplacementCost(REPLACEMENT_COST);
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test

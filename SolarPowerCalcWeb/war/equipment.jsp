@@ -9,28 +9,28 @@
 <LINK href="<%=request.getContextPath()%>/css/greenhat_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<f:view>
-    <h:form>
-		<h:panelGrid columns="2" styleClass="input">
-			<h:outputText value="Cost"></h:outputText>
-			<h:inputText value="#{equipment.cost}"></h:inputText>
-			
-			<h:outputText value="Size"></h:outputText>
-			<h:inputText value="#{equipment.size}"></h:inputText>
-			
-			<h:outputText value="Number of Panels"></h:outputText>
-			<h:selectOneMenu validatorMessage="required">
-  				<f:selectItems value="#{calculatorController.panels}" />
-			</h:selectOneMenu>
+	<f:view>
+	    <h:form>
+			<h:panelGrid columns="2" styleClass="input">
+				<h:outputText value="Cost"></h:outputText>
+				<h:inputText value="#{equipment.cost}"></h:inputText>
 				
-			<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
-			<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:outputText value="Size"></h:outputText>
+				<h:inputText value="#{equipment.size}"></h:inputText>
 				
-			<h:outputText value="Result"></h:outputText>
-			<h:outputText value="#{calculator.result}"></h:outputText>			
-		</h:panelGrid>
-	</h:form>
-</f:view>
+				<h:outputText value="Number of Panels"></h:outputText>
+				<h:selectOneMenu validatorMessage="required">
+	  				<f:selectItems value="#{calculatorController.panels}" />
+				</h:selectOneMenu>
+					
+				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+					
+				<h:outputText value="Result"></h:outputText>
+				<h:outputText value="#{calculator.result}"></h:outputText>			
+			</h:panelGrid>
+		</h:form>
+	</f:view>
 
 </body>
 </html>

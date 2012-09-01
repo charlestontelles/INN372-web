@@ -9,23 +9,22 @@
 <LINK href="<%=request.getContextPath()%>/css/greenhat_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<f:view>
-    <h:form>
-		<h:panelGrid columns="2" styleClass="input">
-			<h:outputText value="Username"></h:outputText>
-			<h:inputText value="charles@greenhat.com"></h:inputText>
-			
-			<h:outputText value="Password"></h:outputText>
-			<h:inputSecret value="123"></h:inputSecret>
-			
-			<h:outputText value=""></h:outputText>
-			<h:commandButton action="input.jsp" value="Login"></h:commandButton>
-			
-			<h:outputText value="New User?"></h:outputText>
-			<h:outputLink>Register</h:outputLink>
-		</h:panelGrid>
-	</h:form>
-</f:view>
-
+	<f:view>
+	    <h:form>
+			<h:panelGrid columns="2" styleClass="input">
+				<h:outputText value="Username"></h:outputText>
+				<h:inputText value="charles@greenhat.com"></h:inputText>
+				
+				<h:outputText value="Password"></h:outputText>
+				<h:inputSecret value="123"></h:inputSecret>
+				
+				<h:outputText value=""></h:outputText>
+				<h:commandButton action="input.jsp" value="Login"></h:commandButton>
+				
+				<h:outputText value="New User?"></h:outputText>
+				<h:outputLink>Register</h:outputLink>
+			</h:panelGrid>
+		</h:form>
+	</f:view>
 </body>
 </html>

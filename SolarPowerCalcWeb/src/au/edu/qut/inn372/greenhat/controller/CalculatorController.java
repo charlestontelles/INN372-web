@@ -28,20 +28,42 @@ public class CalculatorController implements Serializable {
 	private Calculator calculator;
 	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
-
+	
+	/**
+	 * Get the calculator
+	 * @return calculator
+	 */
+	public Calculator getCalculator() {
+		return calculator;
+	}
+	/**
+	 * Set the calculator
+	 * @param calculator
+	 */
 	public void setCalculator(Calculator calculator) {
 		this.calculator = calculator;
 	}
 	
+	/**
+	 * Get the daily solar power generated and navigate to the required page
+	 * @return
+	 */
 	public String calculateSolarPower(){
 		calculator.calculateSolarPower();
 		return "output";
 	}
 
+	/**
+	 * Save the calculation
+	 */
 	public void saveCalculation(){
 		calculatorDAO.saveCalculation(calculator);
 	}
 	
+	/**
+	 * Get the list of panels
+	 * @return list of panels
+	 */
 	public List<SelectItem> getPanels() {
 		    List<SelectItem> list = new ArrayList<SelectItem>();
 		    list.add(new SelectItem(1, "1"));

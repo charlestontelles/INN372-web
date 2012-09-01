@@ -1,11 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class RoofTest {
@@ -27,10 +23,6 @@ public class RoofTest {
 		roof.setPercentageNorth(PERCENTAGE_NORTH);
 		roof.setPercentageWest(PERCENTAGE_WEST);
 		roof.setWidth(WIDTH);
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 	
 	@Test

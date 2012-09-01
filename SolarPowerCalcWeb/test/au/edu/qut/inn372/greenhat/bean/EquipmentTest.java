@@ -1,13 +1,8 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class EquipmentTest {
@@ -27,10 +22,6 @@ public class EquipmentTest {
 		equipment.setInverter(inverter);
 		panels = new ArrayList<Panel>();
 		equipment.setPanels(panels);
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 	
 	@Test

@@ -36,4 +36,12 @@ table .rest {
 	height: 4em;
 }
 
+.right {
+	text-align: right;	
+}
+
+table .width {
+	width: 253px;
+}
+
 
