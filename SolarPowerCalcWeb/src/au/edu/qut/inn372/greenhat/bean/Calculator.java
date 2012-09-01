@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
  * Bean that represents a Calculator
  * 
  * @author Charleston Telles
- * @version 1.0
+ * @version 0.2
  */
 @ManagedBean
 @SessionScoped
