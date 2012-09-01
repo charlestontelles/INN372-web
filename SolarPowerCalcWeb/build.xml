@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="SolarPowerCalcWeb" default="runUnitTests" basedir="./SolarPowerCalcWeb">
+<project name="SolarPowerCalcWeb" default="runUnitTests" basedir=".">
 
 	<property name="war.Dir" value="${basedir}/war" />
 	<property name="lib.Dir" value="${war.Dir}/WEB-INF/lib" />
@@ -106,27 +106,27 @@
 
   <target name="datanucleusenhance" depends="runUnitTests"
       description="Performs JDO enhancement on compiled data classes.">
-    <enhance_war.Dir war.Dir="${war.Dir}" />
+    <enhance_war war="${war.Dir}" />
   </target>
   
   <target name="update" depends="datanucleusenhance"
       description="Uploads the application to App Engine.">
-    <appcfg action="update" war.Dir="${war.Dir}" />
+    <appcfg action="update" war="${war.Dir}" />
   </target>
 
   <target name="update_indexes" depends="datanucleusenhance"
       description="Uploads just the datastore index configuration to App Engine.">
-    <appcfg action="update_indexes" war.Dir="${war.Dir}" />
+    <appcfg action="update_indexes" war="${war.Dir}" />
   </target>
 
   <target name="rollback" depends="datanucleusenhance"
       description="Rolls back an interrupted application update.">
-    <appcfg action="rollback" war.Dir="${war.Dir}" />
+    <appcfg action="rollback" war="${war.Dir}" />
   </target>
 
   <target name="request_logs"
       description="Downloads log data from App Engine for the application.">
-    <appcfg action="request_logs" war.Dir="${war.Dir}">
+    <appcfg action="request_logs" war="${war.Dir}">
       <options>
         <arg value="--num_days=5"/>
       </options>
