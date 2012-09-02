@@ -25,7 +25,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Get the efficiency
-	 * @return
+	 * @return efficiency value of the inverter efficiency
 	 */
 	public double getEfficiency() {
 		return efficiency;
@@ -33,7 +33,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Set the efficiency
-	 * @param efficiency
+	 * @param efficiency new value for the inverter efficiency
 	 */
 	public void setEfficiency(double efficiency) {
 		this.efficiency = efficiency;
@@ -41,7 +41,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Get the lifespan
-	 * @return
+	 * @return lifespan value for the lifespan
 	 */
 	public double getLifespan() {
 		return lifespan;
@@ -49,7 +49,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Set the lifespan
-	 * @param lifespan
+	 * @param lifespan new value for the lifespan
 	 */
 	public void setLifespan(double lifespan) {
 		this.lifespan = lifespan;
@@ -57,7 +57,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Get the replacement cost
-	 * @return replacementCost
+	 * @return replacementCost value of the replacement cost
 	 */
 	public double getReplacementCost() {
 		return replacementCost;
@@ -65,7 +65,7 @@ public class Inverter implements Serializable{
 	
 	/**
 	 * Set the replacementCost
-	 * @param replacementCost
+	 * @param replacementCost new value for the replacement cost
 	 */
 	public void setReplacementCost(double replacementCost) {
 		this.replacementCost = replacementCost;

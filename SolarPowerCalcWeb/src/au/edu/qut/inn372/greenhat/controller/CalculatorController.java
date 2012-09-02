@@ -14,7 +14,7 @@ import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 
 /**
- * Bean that represents a controller
+ * Bean that represents a Calcualtor Controller
  * @author Charleston Telles
  * @version 1.0
  */
@@ -31,21 +31,21 @@ public class CalculatorController implements Serializable {
 	
 	/**
 	 * Get the calculator
-	 * @return calculator
+	 * @return calculator value of the calculator property
 	 */
 	public Calculator getCalculator() {
 		return calculator;
 	}
 	/**
 	 * Set the calculator
-	 * @param calculator
+	 * @param calculator value for the calculator property
 	 */
 	public void setCalculator(Calculator calculator) {
 		this.calculator = calculator;
 	}
 	
 	/**
-	 * Get the daily solar power generated and navigate to the required page
+	 * Get the daily solar power generated and return the page to navigate to
 	 * @return
 	 */
 	public String calculateSolarPower(){

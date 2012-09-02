@@ -11,8 +11,8 @@ import javax.faces.bean.SessionScoped;
 
 
 /**
+ * Bean that represents a Customer
  * 
- * Bean that represents a customer
  * @author Martin Daniel
  * @version 1.0
  */
@@ -34,7 +34,7 @@ public class Customer implements Serializable {
 	
 	/**
 	 * Get the location
-	 * @return location
+	 * @return location value of the location property
 	 */
 	public Location getLocation() {
 		return location;
@@ -42,7 +42,7 @@ public class Customer implements Serializable {
 	
 	/**
 	 * Set the location
-	 * @param location
+	 * @param location new value for the location property 
 	 */
 	public void setLocation(Location location) {
 		this.location = location;
@@ -50,7 +50,7 @@ public class Customer implements Serializable {
 	
 	/**
 	 * Get the tariff
-	 * @return tariff
+	 * @return tariff value of the tariff property
 	 */
 	public Tariff getTariff() {
 		return tariff;
@@ -58,23 +58,23 @@ public class Customer implements Serializable {
 	
 	/**
 	 * Set the tariff
-	 * @param tariff
+	 * @param tariff new value for the tariff property
 	 */
 	public void setTariff(Tariff tariff) {
 		this.tariff = tariff;
 	}
 	
 	/**
-	 * Get the electricity usage
-	 * @return electricityUsage
+	 * Get the daily average electricity usage
+	 * @return electricityUsage value of the electricity usage property
 	 */
 	public ElectricityUsage getElectricityUsage() {
 		return electricityUsage;
 	}
 	
 	/**
-	 * Set the electricity usage
-	 * @param electricityUsage
+	 * Set the daily average electricity usage
+	 * @param electricityUsage new value for the elctricity usage property
 	 */
 	public void setElectricityUsage(ElectricityUsage electricityUsage) {
 		this.electricityUsage = electricityUsage;

@@ -25,7 +25,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Get the id
-	 * @return id
+	 * @return id of the panel
 	 */
 	public int getId() {
 		return id;
@@ -33,7 +33,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Set the id
-	 * @param id
+	 * @param id new value for the panel id
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -41,7 +41,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Get the width
-	 * @return width
+	 * @return width of the panel
 	 */
 	public double getWidth() {
 		return width;
@@ -49,7 +49,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Set the width
-	 * @param width
+	 * @param width new width for the panel
 	 */
 	public void setWidth(double width) {
 		this.width = width;
@@ -57,7 +57,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Get the height
-	 * @return height
+	 * @return height of the panel
 	 */
 	public double getHeight() {
 		return height;
@@ -65,7 +65,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Set the height
-	 * @param height
+	 * @param height new height for the panel
 	 */
 	public void setHeight(double height) {
 		this.height = height;
@@ -73,7 +73,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Get the efficiency
-	 * @return efficiency
+	 * @return efficiency of the panel
 	 */
 	public double getEfficiency() {
 		return efficiency;
@@ -81,7 +81,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Set the efficiency
-	 * @param efficiency
+	 * @param efficiency new panel efficiency
 	 */
 	public void setEfficiency(double efficiency) {
 		this.efficiency = efficiency;
@@ -89,7 +89,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Get the efficiency
-	 * @return efficiencyLoss
+	 * @return efficiencyLoss of the panel
 	 */
 	public double getEfficiencyLoss() {
 		return efficiencyLoss;
@@ -97,7 +97,7 @@ public class Panel implements Serializable {
 	
 	/**
 	 * Set the efficiency loss
-	 * @param efficiencyLoss
+	 * @param efficiencyLoss new efficiency loss of the panel
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {
 		this.efficiencyLoss = efficiencyLoss;

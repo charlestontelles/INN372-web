@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 /**
- * Bean that represents a Equipment
+ * Bean that represents an Equipment
  * 
  * @author Charleston Telles
  * @version 1.0
@@ -26,15 +26,15 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Get the inverter
-	 * @return the inverter
+	 * @return the inverter value of the inverter property
 	 */
 	public Inverter getInverter() {
 		return inverter;
 	}
 	
 	/**
-	 * Set the inverter
-	 * @param inverter
+	 * Set the inverter 
+	 * @param inverter new value for the inverter property
 	 */
 	public void setInverter(Inverter inverter) {
 		this.inverter = inverter;
@@ -42,7 +42,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Get the panels
-	 * @return panels
+	 * @return panels value of the panels property
 	 */
 	public ArrayList<Panel> getPanels() {
 		return panels;
@@ -50,7 +50,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Set the panels
-	 * @param panels
+	 * @param panels new value for the panels property
 	 */
 	public void setPanels(ArrayList<Panel> panels) {
 		this.panels = panels;
@@ -58,7 +58,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Get the cost
-	 * @return
+	 * @return cost value of the cost property
 	 */
 	public double getCost() {
 		return cost;
@@ -66,7 +66,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Set the cost
-	 * @param cost
+	 * @param cost value for the cost property
 	 */
 	public void setCost(double cost) {
 		this.cost = cost;
@@ -74,7 +74,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Get the size of the system
-	 * @return
+	 * @return size value of the size property
 	 */
 	public double getSize() {
 		return size;
@@ -82,7 +82,7 @@ public class Equipment implements Serializable{
 	
 	/**
 	 * Set the size of the system
-	 * @param size
+	 * @param size value for the size property
 	 */
 	public void setSize(double size) {
 		this.size = size;
