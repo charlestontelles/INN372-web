@@ -17,21 +17,70 @@
 
   <xs:complexType name="calculator">
     <xs:sequence>
+      <xs:element name="customer" type="tns:customer" minOccurs="0"/>
       <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
-      <xs:element name="result" type="xs:double"/>
+      <xs:element name="solarPower" type="xs:double"/>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customer">
+    <xs:sequence>
+      <xs:element name="electricityUsage" type="tns:electricityUsage" minOccurs="0"/>
+      <xs:element name="location" type="tns:location" minOccurs="0"/>
+      <xs:element name="tariff" type="tns:tariff" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="electricityUsage">
+    <xs:sequence>
+      <xs:element name="dailyAverageUsage" type="xs:double"/>
+      <xs:element name="dayTimeHourlyUsage" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="location">
+    <xs:sequence>
+      <xs:element name="roof" type="tns:roof" minOccurs="0"/>
+      <xs:element name="sunLightHours" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="roof">
+    <xs:sequence>
+      <xs:element name="efficiencyLossNorth" type="xs:double"/>
+      <xs:element name="efficiencyLossWest" type="xs:double"/>
+      <xs:element name="height" type="xs:double"/>
+      <xs:element name="percentageNorth" type="xs:double"/>
+      <xs:element name="percentageWest" type="xs:double"/>
+      <xs:element name="width" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tariff">
+    <xs:sequence/>
   </xs:complexType>
 
   <xs:complexType name="equipment">
     <xs:sequence>
       <xs:element name="cost" type="xs:double"/>
+      <xs:element name="inverter" type="tns:inverter" minOccurs="0"/>
       <xs:element name="panels" type="tns:panel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="size" type="xs:double"/>
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="inverter">
+    <xs:sequence>
+      <xs:element name="efficiency" type="xs:double"/>
+      <xs:element name="lifespan" type="xs:double"/>
+      <xs:element name="replacementCost" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="panel">
     <xs:sequence>
+      <xs:element name="efficiency" type="xs:double"/>
+      <xs:element name="efficiencyLoss" type="xs:double"/>
       <xs:element name="height" type="xs:double"/>
       <xs:element name="id" type="xs:int"/>
       <xs:element name="width" type="xs:double"/>
@@ -55,6 +104,5 @@
       <xs:element name="result" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
-  
 </xs:schema>
 
