@@ -8,10 +8,9 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 /**
  * 
- * Bean that represents sunlight
+ * Bean that represents Sunlight
  * @author Martin Daniel
  * @version 1.0
  */
@@ -34,7 +33,7 @@ public class Sunlight implements Serializable {
 
 	/**
 	 * Set the sun light hours
-	 * @param sunLightHours
+	 * @param sunLightHours new value for the sunlight
 	 */
 	public void setSunLightHours(double sunLightHours) {
 		this.sunLightHours = sunLightHours;

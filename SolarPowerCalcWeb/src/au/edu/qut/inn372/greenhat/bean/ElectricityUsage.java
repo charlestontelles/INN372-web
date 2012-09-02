@@ -10,8 +10,8 @@ import javax.faces.bean.SessionScoped;
 
 
 /**
+ * Bean that represents a daily average electricity usage
  * 
- * Bean that represents a customer
  * @author Martin Daniel
  * @version 1.0
  */
@@ -26,28 +26,32 @@ public class ElectricityUsage implements Serializable{
 	private double dayTimeHourlyUsage;
 	
 	/**
-	 * Get the daily energy usage
-	 * @return the dailyAverageUsage
+	 * Get the daily electricity usage
+	 * @return the dailyAverageUsage value of the daily average electricity usage
 	 */
 	public double getDailyAverageUsage() {
 		return dailyAverageUsage;
 	}
+	
 	/**
-	 * Set the daily energy usage
-	 * @param dailyAverageUsage new daily energy usage
+	 * Set the daily electricity usage
+	 * @param dailyAverageUsage new value of the daily electricity usage
 	 */
 	public void setDailyAverageUsage(double dailyAverageUsage) {
 		this.dailyAverageUsage = dailyAverageUsage;
 	}
+	
 	/**
-	 * Get the daytime hourly energy usage
-	 * @return dayTimeHourlyUsage
+	 * Get the daytime hourly electricity usage
+	 * @return dayTimeHourlyUsage value of the daytime hourly usage
 	 */
 	public double getDayTimeHourlyUsage() {
 		return dayTimeHourlyUsage;
 	}
+	
 	/**
-	 * @param dayTimeHourlyUsage new daytime hourly energy usage
+	 * Set the daytime hourly usage
+	 * @param dayTimeHourlyUsage new daytime hourly electricity usage
 	 */
 	public void setDayTimeHourlyUsage(double dayTimeHourlyUsage) {
 		this.dayTimeHourlyUsage = dayTimeHourlyUsage;

@@ -8,10 +8,9 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 /**
+ * Bean that represents a Roof
  * 
- * Bean that represents a roof
  * @author Martin Daniel
  * @version 1.0
  */
@@ -31,7 +30,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the efficiency loss on north roof
-	 * @return
+	 * @return efficiencyLossNorth on the north roof
 	 */
 	public double getEfficiencyLossNorth() {
 		return efficiencyLossNorth;
@@ -39,7 +38,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the efficiency loss on north roof
-	 * @param efficiencyLossNorth
+	 * @param efficiencyLossNorth new value for the efficiencyLossNorth property
 	 */
 	public void setEfficiencyLossNorth(double efficiencyLossNorth) {
 		this.efficiencyLossNorth = efficiencyLossNorth;
@@ -47,7 +46,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the efficiency loss on west roof
-	 * @return efficiencyLossWest
+	 * @return efficiencyLossWest on the west roof
 	 */
 	public double getEfficiencyLossWest() {
 		return efficiencyLossWest;
@@ -55,7 +54,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the efficiency loss on west roof
-	 * @param efficiencyLossWest
+	 * @param efficiencyLossWest new value for the efficiencyLossWest property
 	 */
 	public void setEfficiencyLossWest(double efficiencyLossWest) {
 		this.efficiencyLossWest = efficiencyLossWest;
@@ -63,7 +62,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the width
-	 * @return width
+	 * @return width of the roof
 	 */
 	public double getWidth() {
 		return width;
@@ -71,7 +70,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the width
-	 * @param width
+	 * @param width new value of the roof
 	 */
 	public void setWidth(double width) {
 		this.width = width;
@@ -79,7 +78,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the height
-	 * @return height
+	 * @return height of the roof
 	 */
 	public double getHeight() {
 		return height;
@@ -87,7 +86,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the height
-	 * @param height
+	 * @param height new value for the roof
 	 */
 	public void setHeight(double height) {
 		this.height = height;
@@ -95,7 +94,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the percentage on north roof
-	 * @return percentageNorth
+	 * @return percentageNorth of the north roof
 	 */
 	public double getPercentageNorth() {
 		return percentageNorth;
@@ -103,7 +102,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the percentage on north roof
-	 * @param percentageNorth
+	 * @param percentageNorth new value of the north roof
 	 */
 	public void setPercentageNorth(double percentageNorth) {
 		this.percentageNorth = percentageNorth;
@@ -111,7 +110,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Get the percentage on west roof
-	 * @return percentageWest
+	 * @return percentageWest of the west roof
 	 */
 	public double getPercentageWest() {
 		return percentageWest;
@@ -119,7 +118,7 @@ public class Roof implements Serializable {
 	
 	/**
 	 * Set the percentage on west roof
-	 * @param percentageWest
+	 * @param percentageWest new value for the west roof
 	 */
 	public void setPercentageWest(double percentageWest) {
 		this.percentageWest = percentageWest;

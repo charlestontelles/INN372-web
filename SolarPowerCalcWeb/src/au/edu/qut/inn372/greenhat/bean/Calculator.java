@@ -24,29 +24,33 @@ public class Calculator implements Serializable {
 	
 	private double solarPower;
 	
+	/**
+	 * Get the customer
+	 * @return customer value of the customer property
+	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	/**
 	 * Set the customer
-	 * @param customer
+	 * @param customer value for the customer property
 	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	
 	/**
-	 * Get the solar power
-	 * @return solarPower
+	 * Get the daily solar power
+	 * @return solarPower value of the solarPower property
 	 */
 	public double getSolarPower() {
 		return solarPower;
 	}
 
 	/**
-	 * Set the solar power
-	 * @param solarPower
+	 * Set the daily solar power
+	 * @param solarPower value for the solarPower property
 	 */
 	public void setSolarPower(double solarPower) {
 		this.solarPower = solarPower;
@@ -54,7 +58,7 @@ public class Calculator implements Serializable {
 
 	/**
 	 * Set the equipment
-	 * @param equipment
+	 * @param equipment value for the equipment property
 	 */
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
@@ -62,7 +66,7 @@ public class Calculator implements Serializable {
 	
 	/**
 	 * Get the equipment
-	 * @return equipment
+	 * @return equipment value of the equipment property
 	 */
 	public Equipment getEquipment() {
 		return equipment;
@@ -72,7 +76,6 @@ public class Calculator implements Serializable {
 	 * Calculate the daily solar power generated
 	 */
 	public void calculateSolarPower(){
-		//this.result = equipment.getCost() * equipment.getSize();
 		Location location = new Location();
 		location = customer.getLocation();
 		this.solarPower =((equipment.getSize()

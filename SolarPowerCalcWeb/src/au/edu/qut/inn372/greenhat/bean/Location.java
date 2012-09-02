@@ -11,8 +11,8 @@ import javax.faces.bean.SessionScoped;
 
 
 /**
+ * Bean that represents a Location
  * 
- * Bean that represents a location
  * @author Martin Daniel
  * @version 1.0
  */
@@ -30,7 +30,7 @@ public class Location implements Serializable{
 
 	/**
 	 * Get the roof
-	 * @return roof
+	 * @return roof value of the roof property
 	 */
 	public Roof getRoof() {
 		return roof;
@@ -38,7 +38,7 @@ public class Location implements Serializable{
 
 	/**
 	 * Set the roof
-	 * @param roof
+	 * @param roof new value for the roof property
 	 */
 	public void setRoof(Roof roof) {
 		this.roof = roof;
@@ -46,7 +46,7 @@ public class Location implements Serializable{
 
 	/**
 	 * Get the sunlight hours
-	 * @return sunLightHours
+	 * @return sunLightHours value of the sunlight hours
 	 */
 	public double getSunLightHours() {
 		return sunLightHours;
@@ -54,7 +54,7 @@ public class Location implements Serializable{
 
 	/**
 	 * Set the sunLightHours
-	 * @param sunLightHours
+	 * @param sunLightHours new value for the sunlight hours
 	 */
 	public void setSunLightHours(double sunLightHours) {
 		this.sunLightHours = sunLightHours;
