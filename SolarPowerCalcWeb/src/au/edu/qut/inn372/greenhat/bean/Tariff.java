@@ -18,7 +18,7 @@ public class Tariff {
 	
 	/**
 	 * Get the tariff per year
-	 * @return tariffPerYear
+	 * @return tariffPerYear 
 	 */
 	public double getTariffPerYear(){
 		return 0;
