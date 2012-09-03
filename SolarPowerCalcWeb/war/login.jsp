@@ -24,6 +24,7 @@
 				<h:outputText value="New User?"></h:outputText>
 				<h:outputLink>Register</h:outputLink>
 			</h:panelGrid>
+			
 			<h:panelGrid columns="1" styleClass="disclaimer">
 				<h:commandLink styleClass="center" action="/pdf/disclaimer.pdf"> Disclaimer </h:commandLink>
 			</h:panelGrid>	
