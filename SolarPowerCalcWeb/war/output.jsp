@@ -45,6 +45,20 @@
 					</h:outputText></td>
 					<td class="right"><h:outputText value="KWh"></h:outputText></td>
 				</tr>
+							<tr>
+					<td><h:outputText value="Quarterly Net:"></h:outputText></td>
+					<td class="right"><h:outputText value="#{(calculator.solarPower - electricityUsage.dailyAverageUsage) * 91}">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+					</h:outputText></td>
+					<td class="right"><h:outputText value="KWh"></h:outputText></td>
+				</tr>
+							<tr>
+					<td><h:outputText value="Annual Net:"></h:outputText></td>
+					<td class="right"><h:outputText value="#{(calculator.solarPower - electricityUsage.dailyAverageUsage) * 365}">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+					</h:outputText></td>
+					<td class="right"><h:outputText value="KWh"></h:outputText></td>
+				</tr>
 			</table>
 			</fieldset>
 		</td></tr>
