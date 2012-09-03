@@ -9,7 +9,7 @@
 	<property name="testSrc.Dir" value="${basedir}/test" />
 	<property name="testResults.Dir" value="${basedir}/test results" />
 	<property name="artifacts.Dir" value="${basedir}/artifacts" />
-	<property name="appengine.home" value= "/usr/local/share/google-appengine-javasdk1.7.0" />-->
+	<property name="appengine.home" value= "/usr/local/share/google-appengine-javasdk1.7.0" />
 	
 	<import file="${appengine.home}/config/user/ant-macros.xml" />
 	
