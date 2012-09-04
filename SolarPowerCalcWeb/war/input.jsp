@@ -25,11 +25,11 @@
 				
 				<tr>
 					<td style="width: 250px;"><h:outputText value="System Size (KWh):"></h:outputText></td>
-					<td><h:inputText value="#{equipment.size}"></h:inputText></td>
+					<td><h:inputText value="#{equipment.size}" id="equipmentSize"></h:inputText></td>
 				</tr>
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Inverter Efficiency (%):"></h:outputText></td>
-					<td><h:inputText value="#{inverter.efficiency}"></h:inputText></td>
+					<td><h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText></td>
 				</tr>
 				<!-- <tr>
 					<td style="width: 250px;"><h:outputText value="Number of Panels"></h:outputText></td>
@@ -48,21 +48,30 @@
 			<legend style = "align: center"> Roof Details</legend>
 			<table style="width: 400px;" align="center">
 				<tr>
+					<td style="width: 250px;"><h:outputText value="Roof Size Width (cm):"></h:outputText></td>
+					<td><h:inputText value="#{roof.width}" id="width"></h:inputText></td>
+				</tr>
+				<tr>
+					<td style="width: 250px;"><h:outputText value="Roof Size Height (cm):"></h:outputText></td>
+					<td><h:inputText value="#{roof.height}" id="height"></h:inputText></td>
+				</tr>
+				<tr>
 					<td style="width: 250px;"><h:outputText value="Percentage on North Roof:"></h:outputText></td>
-					<td><h:inputText value="#{roof.percentageNorth}"></h:inputText></td>
+					<td><h:inputText value="#{roof.percentageNorth}" id="roofPercentageNorth"></h:inputText></td>
 				</tr>
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Percentage on West Roof:"></h:outputText></td>
-					<td><h:inputText value="#{roof.percentageWest}"></h:inputText></td>
+					<td><h:inputText value="#{roof.percentageWest}" id="roofPercentageWest"></h:inputText></td>
 				</tr>
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Efficiency Loss (North Roof):"></h:outputText></td>
-					<td><h:inputText value="#{roof.efficiencyLossNorth}"></h:inputText></td>
+					<td><h:inputText value="#{roof.efficiencyLossNorth}" id="roofEfficiencyLossNorth"></h:inputText></td>
 				</tr>
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Efficiency Loss (West Roof):"></h:outputText></td>
-					<td><h:inputText value="#{roof.efficiencyLossWest}"></h:inputText></td>
+					<td><h:inputText value="#{roof.efficiencyLossWest}" id="roofEfficiencyLossWest"></h:inputText></td>
 				</tr>
+				
 			</table>
 			</fieldset>
 			
@@ -73,7 +82,7 @@
 			<table style="width: 400px;" align="center">
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Average Daily Hours of Sunlight:"></h:outputText></td>
-					<td><h:inputText value="#{location.sunLightHours}"></h:inputText></td>
+					<td><h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText></td>
 				</tr>
 			</table>
 			</fieldset>
@@ -85,7 +94,7 @@
 			<table style="width: 400px;" align="left">
 				<tr>
 					<td style="width: 250px;"><h:outputText value="Energy Used Per Day:"></h:outputText></td>
-					<td><h:inputText value="#{electricityUsage.dailyAverageUsage}"></h:inputText></td>
+					<td><h:inputText value="#{electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText></td>
 				</tr>
 				<!-- <tr>
 					<td style="width: 250px;"><h:outputText value="Energy Used Per DayLight Hours:"></h:outputText></td>
