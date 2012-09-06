@@ -61,8 +61,85 @@
 				</tr>
 			</table>
 			</fieldset>
+			
+			<br />
+			<h:outputText value = "Below is just a trial output"></h:outputText>
 		</td></tr>
-		</table>
+		<tr><td> 
+			
+		</td></tr>
+		</table >
+		
+		<table class = "width" border = "1" align="center">
+				<tr>
+					<td> <h:outputText value = "Year"></h:outputText> </td> 
+					<td> <h:outputText value = "1"></h:outputText> </td>
+					<td> <h:outputText value = "2"></h:outputText> </td>
+					<td> <h:outputText value = "3"></h:outputText> </td>
+					<td> <h:outputText value = "4"></h:outputText> </td>
+					<td> <h:outputText value = "5"></h:outputText> </td>
+					<td> <h:outputText value = "6"></h:outputText> </td>
+					<td> <h:outputText value = "7"></h:outputText> </td>
+					<td> <h:outputText value = "8"></h:outputText> </td>
+					<td> <h:outputText value = "9"></h:outputText> </td>
+					<td> <h:outputText value = "10"></h:outputText> </td>
+				</tr>
+				<tr>
+					<td> <h:outputText value = "Tariff 11 Fee"></h:outputText> </td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[0]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[1]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[2]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[3]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[4]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					
+										<td>
+						<h:outputText value= "#{tariff.tariffFees[5]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[6]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[7]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[8]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					<td>
+						<h:outputText value= "#{tariff.tariffFees[9]}">
+							<f:convertNumber minFractionDigits="4" maxFractionDigits="4"/>
+						</h:outputText>
+					</td>
+					
+				</tr>
+			</table>
 	</h:form>
 	</f:view>
 </body>

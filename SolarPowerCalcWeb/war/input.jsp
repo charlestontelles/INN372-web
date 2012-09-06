@@ -100,6 +100,11 @@
 					<td style="width: 250px;"><h:outputText value="Energy Used Per DayLight Hours:"></h:outputText></td>
 					<td><h:inputText value="#{electricityUsage.dayTimeHourlyUsage}"></h:inputText></td>
 				</tr> -->
+				
+				<tr>
+					<td style="width: 250px;"><h:outputText value="Tariff 11 Fee"></h:outputText></td>
+					<td><h:inputText value="#{tariff.tariff11Fee}"></h:inputText></td>
+				</tr>
 			</table>
 			</fieldset>
 			

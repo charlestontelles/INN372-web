@@ -50,6 +50,7 @@ public class CalculatorController implements Serializable {
 	 */
 	public String calculateSolarPower(){
 		calculator.calculateSolarPower();
+		calculator.calculateTariff();
 		return "output";
 	}
 

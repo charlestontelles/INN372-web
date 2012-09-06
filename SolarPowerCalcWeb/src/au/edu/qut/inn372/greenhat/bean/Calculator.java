@@ -86,4 +86,8 @@ public class Calculator implements Serializable {
 						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
 						*100/100*(equipment.getInverter().getEfficiency()/100)*location.getSunLightHours();
 	}
+	
+	public void calculateTariff(){
+		customer.getTariff().setTariffFees();
+	}
 }
