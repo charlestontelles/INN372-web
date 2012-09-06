@@ -9,8 +9,6 @@
 	<property name="testSrc.Dir" value="${basedir}/test" />
 	<property name="testResults.Dir" value="${basedir}/test results" />
 	<property name="artifacts.Dir" value="${basedir}/artifacts" />
-	<property name="seleniumLib.Dir" value="${basedir}/lib/selenium-2.25.0" />
-	<property name="seleniumSrc.Dir" value="${testSrc.Dir}/au/edu/qut/inn372/greenhat/selenium" />
 	<property name="appengine.home" value= "/usr/local/share/google-appengine-javasdk1.7.0" />
 	
 	<import file="${appengine.home}/config/user/ant-macros.xml" />
@@ -22,9 +20,6 @@
 		</fileset>
 		<fileset dir="${appengine.home}/lib">
       		<include name="shared/**/*.jar" />
-    	</fileset>
-    	<fileset dir="${seleniumLib.Dir}">
-    	    <include name="**/*.jar" />
     	</fileset>
 	</path>
 
@@ -97,48 +92,6 @@
 		<fail if="junit.failure" message="Junit Tests Failed - Aborting build" />
 	</target>
 	
-	<target name="compileSeleniumTests" depends="clean" description=" Compile unit tests for all app engine classes">
-		<mkdir dir="${test.Dir}" />
-		<copy todir="${test.Dir}">
-			<fileset dir="${seleniumSrc.Dir}">
-				<exclude name="**/*.java" />
-			</fileset>
-		</copy>
-		<javac
-			includeantruntime="false"
-			srcdir="${seleniumSrc.Dir}"
-			destdir="${test.Dir}"
-			classpathref="project.classpath"
-			debug="on" />
-	</target>
-	
-	<target name="runSeleniumTests" depends="compileSeleniumTests" description="Run all selenium tests for the project">
-	    <mkdir dir="${testResults.Dir}" />
-	    <junit printsummary="true" failureproperty="junit.failure">
-			<classpath>
-				<fileset dir="${seleniumLib.Dir}">
-    	    		<include name="**/*.jar" />
-    			</fileset>
-				<pathelement path="${test.Dir}" />
-			</classpath>
-			<batchtest todir="${testResults.Dir}">
-				<fileset dir="${test.Dir}">
-				    <include name="**/*.class" />
-				</fileset>
-				<formatter type="xml" />
-			</batchtest>
-		</junit>
-		<junitreport todir="${testResults.Dir}">
-			<fileset dir="${testResults.Dir}">
-				<include name="TEST-*.xml"/>
-			</fileset>
-			<report todir="${testResults.Dir}" />
-		</junitreport>
-		<mkdir dir="${artifacts.Dir}" />
-		<zip destfile="${artifacts.Dir}/selenium test results.zip" basedir="${testResults.Dir}" />
-		<fail if="junit.failure" message="Selenium Tests Failed - Aborting build" />
-	</target>
-
 	<target name="produceWarArtifact" depends="runUnitTests" description="Produces a war.zip">
 		<zip destfile="${artifacts.Dir}/war.zip" basedir="${war.Dir}" />
 	</target>
