@@ -4,6 +4,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -41,10 +42,10 @@ public class Result implements Serializable{
 	 */
 	public void setTariff11Fees(){
 		tariff11Fees = new double [25];
+		DecimalFormat df = new DecimalFormat("#.####");
 		for(int i=0; i<25; i++){
-			//tariffFees[i] = tariff11Fee * ( Math.pow( (1+annualTariffIncrease/100), ((i+1)-1) ) );
-			tariff11Fees[i] = tariff.getTariff11Fee() * 
-					( Math.pow( (1+tariff.getAnnualTariffIncrease()/100), ((i+1)-1) ) );
+			tariff11Fees[i] = Double.parseDouble( df.format( tariff.getTariff11Fee() * 
+					( Math.pow( (1+tariff.getAnnualTariffIncrease()/100), ((i+1)-1) ) ) ) );
 		}
 	}
 	
@@ -71,16 +72,16 @@ public class Result implements Serializable{
 		Location location = new Location();
 		location = customer.getLocation();
 		solarPowers = new double [25];
-		
+		DecimalFormat df = new DecimalFormat("#.####");
 		for(int i = 0; i < 25; i++){
-			solarPowers[i]  =((equipment.getSize()
+			solarPowers[i]  = Double.parseDouble( df.format(  ((equipment.getSize()
 					* (location.getRoof().getPercentageNorth()/100)
 					* (1-(location.getRoof().getEfficiencyLossNorth()/100)))
 					+ (equipment.getSize()
 					*(location.getRoof().getPercentageWest()/100)
 					*(1-(location.getRoof().getEfficiencyLossWest()/100))))
 					* (100 - panel.getEfficiencyLoss()*i)/100
-					* (equipment.getInverter().getEfficiency()/100)*location.getSunLightHours();
+					* (equipment.getInverter().getEfficiency()/100)*location.getSunLightHours() ));
 		}
 	}
 
