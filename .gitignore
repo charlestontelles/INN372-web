@@ -1,0 +1,13 @@
+# Compiled Source
+#################
+
+*.class
+
+
+
+# OS Generated Files
+####################
+
+.DS_Store
+.DS_Store?
+Thumbs.db
