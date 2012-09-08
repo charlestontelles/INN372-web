@@ -41,7 +41,7 @@ table .rest {
 }
 
 table .width {
-	width: 253px;
+	width: 253px; */
 }
 
 table.disclaimer {
@@ -52,4 +52,11 @@ table.disclaimer {
   margin-right: auto; 
 }
 
+
+table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+}
 

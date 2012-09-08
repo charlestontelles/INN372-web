@@ -22,6 +22,9 @@ public class Calculator implements Serializable {
 	@ManagedProperty (value = "#{customer}")
 	private Customer customer;
 	
+	@ManagedProperty (value = "#{result}")
+	private Result result;
+	
 	private double solarPower;
 	
 	/**
@@ -73,21 +76,27 @@ public class Calculator implements Serializable {
 	}
 	
 	/**
+	 * @return the result
+	 */
+	public Result getResult() {
+		return result;
+	}
+
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(Result result) {
+		this.result = result;
+	}
+
+	/**
 	 * Calculate the daily solar power generated
 	 */
 	public void calculateSolarPower(){
-		Location location = new Location();
-		location = customer.getLocation();
-		this.solarPower =((equipment.getSize()
-				*(location.getRoof().getPercentageNorth()/100)
-				*(1-(location.getRoof().getEfficiencyLossNorth()/100)))
-				+(equipment.getSize()*
-						(location.getRoof().getPercentageWest()/100)
-						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
-						*100/100*(equipment.getInverter().getEfficiency()/100)*location.getSunLightHours();
+		result.setSolarPowers();
 	}
 	
 	public void calculateTariff(){
-		customer.getTariff().setTariffFees();
+		result.setTariff11Fees();
 	}
 }

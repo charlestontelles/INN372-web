@@ -21,7 +21,7 @@ public class Panel implements Serializable {
 	private double width;
 	private double height;
 	private double efficiency;
-	private double efficiencyLoss;
+	private double efficiencyLoss = 0.7;
 	
 	/**
 	 * Get the id

@@ -28,26 +28,7 @@ public class Tariff implements Serializable {
 	private double annualTariffIncrease = 5;
 	private double feedInfee;
 	private double tariffFeePerYear;
-	private double [] tariffFees;
 
-	/**
-	 * Set up an array to hold tariff fees
-	 */
-	public void setTariffFees(){
-		tariffFees = new double [25];
-		for(int i=0; i<25; i++){
-			tariffFees[i] = tariff11Fee * ( Math.pow( (1+annualTariffIncrease/100), ((i+1)-1) ) );
-		}
-	}
-	
-	/**
-	 * Get the array of tariff fees
-	 * @return tariffFees array
-	 */
-	public double [] getTariffFees(){
-		return tariffFees;
-	}
-	
 	/**
 	 * Get tariff 11 fee
 	 * @return the tariff11Fee
