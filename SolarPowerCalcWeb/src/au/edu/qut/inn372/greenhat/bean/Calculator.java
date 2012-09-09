@@ -111,4 +111,8 @@ public class Calculator implements Serializable {
 	public void calculateDailySavings(){
 		result.setDailySavings();
 	}
+	
+	public void calculateResults(){
+		result.setResultList();
+	}
 }

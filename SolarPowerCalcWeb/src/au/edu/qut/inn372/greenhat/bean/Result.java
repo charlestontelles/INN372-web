@@ -4,6 +4,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.faces.bean.ManagedBean;
@@ -231,4 +232,196 @@ public class Result implements Serializable{
 					exportedGeneration[i]*0.5) *100.0)/100.0;
 		}
 	}	
+	
+	
+		
+	
+	
+	
+	private Results[] resultList;
+ 
+	public Results[] getResultList() {
+		return resultList;
+	}
+	
+	public void setResultList(){
+		resultList = new Results[25];
+		Double cumulativeSaving = 0.0;
+		for(int i=0; i<25; i++){
+			Double tariff11Fee = Double.parseDouble( df.format( tariff.getTariff11Fee() * 
+					( Math.pow( (1+tariff.getAnnualTariffIncrease()/100), ((i+1)-1) ) ) ) );
+			Location location = new Location();
+			location = customer.getLocation();
+			Double solarPower  = Double.parseDouble( df.format(  ((equipment.getSize()
+						* (location.getRoof().getPercentageNorth()/100)
+						* (1-(location.getRoof().getEfficiencyLossNorth()/100)))
+						+ (equipment.getSize()
+						*(location.getRoof().getPercentageWest()/100)
+						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
+						* (100 - panel.getEfficiencyLoss()*i)/100
+						* (equipment.getInverter().getEfficiency()/100)*location.getSunLightHours() ));
+			Double replacementGeneration = Double.parseDouble( df.format ( customer.getLocation().getSunLightHours() * 
+					electricityUsage.getDayTimeHourlyUsage() ) );
+			
+			Double exportedGeneration = Double.parseDouble( df.format (solarPower - replacementGeneration ));
+			Double dailySaving = Math.round( (replacementGeneration*tariff11Fee + exportedGeneration*0.5) *100.0)/100.0;
+			Double annualSaving = Math.round( (dailySaving * 365) *100.0)/100.0;
+			cumulativeSaving = Math.round( (cumulativeSaving + annualSaving) *100.0)/100.0;
+			resultList[i] = new Results(i+2012, tariff11Fee, solarPower, replacementGeneration,
+					exportedGeneration, dailySaving, annualSaving, cumulativeSaving);
+		}
+	}
+ 
+	public static class Results{
+ 
+		Integer year;
+		Double tariff11Fee;
+		Double solarPower;
+		Double replacementGeneration;
+		Double exportedGeneration;
+		Double dailySaving;
+		Double annualSaving;
+		Double cumulativeSaving;
+		
+ 
+		public Results(Integer year, Double tariff11Fee, Double solarPower, Double replacementGeneration, Double exportedGeneration, 
+				Double dailySaving, Double annualSaving, Double cumulativeSaving){
+			this.year = year;
+			this.tariff11Fee = tariff11Fee;
+			this.solarPower = solarPower;
+			this.replacementGeneration = replacementGeneration;
+			this.exportedGeneration = exportedGeneration;
+			this.dailySaving = dailySaving;
+			this.annualSaving = annualSaving;
+			this.cumulativeSaving = cumulativeSaving;
+		}
+
+
+		/**
+		 * @return the year
+		 */
+		public Integer getYear() {
+			return year;
+		}
+
+
+		/**
+		 * @param year the year to set
+		 */
+		public void setYear(Integer year) {
+			this.year = year;
+		}
+
+
+		/**
+		 * @return the tariff11Fee
+		 */
+		public Double getTariff11Fee() {
+			return tariff11Fee;
+		}
+
+
+		/**
+		 * @param tariff11Fee the tariff11Fee to set
+		 */
+		public void setTariff11Fee(Double tariff11Fee) {
+			this.tariff11Fee = tariff11Fee;
+		}
+
+
+		/**
+		 * @return the solarPower
+		 */
+		public Double getSolarPower() {
+			return solarPower;
+		}
+
+
+		/**
+		 * @param solarPower the solarPower to set
+		 */
+		public void setSolarPower(Double solarPower) {
+			this.solarPower = solarPower;
+		}
+
+
+		/**
+		 * @return the replacementGeneration
+		 */
+		public Double getReplacementGeneration() {
+			return replacementGeneration;
+		}
+
+
+		/**
+		 * @param replacementGeneration the replacementGeneration to set
+		 */
+		public void setReplacementGeneration(Double replacementGeneration) {
+			this.replacementGeneration = replacementGeneration;
+		}
+
+
+		/**
+		 * @return the exportedGeneration
+		 */
+		public Double getExportedGeneration() {
+			return exportedGeneration;
+		}
+
+
+		/**
+		 * @param exportedGeneration the exportedGeneration to set
+		 */
+		public void setExportedGeneration(Double exportedGeneration) {
+			this.exportedGeneration = exportedGeneration;
+		}
+
+
+		/**
+		 * @return the dailySaving
+		 */
+		public Double getDailySaving() {
+			return dailySaving;
+		}
+
+
+		/**
+		 * @param dailySaving the dailySaving to set
+		 */
+		public void setDailySaving(Double dailySaving) {
+			this.dailySaving = dailySaving;
+		}
+
+
+		/**
+		 * @return the annualSaving
+		 */
+		public Double getAnnualSaving() {
+			return annualSaving;
+		}
+
+
+		/**
+		 * @param annualSaving the annualSaving to set
+		 */
+		public void setAnnualSaving(Double annualSaving) {
+			this.annualSaving = annualSaving;
+		}
+
+
+		/**
+		 * @return the cumulativeSaving
+		 */
+		public Double getCumulativeSaving() {
+			return cumulativeSaving;
+		}
+
+
+		/**
+		 * @param cumulativeSaving the cumulativeSaving to set
+		 */
+		public void setCumulativeSaving(Double cumulativeSaving) {
+			this.cumulativeSaving = cumulativeSaving;
+		}
+	}
 }

@@ -58,8 +58,8 @@ public class CalculatorController implements Serializable {
 	 */
 	public void calculateSolarPower(){
 		calculator.calculateSolarPower();
-		calculator.calculateTariff();
-		this.tabIndex = 2;
+		calculator.calculateResults();
+		this.tabIndex = 4;
 		//return "output.xhtml";
 	}
 

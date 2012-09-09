@@ -40,10 +40,10 @@ table .rest {
 	text-align: right;	
 }
 
-.width {
-	width: 100%;
+.tableStyle {
+	width: 60%;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0px;
     border-collapse: collapse;
 }
 
@@ -52,7 +52,7 @@ table.disclaimer {
   padding-right: 4px;
   padding-top: 4px;
   margin-left: auto; 
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 
@@ -63,8 +63,12 @@ table {
 	border-color: gray;
 }
 
-td, th {
-	border-style: solid;
-	border-width: 1px;
+td.borderWidth{
+	width:250px;
+	border-width: 0px;
+}
+
+table.tableBorder{
+	border-width: 0px;
 }
 

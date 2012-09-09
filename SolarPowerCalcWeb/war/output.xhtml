@@ -7,92 +7,80 @@
 	<h:head>
 	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+	<style>
+		.result-table{   
+			border-collapse:collapse;
+		}
+		 
+		.result-table-header{
+			text-align:center;
+			background:none repeat scroll 0 0 #E5E5E5;
+			border-bottom:1px solid #BBBBBB;
+			padding:16px;
+		}
+		 
+		.result-table-odd-row{
+			text-align:center;
+			background:none repeat scroll 0 0 #FFFFFFF;
+			border-top:1px solid #BBBBBB;
+		}
+		 
+		.result-table-even-row{
+			text-align:center;
+			background:none repeat scroll 0 0 #F9F9F9;
+			border-top:1px solid #BBBBBB;
+		}
+		
+		td,th	{
+			border-style: solid;
+			border-width: 1px;
+		}
+	</style>
 	</h:head>
 	
 	<h:body>
     <f:view>
     <h:form styleClass="input" >
-    	<h3 align = "center"> Average Solar Power Generation </h3>
-    	
-    	<table class = "width" align="center">
-		<tr><td> 
-			<fieldset>
-				<table class = "width">
-				<tr>
-					<td><h:outputText value="Daily:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{result.solarPowers[0]}">
-							<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-						</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Quarterly:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{result.solarPowers[0] * 91}">
-							<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-						</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Annually:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{result.solarPowers[0] * 365}">
-							<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-						</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-				<tr><td></td><td></td></tr>
-				<tr>
-					<td><h:outputText value="Daily Net:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{result.solarPowers[0] - electricityUsage.dailyAverageUsage}">
-						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-					</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-							<tr>
-					<td><h:outputText value="Quarterly Net:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{(result.solarPowers[0] - electricityUsage.dailyAverageUsage) * 91}">
-						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-					</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-							<tr>
-					<td><h:outputText value="Annual Net:"></h:outputText></td>
-					<td class="right"><h:outputText value="#{(result.solarPowers[0] - electricityUsage.dailyAverageUsage) * 365}">
-						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
-					</h:outputText></td>
-					<td class="right"><h:outputText value="KWh"></h:outputText></td>
-				</tr>
-			</table>
-			</fieldset>
-			<br />
-			<h:outputText value = "Below is just a trial output"></h:outputText>
-		</td></tr>
-		<tr><td> 
-			
-		</td></tr>
-		</table >
-		<!-- Martin MUST use JSF rather than JSP
-	   	<table class = "width" border = "1" align="center">
-	    	<tr>
-	    		<td> <h:outputText value ="Year"> </h:outputText></td>
-				<c:forEach var="i" begin="0" end="9"> 
-	    			<th><c:out value="${2012+i}"/></th>
-	    		</c:forEach>
-	    	</tr>
-	    	<tr>
-	    		<td> <h:outputText value ="Tariff 11 Fee"> </h:outputText></td>
-	    		<c:forEach var="i" begin="0" end="9"> 
-	    			<td><c:out value="${result.tariff11Fees[i]}"/></td>
-	    		</c:forEach>
-	    	</tr>
-	    	<tr><td> <h:outputText value ="Average Solar Power Generation"> </h:outputText></td>
-	    		<c:forEach var="i" begin="0" end="9"> 
-	    			<td><c:out value="${result.solarPowers[i]}"/></td>
-	    		</c:forEach>
-	    	</tr>
-		</table>
-		 -->	
+    	<h4 align = "center"> Average Solar Power Generation &amp; Financial Output </h4>
+   		<h:dataTable value="#{result.resultList}" var="r"
+   			    styleClass="result-table"
+    			headerClass="result-table-header"
+    			rowClasses="result-table-odd-row,result-table-even-row">
+   			<h:column>
+   				<f:facet name="header">Year</f:facet>
+   				#{r.year}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Tariff 11 Fee</f:facet>
+   				#{r.tariff11Fee}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Daily Solar Power Generation</f:facet>
+   				#{r.solarPower}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Replacement Generation</f:facet>
+   				#{r.replacementGeneration}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Exported Generation</f:facet>
+   				#{r.exportedGeneration}
+   			</h:column>
+   	   			<h:column>
+   				<f:facet name="header">Daily Savings</f:facet>
+   				#{r.dailySaving}
+   			</h:column>	
+   				
+   	   		<h:column>
+   				<f:facet name="header">Annual Savings</f:facet>
+   				#{r.annualSaving}
+   			</h:column>	
+   			<h:column>
+   				<f:facet name="header">Cumulative Savings</f:facet>
+   				#{r.cumulativeSaving}
+   			</h:column>	
+   		</h:dataTable>
 	</h:form>
 	</f:view>
-		
 	</h:body>
 </html>
