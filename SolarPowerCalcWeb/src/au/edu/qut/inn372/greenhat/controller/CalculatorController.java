@@ -29,6 +29,8 @@ public class CalculatorController implements Serializable {
 	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	
+	private int tabIndex = 0;
+	
 	/**
 	 * Get the calculator
 	 * @return calculator value of the calculator property
@@ -44,17 +46,21 @@ public class CalculatorController implements Serializable {
 		this.calculator = calculator;
 	}
 	
+	public int getTabIndex() {
+		return tabIndex;
+	}
+	public void setTabIndex(int tabIndex) {
+		this.tabIndex = tabIndex;
+	}
 	/**
 	 * Get the daily solar power generated and return the page to navigate to
 	 * @return
 	 */
-	public String calculateSolarPower(){
+	public void calculateSolarPower(){
 		calculator.calculateSolarPower();
 		calculator.calculateTariff();
-		calculator.calculateReplacementGenaration();
-		calculator.calculateExportedGeneration();
-		calculator.calculateDailySavings();
-		return "output";
+		this.tabIndex = 2;
+		//return "output.xhtml";
 	}
 
 	/**
