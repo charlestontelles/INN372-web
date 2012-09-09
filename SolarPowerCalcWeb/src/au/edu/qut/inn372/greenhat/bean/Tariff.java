@@ -26,7 +26,7 @@ public class Tariff implements Serializable {
 	//private double annualTariff11Cost;
 	//private double annualTariff33Cost;
 	private double annualTariffIncrease = 5;
-	private double feedInfee;
+	private double feedInfee = 0.5;
 	private double tariffFeePerYear;
 
 	/**

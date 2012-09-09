@@ -40,8 +40,11 @@ table .rest {
 	text-align: right;	
 }
 
-table .width {
-	width: 253px; */
+.width {
+	width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-collapse: collapse;
 }
 
 table.disclaimer {
@@ -58,5 +61,10 @@ table {
 	border-collapse: separate;
 	border-spacing: 2px;
 	border-color: gray;
+}
+
+td, th {
+	border-style: solid;
+	border-width: 1px;
 }
 

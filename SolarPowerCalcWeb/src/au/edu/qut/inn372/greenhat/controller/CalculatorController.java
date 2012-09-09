@@ -51,6 +51,9 @@ public class CalculatorController implements Serializable {
 	public String calculateSolarPower(){
 		calculator.calculateSolarPower();
 		calculator.calculateTariff();
+		calculator.calculateReplacementGenaration();
+		calculator.calculateExportedGeneration();
+		calculator.calculateDailySavings();
 		return "output";
 	}
 

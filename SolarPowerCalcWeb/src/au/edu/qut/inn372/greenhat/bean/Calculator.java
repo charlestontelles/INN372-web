@@ -99,4 +99,16 @@ public class Calculator implements Serializable {
 	public void calculateTariff(){
 		result.setTariff11Fees();
 	}
+	
+	public void calculateReplacementGenaration(){
+		result.setReplacementGeneration();
+	}
+	
+	public void calculateExportedGeneration(){
+		result.setExportedGeneration();
+	}
+	
+	public void calculateDailySavings(){
+		result.setDailySavings();
+	}
 }
