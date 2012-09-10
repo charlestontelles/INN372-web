@@ -20,13 +20,14 @@
 				<h:outputText value="Number of Banks:"></h:outputText>
 				
 				
-				
-				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText value=""></h:inputText>
 				
 				<h:outputText value="Orientation of bank (degrees)"></h:outputText>
-				<h:inputText value=""></h:inputText>
+				<h:selectOneMenu value="#{bank.selectedOrientation}">	
+					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
+					<f:selectItems value="#{bank.listOfOrientation}" />	
+				</h:selectOneMenu>
 				
 					
 				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>

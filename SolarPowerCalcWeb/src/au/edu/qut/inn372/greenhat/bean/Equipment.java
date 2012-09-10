@@ -52,6 +52,18 @@ public class Equipment implements Serializable{
 		return panels;
 	}
 	
+	/**
+	 * Set the panels
+	 * @param panels new value for the panels property
+	 */
+	public void setPanels(ArrayList<Panel> panels) {
+		this.panels = panels;
+	}
+	
+	/**
+	 * Get the panel list
+	 * @return panel list value of the panel list property
+	 */
 	public List<SelectItem> getPanelList() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
 	    list.add(new SelectItem(1, "1"));
@@ -63,22 +75,25 @@ public class Equipment implements Serializable{
 	}
 	
 	/**
-	 * Set the panels
-	 * @param panels new value for the panels property
+	 * Set the panel list
+	 * @param panel list new value for the panel list property
 	 */
-	public void setPanels(ArrayList<Panel> panels) {
-		this.panels = panels;
-	}
-	
-	
 	public void setPanelList(List<SelectItem> panelList) {
 		this.panelList = panelList;
 	}
 	
+	/**
+	 * Get the selected panel
+	 * @return selected panel value of the selected panel property
+	 */
 	public String getSelectedNoOfPanels() { 
 		return selectedNoOfPanels; 
 	} 
-
+	
+	/**
+	 * Set the selected panel
+	 * @param selected panel new value for the selected panel property
+	 */
 	public void setSelectedNoOfPanels(String selectedNoOfPanels) { 
 		this.selectedNoOfPanels = selectedNoOfPanels; 
 	}

@@ -6,6 +6,7 @@ package au.edu.qut.inn372.greenhat.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -27,6 +28,26 @@ public class Roof implements Serializable {
 	private double percentageWest;
 	private double efficiencyLossNorth;
 	private double efficiencyLossWest;
+	
+	@ManagedProperty (value = "#{bank}")
+	private Bank bank;
+	
+	/**
+	 * Get the bank
+	 * @return bank value on bank property
+	 */
+	public Bank getBank() {
+		return bank;
+	}
+	
+	/**
+	 * Set the bank
+	 * @param bank new value for the bank property
+	 */
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+	
 	
 	/**
 	 * Get the efficiency loss on north roof
