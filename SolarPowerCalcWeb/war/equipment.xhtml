@@ -22,7 +22,7 @@
 				<h:outputText value="System Cost"></h:outputText>
 				<h:inputText value="#{equipment.cost}"></h:inputText>
 				
-				<h:outputText value="System Size"></h:outputText>
+				<h:outputText value="System Size(KWh):"></h:outputText>
 				<h:inputText value="#{equipment.size}"></h:inputText>
 				
 				
@@ -30,9 +30,10 @@
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
 					
+			
 				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-					
+				
 			
 				
 				

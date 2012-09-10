@@ -24,6 +24,8 @@ public class Location implements Serializable{
 	private static final long serialVersionUID = -3413151911222121469L;
 	
 	private double sunLightHours;
+	private String region;
+	private String city;
 	
 	@ManagedProperty (value = "#{roof}")
 	private Roof roof;
@@ -59,4 +61,37 @@ public class Location implements Serializable{
 	public void setSunLightHours(double sunLightHours) {
 		this.sunLightHours = sunLightHours;
 	}
+	
+	/**
+	 * Get the region
+	 * @return region value 
+	 */
+	public String getRegion() {
+		return region;
+	}
+
+	/**
+	 * Set the region
+	 * @param region new value 
+	 */
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	
+	/**
+	 * Get the city
+	 * @return city value
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * Set the city
+	 * @param city new value 
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
 }
