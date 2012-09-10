@@ -2,10 +2,12 @@ package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 /**
  * Bean that represents an Equipment
  * 
@@ -20,6 +22,8 @@ public class Equipment implements Serializable{
 	private double cost;
 	private double size;
 	private ArrayList<Panel> panels;
+	private List<SelectItem> panelList;
+	private String selectedNoOfPanels;
 	
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
@@ -48,12 +52,35 @@ public class Equipment implements Serializable{
 		return panels;
 	}
 	
+	public List<SelectItem> getPanelList() {
+		List<SelectItem> list = new ArrayList<SelectItem>();
+	    list.add(new SelectItem(1, "1"));
+	    list.add(new SelectItem(2, "2"));
+	    list.add(new SelectItem(3, "3"));
+	    list.add(new SelectItem(4, "4"));
+	    list.add(new SelectItem(5, "5"));
+	    return list;
+	}
+	
 	/**
 	 * Set the panels
 	 * @param panels new value for the panels property
 	 */
 	public void setPanels(ArrayList<Panel> panels) {
 		this.panels = panels;
+	}
+	
+	
+	public void setPanelList(List<SelectItem> panelList) {
+		this.panelList = panelList;
+	}
+	
+	public String getSelectedNoOfPanels() { 
+		return selectedNoOfPanels; 
+	} 
+
+	public void setSelectedNoOfPanels(String selectedNoOfPanels) { 
+		this.selectedNoOfPanels = selectedNoOfPanels; 
 	}
 	
 	/**
@@ -87,4 +114,6 @@ public class Equipment implements Serializable{
 	public void setSize(double size) {
 		this.size = size;
 	}
+	
+	
 }

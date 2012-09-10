@@ -13,27 +13,25 @@
 	<f:view>
 	    <h:form>
 			<h:panelGrid columns="2" styleClass="input">
-			
-				<h:outputText value="Number of Panels"></h:outputText>				
-				<h:selectOneMenu value="#{equipment.selectedNoOfPanels}">	
-					<f:selectItem itemValue="" itemLabel="Select a number of panels"/>	
-					<f:selectItems value="#{equipment.panelList}" />	
-				</h:selectOneMenu>
+				<h:outputText value="Number of Panels"></h:outputText>
+				<h:outputText value="#{equipment.selectedNoOfPanels}"></h:outputText>
 				
 				
-				<h:outputText value="System Cost"></h:outputText>
-				<h:inputText value="#{equipment.cost}"></h:inputText>
-				
-				<h:outputText value="System Size(KWh):"></h:outputText>
-				<h:inputText value="#{equipment.size}"></h:inputText>
+				<h:outputText value="Number of Banks:"></h:outputText>
 				
 				
 				
-				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
-
+				
+				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
+				<h:inputText value=""></h:inputText>
+				
+				<h:outputText value="Orientation of bank (degrees)"></h:outputText>
+				<h:inputText value=""></h:inputText>
+				
+					
+				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Ok"></h:commandButton>
+					
 			
 				
 				
