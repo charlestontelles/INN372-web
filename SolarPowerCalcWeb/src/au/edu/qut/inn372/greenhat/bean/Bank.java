@@ -28,6 +28,7 @@ public class Bank implements Serializable {
 	private double angle;
 	private List<SelectItem> listOfOrientation; 
 	private String selectedOrientation;
+	private int panelNo;
 
 	@ManagedProperty (value = "#{equipment}")
 	private Equipment equipment;
@@ -46,6 +47,14 @@ public class Bank implements Serializable {
 	 */
 	public void setEquipment(Equipment equipment){
 		this.equipment = equipment;
+	}
+	
+	public int getPanelNo(){
+		return panelNo;
+	}
+	
+	public void setPanelNo(int panelNo){
+		this.panelNo = panelNo;
 	}
 	
 	/**

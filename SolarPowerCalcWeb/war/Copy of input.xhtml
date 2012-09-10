@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+	<h:head>
+	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+
+	</h:head>
+	
+	<h:body>
+	
+ 	<h4 align = "center"> Provide the following details: </h4>
+	<f:view>
+	    <h:form styleClass="input">
+	    <table align="center" style="width: 500px"> 
+		<tr>
+		<td style="border-width:0px"> 
+			<fieldset>
+			<legend style ="align: center"> Equipment Details</legend>
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Cost"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{equipment.cost}"></h:inputText></td>
+				</tr>
+				
+				<tr>
+					<td class="borderWidth"><h:outputText value="System Size (KWh):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{equipment.size}" id="equipmentSize"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Inverter Efficiency (%):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText></td>
+				</tr>
+			
+			</table>
+			</fieldset>
+			
+			<br />
+			
+			<fieldset>
+			<legend style = "align: center"> Roof Details</legend>
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Roof Size Width (cm):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.width}" id="width"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Roof Size Height (cm):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.height}" id="height"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Percentage on North Roof:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.percentageNorth}" id="roofPercentageNorth"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Percentage on West Roof:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.percentageWest}" id="roofPercentageWest"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Efficiency Loss (North Roof):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.efficiencyLossNorth}" id="roofEfficiencyLossNorth"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Efficiency Loss (West Roof):"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{roof.efficiencyLossWest}" id="roofEfficiencyLossWest"></h:inputText></td>
+				</tr>
+				
+			</table>
+			</fieldset>
+			
+			<br />
+			
+			<fieldset>
+			<legend style = "align: center"> Sunlight Details</legend>
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Average Daily Hours of Sunlight:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText></td>
+				</tr>
+			</table>
+			</fieldset>
+			
+			<br />
+			
+			<fieldset>
+			<legend style = "align: center"> Current Energy Usage Details</legend>
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Energy Used Per Day:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Energy Used Per DayLight Hours:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{electricityUsage.dayTimeHourlyUsage}"></h:inputText></td>
+				</tr>
+				
+				<tr>
+					<td class="borderWidth"><h:outputText value="Tariff 11 Fee"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{tariff.tariff11Fee}"></h:inputText></td>
+				</tr>
+			</table>
+			</fieldset>
+			
+			<br />
+			
+			<fieldset> 
+			<table>
+				<tr>
+					<td class="borderWidth"></td>
+					<td class="borderWidth" align="right">
+						<h:commandButton action="#{calculatorController.calculateSolarPower}" value="Calculate"></h:commandButton>
+						<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+		</td>
+		</tr>
+		</table>
+		
+		
+		</h:form>
+	</f:view>
+		
+	</h:body>
+</html>

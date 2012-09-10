@@ -17,8 +17,12 @@
 				<h:outputText value="#{equipment.selectedNoOfPanels}"></h:outputText>
 				
 				
-				<h:outputText value="Number of Banks:"></h:outputText>
 				
+				<h:outputText value="Number of Banks:"></h:outputText>
+				<h:inputText></h:inputText>
+				
+				<h:outputText value="How many panels want to assign to Bank?"></h:outputText>
+				<h:inputText value="#{bank.panelNo}"></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText value=""></h:inputText>
@@ -30,8 +34,8 @@
 				</h:selectOneMenu>
 				
 					
-				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Ok"></h:commandButton>
 					
 			
 				
