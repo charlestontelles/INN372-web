@@ -8,24 +8,24 @@
 	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
 	<style>
-		.result-table{   
+		.calculations-table{   
 			border-collapse:collapse;
 		}
 		 
-		.result-table-header{
+		.calculations-table-header{
 			text-align:center;
 			background:none repeat scroll 0 0 #E5E5E5;
 			border-bottom:1px solid #BBBBBB;
 			padding:16px;
 		}
 		 
-		.result-table-odd-row{
+		.calculations-table-odd-row{
 			text-align:center;
 			background:none repeat scroll 0 0 #FFFFFFF;
 			border-top:1px solid #BBBBBB;
 		}
 		 
-		.result-table-even-row{
+		.calculations-table-even-row{
 			text-align:center;
 			background:none repeat scroll 0 0 #F9F9F9;
 			border-top:1px solid #BBBBBB;
@@ -42,42 +42,42 @@
     <f:view>
     <h:form styleClass="input" >
     	<h4 align = "center"> Average Solar Power Generation &amp; Financial Output </h4>
-   		<h:dataTable value="#{result.resultList}" var="r"
-   			    styleClass="result-table"
-    			headerClass="result-table-header"
-    			rowClasses="result-table-odd-row,result-table-even-row">
+   		<h:dataTable value="#{calculator.calculations}" var="c"
+   			    styleClass="calculations-table"
+    			headerClass="calculations-table-header"
+    			rowClasses="calculations-table-odd-row,calculations-table-even-row">
    			<h:column>
    				<f:facet name="header">Year</f:facet>
-   				#{r.year}
+   				#{c.year}
    			</h:column>
    			<h:column>
    				<f:facet name="header">Tariff 11 Fee</f:facet>
-   				#{r.tariff11Fee}
+   				#{c.tariff11Fee}
    			</h:column>
    			<h:column>
    				<f:facet name="header">Daily Solar Power Generation</f:facet>
-   				#{r.solarPower}
+   				#{c.dailySolarPower}
    			</h:column>
    			<h:column>
    				<f:facet name="header">Replacement Generation</f:facet>
-   				#{r.replacementGeneration}
+   				#{c.replacementGeneration}
    			</h:column>
    			<h:column>
    				<f:facet name="header">Exported Generation</f:facet>
-   				#{r.exportedGeneration}
+   				#{c.exportedGeneration}
    			</h:column>
    	   			<h:column>
    				<f:facet name="header">Daily Savings</f:facet>
-   				#{r.dailySaving}
+   				#{c.dailySaving}
    			</h:column>	
    				
    	   		<h:column>
    				<f:facet name="header">Annual Savings</f:facet>
-   				#{r.annualSaving}
+   				#{c.annualSaving}
    			</h:column>	
    			<h:column>
    				<f:facet name="header">Cumulative Savings</f:facet>
-   				#{r.cumulativeSaving}
+   				#{c.cumulativeSaving}
    			</h:column>	
    		</h:dataTable>
 	</h:form>
