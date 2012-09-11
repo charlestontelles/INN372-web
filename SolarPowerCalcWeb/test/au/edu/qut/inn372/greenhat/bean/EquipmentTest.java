@@ -55,4 +55,20 @@ public class EquipmentTest {
 		equipment.setInverter(newInverter);
 		assertEquals(equipment.getInverter(), newInverter);
 	}
+	
+	@Test 
+	public void testGetSetSelectedNoOfPanel(){
+		int newSelectedNoOfPanel = 1;
+		equipment.setSelectedNoOfPanels(newSelectedNoOfPanel);
+		assertEquals(equipment.getSelectedNoOfPanels(), newSelectedNoOfPanel);
+		
+	}
+	
+	@Test
+	public void testASelectionOfNoPanel(){
+		int newSelectedNoOfPanel = 1;
+		int firstElement = 0;
+		equipment.setSelectedNoOfPanels(newSelectedNoOfPanel);
+		assertEquals(equipment.getPanelList().get(firstElement).getValue(), newSelectedNoOfPanel);
+	}
 }

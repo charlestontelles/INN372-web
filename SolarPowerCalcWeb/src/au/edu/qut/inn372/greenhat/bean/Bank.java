@@ -25,6 +25,7 @@ public class Bank implements Serializable {
 
 	private static final long serialVersionUID = -5620428438578639760L;
 	
+	private int bankId;
 	private double angle;
 	private List<SelectItem> listOfOrientation; 
 	private String selectedOrientation;
@@ -49,12 +50,29 @@ public class Bank implements Serializable {
 		this.equipment = equipment;
 	}
 	
+	
 	public int getPanelNo(){
 		return panelNo;
 	}
 	
 	public void setPanelNo(int panelNo){
 		this.panelNo = panelNo;
+	}
+	
+	/**
+	 * Get the bankId
+	 * @return bankId value of the bankId property
+	 */
+	public int getBankId(){
+		return bankId;
+	}
+	
+	/**
+	 * Set the bankId
+	 * @param bankId new value for the bankId property
+	 */
+	public void setBankId(int bankId){
+		this.bankId = bankId;
 	}
 	
 	/**

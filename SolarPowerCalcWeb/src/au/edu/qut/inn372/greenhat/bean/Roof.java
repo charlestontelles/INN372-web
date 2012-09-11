@@ -4,6 +4,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;

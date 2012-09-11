@@ -23,7 +23,7 @@ public class Equipment implements Serializable{
 	private double size;
 	private ArrayList<Panel> panels;
 	private List<SelectItem> panelList;
-	private String selectedNoOfPanels;
+	private int selectedNoOfPanels;
 	
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
@@ -86,7 +86,7 @@ public class Equipment implements Serializable{
 	 * Get the selected panel
 	 * @return selected panel value of the selected panel property
 	 */
-	public String getSelectedNoOfPanels() { 
+	public int getSelectedNoOfPanels() { 
 		return selectedNoOfPanels; 
 	} 
 	
@@ -94,7 +94,7 @@ public class Equipment implements Serializable{
 	 * Set the selected panel
 	 * @param selected panel new value for the selected panel property
 	 */
-	public void setSelectedNoOfPanels(String selectedNoOfPanels) { 
+	public void setSelectedNoOfPanels(int selectedNoOfPanels) { 
 		this.selectedNoOfPanels = selectedNoOfPanels; 
 	}
 	

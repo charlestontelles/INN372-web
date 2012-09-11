@@ -13,13 +13,22 @@
 	<f:view>
 	    <h:form>
 			<h:panelGrid columns="2" styleClass="input">
+				<h:outputText value="Roof Size Width (cm):"></h:outputText>
+				<h:inputText value="#{roof.width}" id="width"></h:inputText>
+				
+				<h:outputText value="Roof Size Height (cm):"></h:outputText>
+				<h:inputText value="#{roof.height}" id="height"></h:inputText>
+			
 				<h:outputText value="Number of Panels"></h:outputText>
 				<h:outputText value="#{equipment.selectedNoOfPanels}"></h:outputText>
 				
+				<h:outputText value="Banks: " />  
+        		<h:selectOneMenu value="#{bank.bankId}">  
+            		<f:selectItem itemLabel="Select a Bank" itemValue="" />  
+            		<f:selectItem itemLabel="Bank 1" itemValue="1" />  
+            		<f:selectItem itemLabel="Bank 2" itemValue="2" />  
+             	</h:selectOneMenu> 
 				
-				
-				<h:outputText value="Number of Banks:"></h:outputText>
-				<h:inputText></h:inputText>
 				
 				<h:outputText value="How many panels want to assign to Bank?"></h:outputText>
 				<h:inputText value="#{bank.panelNo}"></h:inputText>
@@ -36,8 +45,6 @@
 					
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToLocation}" oncomplete="location.xhtml?faces-redirect=true" value="Ok"></h:commandButton>
-				
-			
 				
 				
 			</h:panelGrid>
