@@ -25,7 +25,7 @@
 				<h:inputText value="#{bank.panelNo}"></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
-				<h:inputText value=""></h:inputText>
+				<h:inputText></h:inputText>
 				
 				<h:outputText value="Orientation of bank (degrees)"></h:outputText>
 				<h:selectOneMenu value="#{bank.selectedOrientation}">	
@@ -35,8 +35,8 @@
 				
 					
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Ok"></h:commandButton>
-					
+				<h:commandButton action="#{calculatorController.moveToLocation}" oncomplete="location.xhtml?faces-redirect=true" value="Ok"></h:commandButton>
+				
 			
 				
 				

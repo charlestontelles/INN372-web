@@ -33,7 +33,7 @@
 				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Ok"></h:commandButton>
+				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="Ok"></h:commandButton>
 			
 				
 				

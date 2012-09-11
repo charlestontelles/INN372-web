@@ -23,6 +23,10 @@ import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 public class CalculatorController implements Serializable {
 
 	private static final long serialVersionUID = 8091277788980459284L;
+	private static final int equipmentTabIndex = 0;
+	private static final int roofTabIndex = 1;
+	private static final int locationTabIndex = 2;
+	private static final int summaryTabIndex = 3;
 	
 	@ManagedProperty (value = "#{calculator}")
 	private Calculator calculator;
@@ -59,7 +63,8 @@ public class CalculatorController implements Serializable {
 	public void calculateSolarPower(){
 		calculator.calculateSolarPower();
 		calculator.setCalculations();
-		this.tabIndex = 5;
+		//this.tabIndex = 5;
+		moveToOutput();//to go to the next tab
 	}
 
 	/**
@@ -81,5 +86,46 @@ public class CalculatorController implements Serializable {
 		    list.add(new SelectItem(4, "4"));
 		    list.add(new SelectItem(5, "5"));
 		    return list;
+	}
+	
+	/**
+	 * Move to the roof tab
+	 * @return the roof tab
+	 */
+	public void moveToRoof(){
+		int currentIndex = equipmentTabIndex;//getTabIndex();
+		setTabIndex(currentIndex+1);
+		getTabIndex();
+		
+	}
+	
+	/**
+	 * Move to the location tab
+	 * @return the location tab
+	 */
+	public void moveToLocation(){
+		int currentIndex = roofTabIndex;//getTabIndex();
+		setTabIndex(currentIndex+1);
+		getTabIndex();
+	}
+	
+	/**
+	 * Move to the summary tab
+	 * @return the summary tab
+	 */
+	public void moveToSummary(){
+		int currentIndex = locationTabIndex;//getTabIndex();
+		setTabIndex(currentIndex+1);
+		getTabIndex();
+	}
+	
+	/**
+	 * Move to the output tab
+	 * @return the output tab
+	 */
+	public void moveToOutput(){
+		int currentIndex = summaryTabIndex;//getTabIndex();
+		setTabIndex(currentIndex+1);
+		getTabIndex();
 	}
 }

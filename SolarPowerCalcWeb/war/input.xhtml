@@ -76,7 +76,7 @@
 		
 				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.calculateSolarPower}" value="Calculate"></h:commandButton>
+				<h:commandButton action="#{calculatorController.calculateSolarPower}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" ></h:commandButton>
 			</h:panelGrid>
 	
 		
