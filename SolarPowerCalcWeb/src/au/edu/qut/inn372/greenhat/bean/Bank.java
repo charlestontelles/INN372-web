@@ -13,7 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 /**
- * Bean that represents a Roof
+ * Bean that represents a Bank
  * 
  * @author Joachim
  * @version 1.0

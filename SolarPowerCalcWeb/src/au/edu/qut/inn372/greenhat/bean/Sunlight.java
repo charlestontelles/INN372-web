@@ -9,8 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * 
  * Bean that represents Sunlight
+ * 
  * @author Martin Daniel
  * @version 1.0
  */

@@ -79,6 +79,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Get the panel
 	 * @return the panel
 	 */
 	public Panel getPanel() {
@@ -86,6 +87,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Set the panel
 	 * @param panel the panel to set
 	 */
 	public void setPanel(Panel panel) {
@@ -100,6 +102,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Get the calculations for a specified range of years
 	 * @return the calculations
 	 */
 	public Calculation[] getCalculations() {
@@ -107,32 +110,42 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Set the calculations for a specified range of years
 	 * @param calculations the calculations to set
 	 */
 	public void setCalculations() {
+		Tariff tariff = customer.getTariff();
+		Location location = customer.getLocation();
 		DecimalFormat df = new DecimalFormat("#.###");
 		calculations = new Calculation[25];
+		Roof roof = location.getRoof();
 		Double cumulativeSaving = 0.0;
+		
 		for(int i=0; i<25; i++){
-			Double tariff11Fee = Double.parseDouble( df.format( customer.getTariff().getTariff11Fee() * 
-					( Math.pow( (1+customer.getTariff().getAnnualTariffIncrease()/100), ((i+1)-1) ) ) ) );
-			Location location = new Location();
-			location = customer.getLocation();
+			Double tariff11Fee = Double.parseDouble( df.format( tariff.getTariff11Fee() * 
+					( Math.pow( (1+tariff.getAnnualTariffIncrease()/100), ((i+1)-1) ) ) ) );
+
 			Double solarPower  = Double.parseDouble( df.format(  ((equipment.getSize()
-						* (location.getRoof().getPercentageNorth()/100)
-						* (1-(location.getRoof().getEfficiencyLossNorth()/100)))
+						* (roof.getPercentageNorth()/100)
+						* (1-(roof.getEfficiencyLossNorth()/100)))
 						+ (equipment.getSize()
-						*(location.getRoof().getPercentageWest()/100)
-						*(1-(location.getRoof().getEfficiencyLossWest()/100))))
+						* (roof.getPercentageWest()/100)
+						* (1-(roof.getEfficiencyLossWest()/100))))
 						* (100 - panel.getEfficiencyLoss()*i)/100
-						* (equipment.getInverter().getEfficiency()/100)*location.getSunLightHours() ));
-			Double replacementGeneration = Double.parseDouble( df.format ( customer.getLocation().getSunLightHours() * 
+						* (equipment.getInverter().getEfficiency()/100)
+						* location.getSunLightHours() ));
+			
+			Double replacementGeneration = Double.parseDouble( df.format ( location.getSunLightHours() * 
 					customer.getElectricityUsage().getDayTimeHourlyUsage() ) );
 			
 			Double exportedGeneration = Double.parseDouble( df.format (solarPower - replacementGeneration ));
+			
 			Double dailySaving = Math.round( (replacementGeneration*tariff11Fee + exportedGeneration*0.5) *100.0)/100.0;
+			
 			Double annualSaving = Math.round( (dailySaving * 365) *100.0)/100.0;
+			
 			cumulativeSaving = Math.round( (cumulativeSaving + annualSaving) *100.0)/100.0;
+			
 			calculations[i] = new Calculation(i+2012, tariff11Fee, solarPower, replacementGeneration,
 					exportedGeneration, dailySaving, annualSaving, cumulativeSaving);
 		}
