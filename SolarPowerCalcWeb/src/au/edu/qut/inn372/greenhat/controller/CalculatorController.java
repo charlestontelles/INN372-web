@@ -23,10 +23,11 @@ import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 public class CalculatorController implements Serializable {
 
 	private static final long serialVersionUID = 8091277788980459284L;
-	private static final int equipmentTabIndex = 0;
-	private static final int roofTabIndex = 1;
-	private static final int locationTabIndex = 2;
-	private static final int summaryTabIndex = 3;
+	private static final int customerUsageIndex = 0;
+	private static final int equipmentTabIndex = 1;
+	private static final int roofTabIndex = 2;
+	private static final int locationTabIndex = 3;
+	private static final int summaryTabIndex = 4;
 	
 	@ManagedProperty (value = "#{calculator}")
 	private Calculator calculator;
@@ -89,11 +90,22 @@ public class CalculatorController implements Serializable {
 	}
 	
 	/**
+	 * Move to the equipment tab
+	 * @return the equipment tab
+	 */
+	public void moveToEquipment(){
+		int currentIndex = customerUsageIndex;
+		setTabIndex(currentIndex+1);
+		getTabIndex();
+		
+	}
+	
+	/**
 	 * Move to the roof tab
 	 * @return the roof tab
 	 */
 	public void moveToRoof(){
-		int currentIndex = equipmentTabIndex;//getTabIndex();
+		int currentIndex = equipmentTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 		
@@ -104,7 +116,7 @@ public class CalculatorController implements Serializable {
 	 * @return the location tab
 	 */
 	public void moveToLocation(){
-		int currentIndex = roofTabIndex;//getTabIndex();
+		int currentIndex = roofTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 	}
@@ -114,7 +126,7 @@ public class CalculatorController implements Serializable {
 	 * @return the summary tab
 	 */
 	public void moveToSummary(){
-		int currentIndex = locationTabIndex;//getTabIndex();
+		int currentIndex = locationTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 	}
@@ -124,7 +136,7 @@ public class CalculatorController implements Serializable {
 	 * @return the output tab
 	 */
 	public void moveToOutput(){
-		int currentIndex = summaryTabIndex;//getTabIndex();
+		int currentIndex = summaryTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 	}

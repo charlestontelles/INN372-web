@@ -7,16 +7,20 @@
 	<h:head>
 	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+	
 	</h:head>	
 	<h:body>	
-		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}">		
-			<p:tab id="tab1" title="Equipment">
+		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}" styleClass="centreTab">	
+			<p:tab id="tab1" title="Customer Usage">
+				<ui:include src="customerUsage.xhtml" />
+			</p:tab>		
+			<p:tab id="tab2" title="Equipment">
 				<ui:include src="equipment.xhtml" />
 			</p:tab>	
-			<p:tab id="tab2" title="Roof">
+			<p:tab id="tab3" title="Roof">
 				<ui:include src="roof.xhtml" />
 			</p:tab>  		
-			<p:tab id="tab3" title="Location">
+			<p:tab id="tab4" title="Location">
 				<ui:include src="location.xhtml" />
 		    </p:tab>
 			<!-- <p:tab id="tab4" title="Location (map)">
@@ -25,11 +29,11 @@
 		    </p:tab>
 		    -->
 		    
-		    <p:tab id="tab4" title="Summary">
+		    <p:tab id="tab5" title="Summary">
 				<ui:include src="input.xhtml" />
 		    </p:tab>
 		    
-		    <p:tab id="tab5" title="Output">
+		    <p:tab id="tab6" title="Output">
 				<ui:include src="output.xhtml" />
 			</p:tab>			
 		</p:tabView>		

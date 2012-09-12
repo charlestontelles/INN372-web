@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+	<h:head>
+	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	
+	<h:body>
+	<f:view>
+	    <h:form>
+			<h:panelGrid columns="2" styleClass="input">
+			
+				
+				<h:outputText value="Current Usage:"></h:outputText>
+				<h:outputText></h:outputText>
+				
+				<h:outputText value="Energy Used Per Day:"></h:outputText>
+				<h:inputText value="#{electricityUsage.dailyAverageUsage}"></h:inputText>
+				
+				<h:outputText value="Energy Used Per DayLight Hours:"></h:outputText>
+				<h:inputText value="#{electricityUsage.dayTimeHourlyUsage}"></h:inputText>
+				
+				<h:outputText value="Current Tariff:"></h:outputText>
+				<h:outputText></h:outputText>
+				
+				<h:outputText value="Tariff 11 Fee:"></h:outputText>
+				<h:inputText value="#{tariff.tariff11Fee}"></h:inputText>
+				
+				<h:outputText value="Feed in fee:"></h:outputText>
+				<h:inputText ></h:inputText>
+					
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.moveToEquipment}" oncomplete="equipment.xhtml?faces-redirect=true" value="OK"></h:commandButton>
+			
+			
+				
+				
+			</h:panelGrid>
+		</h:form>
+	</f:view>
+	
+	</h:body>
+</html>
