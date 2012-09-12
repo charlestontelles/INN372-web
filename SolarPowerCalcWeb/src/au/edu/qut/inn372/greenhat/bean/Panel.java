@@ -23,6 +23,11 @@ public class Panel implements Serializable {
 	private double efficiency;
 	private double efficiencyLoss = 0.7;
 	
+	private double powerRating;
+	private double size; 
+	private double cost;
+	
+	
 	/**
 	 * Get the id
 	 * @return id of the panel
@@ -101,5 +106,49 @@ public class Panel implements Serializable {
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {
 		this.efficiencyLoss = efficiencyLoss;
+	}
+
+	/**
+	 * @return the panelPower
+	 */
+	public double getPowerRating() {
+		return powerRating;
+	}
+
+	/**
+	 * @param panelPower the panelPower to set
+	 */
+	public void setPowerRating(double panelPower) {
+		this.powerRating = panelPower;
+	}
+
+
+
+	/**
+	 * @return the size
+	 */
+	public double getSize() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(double size) {
+		this.size = size;
+	}
+
+	/**
+	 * @return the cost
+	 */
+	public double getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 }

@@ -22,6 +22,7 @@ public class Inverter implements Serializable{
 	private double efficiency;
 	private double lifespan;
 	private double replacementCost;
+	private double cost;
 	
 	/**
 	 * Get the efficiency
@@ -69,5 +70,19 @@ public class Inverter implements Serializable{
 	 */
 	public void setReplacementCost(double replacementCost) {
 		this.replacementCost = replacementCost;
+	}
+
+	/**
+	 * @return the cost
+	 */
+	public double getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 }

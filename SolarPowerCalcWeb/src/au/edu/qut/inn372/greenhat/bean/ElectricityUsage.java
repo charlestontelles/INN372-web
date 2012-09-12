@@ -22,7 +22,7 @@ public class ElectricityUsage implements Serializable{
 	
 	private static final long serialVersionUID = -8315704050812581587L;
 	
-	private double dailyAverageUsage;
+	private double dailyAverageUsage; //current electricity usage
 	private double dayTimeHourlyUsage;
 	
 	/**

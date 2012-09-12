@@ -30,6 +30,10 @@ public class Bank implements Serializable {
 	private List<SelectItem> listOfOrientation; 
 	private String selectedOrientation;
 	private int panelNo;
+	
+	//Added by Martin
+	private Double efficiency;
+	private Integer numberOfPanels;
 
 	@ManagedProperty (value = "#{equipment}")
 	private Equipment equipment;
@@ -131,5 +135,35 @@ public class Bank implements Serializable {
 	public void setSelectedOrientation(String selectedOrientation) { 
 		this.selectedOrientation = selectedOrientation; 
 	}
+
+	/**
+	 * @return the efficiency
+	 */
+	public Double getEfficiency() {
+		return efficiency;
+	}
+
+	/**
+	 * @param efficiency the efficiency to set
+	 */
+	public void setEfficiency(Double efficiency) {
+		this.efficiency = efficiency;
+	}
+
+	/**
+	 * @return the numberOfPanels
+	 */
+	public Integer getNumberOfPanels() {
+		return numberOfPanels;
+	}
+
+	/**
+	 * @param numberOfPanels the numberOfPanels to set
+	 */
+	public void setNumberOfPanels(Integer numberOfPanels) {
+		this.numberOfPanels = numberOfPanels;
+	}
+	
+	
 	
 }
