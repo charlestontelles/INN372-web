@@ -22,12 +22,12 @@ public class Tariff implements Serializable {
 	
 	//private double tariff11Cost;
 	//private double tariff33Cost;
-	private double tariff11Fee;
+	private double tariff11Fee = 0.1941;
 	//private double tariff33Fee;
 	//private double annualTariff11Cost;
 	//private double annualTariff33Cost;
 	private double annualTariffIncrease = 5;
-	private double feedInfee = 0.5;
+	private double feedInFee = 0.5;
 	private double tariffFeePerYear;
 
 	/**
@@ -62,15 +62,15 @@ public class Tariff implements Serializable {
 	 * Get the feed in fee
 	 * @return the feedInfee
 	 */
-	public double getFeedInfee() {
-		return feedInfee;
+	public double getFeedInFee() {
+		return feedInFee;
 	}
 	/**
 	 * Set the feed in fee
 	 * @param feedInfee the feedInfee to set
 	 */
-	public void setFeedInfee(double feedInfee) {
-		this.feedInfee = feedInfee;
+	public void setFeedInFee(double feedInFee) {
+		this.feedInFee = feedInFee;
 	}
 
 	/**

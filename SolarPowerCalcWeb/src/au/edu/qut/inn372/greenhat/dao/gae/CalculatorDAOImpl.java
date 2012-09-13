@@ -17,7 +17,7 @@ public class CalculatorDAOImpl implements CalculatorDAO {
 
 	@Override
 	public void saveCalculation(Calculator calculator) {
-		System.out.println("saving calculation: " + calculator.getSolarPower());		
+		//System.out.println("saving calculation: " + calculator.getSolarPower());		
 	}
 
 	@Override

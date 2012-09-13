@@ -31,7 +31,7 @@
 				<h:inputText value="#{tariff.tariff11Fee}"></h:inputText>
 				
 				<h:outputText value="Feed in fee:"></h:outputText>
-				<h:inputText ></h:inputText>
+				<h:inputText value="#{tariff.feedInFee}"></h:inputText>
 					
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToEquipment}" oncomplete="equipment.xhtml?faces-redirect=true" value="OK"></h:commandButton>

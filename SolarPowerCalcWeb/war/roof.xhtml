@@ -20,10 +20,10 @@
 				<h:inputText value="#{roof.height}" id="height"></h:inputText>
 			
 				<h:outputText value="Number of Panels"></h:outputText>
-				<h:outputText value="#{equipment.selectedNoOfPanels}"></h:outputText>
+				<h:outputText value="#{equipment.totalPanels}"></h:outputText>
 				
 				<h:outputText value="Banks: " />  
-        		<h:selectOneMenu value="#{bank.bankId}">  
+        		<h:selectOneMenu value="#{roof.banks[0].bankId}">  
             		<f:selectItem itemLabel="Select a Bank" itemValue="" />  
             		<f:selectItem itemLabel="Bank 1" itemValue="1" />  
             		<f:selectItem itemLabel="Bank 2" itemValue="2" />  
@@ -31,15 +31,15 @@
 				
 				
 				<h:outputText value="How many panels want to assign to Bank?"></h:outputText>
-				<h:inputText value="#{bank.panelNo}"></h:inputText>
+				<h:inputText></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText></h:inputText>
 				
 				<h:outputText value="Orientation of bank (degrees)"></h:outputText>
-				<h:selectOneMenu value="#{bank.selectedOrientation}">	
+				<h:selectOneMenu value="#{roof.banks[0].selectedOrientation}">	
 					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
-					<f:selectItems value="#{bank.listOfOrientation}" />	
+					<f:selectItems value="#{roof.banks[0].listOfOrientation}" />	
 				</h:selectOneMenu>
 				
 					

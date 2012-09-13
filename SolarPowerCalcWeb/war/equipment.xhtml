@@ -16,13 +16,13 @@
 				<h:panelGrid columns="2" styleClass="input">
 				
 				<h:outputText value="List of Equipment"></h:outputText>	
-				<h:selectOneMenu value="#{equipment.selectedNoOfPanels}"><!-- temporary used  -->	
+				<h:selectOneMenu value="#{equipment.totalPanels}"><!-- temporary used  -->	
 					<f:selectItem itemValue="" itemLabel="Select an equipment"/>	
 						
 				</h:selectOneMenu>
 				
 				<h:outputText value="Number of Panels"></h:outputText>				
-				<h:selectOneMenu value="#{equipment.selectedNoOfPanels}">	
+				<h:selectOneMenu value="#{equipment.totalPanels}">	
 					<f:selectItem itemValue="" itemLabel="Select a number of panels"/>	
 					<f:selectItems value="#{equipment.panelList}" />	
 				</h:selectOneMenu>
@@ -37,7 +37,7 @@
 				
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
+				<h:inputText value="#{inverter.efficiency}"></h:inputText>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>

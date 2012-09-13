@@ -4,7 +4,6 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -30,26 +29,15 @@ public class Roof implements Serializable {
 	private double efficiencyLossNorth;
 	private double efficiencyLossWest;
 	
-	@ManagedProperty (value = "#{bank}")
-	private Bank bank;
+	private Bank [] banks;
 	
-	/**
-	 * Get the bank
-	 * @return bank value on bank property
-	 */
-	public Bank getBank() {
-		return bank;
+	public Roof(){
+		banks = new Bank[2];
+		for (int i=0; i < banks.length; i++){
+			banks[i] = new Bank();
+		}
 	}
-	
-	/**
-	 * Set the bank
-	 * @param bank new value for the bank property
-	 */
-	public void setBank(Bank bank) {
-		this.bank = bank;
-	}
-	
-	
+
 	/**
 	 * Get the efficiency loss on north roof
 	 * @return efficiencyLossNorth on the north roof
@@ -144,5 +132,19 @@ public class Roof implements Serializable {
 	 */
 	public void setPercentageWest(double percentageWest) {
 		this.percentageWest = percentageWest;
+	}
+
+	/**
+	 * @return the banks
+	 */
+	public Bank[] getBanks() {
+		return banks;
+	}
+
+	/**
+	 * @param banks the banks to set
+	 */
+	public void setBanks(Bank [] banks) {
+		this.banks = banks;
 	}
 }

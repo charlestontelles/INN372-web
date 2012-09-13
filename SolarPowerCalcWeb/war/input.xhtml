@@ -26,10 +26,7 @@
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
-				
-			
-			
-			
+
 			<legend style = "align: center"> Roof Details:</legend>
 				<h:outputText></h:outputText>
 				<h:outputText value="Roof Size Width (cm):"></h:outputText>
@@ -49,19 +46,15 @@
 				
 				<h:outputText value="Efficiency Loss (West Roof):"></h:outputText>
 					<h:inputText value="#{roof.efficiencyLossWest}" id="roofEfficiencyLossWest"></h:inputText>
-				
-			
+
 			<br />
-			
 			
 			<legend style = "align: center"> Sunlight Details:</legend>
 				<h:outputText></h:outputText>
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
-					<h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText>
-				
+				<h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText>	
 			
 			<br />
-			
 			
 			<legend style = "align: center"> Current Energy Usage Details:</legend>
 				<h:outputText></h:outputText>
@@ -73,16 +66,12 @@
 				
 				<h:outputText value="Tariff 11 Fee"></h:outputText>
 				<h:inputText value="#{tariff.tariff11Fee}"></h:inputText>
-		
 				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.calculateSolarPower}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" ></h:commandButton>
+				<h:commandButton action="#{calculatorController.calculate}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" ></h:commandButton>
 			</h:panelGrid>
-	
-		
-		
+			
 		</h:form>
 	</f:view>
-		
 	</h:body>
 </html>

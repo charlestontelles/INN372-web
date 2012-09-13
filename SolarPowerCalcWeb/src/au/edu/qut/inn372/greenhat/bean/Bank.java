@@ -32,28 +32,12 @@ public class Bank implements Serializable {
 	private int panelNo;
 	
 	//Added by Martin
-	private Double efficiency;
-	private Integer numberOfPanels;
-
-	@ManagedProperty (value = "#{equipment}")
-	private Equipment equipment;
-	
-	/**
-	 * Get the selected panel
-	 * @return selected panel value of the selected panel property
-	 */
-	public Equipment getEquipment(){
-		return equipment;
-	}
-	
-	/**
-	 * Set the selected panel
-	 * @param selected panel new value for the selected panel property
-	 */
-	public void setEquipment(Equipment equipment){
-		this.equipment = equipment;
-	}
-	
+	private double efficiency;
+	private int numberOfPanels;
+	private double orientationEfficiencyLoss;
+	private double angleEfficiencyLoss;
+	private double powerOutput;
+	private double orientation;
 	
 	public int getPanelNo(){
 		return panelNo;
@@ -153,17 +137,72 @@ public class Bank implements Serializable {
 	/**
 	 * @return the numberOfPanels
 	 */
-	public Integer getNumberOfPanels() {
+	public int getNumberOfPanels() {
 		return numberOfPanels;
 	}
 
 	/**
 	 * @param numberOfPanels the numberOfPanels to set
 	 */
-	public void setNumberOfPanels(Integer numberOfPanels) {
+	public void setNumberOfPanels(int numberOfPanels) {
 		this.numberOfPanels = numberOfPanels;
 	}
-	
-	
-	
+
+	/**
+	 * @return the orientationEfficiencyLoss
+	 */
+	public double getOrientationEfficiencyLoss() {
+		return orientationEfficiencyLoss;
+	}
+
+	/**
+	 * @param orientationEfficiencyLoss the orientationEfficiencyLoss to set
+	 */
+	public void setOrientationEfficiencyLoss(double orientationEfficiencyLoss) {
+		this.orientationEfficiencyLoss = orientationEfficiencyLoss;
+	}
+
+	/**
+	 * @return the angleEfficiencyLoss
+	 */
+	public double getAngleEfficiencyLoss() {
+		return angleEfficiencyLoss;
+	}
+
+	/**
+	 * @param angleEfficiencyLoss the angleEfficiencyLoss to set
+	 */
+	public void setAngleEfficiencyLoss(double angleEfficiencyLoss) {
+		this.angleEfficiencyLoss = angleEfficiencyLoss;
+	}
+
+	/**
+	 * @return the powerOutput
+	 */
+	public double getPowerOutput() {
+		return powerOutput;
+	}
+
+	/**
+	 * @param powerOutput the powerOutput to set
+	 */
+	public void setPowerOutput(double powerOutput){
+		this.powerOutput = powerOutput;
+		//this.powerOutput =(No of Panels Bank X * Panel Power Rating)/1000;
+		//this.powerOutput = (numberOfPanels * Panel.getPowerRating() )/ 1000;
+	}
+
+	/**
+	 * @return the orientation
+	 */
+	public double getOrientation() {
+		return orientation;
+	}
+
+	/**
+	 * @param orientation the orientation to set
+	 */
+	public void setOrientation(double orientation) {
+		this.orientation = orientation;
+	}
 }

@@ -61,9 +61,8 @@ public class CalculatorController implements Serializable {
 	 * Get the daily solar power generated and return the page to navigate to
 	 * @return
 	 */
-	public void calculateSolarPower(){
-		calculator.calculateSolarPower();
-		calculator.setCalculations();
+	public void calculate(){
+		calculator.performCalculations();
 		//this.tabIndex = 5;
 		moveToOutput();//to go to the next tab
 	}

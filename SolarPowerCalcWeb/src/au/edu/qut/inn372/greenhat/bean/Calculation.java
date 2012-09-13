@@ -20,14 +20,23 @@ public class Calculation implements Serializable{
 	
 	private static final long serialVersionUID = 3124836987351801557L;
 
-	Integer year;
-	Double tariff11Fee;
-	Double dailySolarPower;
-	Double replacementGeneration;
-	Double exportedGeneration;
-	Double dailySaving;
-	Double annualSaving;
-	Double cumulativeSaving;
+	int year;
+	double panelEfficiency;
+	double bank1Efficiency;
+	double bank2Efficiency;
+	double bank1DailySolarPower;
+	double bank2DailySolarPower;
+	double tariff11Fee;
+	double dailySolarPower; //total daily solar power
+	double replacementGeneration; 	//energy saved
+	double exportedGeneration; 		// excess energy produced
+	double moneySaved; 				// money saved on electricity bill 
+	double moneyEarned;				// money earned from exporting excess energy
+	double dailySaving;				
+	double annualSaving;
+	double cumulativeSaving;
+	double returnOnInvestment;
+	double paybackPeriod;
 		
 	/**
 	 * A calculation object contains info about year, tariff, solar power generation and savings.
@@ -40,17 +49,29 @@ public class Calculation implements Serializable{
 	 * @param annualSaving
 	 * @param cumulativeSaving
 	 */
-	public Calculation(Integer year, Double tariff11Fee, Double dailySolarPower, 
-			Double replacementGeneration, Double exportedGeneration, Double dailySaving, 
-				Double annualSaving, Double cumulativeSaving) {
+	
+	public Calculation(){}
+	
+	public Calculation(Integer year, double panelEfficiency, double bank1Efficiency, 
+			double bank2Efficiency, double bank1DailySolarPower, double bank2DailySolarPower,
+			double tariff11Fee, double dailySolarPower, double replacementGeneration, double exportedGeneration, 
+			double moneySaved, double moneyEarned, double dailySaving, double annualSaving, double cumulativeSaving, double returnOnInvestment) {
 		this.year = year;
+		this.panelEfficiency = panelEfficiency;
+		this.bank1Efficiency = bank1Efficiency;
+		this.bank2Efficiency = bank2Efficiency;
+		this.bank1DailySolarPower = bank1DailySolarPower;
+		this.bank2DailySolarPower = bank2DailySolarPower;
 		this.tariff11Fee = tariff11Fee;
 		this.dailySolarPower = dailySolarPower;
 		this.replacementGeneration = replacementGeneration;
 		this.exportedGeneration = exportedGeneration;
+		this.moneySaved = moneySaved;
+		this.moneyEarned = moneyEarned;
 		this.dailySaving = dailySaving;
 		this.annualSaving = annualSaving;
 		this.cumulativeSaving = cumulativeSaving;
+		this.returnOnInvestment = returnOnInvestment;
 	}
 
 	/**
@@ -73,7 +94,7 @@ public class Calculation implements Serializable{
 	 * Get the tariff for a year
 	 * @return the tariff11Fee
 	 */
-	public Double getTariff11Fee() {
+	public double getTariff11Fee() {
 		return tariff11Fee;
 	}
 
@@ -81,7 +102,7 @@ public class Calculation implements Serializable{
 	 * Set the tariff for a year
 	 * @param tariff11Fee the tariff11Fee to set
 	 */
-	public void setTariff11Fee(Double tariff11Fee) {
+	public void setTariff11Fee(double tariff11Fee) {
 		this.tariff11Fee = tariff11Fee;
 	}
 
@@ -89,7 +110,7 @@ public class Calculation implements Serializable{
 	 * Get the daily solar power generation for a year
 	 * @return the dailySolarPower
 	 */
-	public Double getDailySolarPower() {
+	public double getDailySolarPower() {
 		return dailySolarPower;
 	}
 
@@ -97,7 +118,7 @@ public class Calculation implements Serializable{
 	 * Set the daily solar power generation for a year
 	 * @param dailySolarPower the dailySolarPower to set
 	 */
-	public void setDailySolarPower(Double dailySolarPower) {
+	public void setDailySolarPower(double dailySolarPower) {
 		this.dailySolarPower = dailySolarPower;
 	}
 
@@ -105,14 +126,14 @@ public class Calculation implements Serializable{
 	 * Get the solar power replacement generation
 	 * @return the replacementGeneration
 	 */
-	public Double getReplacementGeneration() {
+	public double getReplacementGeneration() {
 		return replacementGeneration;
 	}
 
 	/**Set the replacement solar power generation
 	 * @param replacementGeneration the replacementGeneration to set
 	 */
-	public void setReplacementGeneration(Double replacementGeneration) {
+	public void setReplacementGeneration(double replacementGeneration) {
 		this.replacementGeneration = replacementGeneration;
 	}
 
@@ -120,7 +141,7 @@ public class Calculation implements Serializable{
 	 * Get the exported solar power generation
 	 * @return the exportedGeneration
 	 */
-	public Double getExportedGeneration() {
+	public double getExportedGeneration() {
 		return exportedGeneration;
 	}
 
@@ -128,7 +149,7 @@ public class Calculation implements Serializable{
 	 * Set the exported solar power generation
 	 * @param exportedGeneration the exportedGeneration to set
 	 */
-	public void setExportedGeneration(Double exportedGeneration) {
+	public void setExportedGeneration(double exportedGeneration) {
 		this.exportedGeneration = exportedGeneration;
 	}
 
@@ -136,7 +157,7 @@ public class Calculation implements Serializable{
 	 * Get the daily savings for a year
 	 * @return the dailySaving
 	 */
-	public Double getDailySaving() {
+	public double getDailySaving() {
 		return dailySaving;
 	}
 
@@ -144,7 +165,7 @@ public class Calculation implements Serializable{
 	 * Set the daily savings for a year
 	 * @param dailySaving the dailySaving to set
 	 */
-	public void setDailySaving(Double dailySaving) {
+	public void setDailySaving(double dailySaving) {
 		this.dailySaving = dailySaving;
 	}
 
@@ -152,7 +173,7 @@ public class Calculation implements Serializable{
 	 * Get the annual savings for a year
 	 * @return the annualSaving
 	 */
-	public Double getAnnualSaving() {
+	public double getAnnualSaving() {
 		return annualSaving;
 	}
 
@@ -160,7 +181,7 @@ public class Calculation implements Serializable{
 	 * Set the annual savings for a year
 	 * @param annualSaving the annualSaving to set
 	 */
-	public void setAnnualSaving(Double annualSaving) {
+	public void setAnnualSaving(double annualSaving) {
 		this.annualSaving = annualSaving;
 	}
 
@@ -168,7 +189,7 @@ public class Calculation implements Serializable{
 	 * Get the cumulative savings for a year
 	 * @return the cumulativeSaving
 	 */
-	public Double getCumulativeSaving() {
+	public double getCumulativeSaving() {
 		return cumulativeSaving;
 	}
 
@@ -176,7 +197,133 @@ public class Calculation implements Serializable{
 	 * Set the cumulative savings for a year
 	 * @param cumulativeSaving the cumulativeSaving to set
 	 */
-	public void setCumulativeSaving(Double cumulativeSaving) {
+	public void setCumulativeSaving(double cumulativeSaving) {
 		this.cumulativeSaving = cumulativeSaving;
+	}
+
+	/**
+	 * @return the moneySaved
+	 */
+	public double getMoneySaved() {
+		return moneySaved;
+	}
+
+	/**
+	 * @param moneySaved the moneySaved to set
+	 */
+	public void setMoneySaved(double moneySaved) {
+		this.moneySaved = moneySaved;
+	}
+
+	/**
+	 * @return the panelEfficiency
+	 */
+	public double getPanelEfficiency() {
+		return panelEfficiency;
+	}
+
+	/**
+	 * @param panelEfficiency the panelEfficiency to set
+	 */
+	public void setPanelEfficiency(double panelEfficiency) {
+		this.panelEfficiency = panelEfficiency;
+	}
+
+	/**
+	 * @return the bank1Efficiency
+	 */
+	public double getBank1Efficiency() {
+		return bank1Efficiency;
+	}
+
+	/**
+	 * @param bank1Efficiency the bank1Efficiency to set
+	 */
+	public void setBank1Efficiency(double bank1Efficiency) {
+		this.bank1Efficiency = bank1Efficiency;
+	}
+
+	/**
+	 * @return the bank2Efficiency
+	 */
+	public double getBank2Efficiency() {
+		return bank2Efficiency;
+	}
+
+	/**
+	 * @param bank2Efficiency the bank2Efficiency to set
+	 */
+	public void setBank2Efficiency(double bank2Efficiency) {
+		this.bank2Efficiency = bank2Efficiency;
+	}
+
+	/**
+	 * @return the bank1DailySolarPower
+	 */
+	public double getBank1DailySolarPower() {
+		return bank1DailySolarPower;
+	}
+
+	/**
+	 * @param bank1DailySolarPower the bank1DailySolarPower to set
+	 */
+	public void setBank1DailySolarPower(double bank1DailySolarPower) {
+		this.bank1DailySolarPower = bank1DailySolarPower;
+	}
+
+	/**
+	 * @return the bank2DailySolarPower
+	 */
+	public double getBank2DailySolarPower() {
+		return bank2DailySolarPower;
+	}
+
+	/**
+	 * @param bank2DailySolarPower the bank2DailySolarPower to set
+	 */
+	public void setBank2DailySolarPower(double bank2DailySolarPower) {
+		this.bank2DailySolarPower = bank2DailySolarPower;
+	}
+
+	/**
+	 * @return the moneyEarned
+	 */
+	public double getMoneyEarned() {
+		return moneyEarned;
+	}
+
+	/**
+	 * @param moneyEarned the moneyEarned to set
+	 */
+	public void setMoneyEarned(double moneyEarned) {
+		this.moneyEarned = moneyEarned;
+	}
+
+	/**
+	 * @return the returnOnInvestment
+	 */
+	public double getReturnOnInvestment() {
+		return returnOnInvestment;
+	}
+
+	/**
+	 * @param returnOnInvestment the returnOnInvestment to set
+	 */
+	public void setReturnOnInvestment(double returnOnInvestment) {
+		this.returnOnInvestment = returnOnInvestment;
+	}
+
+	/**
+	 * @return the paybackPeriod
+	 */
+	public double getPaybackPeriod() {
+		return paybackPeriod;
+	}
+
+	/**
+	 * @param paybackPeriod the paybackPeriod to set
+	 */
+	public void setPaybackPeriod(double paybackPeriod) {
+		this.paybackPeriod = paybackPeriod;
 	}
 }

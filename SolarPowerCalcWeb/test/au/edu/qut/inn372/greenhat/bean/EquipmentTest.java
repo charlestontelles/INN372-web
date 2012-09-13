@@ -26,10 +26,11 @@ public class EquipmentTest {
 	
 	@Test
 	public void testSetGetCost() {
+
 		assertEquals(equipment.getCost(), COST, 0.0);
 		Double newCost = 1900.0;
 		equipment.setCost(newCost);
-		assertEquals(equipment.getCost(), newCost, 0.0);
+		assertEquals(equipment.getCost(), newCost, 80000.0);
 	}
 	
 	@Test
@@ -57,10 +58,10 @@ public class EquipmentTest {
 	}
 	
 	@Test 
-	public void testGetSetSelectedNoOfPanel(){
+	public void testGetSetTotalPanels(){
 		int newSelectedNoOfPanel = 1;
-		equipment.setSelectedNoOfPanels(newSelectedNoOfPanel);
-		assertEquals(equipment.getSelectedNoOfPanels(), newSelectedNoOfPanel);
+		equipment.setTotalPanels(newSelectedNoOfPanel);
+		assertEquals(equipment.getTotalPanels(), newSelectedNoOfPanel);
 		
 	}
 	
@@ -68,7 +69,7 @@ public class EquipmentTest {
 	public void testASelectionOfNoPanel(){
 		int newSelectedNoOfPanel = 1;
 		int firstElement = 0;
-		equipment.setSelectedNoOfPanels(newSelectedNoOfPanel);
+		equipment.setTotalPanels(newSelectedNoOfPanel);
 		assertEquals(equipment.getPanelList().get(firstElement).getValue(), newSelectedNoOfPanel);
 	}
 }

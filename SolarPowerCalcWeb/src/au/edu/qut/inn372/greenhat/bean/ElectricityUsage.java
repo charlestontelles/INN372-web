@@ -22,8 +22,9 @@ public class ElectricityUsage implements Serializable{
 	
 	private static final long serialVersionUID = -8315704050812581587L;
 	
-	private double dailyAverageUsage; //current electricity usage
-	private double dayTimeHourlyUsage;
+	private double dailyAverageUsage = 40; //current electricity usage
+	private double dayTimeHourlyUsage = 4; //electricity used per hour
+	private double dayLightElectricityUsage; //electricity used during day light hours
 	
 	/**
 	 * Get the daily electricity usage
@@ -55,5 +56,20 @@ public class ElectricityUsage implements Serializable{
 	 */
 	public void setDayTimeHourlyUsage(double dayTimeHourlyUsage) {
 		this.dayTimeHourlyUsage = dayTimeHourlyUsage;
+	}
+
+	/**
+	 * @return the dayTimeElectricityUsage
+	 */
+	public double getDayLightElectricityUsage() {
+		return dayLightElectricityUsage;
+	}
+
+	/**
+	 * @param dayTimeElectricityUsage the dayTimeElectricityUsage to set
+	 */
+	public void setDayLightElectricityUsage(double dayLightElectricityUsage) {
+		this.dayLightElectricityUsage = dayLightElectricityUsage;
+		//this.dayTimeElectricityUsage = Average Daily Hours of Sunlight * DayTime Hourly Usage;
 	}
 }
