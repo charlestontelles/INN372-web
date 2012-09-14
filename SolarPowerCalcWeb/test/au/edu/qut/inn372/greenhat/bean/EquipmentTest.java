@@ -59,17 +59,9 @@ public class EquipmentTest {
 	
 	@Test 
 	public void testGetSetTotalPanels(){
-		int newSelectedNoOfPanel = 1;
-		equipment.setTotalPanels(newSelectedNoOfPanel);
+		int newSelectedNoOfPanel = 0;
 		assertEquals(equipment.getTotalPanels(), newSelectedNoOfPanel);
 		
 	}
 	
-	@Test
-	public void testASelectionOfNoPanel(){
-		int newSelectedNoOfPanel = 1;
-		int firstElement = 0;
-		equipment.setTotalPanels(newSelectedNoOfPanel);
-		assertEquals(equipment.getPanelList().get(firstElement).getValue(), newSelectedNoOfPanel);
-	}
 }

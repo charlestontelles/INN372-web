@@ -2,16 +2,23 @@ package au.edu.qut.inn372.greenhat.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
+import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
 
 /**
  * Bean that represents a Calcualtor Controller
@@ -34,7 +41,17 @@ public class CalculatorController implements Serializable {
 	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	
+	private Map<String,String> equipments = new HashMap<String, String>();
+	List<Equipment> listEquipments;
 	private int tabIndex = 0;
+	
+	public CalculatorController(){
+		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
+		listEquipments = equipmentDAO.getEquipments();
+		for (Equipment equipment : listEquipments) {
+			this.equipments.put(equipment.getKitName(), equipment.getKitName());
+		}
+	}
 	
 	/**
 	 * Get the calculator
@@ -50,13 +67,26 @@ public class CalculatorController implements Serializable {
 	public void setCalculator(Calculator calculator) {
 		this.calculator = calculator;
 	}
-	
+	/**
+	 * Gets Tab Index
+	 * @return
+	 */
 	public int getTabIndex() {
 		return tabIndex;
 	}
+	/**
+	 * Sets tabIndex
+	 * @param tabIndex
+	 */
 	public void setTabIndex(int tabIndex) {
 		this.tabIndex = tabIndex;
 	}
+	/**
+	 * Gets Selected Equipment
+	 * @return
+	 */
+
+
 	/**
 	 * Get the daily solar power generated and return the page to navigate to
 	 * @return
@@ -65,6 +95,14 @@ public class CalculatorController implements Serializable {
 		calculator.performCalculations();
 		//this.tabIndex = 5;
 		moveToOutput();//to go to the next tab
+	}
+
+	public void setEquipments(Map<String, String> equipments) {
+		this.equipments = equipments;
+	}
+
+	public Map<String, String> getEquipments() {
+		return equipments;
 	}
 
 	/**
@@ -86,6 +124,18 @@ public class CalculatorController implements Serializable {
 		    list.add(new SelectItem(4, "4"));
 		    list.add(new SelectItem(5, "5"));
 		    return list;
+	}
+	
+
+	/**
+	 * Loads selected equipment to calculator
+	 */
+	public void handleEquipmentChange(ValueChangeEvent event){
+		for (Equipment equipment : listEquipments) {
+			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString()))
+				this.calculator.setEquipment(equipment);
+		}
+		moveToEquipment();
 	}
 	
 	/**

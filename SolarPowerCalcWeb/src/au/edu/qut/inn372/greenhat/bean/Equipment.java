@@ -7,7 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
+
 /**
  * Bean that represents an Equipment
  * 
@@ -21,15 +21,17 @@ public class Equipment implements Serializable{
 	
 	private double cost;
 	private double size;
-	private ArrayList<Panel> panels;
-	private List<SelectItem> panelList;
-	private int totalPanels;
+	private String kitName = "";
+	private List<Panel> panels = new ArrayList<Panel>();
 	
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
 	
 	@ManagedProperty (value = "#{panel}")
 	private Panel panel;
+	
+	@ManagedProperty (value = "#{battery}")
+	private Battery battery;
 	
 	/**
 	 * Get the inverter
@@ -48,7 +50,21 @@ public class Equipment implements Serializable{
 	}
 	
 	
-	
+	/**
+	 * Gets Battery Bean
+	 * @return Battery
+	 */
+	public Battery getBattery() {
+		return battery;
+	}
+	/**
+	 * Sets Battery Bean
+	 * @param battery
+	 */
+	public void setBattery(Battery battery) {
+		this.battery = battery;
+	}
+
 	/**
 	 * Get the panel
 	 * @return the panel value of the panel property
@@ -69,7 +85,7 @@ public class Equipment implements Serializable{
 	 * Get the panels
 	 * @return panels value of the panels property
 	 */
-	public ArrayList<Panel> getPanels() {
+	public List<Panel> getPanels() {
 		return panels;
 	}
 	
@@ -77,50 +93,47 @@ public class Equipment implements Serializable{
 	 * Set the panels
 	 * @param panels new value for the panels property
 	 */
-	public void setPanels(ArrayList<Panel> panels) {
+	public void setPanels(List<Panel> panels) {
 		this.panels = panels;
 	}
-	
 	/**
-	 * Get the panel list
-	 * @return panel list value of the panel list property
+	 * Add panel to Panel List
+	 * @param panel
 	 */
-	public List<SelectItem> getPanelList() {
-		List<SelectItem> list = new ArrayList<SelectItem>();
-	    list.add(new SelectItem(1, "1"));
-	    list.add(new SelectItem(2, "2"));
-	    list.add(new SelectItem(3, "3"));
-	    list.add(new SelectItem(4, "4"));
-	    list.add(new SelectItem(5, "5"));
-	    list.add(new SelectItem(6, "6"));
-	    list.add(new SelectItem(7, "7"));
-	    list.add(new SelectItem(8, "8"));
-	    return list;
+	public void addPanel (Panel panel){
+		this.panels.add(panel);
 	}
-	
 	/**
-	 * Set the panel list
-	 * @param panel list new value for the panel list property
+	 * Remove panel from Panel List
+	 * @param panel
 	 */
-	public void setPanelList(List<SelectItem> panelList) {
-		this.panelList = panelList;
+	public void removePanel (Panel panel){
+		this.panels.remove(panel);
 	}
-	
+	/**
+	 * Gets Kit name
+	 * @return kit name
+	 */
+	public String getKitName() {
+		return kitName;
+	}
+	/**
+	 * Sets kit name
+	 * 
+	 * @param kitName
+	 */
+	public void setKitName(String kitName) {
+		this.kitName = kitName;
+	}
+
+
 	/**
 	 * Get the selected panel
 	 * @return selected panel value of the selected panel property
 	 */
 	public int getTotalPanels() { 
-		return totalPanels; 
+		return this.panels.size(); 
 	} 
-	
-	/**
-	 * Set the selected panel
-	 * @param selected panel new value for the selected panel property
-	 */
-	public void setTotalPanels(int totalPanels) { 
-		this.totalPanels = totalPanels; 
-	}
 	
 	/**
 	 * Get the cost
