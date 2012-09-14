@@ -76,10 +76,6 @@ public class Calculator implements Serializable {
 		this.calculation = calculation;
 	}
 
-	public void calculateSolarPower(){
-		//result.setSolarPowers();
-	}
-
 	/**
 	 * Get the calculations for a specified range of years
 	 * @return the calculations
