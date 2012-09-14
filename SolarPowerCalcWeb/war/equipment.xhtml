@@ -27,17 +27,21 @@
 					<f:selectItems value="#{equipment.panelList}" />	
 				</h:selectOneMenu>
 				
+				<h:outputText value="Panel Power rating:"></h:outputText>
+				<h:inputText value="#{panel.panelPowerRating}"></h:inputText>
 				
-				<h:outputText value="System Cost"></h:outputText>
-				<h:inputText value="#{equipment.cost}"></h:inputText>
+				<h:outputText value="Panel Cost per bank:"></h:outputText>
+				<h:inputText value="#{panel.panelCost}"></h:inputText>
 				
-				<h:outputText value="System Size(KWh):"></h:outputText>
-				<h:inputText value="#{equipment.size}"></h:inputText>
+				<h:outputText value="Inverter Cost:"></h:outputText>
+				<h:inputText value="#{inverter.cost}"></h:inputText>
 				
-				
+				<h:outputText value="Panel Efficiency Loss::"></h:outputText>
+				<h:inputText value="#{inverter.efficiencyLoss}"></h:inputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{inverter.efficiency}"></h:inputText>
+
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>

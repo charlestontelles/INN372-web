@@ -37,6 +37,7 @@ public class Roof implements Serializable {
 			banks[i] = new Bank();
 		}
 	}
+	
 
 	/**
 	 * Get the efficiency loss on north roof

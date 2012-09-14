@@ -18,11 +18,11 @@
 	    <h:panelGrid columns="2" styleClass="input">
 			<legend style ="align: center"> Equipment Details:</legend>
 				<h:outputText></h:outputText>
-				<h:outputText value="Cost"></h:outputText>
-				<h:inputText value="#{equipment.cost}"></h:inputText>
+				<h:outputText value="System Cost"></h:outputText>
+				<h:outputText value="#{equipment.cost}" id="systemCost"></h:outputText>
 			
 				<h:outputText value="System Size (KWh):"></h:outputText>
-				<h:inputText value="#{equipment.size}" id="equipmentSize"></h:inputText>
+				<h:outputText value="#{equipment.size}" id="equipmentSize"></h:outputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
@@ -30,23 +30,25 @@
 			<legend style = "align: center"> Roof Details:</legend>
 				<h:outputText></h:outputText>
 				<h:outputText value="Roof Size Width (cm):"></h:outputText>
-				<h:inputText value="#{roof.width}" id="width"></h:inputText>
+				<h:inputText value="#{roof.width}" id="roofWidth"></h:inputText>
 				
 				<h:outputText value="Roof Size Height (cm):"></h:outputText>
-					<h:inputText value="#{roof.height}" id="height"></h:inputText>
-				
-				<h:outputText value="Percentage on North Roof:"></h:outputText>
-					<h:inputText value="#{roof.percentageNorth}" id="roofPercentageNorth"></h:inputText>
-				
-				<h:outputText value="Percentage on West Roof:"></h:outputText>
-				<h:inputText value="#{roof.percentageWest}" id="roofPercentageWest"></h:inputText>
-				
-				<h:outputText value="Efficiency Loss (North Roof):"></h:outputText>
-				<h:inputText value="#{roof.efficiencyLossNorth}" id="roofEfficiencyLossNorth"></h:inputText>
-				
-				<h:outputText value="Efficiency Loss (West Roof):"></h:outputText>
-					<h:inputText value="#{roof.efficiencyLossWest}" id="roofEfficiencyLossWest"></h:inputText>
+					<h:inputText value="#{roof.height}" id="roofHeight"></h:inputText>
 
+				<h:outputText value="Bank 1 Orientation Efficiency Loss:"></h:outputText>
+				<h:inputText value="#{roof.banks[0].orientationEfficiencyLoss}" id="bank1OrientationLoss"></h:inputText>
+				
+				<h:outputText value="Bank 1 Angle Efficiency Loss:"></h:outputText>
+				<h:inputText value="#{roof.banks[0].angleEfficiencyLoss}" id="bank1AngleLoss"></h:inputText>
+				
+				<h:outputText value="Bank 2 Orientation Efficiency Loss:"></h:outputText>
+				<h:inputText value="#{roof.banks[1].orientationEfficiencyLoss}" id="bank2OrientationLoss"></h:inputText>
+				
+				<h:outputText value="Bank 2 Angle Efficiency Loss:"></h:outputText>
+				<h:inputText value="#{roof.banks[1].angleEfficiencyLoss}" id="bank2AngleLoss"></h:inputText>
+				
+				
+				
 			<br />
 			
 			<legend style = "align: center"> Sunlight Details:</legend>
@@ -62,13 +64,16 @@
 				<h:inputText value="#{electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText>
 				
 				<h:outputText value="Energy Used Per DayLight Hours:"></h:outputText>
-				<h:inputText value="#{electricityUsage.dayTimeHourlyUsage}"></h:inputText>
+				<h:inputText value="#{electricityUsage.dayTimeHourlyUsage}" id="daylightEnergyUsage"></h:inputText>
 				
 				<h:outputText value="Tariff 11 Fee"></h:outputText>
-				<h:inputText value="#{tariff.tariff11Fee}"></h:inputText>
+				<h:inputText value="#{tariff.tariff11Fee}" id="tariff11"></h:inputText>
 				
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.calculate}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" ></h:commandButton>
+				<h:outputText value="Annual Tariff Fee Increase:"></h:outputText>
+				<h:inputText value="#{roof.efficiencyLossNorth}" id="annualTariffFeeIncrease"></h:inputText>
+				
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave"></h:commandButton>
+				<h:commandButton action="#{calculatorController.calculate}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" id="calculate"></h:commandButton>
 			</h:panelGrid>
 			
 		</h:form>

@@ -27,6 +27,9 @@ public class Panel implements Serializable {
 	private double size; 
 	private static double cost = 500;
 	
+	//This will need adjustments with the hardcode on the top
+	private double panelCost = 500;
+	private double panelPowerRating = 700;
 	
 	/**
 	 * Get the id
@@ -121,6 +124,20 @@ public class Panel implements Serializable {
 	public static void setPowerRating(double panelPower) {
 		powerRating = panelPower;
 	}
+	
+	/**
+	 * @return the panelPower
+	 */
+	public  double getPanelPowerRating() {
+		return panelPowerRating;
+	}
+
+	/**
+	 * @param panelPower the panelPower to set
+	 */
+	public void setPanelPowerRating(double panelPower) {
+		panelPowerRating = panelPower;
+	}
 
 	/**
 	 * @return the size
@@ -148,5 +165,16 @@ public class Panel implements Serializable {
 	 */
 	public static void setCost(double panelCost) {
 		cost = panelCost;
+	}
+	
+	public  double getPanelCost() {
+		return panelCost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setPanelCost(double panelCost) {
+		this.panelCost = panelCost;
 	}
 }

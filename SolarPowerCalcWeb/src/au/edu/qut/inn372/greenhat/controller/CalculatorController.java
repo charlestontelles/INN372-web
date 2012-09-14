@@ -108,6 +108,9 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 		
+		//need these two to diplay the result in the summary tab
+		calculator.calculateSystemCost();
+		calculator.calculateSystemSize();
 	}
 	
 	/**
@@ -118,6 +121,9 @@ public class CalculatorController implements Serializable {
 		int currentIndex = roofTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
+		
+		//add the banks
+		
 	}
 	
 	/**
@@ -139,4 +145,7 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 	}
+	
+	
+	
 }
