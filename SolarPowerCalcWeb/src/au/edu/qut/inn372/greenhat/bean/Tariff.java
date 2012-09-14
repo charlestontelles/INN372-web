@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * Bean that represents a traiff fee
+ * Bean that represents a tariff fee
  * @author Martin Daniel
  * @version 1.0
  */
@@ -18,14 +18,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Tariff implements Serializable {
 	
-	private static final long serialVersionUID = -8798153904184726039L;
-	
-	//private double tariff11Cost;
-	//private double tariff33Cost;
+	private static final long serialVersionUID = -8798153904184726039L;    
 	private double tariff11Fee = 0.1941;
-	//private double tariff33Fee;
-	//private double annualTariff11Cost;
-	//private double annualTariff33Cost;
 	private double annualTariffIncrease = 5;
 	private double feedInFee = 0.5;
 	private double tariffFeePerYear;
@@ -72,20 +66,15 @@ public class Tariff implements Serializable {
 	public void setFeedInFee(double feedInFee) {
 		this.feedInFee = feedInFee;
 	}
-
+	
 	/**
-	 * Get the tariff per year
-	 * @return tariffPerYear 
+	 * @return the tariffFeePerYear
 	 */
-	public double getTariffPerYear(int year){
+	public double getTariffFeePerYear() {
 		return tariffFeePerYear;
 	}
 	
-	/**
-	 * Set the tariff fee per year
-	 * @param tariffFeePerYear the tariffFeePerYear to set
-	 */
-	public void setTariffFeePerYear(double year) {
-		this.tariffFeePerYear = tariff11Fee * ( Math.pow( (1+annualTariffIncrease/100), (year-1) ) );
+	public void setTariffFeePerYear(double tariffFeePerYear){
+		this.tariffFeePerYear = tariffFeePerYear;
 	}
 }

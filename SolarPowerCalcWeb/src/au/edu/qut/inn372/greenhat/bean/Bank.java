@@ -188,8 +188,6 @@ public class Bank implements Serializable {
 	 */
 	public void setPowerOutput(double powerOutput){
 		this.powerOutput = powerOutput;
-		//this.powerOutput =(No of Panels Bank X * Panel Power Rating)/1000;
-		//this.powerOutput = (numberOfPanels * Panel.getPowerRating() )/ 1000;
 	}
 
 	/**

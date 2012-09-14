@@ -166,6 +166,4 @@ public class Equipment implements Serializable{
 	public void setSize(double size) {
 		this.size = size; 
 	}
-	
-	
 }

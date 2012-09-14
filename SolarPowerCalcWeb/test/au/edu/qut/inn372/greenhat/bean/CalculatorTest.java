@@ -11,16 +11,22 @@ public class CalculatorTest {
 	private Calculator calculator;
 	private Equipment equipment;
 	private Customer customer;
+	private Calculation calculation;
+	private Calculation[] calculations;
 
 	@Before
 	public void setUp() throws Exception {
 		calculator = new Calculator();
+		customer = new Customer();
 		equipment = new Equipment();
 		equipment.setCost(10.0);
+		calculation = new Calculation();
+		calculations = new Calculation[1];
 		Inverter inverter = new Inverter();
 		inverter.setEfficiency(0.95);
 		inverter.setLifespan(25);
 		inverter.setReplacementCost(350.0);
+		inverter.setCost(100);
 		equipment.setInverter(inverter);
 		ArrayList<Panel> panels = new ArrayList<Panel>();
 		Panel panel1 = new Panel();
@@ -31,9 +37,11 @@ public class CalculatorTest {
 		panel1.setWidth(10.0);
 		panels.add(panel1);
 		equipment.setPanels(panels);
+		//equipment.setTotalPanels(4);
 		equipment.setSize(SOLAR_POWER);
 		calculator.setEquipment(equipment);
-		customer = new Customer();
+		calculator.setCalculation(calculation);
+		
 		ElectricityUsage electricityUsage = new ElectricityUsage();
 		electricityUsage.setDailyAverageUsage(40.0);
 		electricityUsage.setDayTimeHourlyUsage(30.0);
@@ -52,6 +60,10 @@ public class CalculatorTest {
 		customer.setTariff(new Tariff());
 		calculator.setCustomer(customer);
 		//calculator.setSolarPower(SOLAR_POWER);
+		Panel.setPowerRating(100);
+		Panel.setCost(100);
+		Panel.setEfficiencyLoss(0.7);
+
 		
 	}
 
@@ -62,14 +74,7 @@ public class CalculatorTest {
 		calculator.setCustomer(newCustomer);
 		assertEquals(calculator.getCustomer(), newCustomer);
 	}
-	
-	@Test
-	public void testGetSetSolarPower() {
-		//assertEquals(calculator.getSolarPower(), SOLAR_POWER, 0);
-		//Double newSolarPower = 4.0;
-		//calculator.setSolarPower(4.0);
-		//assertEquals(calculator.getSolarPower(), newSolarPower, 0);
-	}
+
 	
 	@Test
 	public void testGetSetEquipment() {
@@ -80,8 +85,74 @@ public class CalculatorTest {
 	}
 	
 	@Test
-	public void testCalculatorSolarPower() {
-		//calculator.calculateSolarPower();
-		//assertEquals(calculator.getSolarPower(), 0.003415725, 0.001);
+	public void testGetSetCalculation(){
+		assertEquals(calculator.getCalculation(), calculation);
+		Calculation newCalculation = new Calculation();
+		calculator.setCalculation((newCalculation));
+		assertEquals(calculator.getCalculation(), newCalculation);
 	}
+	
+	@Test
+	public void testGetSetCalculations(){
+		assertEquals(1, calculations.length);
+	}
+	
+	@Test
+	public void testCalculateReturnOnInvestment(){
+		double returnOnInvestment = calculator.calculateReturnOnInvestment(10);
+		assertEquals(1.0, returnOnInvestment,0.1);
+	}
+	
+	@Test
+	public void testCalculateSystemSize(){
+		calculator.calculateSystemSize();
+		assertEquals(0.4, equipment.getSize() , 0.1);
+	}
+	
+	@Test
+	public void testCalculateSystemCost(){
+		calculator.calculateSystemCost();
+		assertEquals(500, equipment.getCost(),0.1);
+	}
+	
+	@Test
+	public void testCalculateDayLightElectricityUsage(){
+		double dayLightElectricityUsage = customer.getElectricityUsage().getDayTimeHourlyUsage() 
+				* customer.getLocation().getSunLightHours();
+		customer.setDayLightElectricityUsage(dayLightElectricityUsage);
+		assertEquals(240.0, customer.getDayLightElectricityUsage(), 0.1);
+	}
+	
+	@Test
+	public void testCalculateBankPowerOutput(){
+		Bank bank = new Bank();
+		bank.setNumberOfPanels(2);
+		bank.setPowerOutput((bank.getNumberOfPanels() * Panel.getPowerRating())/ 1000);
+		assertEquals(0.2, bank.getPowerOutput(), 0.1);
+	}
+	
+	
+	
+	@Test
+	public void testCalculatePanelEfficiency(){ 
+		double panelEfficiency = calculator.calculatePanelEfficiency(0);
+		assertEquals(100, panelEfficiency, 0.1);
+	}
+	
+	@Test
+	public void calculateBankEfficiency() {
+		Bank[] bank = new Bank[1];
+		bank[0] = new Bank();
+		bank[0].setOrientationEfficiencyLoss(0.5);
+		bank[0].setAngleEfficiencyLoss(0.5);
+		double bankEfficiency = calculator.calculateBankEfficiency(bank, 100.0, 0);
+		assertEquals(25.0, bankEfficiency, 0.1);
+	}
+	
+	/*@Test
+	private double calculateBankDailySolarPower(Location location, Bank[] banks, double bank1Efficiency, int i) throws NumberFormatException {
+		double bank1DailySolarPower = Double.parseDouble( df.format( banks[i].getPowerOutput() * (bank1Efficiency/100)
+				* location.getSunLightHours() ));
+		return bank1DailySolarPower;
+	} */
 }

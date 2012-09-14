@@ -70,6 +70,5 @@ public class ElectricityUsage implements Serializable{
 	 */
 	public void setDayLightElectricityUsage(double dayLightElectricityUsage) {
 		this.dayLightElectricityUsage = dayLightElectricityUsage;
-		//this.dayTimeElectricityUsage = Average Daily Hours of Sunlight * DayTime Hourly Usage;
 	}
 }

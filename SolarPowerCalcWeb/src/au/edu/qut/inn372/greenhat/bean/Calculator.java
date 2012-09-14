@@ -63,6 +63,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Get the calculation
 	 * @return the calculation
 	 */
 	public Calculation getCalculation() {
@@ -70,6 +71,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Set the calculation
 	 * @param calculation the calculation to set
 	 */
 	public void setCalculation(Calculation calculation) {
@@ -143,24 +145,27 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate return on investment
 	 * @param cumulativeSaving
 	 * @return
 	 */
-	private double calculateReturnOnInvestment(double cumulativeSaving) {
+	public double calculateReturnOnInvestment(double cumulativeSaving) {
 		double returnOnInvestment = Math.round( (cumulativeSaving/equipment.getCost()) *100.0)/100.0;
 		return returnOnInvestment;
 	}
 
 	/**
+	 * Calculate annual saving
 	 * @param dailySaving
 	 * @return
 	 */
-	private double calculateAnnualSaving(double dailySaving) {
+	public double calculateAnnualSaving(double dailySaving) {
 		double annualSaving = Math.round( (dailySaving * 365) *100.0)/100.0;
 		return annualSaving;
 	}
 
 	/**
+	 * Calculate daily saving
 	 * @param moneySaved
 	 * @param moneyEarned
 	 * @return
@@ -171,6 +176,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate money earned from exporting solar generation (excess energy produced)
 	 * @param tariff
 	 * @param exportedGeneration
 	 * @return
@@ -181,6 +187,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Money saved from replacement solar generation (energy saved)
 	 * @param replacementGeneration
 	 * @param tariff11Fee
 	 * @return
@@ -192,6 +199,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate exported solar generation (excess energy produced)
 	 * @param replacementGeneration
 	 * @param df
 	 * @param dailySolarPower
@@ -205,6 +213,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate replacement solar generation (energy saved)
 	 * @param df
 	 * @param dailySolarPower
 	 * @return
@@ -222,6 +231,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate tariff 11 fee for given year
 	 * @param tariff
 	 * @param i
 	 * @return
@@ -233,7 +243,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
-	 * @param df
+	 * Calculate daily solar power
 	 * @param bank1DailySolarPower
 	 * @param bank2DailySolarPower
 	 * @return
@@ -247,9 +257,9 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate a bank's daily solar power
 	 * @param location
 	 * @param banks
-	 * @param df
 	 * @param bank1Efficiency
 	 * @return
 	 * @throws NumberFormatException
@@ -261,26 +271,29 @@ public class Calculator implements Serializable {
 	}
 
 	/**
+	 * Calculate a bank's efficiency
 	 * @param banks
 	 * @param panelEfficiency
 	 * @return
 	 */
-	private double calculateBankEfficiency(Bank[] banks, double panelEfficiency, int i) {
+	public double calculateBankEfficiency(Bank[] banks, double panelEfficiency, int i) {
 		double bank1Efficiency = Math.round( panelEfficiency * (1-banks[i].getOrientationEfficiencyLoss())
 				* (1-banks[i].getAngleEfficiencyLoss()) *100.0) /100.0;
 		return bank1Efficiency;
 	}
 
 	/**
+	 * Calculate panel efficiency
 	 * @param i
 	 * @return
 	 */
-	private double calculatePanelEfficiency(int i) {
+	public double calculatePanelEfficiency(int i) {
 		double panelEfficiency = Math.round( (100 - (Panel.getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
 		return panelEfficiency;
 	}
 
 	/**
+	 * Calculate the payback period
 	 * @param paybackPeriod the paybackPeriod to set
 	 */
 	public void calculatePaybackPeriod() {
@@ -293,7 +306,7 @@ public class Calculator implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Calculate a bank's power output
 	 * @param bank
 	 * @param numOfPanels
 	 */
@@ -302,16 +315,25 @@ public class Calculator implements Serializable {
 		bank.setPowerOutput((bank.getNumberOfPanels() * Panel.getPowerRating())/ 1000);
 	}
 	
+	/**
+	 * Calculate a day light electricity usage
+	 */
 	public void calculateDayLightElectricityUsage(){
 		double dayLightElectricityUsage = customer.getElectricityUsage().getDayTimeHourlyUsage() 
 				* customer.getLocation().getSunLightHours();
 		customer.setDayLightElectricityUsage(dayLightElectricityUsage);
 	}
 	
+	/**
+	 * Calculate the system cost
+	 */
 	public void calculateSystemCost(){
 		equipment.setCost( (Panel.getCost() * equipment.getTotalPanels()) + equipment.getInverter().getCost());
 	}
 	
+	/**
+	 * Calculate the system size
+	 */
 	public void calculateSystemSize(){
 		equipment.setSize( (Panel.getPowerRating() * equipment.getTotalPanels()) / 1000);
 	}
