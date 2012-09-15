@@ -113,7 +113,7 @@ public class CalculatorTest {
 	@Test
 	public void testCalculateSystemCost(){
 		calculator.calculateSystemCost();
-		assertEquals(100, equipment.getCost(),0.1);
+		assertEquals(200, equipment.getCost(),0.1);
 	}
 	
 	@Test

@@ -98,6 +98,7 @@ public class CalculatorController implements Serializable {
 		calculator.performCalculations();
 		//this.tabIndex = 5;
 		moveToOutput();//to go to the next tab
+		
 	}
 
 	public void setEquipments(Map<String, String> equipments) {
@@ -199,7 +200,7 @@ public class CalculatorController implements Serializable {
 	public void moveToOutput(){
 		int currentIndex = summaryTabIndex;
 		setTabIndex(currentIndex+1);
-		getTabIndex();
+		getTabIndex(); 
 	}
 	
 	

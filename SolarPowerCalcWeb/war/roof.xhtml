@@ -22,7 +22,8 @@
 				<h:outputText value="Number of Panels"></h:outputText>
 				<h:outputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:outputText>
 				
-				<!--  
+				
+				
 				<h:outputText value="Banks:" />  
         		<h:selectOneMenu value="#{roof.banks[0].bankId}">  
             		<f:selectItem itemLabel="Select a Bank" itemValue="" />  
@@ -30,15 +31,6 @@
             		<f:selectItem itemLabel="Bank 2" itemValue="2" />  
             		
              	</h:selectOneMenu> 
-				-->
-				
-				<h:outputText></h:outputText>
-				
-				<h:outputText value="Bank 1:"></h:outputText>
-				<h:outputText></h:outputText>
-				
-				<h:outputText value="How many panels do want to assign to Bank?"></h:outputText>
-				<h:inputText value="#{roof.banks[0].numberOfPanels}"></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText value="#{roof.banks[0].angle}"></h:inputText>
@@ -49,20 +41,7 @@
 					<f:selectItems value="#{roof.banks[0].listOfOrientation}" />	
 				</h:selectOneMenu>
 				
-				<h:outputText value="Bank 2:"></h:outputText>
-				<h:outputText></h:outputText>
-				
-				<h:outputText value="How many panels do want to assign to Bank?"></h:outputText>
-				<h:inputText value="#{roof.banks[1].numberOfPanels}"></h:inputText>
-				
-				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
-				<h:inputText value="#{roof.banks[1].angle}"></h:inputText>
-				
-				<h:outputText value="Orientation of bank (degrees)"></h:outputText>
-				<h:selectOneMenu value="#{roof.banks[1].selectedOrientation}">	
-					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
-					<f:selectItems value="#{roof.banks[1].listOfOrientation}" />	
-				</h:selectOneMenu>
+
 				
 					
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>

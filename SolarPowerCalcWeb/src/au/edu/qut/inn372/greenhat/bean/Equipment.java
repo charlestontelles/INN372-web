@@ -134,8 +134,8 @@ public class Equipment implements Serializable{
 	 * @return selected panel value of the selected panel property
 	 */
 	public int getTotalPanels() { 
-		//return this.panels.size();
-		return totalPanels;
+		return this.panels.size();
+		//return totalPanels;
 	} 
 	
 	/**

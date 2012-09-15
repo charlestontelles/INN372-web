@@ -22,20 +22,14 @@
 				<h:outputText value="Number of Panels"></h:outputText>				
 				<h:inputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:inputText>
 				
-				<h:outputText value="Panel Power rating:"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.panel.powerRating}"></h:inputText>
+				<h:outputText value="System Cost"></h:outputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.cost}" id="systemCost"></h:outputText>
 				
-				<h:outputText value="Panel Cost per bank:"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.panel.cost}"></h:inputText>
-				
-				<h:outputText value="Panel Efficiency Loss::"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.panel.efficiencyLoss}"></h:inputText>
-				
-				<h:outputText value="Inverter Cost:"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.inverter.cost}"></h:inputText>
+				<h:outputText value="System Size (KWh):"></h:outputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.size}" id="equipmentSize"></h:outputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}"></h:inputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.inverter.efficiency}"></h:outputText>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
