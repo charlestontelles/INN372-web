@@ -158,7 +158,7 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 		
-		//need these two to diplay the result in the summary tab
+		//need these two to display the result in the summary tab
 		calculator.calculateSystemCost();
 		calculator.calculateSystemSize();
 	}

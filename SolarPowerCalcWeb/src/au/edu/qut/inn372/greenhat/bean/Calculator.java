@@ -288,7 +288,7 @@ public class Calculator implements Serializable {
 	 * @return
 	 */
 	public double calculatePanelEfficiency(int i) {
-		double panelEfficiency = Math.round( (100 - (Panel.getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
+		double panelEfficiency = Math.round( (100 - (equipment.getPanel().getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
 		return panelEfficiency;
 	}
 
@@ -312,7 +312,7 @@ public class Calculator implements Serializable {
 	 */
 	public void calculateBankPowerOutput(Bank bank, int numOfPanels){
 		bank.setNumberOfPanels(numOfPanels);
-		bank.setPowerOutput((bank.getNumberOfPanels() * Panel.getPowerRating())/ 1000);
+		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanel().getPowerRating())/ 1000);
 	}
 	
 	/**
@@ -328,13 +328,13 @@ public class Calculator implements Serializable {
 	 * Calculate the system cost
 	 */
 	public void calculateSystemCost(){
-		equipment.setCost( (Panel.getCost() * equipment.getTotalPanels()) + equipment.getInverter().getCost());
+		equipment.setCost( (equipment.getPanel().getCost() * equipment.getTotalPanels()) + equipment.getInverter().getCost());
 	}
 	
 	/**
 	 * Calculate the system size
 	 */
 	public void calculateSystemSize(){
-		equipment.setSize( (Panel.getPowerRating() * equipment.getTotalPanels()) / 1000);
+		equipment.setSize( (equipment.getPanel().getPowerRating() * equipment.getTotalPanels()) / 1000);
 	}
 }

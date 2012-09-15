@@ -13,6 +13,7 @@ public class CalculatorTest {
 	private Customer customer;
 	private Calculation calculation;
 	private Calculation[] calculations;
+	private Panel panel1;
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,7 +30,7 @@ public class CalculatorTest {
 		inverter.setCost(100);
 		equipment.setInverter(inverter);
 		ArrayList<Panel> panels = new ArrayList<Panel>();
-		Panel panel1 = new Panel();
+		panel1 = new Panel();
 		panel1.setEfficiency(0.35);
 		panel1.setEfficiencyLoss(0.65);
 		panel1.setHeight(10.0);
@@ -37,7 +38,6 @@ public class CalculatorTest {
 		panel1.setWidth(10.0);
 		panels.add(panel1);
 		equipment.setPanels(panels);
-		//equipment.setTotalPanels(4);
 		equipment.setSize(SOLAR_POWER);
 		calculator.setEquipment(equipment);
 		calculator.setCalculation(calculation);
@@ -60,9 +60,10 @@ public class CalculatorTest {
 		customer.setTariff(new Tariff());
 		calculator.setCustomer(customer);
 		//calculator.setSolarPower(SOLAR_POWER);
-		Panel.setPowerRating(100);
-		Panel.setCost(100);
-		Panel.setEfficiencyLoss(0.7);
+		panel1.setPowerRating(100);
+		panel1.setCost(100);
+		panel1.setEfficiencyLoss(0.7);
+		equipment.setPanel(panel1);
 
 		
 	}
@@ -106,13 +107,13 @@ public class CalculatorTest {
 	@Test
 	public void testCalculateSystemSize(){
 		calculator.calculateSystemSize();
-		assertEquals(0.4, equipment.getSize() , 0.1);
+		assertEquals(0.1, equipment.getSize() , 0.1);
 	}
 	
 	@Test
 	public void testCalculateSystemCost(){
 		calculator.calculateSystemCost();
-		assertEquals(500, equipment.getCost(),0.1);
+		assertEquals(200, equipment.getCost(),0.1);
 	}
 	
 	@Test
@@ -127,7 +128,7 @@ public class CalculatorTest {
 	public void testCalculateBankPowerOutput(){
 		Bank bank = new Bank();
 		bank.setNumberOfPanels(2);
-		bank.setPowerOutput((bank.getNumberOfPanels() * Panel.getPowerRating())/ 1000);
+		bank.setPowerOutput((bank.getNumberOfPanels() * panel1.getPowerRating())/ 1000);
 		assertEquals(0.2, bank.getPowerOutput(), 0.1);
 	}
 	
