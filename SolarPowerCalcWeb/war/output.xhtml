@@ -41,22 +41,57 @@
 	<h:body>
     <f:view>
     <h:form styleClass="input" >
-    	
     	<h4 align = "center"> General System Description</h4>
     	<h:panelGrid columns="2"  styleClass="input">
 	 		<h:outputText value="Size (KWh)"></h:outputText>
-	 		<h:outputText value="#{calculatorController.calculator.equipment.size}"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.equipment.size}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
 	 		
-	 		<h:outputText value="Cost ($)"></h:outputText>
-	 		<h:outputText value="#{calculatorController.calculator.equipment.cost}"> </h:outputText>
+	 		<h:outputText styleClass="right" value="Cost ($)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.equipment.cost}"> 
+	 			<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>  
+	 		</h:outputText>
 	 		
 	 		<h:outputText value="Payback Period (years)"></h:outputText>
 	 		<h:outputText value="#{calculation.paybackPeriod}"> </h:outputText>
    		</h:panelGrid>
    		<br />
    		
-    	<h4 align = "center"> Average Solar Power Generation</h4>
-   		<h:dataTable value="#{calculator.calculations}" var="c"
+    	<h4 align = "center"> Average Solar Power Generation (KWh)</h4>
+    	<h:panelGrid columns="2"  styleClass="input">
+	 		<h:outputText value="Daily"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.calculations[0].dailySolarPower}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Quaterly"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.calculations[0].dailySolarPower *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Annually"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.calculations[0].dailySolarPower *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Daily Net"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Quaterly Net"></h:outputText>
+	 		<h:outputText value="#{(calculatorController.calculator.calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Annually Net"></h:outputText>
+	 		<h:outputText value="#{(calculatorController.calculator.calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText> 
+	 	</h:panelGrid>
+    	
+   		<!-- <h:dataTable value="#{calculator.calculations}" var="c"
    			    styleClass="calculations-table"
     			headerClass="calculations-table-header"
     			rowClasses="calculations-table-odd-row,calculations-table-even-row">
@@ -89,6 +124,11 @@
    				#{c.dailySolarPower}
    			</h:column>
    			<h:column>
+   				<f:facet name="header">Annual Solar Power Generation (KWh)</f:facet>
+   				#{c.annualSolarPower}
+   				
+   			</h:column>
+   			<h:column>
    				<f:facet name="header">Replacement Generation (KWh)</f:facet>
    				#{c.replacementGeneration}
    			</h:column>
@@ -96,7 +136,7 @@
    				<f:facet name="header">Exported Generation (KWh)</f:facet>
    				#{c.exportedGeneration}
    			</h:column>
-   		</h:dataTable>
+   		</h:dataTable> -->
    		
    		<br />
    		
@@ -110,7 +150,7 @@
    				#{c.year}
    			</h:column>
    			
-   			<h:column>
+   			<!-- <h:column>
    				<f:facet name="header">Money Saved ($)</f:facet>
    				#{c.moneySaved}
    			</h:column>
@@ -121,7 +161,7 @@
    			<h:column>
    				<f:facet name="header">Tariff 11 Fee ($)</f:facet>
    				#{c.tariff11Fee}
-   			</h:column>
+   			</h:column> -->
    			
    	   		<h:column>
    				<f:facet name="header">Daily Savings ($)</f:facet>
@@ -134,6 +174,11 @@
    			<h:column>
    				<f:facet name="header">Cumulative Savings ($)</f:facet>
    				#{c.cumulativeSaving}
+   			</h:column>	
+   			
+   			<h:column>
+   				<f:facet name="header">Return on Investment ($)</f:facet>
+   				#{c.returnOnInvestment}
    			</h:column>	
    		</h:dataTable>
 	</h:form>

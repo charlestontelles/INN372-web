@@ -76,7 +76,7 @@ public class Customer implements Serializable {
 	
 	/**
 	 * Set the daily average electricity usage
-	 * @param electricityUsage new value for the elctricity usage property
+	 * @param electricityUsage new value for the electricity usage property
 	 */
 	public void setElectricityUsage(ElectricityUsage electricityUsage) {
 		this.electricityUsage = electricityUsage;

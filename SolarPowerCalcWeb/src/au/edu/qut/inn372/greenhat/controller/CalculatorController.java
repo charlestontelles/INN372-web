@@ -166,8 +166,9 @@ public class CalculatorController implements Serializable {
 		getTabIndex();
 		
 		//need these two to display the result in the summary tab
-		calculator.calculateSystemCost();
-		calculator.calculateSystemSize();
+		//system cost is now based on the selected equipment kit
+		//calculator.calculateSystemCost();
+		//calculator.calculateSystemSize();
 	}
 	
 	/**

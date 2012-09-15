@@ -12,13 +12,12 @@
 	
 	<h:body>
 	
- 	<h4 align = "center"> Provide the following details: </h4>
+ 	<h4 align = "center"> Your Provided System Details</h4>
 	<f:view>
 	    <h:form styleClass="input">
 	    <h:panelGrid columns="2" styleClass="input">
-			<legend style ="align: center"> Equipment Details:</legend>
+				<h:outputText value="Equipment Details"></h:outputText>
 				<h:outputText></h:outputText>
-				
 			
 				<h:outputText value="System Size (KWh):"></h:outputText>
 				<h:outputText value="#{calculatorController.calculator.equipment.size}" id="equipmentSize"></h:outputText>
@@ -26,9 +25,8 @@
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" id="inverterEfficiency"></h:inputText>
 
-			<legend style = "align: center"> Roof Details:</legend>
+				<h:outputText value="Roof Details:"></h:outputText>
 				<h:outputText></h:outputText>
-				
 
 				<h:outputText value="Bank 1 Orientation Efficiency Loss:"></h:outputText>
 				<h:inputText value="#{roof.banks[0].orientationEfficiencyLoss}" id="bank1OrientationLoss"></h:inputText>
@@ -41,19 +39,13 @@
 				
 				<h:outputText value="Bank 2 Angle Efficiency Loss:"></h:outputText>
 				<h:inputText value="#{roof.banks[1].angleEfficiencyLoss}" id="bank2AngleLoss"></h:inputText>
-				
-				
-				
-			<br />
 			
-			<legend style = "align: center"> Sunlight Details:</legend>
+				<h:outputText value="Sunlight Details"></h:outputText>
 				<h:outputText></h:outputText>
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
 				<h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText>	
 			
-			<br />
-			
-			<legend style = "align: center"> Current Energy Usage Details:</legend>
+				<h:outputText value="Current Energy Usage Details"></h:outputText>
 				<h:outputText></h:outputText>
 				<h:outputText value="Energy Used Per Day:"></h:outputText>
 				<h:inputText value="#{electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText>
@@ -66,9 +58,8 @@
 				
 				<h:outputText value="Tariff 11 Fee"></h:outputText>
 				<h:inputText value="#{tariff.tariff11Fee}" id="tariff11"></h:inputText>
-				
-				
-				
+
+
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave"></h:commandButton>
 				<h:commandButton action="#{calculatorController.calculate}" onclick="output.xhtml" value="Calculate" id="calculate"></h:commandButton>
 			</h:panelGrid>

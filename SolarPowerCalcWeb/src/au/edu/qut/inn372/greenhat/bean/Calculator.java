@@ -114,6 +114,7 @@ public class Calculator implements Serializable {
 			double bank1DailySolarPower = calculateBankDailySolarPower(location, banks, bank1Efficiency, 0);
 			double bank2DailySolarPower = calculateBankDailySolarPower(location, banks, bank2Efficiency, 1);	
 			double dailySolarPower = calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
+			double annualSolarPower = Math.round( (dailySolarPower *365)*1000.0)/1000.0;
 			double tariff11Fee = calculateTariff11Fee(tariff, i);
 			replacementGeneration = calculateReplacementGeneration(dailySolarPower);
 			double exportedGeneration = calculateExportedGeneration(replacementGeneration, dailySolarPower);
@@ -126,7 +127,7 @@ public class Calculator implements Serializable {
 			
 			calculations[i] = new Calculation(i+2012, panelEfficiency, bank1Efficiency, 
 					bank2Efficiency, bank1DailySolarPower, bank2DailySolarPower,
-					tariff11Fee, dailySolarPower, replacementGeneration, exportedGeneration, 
+					tariff11Fee, dailySolarPower, annualSolarPower, replacementGeneration, exportedGeneration, 
 					moneySaved, moneyEarned, dailySaving, annualSaving, cumulativeSaving, returnOnInvestment);
 		}
 		calculatePaybackPeriod();
@@ -196,7 +197,7 @@ public class Calculator implements Serializable {
 	 */
 	private double calculateExportedGeneration(double replacementGeneration,double dailySolarPower)
 			throws NumberFormatException {
-		double exportedGeneration = Double.parseDouble(df.format(dailySolarPower - replacementGeneration));
+		double exportedGeneration = Math.round( (dailySolarPower - replacementGeneration) *1000.0)/1000.0;
 		return exportedGeneration;
 	}
 
@@ -210,10 +211,10 @@ public class Calculator implements Serializable {
 	private double calculateReplacementGeneration(double dailySolarPower) throws NumberFormatException {
 		double replacementGeneration;
 		if(customer.getDayLightElectricityUsage() > dailySolarPower){
-			replacementGeneration = Double.parseDouble( df.format(dailySolarPower));
+			replacementGeneration = Math.round (dailySolarPower *1000.0)/1000.0;
 		}
 		else {
-			replacementGeneration = Double.parseDouble( df.format(customer.getDayLightElectricityUsage() ));
+			replacementGeneration = Math.round (customer.getDayLightElectricityUsage() *1000.0)/1000.0;
 		}
 		return replacementGeneration;
 	}
@@ -239,8 +240,8 @@ public class Calculator implements Serializable {
 	 */
 	private double calculateDailySolarPower(double bank1DailySolarPower, double bank2DailySolarPower) 
 			throws NumberFormatException {
-		double dailySolarPower = Double.parseDouble( df.format( (bank1DailySolarPower + bank2DailySolarPower) 
-				* equipment.getInverter().getEfficiency()/100 ));
+		double dailySolarPower = Math.round ( ((bank1DailySolarPower + bank2DailySolarPower) 
+				* equipment.getInverter().getEfficiency()/100 )*1000.0)/1000.0;
 		return dailySolarPower;
 	}
 
@@ -253,8 +254,8 @@ public class Calculator implements Serializable {
 	 * @throws NumberFormatException
 	 */
 	private double calculateBankDailySolarPower(Location location, Bank[] banks, double bank1Efficiency, int i) throws NumberFormatException {
-		double bank1DailySolarPower = Double.parseDouble( df.format( banks[i].getPowerOutput() * (bank1Efficiency/100)
-				* location.getSunLightHours() ));
+		double bank1DailySolarPower = Math.round( (banks[i].getPowerOutput() * (bank1Efficiency/100)
+				* location.getSunLightHours())*1000.0)/1000.0;
 		return bank1DailySolarPower;
 	}
 

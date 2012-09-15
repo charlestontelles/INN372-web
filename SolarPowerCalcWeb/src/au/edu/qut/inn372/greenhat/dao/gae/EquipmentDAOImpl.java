@@ -16,7 +16,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		List<Equipment> equipments = new ArrayList<Equipment>();
 		
 		Equipment equipment1 = new Equipment();
-		equipment1.setKitName("Kit 2.5Kwh - 10 panels(250w)");
+		equipment1.setKitName("Kit 2.5KWh - 10 panels(250W)");
 		equipment1.setCost(2500);
 		equipment1.setSize(2.5);
 		
@@ -55,20 +55,25 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		
 		
 		
-		
-		
+
 		Equipment equipment2 = new Equipment();
-		equipment2.setKitName("Kit 4Kwh - 8 panels(500w)");
-		equipment2.setCost(5000);
-		equipment2.setSize(4);
+		equipment2.setKitName("Kit 5.6KWh - 8 panels(700W)");
+		equipment2.setCost(9000);
+		equipment2.setSize(5.6);
+		
 		Inverter inverter2 = new Inverter();
-		inverter2.setEfficiency(90);
-		inverter2.setCost(500);
+		inverter2.setEfficiency(95);
+		inverter2.setCost(5000);
+		
 		Panel panel2 = new Panel();
-		panel2.setEfficiency(95);
-		panel2.setPowerRating(500);
+		panel2.setPowerRating(700);
+		panel2.setEfficiency(100);
+		panel2.setEfficiencyLoss(0.7);
+		//panel2.setCost(500);
+		
 		Battery battery2 = new Battery();
 		battery2.setCost(500);
+		
 		equipment2.setInverter(inverter2);
 		equipment2.setBattery(battery2);
 		equipment2.addPanel(panel2);
@@ -83,7 +88,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		equipments.add(equipment2);
 		
 		Equipment equipment3 = new Equipment();
-		equipment3.setKitName("Kit 3.6Kwh - 12 panels(300w)");
+		equipment3.setKitName("Kit 3.6KWh - 12 panels(300W)");
 		equipment3.setCost(4000);
 		equipment3.setSize(3.6);
 		Inverter inverter3 = new Inverter();

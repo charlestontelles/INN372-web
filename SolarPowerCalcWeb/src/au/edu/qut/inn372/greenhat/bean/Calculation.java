@@ -28,6 +28,7 @@ public class Calculation implements Serializable{
 	double bank2DailySolarPower;
 	double tariff11Fee;
 	double dailySolarPower; //total daily solar power
+	double annualSolarPower;
 	double replacementGeneration; 	//energy saved
 	double exportedGeneration; 		// excess energy produced
 	double moneySaved; 				// money saved on electricity bill 
@@ -54,7 +55,7 @@ public class Calculation implements Serializable{
 	
 	public Calculation(Integer year, double panelEfficiency, double bank1Efficiency, 
 			double bank2Efficiency, double bank1DailySolarPower, double bank2DailySolarPower,
-			double tariff11Fee, double dailySolarPower, double replacementGeneration, double exportedGeneration, 
+			double tariff11Fee, double dailySolarPower, double annualSolarPower, double replacementGeneration, double exportedGeneration, 
 			double moneySaved, double moneyEarned, double dailySaving, double annualSaving, double cumulativeSaving, double returnOnInvestment) {
 		this.year = year;
 		this.panelEfficiency = panelEfficiency;
@@ -64,6 +65,7 @@ public class Calculation implements Serializable{
 		this.bank2DailySolarPower = bank2DailySolarPower;
 		this.tariff11Fee = tariff11Fee;
 		this.dailySolarPower = dailySolarPower;
+		this.annualSolarPower = annualSolarPower;
 		this.replacementGeneration = replacementGeneration;
 		this.exportedGeneration = exportedGeneration;
 		this.moneySaved = moneySaved;
@@ -120,6 +122,20 @@ public class Calculation implements Serializable{
 	 */
 	public void setDailySolarPower(double dailySolarPower) {
 		this.dailySolarPower = dailySolarPower;
+	}
+
+	/**
+	 * @return the annualSolarPower
+	 */
+	public double getAnnualSolarPower() {
+		return annualSolarPower;
+	}
+
+	/**
+	 * @param annualSolarPower the annualSolarPower to set
+	 */
+	public void setAnnualSolarPower(double annualSolarPower) {
+		this.annualSolarPower = annualSolarPower;
 	}
 
 	/**
