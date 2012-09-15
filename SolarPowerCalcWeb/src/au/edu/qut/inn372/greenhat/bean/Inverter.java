@@ -19,10 +19,10 @@ public class Inverter implements Serializable{
 
 	private static final long serialVersionUID = 6903832305061311100L;
 	
-	private double efficiency = 0.95;
+	private double efficiency;// = 0.95;
 	private double lifespan;
 	private double replacementCost;
-	private double cost = 5000;
+	private double cost;// = 5000;
 	private double efficiencyLoss;
 	
 	/**

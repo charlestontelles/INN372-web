@@ -20,7 +20,7 @@
 				<h:inputText value="#{roof.height}" id="height"></h:inputText>
 			
 				<h:outputText value="Number of Panels"></h:outputText>
-				<h:outputText value="#{equipment.totalPanels}"></h:outputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:outputText>
 				
 				<!--  
 				<h:outputText value="Banks:" />  
@@ -38,7 +38,7 @@
 				<h:outputText></h:outputText>
 				
 				<h:outputText value="How many panels do want to assign to Bank?"></h:outputText>
-				<h:inputText value="#{roof.banks[0].panelNo}"></h:inputText>
+				<h:inputText value="#{roof.banks[0].numberOfPanels}"></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText value="#{roof.banks[0].angle}"></h:inputText>
@@ -53,7 +53,7 @@
 				<h:outputText></h:outputText>
 				
 				<h:outputText value="How many panels do want to assign to Bank?"></h:outputText>
-				<h:inputText value="#{roof.banks[1].panelNo}"></h:inputText>
+				<h:inputText value="#{roof.banks[1].numberOfPanels}"></h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText value="#{roof.banks[1].angle}"></h:inputText>

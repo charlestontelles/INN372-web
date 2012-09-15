@@ -13,8 +13,11 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import au.edu.qut.inn372.greenhat.bean.Battery;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Inverter;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
@@ -132,8 +135,11 @@ public class CalculatorController implements Serializable {
 	 */
 	public void handleEquipmentChange(ValueChangeEvent event){
 		for (Equipment equipment : listEquipments) {
-			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString()))
+			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
 				this.calculator.setEquipment(equipment);
+				this.calculator.getEquipment().setPanel(equipment.getPanels().get(0)); //Added because selecting equipment kit 
+						//was producing null pointer exception for the panel	
+			}
 		}
 		moveToEquipment();
 	}

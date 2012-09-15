@@ -14,18 +14,25 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 	@Override
 	public List<Equipment> getEquipments() {
 		List<Equipment> equipments = new ArrayList<Equipment>();
+		
 		Equipment equipment1 = new Equipment();
 		equipment1.setKitName("Kit 2.5Kwh - 10 panels(250w)");
 		equipment1.setCost(2500);
 		equipment1.setSize(2.5);
+		
 		Inverter inverter1 = new Inverter();
 		inverter1.setEfficiency(85);
 		inverter1.setCost(500);
+		
 		Panel panel1 = new Panel();
 		panel1.setEfficiency(95);
 		panel1.setPowerRating(250);
+		panel1.setEfficiencyLoss(0.5);
+		panel1.setCost(100);
+		
 		Battery battery1 = new Battery();
 		battery1.setCost(500);
+		
 		equipment1.setInverter(inverter1);
 		equipment1.setBattery(battery1);
 		equipment1.addPanel(panel1);
@@ -40,6 +47,15 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		equipment1.addPanel(panel1);
 		
 		equipments.add(equipment1);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		Equipment equipment2 = new Equipment();
 		equipment2.setKitName("Kit 4Kwh - 8 panels(500w)");

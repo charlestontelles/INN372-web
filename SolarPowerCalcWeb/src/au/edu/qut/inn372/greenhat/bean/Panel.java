@@ -21,11 +21,11 @@ public class Panel implements Serializable {
 	private double width;
 	private double height;
 	private double efficiency;
-	private double efficiencyLoss = 0.7;
+	private double efficiencyLoss; // = 0.7;
 	
-	private double powerRating = 700; //assuming all panels have the same power rating
+	private double powerRating; // = 700; //assuming all panels have the same power rating
 	private double size; 
-	private double cost = 500;
+	private double cost;// = 500;
 	
 	/**
 	 * Get the id

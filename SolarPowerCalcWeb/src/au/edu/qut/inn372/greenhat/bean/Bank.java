@@ -29,7 +29,6 @@ public class Bank implements Serializable {
 	private double angle;
 	private List<SelectItem> listOfOrientation; 
 	private String selectedOrientation;
-	private int panelNo;
 	
 	//Added by Martin
 	private double efficiency;
@@ -38,14 +37,6 @@ public class Bank implements Serializable {
 	private double angleEfficiencyLoss;
 	private double powerOutput;
 	private double orientation;
-	
-	public int getPanelNo(){
-		return panelNo;
-	}
-	
-	public void setPanelNo(int panelNo){
-		this.panelNo = panelNo;
-	}
 	
 	/**
 	 * Get the bankId

@@ -101,21 +101,9 @@ public class Calculator implements Serializable {
 		calculations = new Calculation[25];
 		double cumulativeSaving = 0.0;
 		double replacementGeneration = 0.0;
-		calculateSystemCost();
-		calculateSystemSize();
 		
-		//calculateBankOrientationEfficiencyLoss(banks[0], 10/100);
-		banks[0].setOrientationEfficiencyLoss(0.1);
-		//calculateBankAngleEfficiencyLoss(banks[0], 3/100);
-		banks[0].setAngleEfficiencyLoss(0.03);
-		
-		//calculateBankOrientationEfficiencyLoss(banks[1], 17/100);
-		banks[1].setOrientationEfficiencyLoss(0.17);
-		//calculateBankAngleEfficiencyLoss(banks[1], 5/100);
-		banks[1].setAngleEfficiencyLoss(0.05);
-		
-		calculateBankPowerOutput(banks[0],3);
-		calculateBankPowerOutput(banks[1],5);
+		calculateBankPowerOutput(banks[0]);
+		calculateBankPowerOutput(banks[1]);
 		
 		calculateDayLightElectricityUsage();
 		
@@ -252,7 +240,7 @@ public class Calculator implements Serializable {
 	private double calculateDailySolarPower(double bank1DailySolarPower, double bank2DailySolarPower) 
 			throws NumberFormatException {
 		double dailySolarPower = Double.parseDouble( df.format( (bank1DailySolarPower + bank2DailySolarPower) 
-				* equipment.getInverter().getEfficiency() ));
+				* equipment.getInverter().getEfficiency()/100 ));
 		return dailySolarPower;
 	}
 
@@ -277,8 +265,8 @@ public class Calculator implements Serializable {
 	 * @return
 	 */
 	public double calculateBankEfficiency(Bank[] banks, double panelEfficiency, int i) {
-		double bank1Efficiency = Math.round( panelEfficiency * (1-banks[i].getOrientationEfficiencyLoss())
-				* (1-banks[i].getAngleEfficiencyLoss()) *100.0) /100.0;
+		double bank1Efficiency = Math.round( panelEfficiency * (1-banks[i].getOrientationEfficiencyLoss()/100)
+				* (1-banks[i].getAngleEfficiencyLoss()/100) *100.0) /100.0;
 		return bank1Efficiency;
 	}
 
@@ -310,8 +298,8 @@ public class Calculator implements Serializable {
 	 * @param bank
 	 * @param numOfPanels
 	 */
-	public void calculateBankPowerOutput(Bank bank, int numOfPanels){
-		bank.setNumberOfPanels(numOfPanels);
+	public void calculateBankPowerOutput(Bank bank){
+		//bank.setNumberOfPanels(equipment.getPanels().size());
 		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanel().getPowerRating())/ 1000);
 	}
 	

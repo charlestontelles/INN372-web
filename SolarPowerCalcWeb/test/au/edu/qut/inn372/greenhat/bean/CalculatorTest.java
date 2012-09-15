@@ -113,7 +113,7 @@ public class CalculatorTest {
 	@Test
 	public void testCalculateSystemCost(){
 		calculator.calculateSystemCost();
-		assertEquals(200, equipment.getCost(),0.1);
+		assertEquals(100, equipment.getCost(),0.1);
 	}
 	
 	@Test
@@ -147,7 +147,7 @@ public class CalculatorTest {
 		bank[0].setOrientationEfficiencyLoss(0.5);
 		bank[0].setAngleEfficiencyLoss(0.5);
 		double bankEfficiency = calculator.calculateBankEfficiency(bank, 100.0, 0);
-		assertEquals(25.0, bankEfficiency, 0.1);
+		assertEquals(99.0, bankEfficiency, 0.1);
 	}
 	
 	/*@Test

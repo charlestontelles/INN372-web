@@ -10,11 +10,8 @@
 	</h:head>
 	
 	<h:body>
-
 	    <h:form>
-			
-				<h:panelGrid columns="2"  styleClass="input">
-				
+			<h:panelGrid columns="2"  styleClass="input">
 				<h:outputText value="List of Equipment"></h:outputText>
 				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}" onchange="submit()"
 							valueChangeListener="#{calculatorController.handleEquipmentChange}">  
@@ -23,32 +20,26 @@
             	</h:selectOneMenu> 	
 				
 				<h:outputText value="Number of Panels"></h:outputText>				
-				<h:inputText value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:inputText>
 				
 				<h:outputText value="Panel Power rating:"></h:outputText>
-				<h:inputText value="#{panel.powerRating}"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.panel.powerRating}"></h:inputText>
 				
 				<h:outputText value="Panel Cost per bank:"></h:outputText>
-				<h:inputText value="#{panel.cost}"></h:inputText>
-				
-				<h:outputText value="Inverter Cost:"></h:outputText>
-				<h:inputText value="#{inverter.cost}"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.panel.cost}"></h:inputText>
 				
 				<h:outputText value="Panel Efficiency Loss::"></h:outputText>
-				<h:inputText value="#{inverter.efficiencyLoss}"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.panel.efficiencyLoss}"></h:inputText>
+				
+				<h:outputText value="Inverter Cost:"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.inverter.cost}"></h:inputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{inverter.efficiency}"></h:inputText>
-
+				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}"></h:inputText>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
-			
-				</h:panelGrid>
-				
-				
+			</h:panelGrid>
 		</h:form>
-
-	
 	</h:body>
 </html>

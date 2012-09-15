@@ -83,13 +83,6 @@ public class BankTest {
 		assertEquals(bank.getListOfOrientation().get(firstElement).getLabel(), newSelectedOrientation);
 	}
 	
-	@Test 
-	public void testGetSetPanelNo(){
-		int twoPanels = 2;
-		bank.setPanelNo(twoPanels);
-		assertEquals(bank.getPanelNo(), twoPanels);
-	}
-	
 	@Test
 	public void testGetSetBankId(){
 		int newBankId = 2;

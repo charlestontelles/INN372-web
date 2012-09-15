@@ -19,13 +19,13 @@
 			<legend style ="align: center"> Equipment Details:</legend>
 				<h:outputText></h:outputText>
 				<h:outputText value="System Cost"></h:outputText>
-				<h:outputText value="#{equipment.cost}" id="systemCost"></h:outputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.cost}" id="systemCost"></h:outputText>
 			
 				<h:outputText value="System Size (KWh):"></h:outputText>
-				<h:outputText value="#{equipment.size}" id="equipmentSize"></h:outputText>
+				<h:outputText value="#{calculatorController.calculator.equipment.size}" id="equipmentSize"></h:outputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{inverter.efficiency}" id="inverterEfficiency"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" id="inverterEfficiency"></h:inputText>
 
 			<legend style = "align: center"> Roof Details:</legend>
 				<h:outputText></h:outputText>
@@ -70,7 +70,7 @@
 				<h:inputText value="#{tariff.tariff11Fee}" id="tariff11"></h:inputText>
 				
 				<h:outputText value="Annual Tariff Fee Increase:"></h:outputText>
-				<h:inputText value="#{roof.efficiencyLossNorth}" id="annualTariffFeeIncrease"></h:inputText>
+				<h:inputText value="#{tariff.annualTariffIncrease}" id="annualTariffFeeIncrease"></h:inputText>
 				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave"></h:commandButton>
 				<h:commandButton action="#{calculatorController.calculate}" oncomplete="output.xhtml?faces-redirect=true" value="Calculate" id="calculate"></h:commandButton>

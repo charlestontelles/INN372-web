@@ -41,7 +41,21 @@
 	<h:body>
     <f:view>
     <h:form styleClass="input" >
-    	<h4 align = "center"> Average Solar Power Generation &amp; Financial Output </h4>
+    	
+    	<h4 align = "center"> General System Description</h4>
+    	<h:panelGrid columns="2"  styleClass="input">
+	 		<h:outputText value="Size (KWh)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.equipment.size}"></h:outputText>
+	 		
+	 		<h:outputText value="Cost ($)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.equipment.cost}"> </h:outputText>
+	 		
+	 		<h:outputText value="Payback Period (years)"></h:outputText>
+	 		<h:outputText value="#{calculation.paybackPeriod}"> </h:outputText>
+   		</h:panelGrid>
+   		<br />
+   		
+    	<h4 align = "center"> Average Solar Power Generation</h4>
    		<h:dataTable value="#{calculator.calculations}" var="c"
    			    styleClass="calculations-table"
     			headerClass="calculations-table-header"
@@ -71,18 +85,6 @@
    				#{c.bank2DailySolarPower}
    			</h:column>
    			<h:column>
-   				<f:facet name="header">Money Saved ($)</f:facet>
-   				#{c.moneySaved}
-   			</h:column>
-   			<h:column>
-   				<f:facet name="header">Money Earned ($)</f:facet>
-   				#{c.moneyEarned}
-   			</h:column>
-   			<h:column>
-   				<f:facet name="header">Tariff 11 Fee ($)</f:facet>
-   				#{c.tariff11Fee}
-   			</h:column>
-   			<h:column>
    				<f:facet name="header">Daily Solar Power Generation (KWh)</f:facet>
    				#{c.dailySolarPower}
    			</h:column>
@@ -94,6 +96,33 @@
    				<f:facet name="header">Exported Generation (KWh)</f:facet>
    				#{c.exportedGeneration}
    			</h:column>
+   		</h:dataTable>
+   		
+   		<br />
+   		
+   		<h4 align = "center"> Financial Output</h4>
+   		<h:dataTable value="#{calculator.calculations}" var="c"
+   			    styleClass="calculations-table"
+    			headerClass="calculations-table-header"
+    			rowClasses="calculations-table-odd-row,calculations-table-even-row">
+   			<h:column>
+   				<f:facet name="header">Year</f:facet>
+   				#{c.year}
+   			</h:column>
+   			
+   			<h:column>
+   				<f:facet name="header">Money Saved ($)</f:facet>
+   				#{c.moneySaved}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Money Earned ($)</f:facet>
+   				#{c.moneyEarned}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Tariff 11 Fee ($)</f:facet>
+   				#{c.tariff11Fee}
+   			</h:column>
+   			
    	   		<h:column>
    				<f:facet name="header">Daily Savings ($)</f:facet>
    				#{c.dailySaving}
@@ -107,10 +136,6 @@
    				#{c.cumulativeSaving}
    			</h:column>	
    		</h:dataTable>
-   		
-   		<h:outputText> </h:outputText>
-   		<h:outputText value="Payback Period:"> </h:outputText>
-   		<h:outputText value="#{calculation.paybackPeriod}"></h:outputText>
 	</h:form>
 	</f:view>
 	</h:body>
