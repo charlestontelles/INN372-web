@@ -125,6 +125,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the annual solar power generation
 	 * @return the annualSolarPower
 	 */
 	public double getAnnualSolarPower() {
@@ -132,6 +133,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the annual solar power generation
 	 * @param annualSolarPower the annualSolarPower to set
 	 */
 	public void setAnnualSolarPower(double annualSolarPower) {
@@ -218,6 +220,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the money saved from replacement solar power generation
 	 * @return the moneySaved
 	 */
 	public double getMoneySaved() {
@@ -225,6 +228,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the money saved
 	 * @param moneySaved the moneySaved to set
 	 */
 	public void setMoneySaved(double moneySaved) {
@@ -232,6 +236,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the panel efficiency
 	 * @return the panelEfficiency
 	 */
 	public double getPanelEfficiency() {
@@ -239,6 +244,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set  the panel efficiency
 	 * @param panelEfficiency the panelEfficiency to set
 	 */
 	public void setPanelEfficiency(double panelEfficiency) {
@@ -246,6 +252,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the efficiency for the bank
 	 * @return the bank1Efficiency
 	 */
 	public double getBank1Efficiency() {
@@ -253,6 +260,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the efficiency for the bank
 	 * @param bank1Efficiency the bank1Efficiency to set
 	 */
 	public void setBank1Efficiency(double bank1Efficiency) {
@@ -260,6 +268,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the efficiency for the bank
 	 * @return the bank2Efficiency
 	 */
 	public double getBank2Efficiency() {
@@ -267,6 +276,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the efficiency for the bank
 	 * @param bank2Efficiency the bank2Efficiency to set
 	 */
 	public void setBank2Efficiency(double bank2Efficiency) {
@@ -274,6 +284,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the daily solar power generation for bank
 	 * @return the bank1DailySolarPower
 	 */
 	public double getBank1DailySolarPower() {
@@ -281,6 +292,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the daily solar power generation for bank
 	 * @param bank1DailySolarPower the bank1DailySolarPower to set
 	 */
 	public void setBank1DailySolarPower(double bank1DailySolarPower) {
@@ -288,6 +300,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the daily solar power generation for bank
 	 * @return the bank2DailySolarPower
 	 */
 	public double getBank2DailySolarPower() {
@@ -295,6 +308,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the daily solar power generation for bank
 	 * @param bank2DailySolarPower the bank2DailySolarPower to set
 	 */
 	public void setBank2DailySolarPower(double bank2DailySolarPower) {
@@ -302,6 +316,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the money earned from exported solar generation
 	 * @return the moneyEarned
 	 */
 	public double getMoneyEarned() {
@@ -309,6 +324,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the money earned from exported solar generation
 	 * @param moneyEarned the moneyEarned to set
 	 */
 	public void setMoneyEarned(double moneyEarned) {
@@ -316,6 +332,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Get the return on investment
 	 * @return the returnOnInvestment
 	 */
 	public double getReturnOnInvestment() {
@@ -323,6 +340,7 @@ public class Calculation implements Serializable{
 	}
 
 	/**
+	 * Set the return on investment
 	 * @param returnOnInvestment the returnOnInvestment to set
 	 */
 	public void setReturnOnInvestment(double returnOnInvestment) {

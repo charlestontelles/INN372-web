@@ -40,7 +40,6 @@ public class CalculatorTest {
 		equipment.setPanels(panels);
 		equipment.setSize(SOLAR_POWER);
 		calculator.setEquipment(equipment);
-		calculator.setCalculation(calculation);
 		
 		ElectricityUsage electricityUsage = new ElectricityUsage();
 		electricityUsage.setDailyAverageUsage(40.0);
@@ -80,14 +79,6 @@ public class CalculatorTest {
 		Equipment newEquipment = new Equipment();
 		calculator.setEquipment(newEquipment);
 		assertEquals(calculator.getEquipment(), newEquipment);
-	}
-	
-	@Test
-	public void testGetSetCalculation(){
-		assertEquals(calculator.getCalculation(), calculation);
-		Calculation newCalculation = new Calculation();
-		calculator.setCalculation((newCalculation));
-		assertEquals(calculator.getCalculation(), newCalculation);
 	}
 	
 	@Test

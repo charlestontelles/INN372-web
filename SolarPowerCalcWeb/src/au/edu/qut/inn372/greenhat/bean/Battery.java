@@ -23,16 +23,18 @@ public class Battery implements Serializable{
 	 * Battery Cost
 	 */
 	private double cost;
+	
 	/**
 	 * Gets battery cost
-	 * @return cost
+	 * @return cost to get
 	 */
 	public double getCost() {
 		return cost;
 	}
+	
 	/**
 	 * Sets battery cost
-	 * @param cost
+	 * @param cost to set
 	 */
 	public void setCost(double cost) {
 		this.cost = cost;

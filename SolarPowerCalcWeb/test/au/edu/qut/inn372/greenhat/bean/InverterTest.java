@@ -17,6 +17,8 @@ public class InverterTest {
 		inverter.setEfficiency(EFFICIENCY);
 		inverter.setLifespan(LIFESPAN);
 		inverter.setReplacementCost(REPLACEMENT_COST);
+		inverter.setCost(300);
+		inverter.setEfficiencyLoss(0.5);
 	}
 
 	@Test
@@ -41,5 +43,19 @@ public class InverterTest {
 		Double newReplacementCost = 320.0;
 		inverter.setEfficiency(newReplacementCost);
 		assertEquals(inverter.getEfficiency(), newReplacementCost, 0.0);
+	}
+	
+	@Test
+	public void testSetGetCost(){
+		assertEquals(300, inverter.getCost(), 0.1);
+		inverter.setCost(345);
+		assertEquals(345, inverter.getCost(), 0.1);
+	}
+	
+	@Test
+	public void testSetGetEfficiencyLoss() {
+		assertEquals(300, inverter.getCost(), 0.1);
+		inverter.setCost(400);
+		assertEquals(400, inverter.getCost(), 0.1);
 	}
 }

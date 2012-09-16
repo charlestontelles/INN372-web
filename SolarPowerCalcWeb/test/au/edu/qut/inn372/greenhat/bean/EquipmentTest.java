@@ -12,6 +12,7 @@ public class EquipmentTest {
 	private Equipment equipment;
 	private Inverter inverter;
 	private ArrayList<Panel> panels;
+	private Battery battery;
 
 	@Before
 	public void setUp() throws Exception {
@@ -22,11 +23,13 @@ public class EquipmentTest {
 		equipment.setInverter(inverter);
 		panels = new ArrayList<Panel>();
 		equipment.setPanels(panels);
+		battery = new Battery();
+		equipment.setBattery(battery);
+		
 	}
 	
 	@Test
 	public void testSetGetCost() {
-
 		assertEquals(equipment.getCost(), COST, 0.0);
 		Double newCost = 1900.0;
 		equipment.setCost(newCost);
@@ -58,10 +61,32 @@ public class EquipmentTest {
 	}
 	
 	@Test 
-	public void testGetSetTotalPanels(){
+	public void testSetGetTotalPanels(){
 		int newSelectedNoOfPanel = 0;
 		assertEquals(equipment.getTotalPanels(), newSelectedNoOfPanel);
-		
+	}
+	
+	@Test
+	public void testSetGetKitName(){
+		equipment.setKitName("4KWh - 8 500W");
+		assertEquals("4KWh - 8 500W", equipment.getKitName());
+	}
+	
+	@Test
+	public void testSetGetAddRemovePanel(){
+		panels.add(new Panel());
+		panels.add(new Panel());
+		assertEquals(2, panels.size());
+		panels.remove(0);
+		assertEquals(1, panels.size());
+	}
+	
+	@Test
+	public void testSetGetBattery(){
+		assertEquals(battery, equipment.getBattery());
+		Battery bat = new Battery();
+		equipment.setBattery(bat);
+		assertEquals(bat, equipment.getBattery());
 	}
 	
 }

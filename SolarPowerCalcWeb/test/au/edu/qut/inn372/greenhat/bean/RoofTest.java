@@ -73,4 +73,10 @@ public class RoofTest {
 		assertEquals(roof.getPercentageWest(), newPercentageWest, 0.0);
 	}
 	
+	@Test
+	public void testSetGetBanks(){
+		Bank[] banks = new Bank[2];
+		roof.setBanks(banks);
+		assertEquals(2, banks.length);
+	}
 }

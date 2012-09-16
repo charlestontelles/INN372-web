@@ -6,7 +6,9 @@ package au.edu.qut.inn372.greenhat.controller;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
@@ -35,7 +37,37 @@ public class CalculatorControllerTest {
 		calculatorController.setCalculator(calculator);
 		assertEquals(calculatorController.getCalculator(), calculator);
 	}
+	
+	@Test
+	public void testSetGetTabIndex(){
+		calculatorController.setTabIndex(2);
+		assertEquals(2, calculatorController.getTabIndex());
+	}
 
+	@Test
+	public void testSetGetEquipments(){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("5.6KWh 8 500W Panel","5.6KWh 8 500W Panel");
+		assertEquals(1, map.size());
+	}
+	
+	@Test
+	public void testSetGetLocations(){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("Brisbane","Brisbane");
+		assertEquals(1, map.size());
+	}
+	
+	@Test
+	public void testSetGetPanels(){
+		assertEquals(5, calculatorController.getPanels().size());
+	}
+	
+	@Test
+	public void testSetGetOrientations(){
+		assertEquals(8, calculatorController.getListOfOrientation().size());
+	}
+	
 	@Test
 	public void testCalculateSolarPower() {
 

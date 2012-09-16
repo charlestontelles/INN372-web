@@ -23,8 +23,7 @@ public class Calculator implements Serializable {
 	@ManagedProperty (value = "#{customer}")
 	private Customer customer;
 	
-	@ManagedProperty (value = "#{calculation}")
-	private Calculation calculation;
+	private double paybackPeriod;
 	
 	private Calculation [] calculations;
 	
@@ -60,22 +59,6 @@ public class Calculator implements Serializable {
 	 */
 	public Equipment getEquipment() {
 		return equipment;
-	}
-
-	/**
-	 * Get the calculation
-	 * @return the calculation
-	 */
-	public Calculation getCalculation() {
-		return calculation;
-	}
-
-	/**
-	 * Set the calculation
-	 * @param calculation the calculation to set
-	 */
-	public void setCalculation(Calculation calculation) {
-		this.calculation = calculation;
 	}
 
 	/**
@@ -294,13 +277,27 @@ public class Calculator implements Serializable {
 	 * @param paybackPeriod the paybackPeriod to set
 	 */
 	public void calculatePaybackPeriod() {
-		int pbp = 1;
+		int paybackPeriod = 1;
 		for(int i=0; i<25; i++){
 			if(calculations[i].getReturnOnInvestment() < 1){ 
-				pbp++;
+				paybackPeriod++;
 			}
 		}
-		//calculation.setPaybackPeriod(pbp); bug here
+		setPaybackPeriod(paybackPeriod);
+	}
+
+	/**
+	 * @return the paybackPeriod
+	 */
+	public double getPaybackPeriod() {
+		return paybackPeriod;
+	}
+
+	/**
+	 * @param paybackPeriod the paybackPeriod to set
+	 */
+	public void setPaybackPeriod(double paybackPeriod) {
+		this.paybackPeriod = paybackPeriod;
 	}
 
 	/**

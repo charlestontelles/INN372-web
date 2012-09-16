@@ -27,10 +27,22 @@ public class LocationTest {
 	}
 	
 	@Test
-	public void testSetGetLifespan() {
+	public void testSetGetSunLightHours() {
 		assertEquals(location.getSunLightHours(), SUNLIGHT_HOURS, 0.0);
 		Double newSunlightHours = 7.5;
 		location.setSunLightHours(newSunlightHours);
 		assertEquals(location.getSunLightHours(), newSunlightHours, 0.0);
+	}
+	
+	@Test
+	public void testSetGetCity(){
+		location.setCity("Brisbane");
+		assertEquals("Brisbane", location.getCity());
+	}
+	
+	@Test
+	public void testSetGetRegion(){
+		location.setRegion("Queensland");
+		assertEquals("Queensland", location.getRegion());
 	}
 }

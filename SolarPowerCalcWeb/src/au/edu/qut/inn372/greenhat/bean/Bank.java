@@ -129,6 +129,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the angle efficiency loss
 	 * @return the angleEfficiencyLoss
 	 */
 	public double getAngleEfficiencyLoss() {
@@ -136,6 +137,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the angle efficiency loss
 	 * @param angleEfficiencyLoss the angleEfficiencyLoss to set
 	 */
 	public void setAngleEfficiencyLoss(double angleEfficiencyLoss) {
@@ -143,6 +145,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the power output
 	 * @return the powerOutput
 	 */
 	public double getPowerOutput() {
@@ -150,6 +153,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the power output
 	 * @param powerOutput the powerOutput to set
 	 */
 	public void setPowerOutput(double powerOutput){
@@ -157,6 +161,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the orientation
 	 * @return the orientation
 	 */
 	public double getOrientation() {
@@ -164,6 +169,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the orientation
 	 * @param orientation the orientation to set
 	 */
 	public void setOrientation(double orientation) {

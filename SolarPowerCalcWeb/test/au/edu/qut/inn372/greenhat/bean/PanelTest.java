@@ -63,4 +63,22 @@ public class PanelTest {
 		panel.setId(newId);
 		assertEquals(panel.getId(), newId);
 	}
+	
+	@Test
+	public void testSetGetPowerRating() {
+		panel.setPowerRating(700);
+		assertEquals(700, panel.getPowerRating(), 0.1);
+	}
+	
+	@Test
+	public void testSetGetSize(){
+		panel.setSize(2);
+		assertEquals(2, panel.getSize(), 0.1);
+	}
+	
+	@Test
+	public void testSetGetCost(){
+		panel.setCost(400);
+		assertEquals(400, panel.getCost(), 0.1);
+	}
 }
