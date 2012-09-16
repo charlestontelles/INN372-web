@@ -20,7 +20,8 @@ public class EquipmentDAOTest {
 	@Test
 	public void testGetEquipments() {
 		List<Equipment> equipments = dao.getEquipments();
-		
+		Equipment[] list = new Equipment[equipments.size()];
+		equipments.toArray(list);
 		assertEquals(equipments.size(), 3);
 		
 	}

@@ -16,16 +16,18 @@ public class CalcEnergyProductionResponse {
     private au.edu.qut.inn372.greenhat.bean.Calculator calculator;
 
     /**
-     * Get the calculator
-     * @return Calculator value of the calculator property
+     * 
+     * @return
+     *     returns Calculator
      */
     public au.edu.qut.inn372.greenhat.bean.Calculator getCalculator() {
         return this.calculator;
     }
 
     /**
-     * Set the calculator
-     * @param calculator the value for the calculator property
+     * 
+     * @param calculator
+     *     the value for the calculator property
      */
     public void setCalculator(au.edu.qut.inn372.greenhat.bean.Calculator calculator) {
         this.calculator = calculator;

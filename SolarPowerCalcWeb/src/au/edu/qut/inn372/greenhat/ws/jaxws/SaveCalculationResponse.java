@@ -16,18 +16,21 @@ public class SaveCalculationResponse {
     private String result;
 
     /**
-     * Get the result
-     * @return String value of the result property
+     * 
+     * @return
+     *     returns String
      */
     public String getResult() {
         return this.result;
     }
 
     /**
-     * Set the result
-     * @param result the value for the result property
+     * 
+     * @param result
+     *     the value for the result property
      */
     public void setResult(String result) {
         this.result = result;
     }
+
 }

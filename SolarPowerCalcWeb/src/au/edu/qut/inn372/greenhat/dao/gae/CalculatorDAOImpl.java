@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.dao.gae;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,7 +15,12 @@ import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
  */
 @ManagedBean
 @SessionScoped
-public class CalculatorDAOImpl implements CalculatorDAO {
+public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3965427207529608147L;
 
 	@Override
 	public void saveCalculation(Calculator calculator) {

@@ -27,7 +27,6 @@ public class Bank implements Serializable {
 	
 	private int bankId;
 	private double angle;
-	private List<SelectItem> listOfOrientation; 
 	private String selectedOrientation;
 	
 	//Added by Martin
@@ -69,31 +68,14 @@ public class Bank implements Serializable {
 	public void setAngle(double angle){
 		this.angle = angle;
 	}
-	
-	/**
-	 * Get the orientation list
-	 * @return orientation list value of the orientation list property
-	 */
-	public List<SelectItem> getListOfOrientation() {
-		List<SelectItem> list = new ArrayList<SelectItem>();
-	    list.add(new SelectItem("North", "North"));
-	    list.add(new SelectItem("North East", "North East"));
-	    list.add(new SelectItem("North West", "North West"));
-	    list.add(new SelectItem("South", "South"));
-	    list.add(new SelectItem("South East", "South East"));
-	    list.add(new SelectItem("South West", "South West"));
-	    list.add(new SelectItem("West", "West"));
-	    list.add(new SelectItem("East", "East"));
-	    return list;
-	}
-	
+
 	/**
 	 * Set the orientation list
 	 * @param orientation list new value for the orientation list property
 	 */
-	public void setListOfOrientation(List<SelectItem> listOfOrientation) {
-		this.listOfOrientation = listOfOrientation;
-	}
+	//public void setListOfOrientation(List<SelectItem> listOfOrientation) {
+	//	this.listOfOrientation = listOfOrientation;
+	//}
 	
 	/**
 	 * Get the selected orientation

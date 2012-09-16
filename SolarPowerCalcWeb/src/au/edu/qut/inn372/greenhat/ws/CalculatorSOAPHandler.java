@@ -14,6 +14,7 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.dom.DOMSource;
 
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProduction;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 
 /**
@@ -25,7 +26,8 @@ public class CalculatorSOAPHandler {
 	  private static final String NAMESPACE_URI = "http://ws.greenhat.inn372.qut.edu.au/";
 	  private static final QName CALC_ENERGY_PRODUCTION_QNAME = new QName(NAMESPACE_URI, "calcEnergyProduction");
 	  private static final QName SAVE_CALCULATION_QNAME = new QName(NAMESPACE_URI, "saveCalculation");
-	  	  
+	  private static final QName GET_EQUIPMENTS_QNAME = new QName(NAMESPACE_URI, "getEquipments");
+	  
 	  private MessageFactory messageFactory;
 	  private CalculatorAdapter calculatorAdapter;
 	  
@@ -49,7 +51,10 @@ public class CalculatorSOAPHandler {
 		          } else if (SAVE_CALCULATION_QNAME.equals(qname)) {
 		            responsePojo = handleSaveCalculationRequest(soapElement);
 		            break;
-		          } 
+		          } else if (GET_EQUIPMENTS_QNAME.equals(qname)) {
+			            responsePojo = handleGetEquipmentsRequest(soapElement);
+			            break;
+			          } 
 		      }
 		    }
 		    SOAPMessage soapResponse = messageFactory.createMessage();
@@ -71,6 +76,11 @@ public class CalculatorSOAPHandler {
 	  private Object handleSaveCalculationRequest(SOAPElement soapElement) {
 		    SaveCalculation request = JAXB.unmarshal(new DOMSource(soapElement), SaveCalculation.class);
 		    return calculatorAdapter.saveCalculation(request);
+	  }
+	  
+	  private Object handleGetEquipmentsRequest(SOAPElement soapElement) {
+		    GetEquipments request = JAXB.unmarshal(new DOMSource(soapElement), GetEquipments.class);
+		    return calculatorAdapter.getEquipments(request);
 	  }
 	  
 }

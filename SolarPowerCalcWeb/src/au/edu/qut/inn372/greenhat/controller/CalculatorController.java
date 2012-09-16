@@ -124,7 +124,24 @@ public class CalculatorController implements Serializable {
 		    return list;
 	}
 	
-
+	/**
+	 * Get the orientation list
+	 * @return orientation list value of the orientation list property
+	 */
+	
+	public List<SelectItem> getListOfOrientation() {
+		List<SelectItem> list = new ArrayList<SelectItem>();
+	    list.add(new SelectItem("North", "North"));
+	    list.add(new SelectItem("North East", "North East"));
+	    list.add(new SelectItem("North West", "North West"));
+	    list.add(new SelectItem("South", "South"));
+	    list.add(new SelectItem("South East", "South East"));
+	    list.add(new SelectItem("South West", "South West"));
+	    list.add(new SelectItem("West", "West"));
+	    list.add(new SelectItem("East", "East"));
+	    return list;
+	}
+	
 	/**
 	 * Loads selected equipment to calculator
 	 */

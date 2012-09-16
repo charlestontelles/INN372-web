@@ -22,6 +22,8 @@ public class Equipment implements Serializable{
 	private double cost;
 	private double size;
 	private String kitName = "";
+	
+	@ManagedProperty (value = "#{panels}")
 	private List<Panel> panels = new ArrayList<Panel>();
 	
 	@ManagedProperty (value = "#{inverter}")
@@ -134,7 +136,10 @@ public class Equipment implements Serializable{
 	 * @return selected panel value of the selected panel property
 	 */
 	public int getTotalPanels() { 
-		return this.panels.size();
+		if (this.panels != null)
+			return this.panels.size();
+		else
+			return 0;
 		//return totalPanels;
 	} 
 	

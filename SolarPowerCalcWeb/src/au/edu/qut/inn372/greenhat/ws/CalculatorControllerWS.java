@@ -1,13 +1,18 @@
 package au.edu.qut.inn372.greenhat.ws;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
+import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
 
 /**
  * 
@@ -18,6 +23,7 @@ import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 public class CalculatorControllerWS {
 	private Calculator calculator = new Calculator();	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
+	private EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
 	
 	@WebMethod
 	@WebResult(name = "result") 
@@ -38,4 +44,14 @@ public class CalculatorControllerWS {
 		this.calculator.performCalculations();
 		return calculator;
 	}
+	
+	@WebMethod
+	@WebResult(name = "equipments") 
+	public Equipment[] getEquipments(){
+		List<Equipment> arrayList = equipmentDAO.getEquipments();		
+		Equipment[] list = new Equipment[arrayList.size()];
+		arrayList.toArray(list);
+		return list;
+	}
+	
 }

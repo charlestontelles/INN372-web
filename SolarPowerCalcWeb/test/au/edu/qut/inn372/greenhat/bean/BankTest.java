@@ -75,13 +75,15 @@ public class BankTest {
 		assertEquals(bank.getSelectedOrientation(), newSelectedOrientation);
 	}
 	
-	@Test
+	/* removed by charles - that test does not make sense anymore
+	@Test	
 	public void testASelectionOfOrientation(){
 		bank.setSelectedOrientation("North");
 		String newSelectedOrientation = bank.getSelectedOrientation();
 		int firstElement = 0;
 		assertEquals(bank.getListOfOrientation().get(firstElement).getLabel(), newSelectedOrientation);
 	}
+	*/
 	
 	@Test
 	public void testGetSetBankId(){
