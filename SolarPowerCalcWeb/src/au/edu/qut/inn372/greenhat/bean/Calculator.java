@@ -85,6 +85,13 @@ public class Calculator implements Serializable {
 	public Calculation[] getCalculations() {
 		return calculations;
 	}
+	/**
+	 * Sets the calculations 
+	 * @param calculations
+	 */
+	public void setCalculations(Calculation[] calculations) {
+		this.calculations = calculations;
+	}
 
 	/**
 	 * Set the calculations for a specified range of years
@@ -289,11 +296,11 @@ public class Calculator implements Serializable {
 	public void calculatePaybackPeriod() {
 		int pbp = 1;
 		for(int i=0; i<25; i++){
-			if(calculations[i].getReturnOnInvestment() < 1){
+			if(calculations[i].getReturnOnInvestment() < 1){ 
 				pbp++;
 			}
 		}
-		calculation.setPaybackPeriod(pbp);
+		//calculation.setPaybackPeriod(pbp); bug here
 	}
 
 	/**

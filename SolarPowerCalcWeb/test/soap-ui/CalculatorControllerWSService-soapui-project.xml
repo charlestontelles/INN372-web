@@ -88,6 +88,7 @@
   <xs:complexType name="calculator">
     <xs:sequence>
       <xs:element name="calculation" type="tns:calculation" minOccurs="0"/>
+      <xs:element name="calculations" type="tns:calculation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="customer" type="tns:customer" minOccurs="0"/>
       <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
     </xs:sequence>
@@ -139,7 +140,6 @@
   </xs:complexType>
   <xs:complexType name="roof">
     <xs:sequence>
-      <xs:element name="bank" type="tns:bank" minOccurs="0"/>
       <xs:element name="banks" type="tns:bank" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="efficiencyLossNorth" type="xs:double"/>
       <xs:element name="efficiencyLossWest" type="xs:double"/>
@@ -176,7 +176,6 @@
       <xs:element name="cost" type="xs:double"/>
       <xs:element name="inverter" type="tns:inverter" minOccurs="0"/>
       <xs:element name="kitName" type="xs:string" minOccurs="0"/>
-      <xs:element name="panel" type="tns:panel" minOccurs="0"/>
       <xs:element name="panels" type="tns:panel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="size" type="xs:double"/>
     </xs:sequence>
@@ -230,35 +229,11 @@
       <xs:element name="result" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>REPLACE_WITH_ACTUAL_URL</con:endpoint><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="calcEnergyProduction" bindingOperationName="calcEnergyProduction" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>REPLACE_WITH_ACTUAL_URL</con:endpoint><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="calcEnergyProduction" bindingOperationName="calcEnergyProduction" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:calcEnergyProduction>
-         <!--Optional:-->
-         <calculator>
-            <!--Optional:-->
-            <calculation>
-               <annualSaving>?</annualSaving>
-               <annualSolarPower>?</annualSolarPower>
-               <bank1DailySolarPower>?</bank1DailySolarPower>
-               <bank1Efficiency>?</bank1Efficiency>
-               <bank2DailySolarPower>?</bank2DailySolarPower>
-               <bank2Efficiency>?</bank2Efficiency>
-               <cumulativeSaving>?</cumulativeSaving>
-               <dailySaving>?</dailySaving>
-               <dailySolarPower>?</dailySolarPower>
-               <exportedGeneration>?</exportedGeneration>
-               <moneyEarned>?</moneyEarned>
-               <moneySaved>?</moneySaved>
-               <panelEfficiency>?</panelEfficiency>
-               <paybackPeriod>?</paybackPeriod>
-               <replacementGeneration>?</replacementGeneration>
-               <returnOnInvestment>?</returnOnInvestment>
-               <tariff11Fee>?</tariff11Fee>
-               <!--Optional:-->
-               <year>?</year>
-            </calculation>
-            <!--Optional:-->
+<calculator>
             <customer>
                <dayLightElectricityUsage>21</dayLightElectricityUsage>
                <!--Optional:-->
@@ -275,54 +250,52 @@
                   <region>?</region>
                   <!--Optional:-->
                   <roof>
-                     <!--Optional:-->
-                     <bank>
-                        <angle>45</angle>
-                        <angleEfficiencyLoss>90</angleEfficiencyLoss>
-                        <bankId>1</bankId>
-                        <!--Optional:-->
-                        <efficiency>90</efficiency>
-                        <numberOfPanels>3</numberOfPanels>
-                        <orientation>North</orientation>
-                        <orientationEfficiencyLoss>40</orientationEfficiencyLoss>
-                        <powerOutput>200</powerOutput>
-                        <!--Optional:-->
-                        <selectedOrientation>North</selectedOrientation>
-                     </bank>
                      <!--Zero or more repetitions:-->
                      <banks>
                         <angle>45</angle>
-                        <angleEfficiencyLoss>90</angleEfficiencyLoss>
+                        <angleEfficiencyLoss>10</angleEfficiencyLoss>
                         <bankId>1</bankId>
                         <!--Optional:-->
                         <efficiency>90</efficiency>
-                        <numberOfPanels>3</numberOfPanels>
-                        <orientation>North</orientation>
-                        <orientationEfficiencyLoss>40</orientationEfficiencyLoss>
+                        <numberOfPanels>1</numberOfPanels>
+                        <orientation>2</orientation>
+                        <orientationEfficiencyLoss>10</orientationEfficiencyLoss>
                         <powerOutput>200</powerOutput>
                         <!--Optional:-->
-                        <selectedOrientation>North</selectedOrientation>
+                        <selectedOrientation>1</selectedOrientation>
                      </banks>
                      <banks>
                         <angle>45</angle>
-                        <angleEfficiencyLoss>90</angleEfficiencyLoss>
+                        <angleEfficiencyLoss>10</angleEfficiencyLoss>
                         <bankId>2</bankId>
                         <!--Optional:-->
                         <efficiency>90</efficiency>
-                        <numberOfPanels>3</numberOfPanels>
-                        <orientation>North</orientation>
-                        <orientationEfficiencyLoss>40</orientationEfficiencyLoss>
+                        <numberOfPanels>1</numberOfPanels>
+                        <orientation>2</orientation>
+                        <orientationEfficiencyLoss>10</orientationEfficiencyLoss>
                         <powerOutput>200</powerOutput>
                         <!--Optional:-->
-                        <selectedOrientation>North</selectedOrientation>
+                        <selectedOrientation>2</selectedOrientation>
                      </banks>
-
+                     <banks>
+                        <angle>45</angle>
+                        <angleEfficiencyLoss>10</angleEfficiencyLoss>
+                        <bankId>3</bankId>
+                        <!--Optional:-->
+                        <efficiency>90</efficiency>
+                        <numberOfPanels>1</numberOfPanels>
+                        <orientation>2</orientation>
+                        <orientationEfficiencyLoss>10</orientationEfficiencyLoss>
+                        <powerOutput>200</powerOutput>
+                        <!--Optional:-->
+                        <selectedOrientation>2</selectedOrientation>
+                     </banks>
                      <efficiencyLossNorth>5</efficiencyLossNorth>
-                     <efficiencyLossWest>10</efficiencyLossWest>
-                     <height>3</height>
+                     <efficiencyLossWest>5</efficiencyLossWest>
+                     <height>12</height>
                      <percentageNorth>45</percentageNorth>
                      <percentageWest>55</percentageWest>
-                     <width>3</width>
+                     <width>12</width>
                   </roof>
                   <sunLightHours>8</sunLightHours>
                </location>
@@ -338,183 +311,64 @@
             <equipment>
                <!--Optional:-->
                <battery>
-                  <cost>100</cost>
+                  <cost>300</cost>
                </battery>
                <cost>2500</cost>
                <!--Optional:-->
                <inverter>
-                  <cost>1000</cost>
+                  <cost>500</cost>
                   <efficiency>95</efficiency>
                   <efficiencyLoss>5</efficiencyLoss>
-                  <lifespan>4</lifespan>
-                  <replacementCost>1000</replacementCost>
+                  <lifespan>12</lifespan>
+                  <replacementCost>500</replacementCost>
                </inverter>
                <!--Optional:-->
                <kitName>Kit Kat</kitName>
-                 <!--Zero or more repetitions:-->
-              <panel>
-                  <cost>100</cost>
-                  <efficiency>90</efficiency>
-                  <efficiencyLoss>10</efficiencyLoss>
-                  <height>3</height>
-                  <id>1</id>
-                  <powerRating>200</powerRating>
-                  <size>3</size>
-                 <width>3</width>
-               </panel>
+               <!--Zero or more repetitions:-->
                <panels>
                   <cost>100</cost>
                   <efficiency>90</efficiency>
                   <efficiencyLoss>10</efficiencyLoss>
-                  <height>3</height>
+                  <height>12</height>
                   <id>1</id>
                   <powerRating>200</powerRating>
-                  <size>3</size>
-                  <width>3</width>
+                  <size>12</size>
+                  <width>12</width>
                </panels>
-
-               <size>3</size>
+              <panels>
+                  <cost>100</cost>
+                  <efficiency>90</efficiency>
+                  <efficiencyLoss>10</efficiencyLoss>
+                  <height>12</height>
+                  <id>2</id>
+                  <powerRating>200</powerRating>
+                  <size>12</size>
+                  <width>12</width>
+               </panels>
+              <panels>
+                  <cost>100</cost>
+                  <efficiency>90</efficiency>
+                  <efficiencyLoss>10</efficiencyLoss>
+                  <height>12</height>
+                  <id>3</id>
+                  <powerRating>200</powerRating>
+                  <size>12</size>
+                  <width>12</width>
+               </panels>
+               <size>4.5</size>
             </equipment>
          </calculator>
       </ws:calcEnergyProduction>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/calcEnergyProductionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getEquipments" bindingOperationName="getEquipments" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/calcEnergyProductionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getEquipments" bindingOperationName="getEquipments" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:getEquipments/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getEquipmentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveCalculation" bindingOperationName="saveCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getEquipmentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveCalculation" bindingOperationName="saveCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:saveCalculation>
-         <!--Optional:-->
-         <calculator>
-            <!--Optional:-->
-            <calculation>
-               <annualSaving>?</annualSaving>
-               <annualSolarPower>?</annualSolarPower>
-               <bank1DailySolarPower>?</bank1DailySolarPower>
-               <bank1Efficiency>?</bank1Efficiency>
-               <bank2DailySolarPower>?</bank2DailySolarPower>
-               <bank2Efficiency>?</bank2Efficiency>
-               <cumulativeSaving>?</cumulativeSaving>
-               <dailySaving>?</dailySaving>
-               <dailySolarPower>?</dailySolarPower>
-               <exportedGeneration>?</exportedGeneration>
-               <moneyEarned>?</moneyEarned>
-               <moneySaved>?</moneySaved>
-               <panelEfficiency>?</panelEfficiency>
-               <paybackPeriod>?</paybackPeriod>
-               <replacementGeneration>?</replacementGeneration>
-               <returnOnInvestment>?</returnOnInvestment>
-               <tariff11Fee>?</tariff11Fee>
-               <!--Optional:-->
-               <year>?</year>
-            </calculation>
-            <!--Optional:-->
-            <customer>
-               <dayLightElectricityUsage>?</dayLightElectricityUsage>
-               <!--Optional:-->
-               <electricityUsage>
-                  <dailyAverageUsage>?</dailyAverageUsage>
-                  <dayLightElectricityUsage>?</dayLightElectricityUsage>
-                  <dayTimeHourlyUsage>?</dayTimeHourlyUsage>
-               </electricityUsage>
-               <!--Optional:-->
-               <location>
-                  <!--Optional:-->
-                  <city>?</city>
-                  <!--Optional:-->
-                  <region>?</region>
-                  <!--Optional:-->
-                  <roof>
-                     <!--Optional:-->
-                     <bank>
-                        <angle>?</angle>
-                        <angleEfficiencyLoss>?</angleEfficiencyLoss>
-                        <bankId>?</bankId>
-                        <!--Optional:-->
-                        <efficiency>?</efficiency>
-                        <numberOfPanels>?</numberOfPanels>
-                        <orientation>?</orientation>
-                        <orientationEfficiencyLoss>?</orientationEfficiencyLoss>
-                        <powerOutput>?</powerOutput>
-                        <!--Optional:-->
-                        <selectedOrientation>?</selectedOrientation>
-                     </bank>
-                     <!--Zero or more repetitions:-->
-                     <banks>
-                        <angle>?</angle>
-                        <angleEfficiencyLoss>?</angleEfficiencyLoss>
-                        <bankId>?</bankId>
-                        <!--Optional:-->
-                        <efficiency>?</efficiency>
-                        <numberOfPanels>?</numberOfPanels>
-                        <orientation>?</orientation>
-                        <orientationEfficiencyLoss>?</orientationEfficiencyLoss>
-                        <powerOutput>?</powerOutput>
-                        <!--Optional:-->
-                        <selectedOrientation>?</selectedOrientation>
-                     </banks>
-                     <efficiencyLossNorth>?</efficiencyLossNorth>
-                     <efficiencyLossWest>?</efficiencyLossWest>
-                     <height>?</height>
-                     <percentageNorth>?</percentageNorth>
-                     <percentageWest>?</percentageWest>
-                     <width>?</width>
-                  </roof>
-                  <sunLightHours>?</sunLightHours>
-               </location>
-               <!--Optional:-->
-               <tariff>
-                  <annualTariffIncrease>?</annualTariffIncrease>
-                  <feedInFee>?</feedInFee>
-                  <tariff11Fee>?</tariff11Fee>
-                  <tariffFeePerYear>?</tariffFeePerYear>
-               </tariff>
-            </customer>
-            <!--Optional:-->
-            <equipment>
-               <!--Optional:-->
-               <battery>
-                  <cost>?</cost>
-               </battery>
-               <cost>?</cost>
-               <!--Optional:-->
-               <inverter>
-                  <cost>?</cost>
-                  <efficiency>?</efficiency>
-                  <efficiencyLoss>?</efficiencyLoss>
-                  <lifespan>?</lifespan>
-                  <replacementCost>?</replacementCost>
-               </inverter>
-               <!--Optional:-->
-               <kitName>?</kitName>
-               <!--Optional:-->
-               <panel>
-                  <cost>?</cost>
-                  <efficiency>?</efficiency>
-                  <efficiencyLoss>?</efficiencyLoss>
-                  <height>?</height>
-                  <id>?</id>
-                  <powerRating>?</powerRating>
-                  <size>?</size>
-                  <width>?</width>
-               </panel>
-               <!--Zero or more repetitions:-->
-               <panels>
-                  <cost>?</cost>
-                  <efficiency>?</efficiency>
-                  <efficiencyLoss>?</efficiencyLoss>
-                  <height>?</height>
-                  <id>?</id>
-                  <powerRating>?</powerRating>
-                  <size>?</size>
-                  <width>?</width>
-               </panels>
-               <size>?</size>
-            </equipment>
-         </calculator>
       </ws:saveCalculation>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/saveCalculationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorControllerWSPortBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="calcEnergyProduction TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="calcEnergyProduction"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorControllerWSPortBinding</con:interface><con:operation>calcEnergyProduction</con:operation><con:request name="calcEnergyProduction"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>REPLACE_WITH_ACTUAL_URL</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">

@@ -22,6 +22,7 @@
   <xs:complexType name="calculator">
     <xs:sequence>
       <xs:element name="calculation" type="tns:calculation" minOccurs="0"/>
+      <xs:element name="calculations" type="tns:calculation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="customer" type="tns:customer" minOccurs="0"/>
       <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
     </xs:sequence>
@@ -78,7 +79,6 @@
 
   <xs:complexType name="roof">
     <xs:sequence>
-      <xs:element name="bank" type="tns:bank" minOccurs="0"/>
       <xs:element name="banks" type="tns:bank" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="efficiencyLossNorth" type="xs:double"/>
       <xs:element name="efficiencyLossWest" type="xs:double"/>
@@ -118,7 +118,6 @@
       <xs:element name="cost" type="xs:double"/>
       <xs:element name="inverter" type="tns:inverter" minOccurs="0"/>
       <xs:element name="kitName" type="xs:string" minOccurs="0"/>
-      <xs:element name="panel" type="tns:panel" minOccurs="0"/>
       <xs:element name="panels" type="tns:panel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="size" type="xs:double"/>
     </xs:sequence>
