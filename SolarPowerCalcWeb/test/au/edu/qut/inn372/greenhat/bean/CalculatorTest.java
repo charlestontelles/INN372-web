@@ -24,14 +24,14 @@ public class CalculatorTest {
 		calculation = new Calculation();
 		calculations = new Calculation[1];
 		Inverter inverter = new Inverter();
-		inverter.setEfficiency(0.95);
+		inverter.setEfficiency(95);
 		inverter.setLifespan(25);
 		inverter.setReplacementCost(350.0);
 		inverter.setCost(100);
 		equipment.setInverter(inverter);
 		ArrayList<Panel> panels = new ArrayList<Panel>();
 		panel1 = new Panel();
-		panel1.setEfficiency(0.35);
+		panel1.setEfficiency(35);
 		panel1.setEfficiencyLoss(0.65);
 		panel1.setHeight(10.0);
 		panel1.setId(0);
@@ -64,8 +64,6 @@ public class CalculatorTest {
 		panel1.setCost(100);
 		panel1.setEfficiencyLoss(0.7);
 		//equipment.setPanel(panel1);
-
-		
 	}
 
 	@Test 
@@ -76,7 +74,6 @@ public class CalculatorTest {
 		assertEquals(calculator.getCustomer(), newCustomer);
 	}
 
-	
 	@Test
 	public void testGetSetEquipment() {
 		assertEquals(calculator.getEquipment(), equipment);
@@ -132,8 +129,6 @@ public class CalculatorTest {
 		assertEquals(0.2, bank.getPowerOutput(), 0.1);
 	}
 	
-	
-	
 	@Test
 	public void testCalculatePanelEfficiency(){ 
 		double panelEfficiency = calculator.calculatePanelEfficiency(0);
@@ -142,18 +137,75 @@ public class CalculatorTest {
 	
 	@Test
 	public void calculateBankEfficiency() {
-		Bank[] bank = new Bank[1];
-		bank[0] = new Bank();
-		bank[0].setOrientationEfficiencyLoss(0.5);
-		bank[0].setAngleEfficiencyLoss(0.5);
-		double bankEfficiency = calculator.calculateBankEfficiency(bank, 100.0, 0);
+		Bank[] banks = new Bank[1];
+		banks[0] = new Bank();
+		banks[0].setOrientationEfficiencyLoss(0.5);
+		banks[0].setAngleEfficiencyLoss(0.5);
+		double bankEfficiency = calculator.calculateBankEfficiency(banks, 100.0, 0);
 		assertEquals(99.0, bankEfficiency, 0.1);
 	}
 	
-	/*@Test
-	private double calculateBankDailySolarPower(Location location, Bank[] banks, double bank1Efficiency, int i) throws NumberFormatException {
-		double bank1DailySolarPower = Double.parseDouble( df.format( banks[i].getPowerOutput() * (bank1Efficiency/100)
-				* location.getSunLightHours() ));
-		return bank1DailySolarPower;
-	} */
+	@Test
+	public void testCalculateBankDailySolarPower(){
+		Bank[] banks = new Bank[1];
+		banks[0] = new Bank();
+		double bankEfficiency = 2;
+		banks[0].setPowerOutput(2.5);
+		Location location = new Location();
+		location.setSunLightHours(4);
+		double bankDailySolarPower = calculator.calculateBankDailySolarPower(location, banks, bankEfficiency, 0);
+		assertEquals(0.2, bankDailySolarPower, 0.1);
+	}
+	
+	@Test
+	public void calculateDailySolarPower() {
+		double bank1DailySolarPower = 2.5, bank2DailySolarPower = 1.3;
+		double dailySolarPower = calculator.calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
+		assertEquals(3.61, dailySolarPower, 0.1);
+	}
+	
+	@Test
+	public void calculateTariff11Fee () { 
+		Tariff tariff = new Tariff();
+		tariff.setTariff11Fee(0.2);
+		tariff.setAnnualTariffIncrease(5);
+		double tariffFee = calculator.calculateTariff11Fee(tariff, 1);
+		assertEquals(0.21, tariffFee, 0.1);
+	}
+	
+	@Test
+	public void testCalculateReplacementGeneration() { 
+		customer.setDayLightElectricityUsage(12);
+		assertEquals(12, calculator.calculateReplacementGeneration(14), 0.1);
+	}
+	
+	@Test
+	public void testCalculateExportedGeneration(){ 
+		customer.setDayLightElectricityUsage(12);
+		double replacementGeneration = calculator.calculateReplacementGeneration(14);
+		double exportedGeneration = calculator.calculateExportedGeneration(replacementGeneration, 14);
+		assertEquals(2, exportedGeneration, 0.1);
+	}
+	
+	@Test
+	public void testCalculateMoneySaved() {
+		assertEquals(1.2, calculator.calculateMoneySaved(12, 0.1), 0.1);
+	}
+	
+	@Test
+	public void testCalculateMoneyEarned(){
+		Tariff tariff = new Tariff();
+		tariff.setFeedInFee(0.5);
+		assertEquals(5, calculator.calculateMoneyEarned(tariff, 10), 0.1);
+	}
+	
+	@Test
+	public void testCalculateDailySaving() {
+		assertEquals(31, calculator.calculateDailySaving(15.50, 15.50), 0.1);
+	}
+	
+	@Test
+	public void testCalculateAnnualSaving(){
+		assertEquals(3650, calculator.calculateAnnualSaving(10), 0.1);
+	}
 }

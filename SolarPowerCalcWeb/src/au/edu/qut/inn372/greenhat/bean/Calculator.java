@@ -159,7 +159,7 @@ public class Calculator implements Serializable {
 	 * @param moneyEarned
 	 * @return
 	 */
-	private double calculateDailySaving(double moneySaved, double moneyEarned) {
+	public double calculateDailySaving(double moneySaved, double moneyEarned) {
 		double dailySaving = Math.round( (moneySaved + moneyEarned) * 100.0)/100.0;
 		return dailySaving;
 	}
@@ -170,7 +170,7 @@ public class Calculator implements Serializable {
 	 * @param exportedGeneration
 	 * @return
 	 */
-	private double calculateMoneyEarned(Tariff tariff, double exportedGeneration) {
+	public double calculateMoneyEarned(Tariff tariff, double exportedGeneration) {
 		double moneyEarned = Math.round( (exportedGeneration * tariff.getFeedInFee()) * 100.0)/100.0;
 		return moneyEarned;
 	}
@@ -181,7 +181,7 @@ public class Calculator implements Serializable {
 	 * @param tariff11Fee
 	 * @return
 	 */
-	private double calculateMoneySaved(double replacementGeneration,
+	public double calculateMoneySaved(double replacementGeneration,
 			double tariff11Fee) {
 		double moneySaved = Math.round( (replacementGeneration * tariff11Fee) * 100.0)/100.0;
 		return moneySaved;
@@ -195,7 +195,7 @@ public class Calculator implements Serializable {
 	 * @return
 	 * @throws NumberFormatException
 	 */
-	private double calculateExportedGeneration(double replacementGeneration,double dailySolarPower)
+	public double calculateExportedGeneration(double replacementGeneration,double dailySolarPower)
 			throws NumberFormatException {
 		double exportedGeneration = Math.round( (dailySolarPower - replacementGeneration) *1000.0)/1000.0;
 		return exportedGeneration;
@@ -208,7 +208,7 @@ public class Calculator implements Serializable {
 	 * @return
 	 * @throws NumberFormatException
 	 */
-	private double calculateReplacementGeneration(double dailySolarPower) throws NumberFormatException {
+	public double calculateReplacementGeneration(double dailySolarPower) throws NumberFormatException {
 		double replacementGeneration;
 		if(customer.getDayLightElectricityUsage() > dailySolarPower){
 			replacementGeneration = Math.round (dailySolarPower *1000.0)/1000.0;
@@ -225,7 +225,7 @@ public class Calculator implements Serializable {
 	 * @param i
 	 * @return
 	 */
-	private double calculateTariff11Fee(Tariff tariff, int i) {
+	public double calculateTariff11Fee(Tariff tariff, int i) {
 		double tariff11Fee = Math.round( (tariff.getTariff11Fee() * ( 
 								Math.pow( (1+tariff.getAnnualTariffIncrease()/100.0), ((i+1)-1) ) ) ) * 100.0)/100.0 ;
 		return tariff11Fee;
@@ -238,7 +238,7 @@ public class Calculator implements Serializable {
 	 * @return
 	 * @throws NumberFormatException
 	 */
-	private double calculateDailySolarPower(double bank1DailySolarPower, double bank2DailySolarPower) 
+	public double calculateDailySolarPower(double bank1DailySolarPower, double bank2DailySolarPower) 
 			throws NumberFormatException {
 		double dailySolarPower = Math.round ( ((bank1DailySolarPower + bank2DailySolarPower) 
 				* equipment.getInverter().getEfficiency()/100.0 )*1000.0)/1000.0;
@@ -253,7 +253,7 @@ public class Calculator implements Serializable {
 	 * @return
 	 * @throws NumberFormatException
 	 */
-	private double calculateBankDailySolarPower(Location location, Bank[] banks, double bank1Efficiency, int i) throws NumberFormatException {
+	public double calculateBankDailySolarPower(Location location, Bank[] banks, double bank1Efficiency, int i) throws NumberFormatException {
 		double bank1DailySolarPower = Math.round( (banks[i].getPowerOutput() * (bank1Efficiency/100)
 				* location.getSunLightHours())*1000.0)/1000.0;
 		return bank1DailySolarPower;
