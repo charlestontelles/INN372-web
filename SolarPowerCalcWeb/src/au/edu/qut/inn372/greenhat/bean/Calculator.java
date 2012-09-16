@@ -102,17 +102,17 @@ public class Calculator implements Serializable {
 		double cumulativeSaving = 0.0;
 		double replacementGeneration = 0.0;
 		
-		calculateBankPowerOutput(banks[0]);
 		calculateBankPowerOutput(banks[1]);
+		calculateBankPowerOutput(banks[2]);
 		
 		calculateDayLightElectricityUsage();
 		
 		for(int i=0; i<25; i++){
 			double panelEfficiency = calculatePanelEfficiency(i);
-			double bank1Efficiency = calculateBankEfficiency(banks, panelEfficiency,0);
-			double bank2Efficiency = calculateBankEfficiency(banks, panelEfficiency, 1);
-			double bank1DailySolarPower = calculateBankDailySolarPower(location, banks, bank1Efficiency, 0);
-			double bank2DailySolarPower = calculateBankDailySolarPower(location, banks, bank2Efficiency, 1);	
+			double bank1Efficiency = calculateBankEfficiency(banks, panelEfficiency, 1);
+			double bank2Efficiency = calculateBankEfficiency(banks, panelEfficiency, 2);
+			double bank1DailySolarPower = calculateBankDailySolarPower(location, banks, bank1Efficiency, 1);
+			double bank2DailySolarPower = calculateBankDailySolarPower(location, banks, bank2Efficiency, 2);	
 			double dailySolarPower = calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
 			double annualSolarPower = Math.round( (dailySolarPower *365)*1000.0)/1000.0;
 			double tariff11Fee = calculateTariff11Fee(tariff, i);
@@ -227,7 +227,7 @@ public class Calculator implements Serializable {
 	 */
 	private double calculateTariff11Fee(Tariff tariff, int i) {
 		double tariff11Fee = Math.round( (tariff.getTariff11Fee() * ( 
-								Math.pow( (1+tariff.getAnnualTariffIncrease()/100), ((i+1)-1) ) ) ) * 100.0)/100.0 ;
+								Math.pow( (1+tariff.getAnnualTariffIncrease()/100.0), ((i+1)-1) ) ) ) * 100.0)/100.0 ;
 		return tariff11Fee;
 	}
 
@@ -241,7 +241,7 @@ public class Calculator implements Serializable {
 	private double calculateDailySolarPower(double bank1DailySolarPower, double bank2DailySolarPower) 
 			throws NumberFormatException {
 		double dailySolarPower = Math.round ( ((bank1DailySolarPower + bank2DailySolarPower) 
-				* equipment.getInverter().getEfficiency()/100 )*1000.0)/1000.0;
+				* equipment.getInverter().getEfficiency()/100.0 )*1000.0)/1000.0;
 		return dailySolarPower;
 	}
 
@@ -277,7 +277,8 @@ public class Calculator implements Serializable {
 	 * @return
 	 */
 	public double calculatePanelEfficiency(int i) {
-		double panelEfficiency = Math.round( (100 - (equipment.getPanel().getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
+		//double panelEfficiency = Math.round( (100 - (equipment.getPanel().getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
+		double panelEfficiency = Math.round( (100 - (equipment.getPanels().get(0).getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
 		return panelEfficiency;
 	}
 
@@ -288,8 +289,9 @@ public class Calculator implements Serializable {
 	public void calculatePaybackPeriod() {
 		int pbp = 1;
 		for(int i=0; i<25; i++){
-			if(calculations[i].getReturnOnInvestment() < 1)
+			if(calculations[i].getReturnOnInvestment() < 1){
 				pbp++;
+			}
 		}
 		calculation.setPaybackPeriod(pbp);
 	}
@@ -301,7 +303,7 @@ public class Calculator implements Serializable {
 	 */
 	public void calculateBankPowerOutput(Bank bank){
 		//bank.setNumberOfPanels(equipment.getPanels().size());
-		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanel().getPowerRating())/ 1000);
+		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
 	}
 	
 	/**
@@ -317,13 +319,13 @@ public class Calculator implements Serializable {
 	 * Calculate the system cost
 	 */
 	public void calculateSystemCost(){
-		equipment.setCost( (equipment.getPanel().getCost() * equipment.getTotalPanels()) + equipment.getInverter().getCost());
+		equipment.setCost( (equipment.getPanels().get(0).getCost() * equipment.getTotalPanels()) + equipment.getInverter().getCost());
 	}
 	
 	/**
 	 * Calculate the system size
 	 */
 	public void calculateSystemSize(){
-		equipment.setSize( (equipment.getPanel().getPowerRating() * equipment.getTotalPanels()) / 1000);
+		equipment.setSize( (equipment.getPanels().get(0).getPowerRating() * equipment.getTotalPanels()) / 1000);
 	}
 }

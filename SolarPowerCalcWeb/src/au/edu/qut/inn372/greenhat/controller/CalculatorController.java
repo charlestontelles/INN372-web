@@ -10,12 +10,18 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+
+import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Location;
+import au.edu.qut.inn372.greenhat.bean.Roof;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
+import au.edu.qut.inn372.greenhat.dao.LocationDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
 
 /**
  * Bean that represents a Calcualtor Controller
@@ -40,6 +46,8 @@ public class CalculatorController implements Serializable {
 	
 	private Map<String,String> equipments = new HashMap<String, String>();
 	List<Equipment> listEquipments;
+	private Map<String, String> locations = new HashMap<String, String>();
+	List<Location> listLocations;
 	private int tabIndex = 0;
 	
 	public CalculatorController(){
@@ -47,6 +55,12 @@ public class CalculatorController implements Serializable {
 		listEquipments = equipmentDAO.getEquipments();
 		for (Equipment equipment : listEquipments) {
 			this.equipments.put(equipment.getKitName(), equipment.getKitName());
+		}
+		
+		LocationDAO locationDAO = new LocationDAOImpl();
+		listLocations = locationDAO.getLocations();
+		for(Location location : listLocations){
+			this.locations.put(location.getCity(), location.getCity());
 		}
 	}
 	
@@ -102,6 +116,20 @@ public class CalculatorController implements Serializable {
 	public Map<String, String> getEquipments() {
 		return equipments;
 	}
+	
+	/**
+	 * @return the locations
+	 */
+	public Map<String, String> getLocations() {
+		return locations;
+	}
+
+	/**
+	 * @param locations the locations to set
+	 */
+	public void setLocations(Map<String, String> locations) {
+		this.locations = locations;
+	}
 
 	/**
 	 * Save the calculation
@@ -149,11 +177,28 @@ public class CalculatorController implements Serializable {
 		for (Equipment equipment : listEquipments) {
 			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
 				this.calculator.setEquipment(equipment);
-				this.calculator.getEquipment().setPanel(equipment.getPanels().get(0)); //Added because selecting equipment kit 
+				//this.calculator.getEquipment().setPanel(equipment.getPanels().get(0)); //Added because selecting equipment kit 
 						//was producing null pointer exception for the panel	
 			}
 		}
 		moveToEquipment();
+	}
+	
+	/**
+	 * Loads selected equipment to calculator
+	 */
+	public void handleCityChange(ValueChangeEvent event){
+		Roof r = calculator.getCustomer().getLocation().getRoof();
+		Bank [] b = calculator.getCustomer().getLocation().getRoof().getBanks();
+		for (Location location : listLocations) {
+			if (location.getCity().equalsIgnoreCase(event.getNewValue().toString())){
+				this.calculator.getCustomer().setLocation(location);
+				this.calculator.getCustomer().getLocation().setRoof(r);
+				this.calculator.getCustomer().getLocation().getRoof().setBanks(b);
+				
+			}
+		}
+		moveToLocation();
 	}
 	
 	/**
@@ -217,26 +262,30 @@ public class CalculatorController implements Serializable {
 	
 	public void handleBankIdChange(ValueChangeEvent event){
 		int id = Integer.parseInt(event.getNewValue().toString());
-		calculator.getCustomer().getLocation().getRoof().getBank().setBankId(id);
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setBankId(id);
+		calculator.getCustomer().getLocation().getRoof().getBanks()[0].setBankId(id);
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setBankId(id);
 	}
 	
 	public void handleBankNumPanelsChange(ValueChangeEvent event){
 		int numPanels = Integer.parseInt(event.getNewValue().toString());
-		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setNumberOfPanels(numPanels);
+		int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setNumberOfPanels(numPanels);
 	}
 	
 	public void handleBankAngleChange(ValueChangeEvent event){
 		double angle = Double.parseDouble(event.getNewValue().toString());
-		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setAngle(angle);
+		int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setAngle(angle);
 	}
 	
 	public void handleBankChange(ValueChangeEvent event){
-		String orientation = event.getNewValue().toString();
-		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setSelectedOrientation(orientation);
+		try {
+			String orientation = event.getNewValue().toString();
+			int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
+			calculator.getCustomer().getLocation().getRoof().getBanks()[id].setSelectedOrientation(orientation);
+			System.out.println(calculator.getCustomer().getLocation().getRoof().getBanks()[1].getNumberOfPanels());
+		} catch (Exception ex) {}
+		
 	}
 	
 }

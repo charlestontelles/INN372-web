@@ -29,35 +29,35 @@
 				<h:outputText></h:outputText>
 
 				<h:outputText value="Bank 1 Orientation Efficiency Loss:"></h:outputText>
-				<h:inputText value="#{roof.banks[0].orientationEfficiencyLoss}" id="bank1OrientationLoss"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].orientationEfficiencyLoss}" id="bank1OrientationLoss"></h:inputText>
 				
 				<h:outputText value="Bank 1 Angle Efficiency Loss:"></h:outputText>
-				<h:inputText value="#{roof.banks[0].angleEfficiencyLoss}" id="bank1AngleLoss"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].angleEfficiencyLoss}" id="bank1AngleLoss"></h:inputText>
 				
 				<h:outputText value="Bank 2 Orientation Efficiency Loss:"></h:outputText>
-				<h:inputText value="#{roof.banks[1].orientationEfficiencyLoss}" id="bank2OrientationLoss"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[2].orientationEfficiencyLoss}" id="bank2OrientationLoss"></h:inputText>
 				
 				<h:outputText value="Bank 2 Angle Efficiency Loss:"></h:outputText>
-				<h:inputText value="#{roof.banks[1].angleEfficiencyLoss}" id="bank2AngleLoss"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[2].angleEfficiencyLoss}" id="bank2AngleLoss"></h:inputText>
 			
 				<h:outputText value="Sunlight Details"></h:outputText>
 				<h:outputText></h:outputText>
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
-				<h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText>	
+				<h:inputText value="#{calculatorController.calculator.customer.location.sunLightHours}" id="locationSunlightHours"></h:inputText>	
 			
 				<h:outputText value="Current Energy Usage Details"></h:outputText>
 				<h:outputText></h:outputText>
 				<h:outputText value="Energy Used Per Day:"></h:outputText>
-				<h:inputText value="#{electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.electricityUsage.dailyAverageUsage}" id="dailyAverageUsage"></h:inputText>
 				
 				<h:outputText value="Energy Used Per DayLight Hours:"></h:outputText>
-				<h:inputText value="#{electricityUsage.dayTimeHourlyUsage}" id="daylightEnergyUsage"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.electricityUsage.dayTimeHourlyUsage}" id="daylightEnergyUsage"></h:inputText>
 				
 				<h:outputText value="Annual Tariff Fee Increase:"></h:outputText>
-				<h:inputText value="#{tariff.annualTariffIncrease}" id="annualTariffFeeIncrease"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.tariff.annualTariffIncrease}" id="annualTariffFeeIncrease"></h:inputText>
 				
 				<h:outputText value="Tariff 11 Fee"></h:outputText>
-				<h:inputText value="#{tariff.tariff11Fee}" id="tariff11"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.tariff.tariff11Fee}" id="tariff11"></h:inputText>
 
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave"></h:commandButton>

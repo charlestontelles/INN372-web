@@ -29,9 +29,6 @@ public class Equipment implements Serializable{
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
 	
-	@ManagedProperty (value = "#{panel}")
-	private Panel panel;
-	
 	@ManagedProperty (value = "#{battery}")
 	private Battery battery;
 	
@@ -67,22 +64,6 @@ public class Equipment implements Serializable{
 	 */
 	public void setBattery(Battery battery) {
 		this.battery = battery;
-	}
-
-	/**
-	 * Get the panel
-	 * @return the panel value of the panel property
-	 */
-	public Panel getPanel() {
-		return panel;
-	}
-	
-	/**
-	 * Set the panel 
-	 * @param panel new value for the panel property
-	 */
-	public void setPanel(Panel panel) {
-		this.panel = panel;
 	}
 	
 	/**

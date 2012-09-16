@@ -23,7 +23,7 @@ public class Location implements Serializable{
 
 	private static final long serialVersionUID = -3413151911222121469L;
 	
-	private double sunLightHours = 4.5; //average daily hours of sunlight
+	private double sunLightHours; //average daily hours of sunlight
 	private String region;
 	private String city;
 	

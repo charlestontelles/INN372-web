@@ -63,7 +63,7 @@ public class CalculatorTest {
 		panel1.setPowerRating(100);
 		panel1.setCost(100);
 		panel1.setEfficiencyLoss(0.7);
-		equipment.setPanel(panel1);
+		//equipment.setPanel(panel1);
 
 		
 	}

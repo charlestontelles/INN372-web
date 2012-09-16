@@ -13,24 +13,20 @@
 	<f:view>
 	    <h:form>
 			<h:panelGrid columns="2" styleClass="input">
-			
-				
-				<h:outputText value="Region:"></h:outputText>
-				<h:inputText value="#{location.region}"></h:inputText>
 				
 				<h:outputText value="City:"></h:outputText>
-				<h:inputText value="#{location.city}"></h:inputText>
+				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.city}" onchange="submit()"
+							valueChangeListener="#{calculatorController.handleCityChange}">  
+                	<f:selectItem itemLabel="Select City" itemValue="" />  
+                	<f:selectItems value="#{calculatorController.locations}" />  
+            	</h:selectOneMenu> 	
 				
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
-				<h:inputText value="#{location.sunLightHours}" id="locationSunlightHours"></h:inputText>
-				
-					
+				<h:inputText value="#{calculatorController.calculator.customer.location.sunLightHours}" id="locationSunlightHours" readonly="true"></h:inputText>
+
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToSummary}" oncomplete="summary.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 			
-			
-				
-				
 			</h:panelGrid>
 		</h:form>
 	</f:view>

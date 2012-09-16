@@ -49,13 +49,6 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		equipments.add(equipment1);
 		
 		
-		
-		
-		
-		
-		
-		
-
 		Equipment equipment2 = new Equipment();
 		equipment2.setKitName("Kit 5.6KWh - 8 panels(700W)");
 		equipment2.setCost(9000);
@@ -69,7 +62,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		panel2.setPowerRating(700);
 		panel2.setEfficiency(100);
 		panel2.setEfficiencyLoss(0.7);
-		//panel2.setCost(500);
+		panel2.setCost(500);
 		
 		Battery battery2 = new Battery();
 		battery2.setCost(500);
@@ -91,14 +84,20 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		equipment3.setKitName("Kit 3.6KWh - 12 panels(300W)");
 		equipment3.setCost(4000);
 		equipment3.setSize(3.6);
+		
 		Inverter inverter3 = new Inverter();
 		inverter3.setEfficiency(90);
 		inverter3.setCost(500);
+		
 		Panel panel3 = new Panel();
 		panel3.setEfficiency(95);
+		panel3.setEfficiencyLoss(0.8);
 		panel3.setPowerRating(300);
+		panel3.setCost(400);
+		
 		Battery battery3 = new Battery();
 		battery3.setCost(500);
+		
 		equipment3.setInverter(inverter3);
 		equipment3.setBattery(battery3);
 		equipment3.addPanel(panel3);

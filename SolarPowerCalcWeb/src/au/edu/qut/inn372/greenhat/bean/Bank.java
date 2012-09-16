@@ -4,13 +4,8 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 /**
  * Bean that represents a Bank
@@ -28,8 +23,6 @@ public class Bank implements Serializable {
 	private int bankId;
 	private double angle;
 	private String selectedOrientation;
-	
-	//Added by Martin
 	private double efficiency;
 	private int numberOfPanels;
 	private double orientationEfficiencyLoss;
