@@ -76,14 +76,14 @@ public class Bank implements Serializable {
 	 */
 	public List<SelectItem> getListOfOrientation() {
 		List<SelectItem> list = new ArrayList<SelectItem>();
-	    list.add(new SelectItem(1, "North"));
-	    list.add(new SelectItem(2, "North East"));
-	    list.add(new SelectItem(3, "North West"));
-	    list.add(new SelectItem(4, "South"));
-	    list.add(new SelectItem(5, "South East"));
-	    list.add(new SelectItem(6, "South West"));
-	    list.add(new SelectItem(7, "East"));
-	    list.add(new SelectItem(8, "West"));
+	    list.add(new SelectItem("North", "North"));
+	    list.add(new SelectItem("North East", "North East"));
+	    list.add(new SelectItem("North West", "North West"));
+	    list.add(new SelectItem("South", "South"));
+	    list.add(new SelectItem("South East", "South East"));
+	    list.add(new SelectItem("South West", "South West"));
+	    list.add(new SelectItem("West", "West"));
+	    list.add(new SelectItem("East", "East"));
 	    return list;
 	}
 	

@@ -5,19 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-
-import au.edu.qut.inn372.greenhat.bean.Battery;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
-import au.edu.qut.inn372.greenhat.bean.Inverter;
-import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
@@ -204,6 +198,28 @@ public class CalculatorController implements Serializable {
 		getTabIndex(); 
 	}
 	
+	public void handleBankIdChange(ValueChangeEvent event){
+		int id = Integer.parseInt(event.getNewValue().toString());
+		calculator.getCustomer().getLocation().getRoof().getBank().setBankId(id);
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setBankId(id);
+	}
 	
+	public void handleBankNumPanelsChange(ValueChangeEvent event){
+		int numPanels = Integer.parseInt(event.getNewValue().toString());
+		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setNumberOfPanels(numPanels);
+	}
+	
+	public void handleBankAngleChange(ValueChangeEvent event){
+		double angle = Double.parseDouble(event.getNewValue().toString());
+		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setAngle(angle);
+	}
+	
+	public void handleBankChange(ValueChangeEvent event){
+		String orientation = event.getNewValue().toString();
+		int id = calculator.getCustomer().getLocation().getRoof().getBank().getBankId();
+		calculator.getCustomer().getLocation().getRoof().getBanks()[id-1].setSelectedOrientation(orientation);
+	}
 	
 }

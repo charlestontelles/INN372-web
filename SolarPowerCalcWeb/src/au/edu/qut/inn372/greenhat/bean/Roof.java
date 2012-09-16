@@ -22,6 +22,9 @@ public class Roof implements Serializable {
 
 	private static final long serialVersionUID = -5620428438578639760L;
 	
+	@ManagedProperty (value="#{bank}")
+	private Bank bank;
+	
 	private double width;
 	private double height;
 	private double percentageNorth;
@@ -32,7 +35,7 @@ public class Roof implements Serializable {
 	private Bank [] banks;
 	
 	public Roof(){
-		banks = new Bank[2];
+		banks = new Bank[3];
 		for (int i=0; i < banks.length; i++){
 			banks[i] = new Bank();
 		}
@@ -147,5 +150,21 @@ public class Roof implements Serializable {
 	 */
 	public void setBanks(Bank [] banks) {
 		this.banks = banks;
+	}
+
+
+	/**
+	 * @return the bank
+	 */
+	public Bank getBank() {
+		return bank;
+	}
+
+
+	/**
+	 * @param bank the bank to set
+	 */
+	public void setBank(Bank bank) {
+		this.bank = bank;
 	}
 }
