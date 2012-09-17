@@ -21,7 +21,6 @@
 
   <xs:complexType name="calculator">
     <xs:sequence>
-      <xs:element name="calculation" type="tns:calculation" minOccurs="0"/>
       <xs:element name="calculations" type="tns:calculation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="customer" type="tns:customer" minOccurs="0"/>
       <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
