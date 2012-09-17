@@ -1,12 +1,17 @@
 package au.edu.qut.inn372.greenhat.dao.gae;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.dao.LocationDAO;
 
-public class LocationDAOImpl implements LocationDAO {
+public class LocationDAOImpl implements Serializable, LocationDAO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8132528384505235206L;
 	List<Location> locations = new ArrayList<Location>();
 
 	@Override
