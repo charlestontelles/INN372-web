@@ -292,7 +292,6 @@ public class CalculatorController implements Serializable {
 			String orientation = event.getNewValue().toString();
 			int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
 			calculator.getCustomer().getLocation().getRoof().getBanks()[id].setSelectedOrientation(orientation);
-			System.out.println(calculator.getCustomer().getLocation().getRoof().getBanks()[1].getNumberOfPanels());
 		} catch (Exception ex) {}
 		
 	}
