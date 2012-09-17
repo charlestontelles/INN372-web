@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -147,5 +148,9 @@ public class Roof implements Serializable {
 	 */
 	public void setBanks(Bank [] banks) {
 		this.banks = banks;
+	}
+	
+	public double getSize(){
+		return (width * height)/10000;
 	}
 }

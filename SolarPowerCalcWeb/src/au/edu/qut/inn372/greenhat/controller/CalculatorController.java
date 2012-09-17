@@ -102,10 +102,11 @@ public class CalculatorController implements Serializable {
 	 * Perform calculations and return the page to navigate to
 	 * @return
 	 */
-	public void calculate(){
+	public String calculate(){
 		calculator.performCalculations();
 		//this.tabIndex = 5;
-		moveToOutput();//to go to the next tab
+		//moveToOutput();//to go to the next tab
+		return "output.xhtml";
 		
 	}
 
@@ -264,6 +265,16 @@ public class CalculatorController implements Serializable {
 		int currentIndex = roofTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
+		Bank [] banks = calculator.getCustomer().getLocation().getRoof().getBanks();
+		//calculator.calculateBankOrientationEfficiencyLoss(banks, banks[0].getSelectedOrientation(), 0);
+		//calculator.calculateBankOrientationEfficiencyLoss(banks, banks[1].getSelectedOrientation(), 1);
+		//calculator.calculateBankAngleEfficiencyLoss(banks, banks[0].getAngle(), 0);
+		//calculator.calculateBankAngleEfficiencyLoss(banks, banks[1].getAngle(), 1);
+		
+		for(int i=0; i<banks.length; i++){
+			calculator.calculateBankOrientationEfficiencyLoss(banks, banks[i].getSelectedOrientation(), i);
+			calculator.calculateBankAngleEfficiencyLoss(banks, banks[i].getAngle(), i);
+		}
 	}
 	
 	/**

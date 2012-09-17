@@ -91,8 +91,9 @@ public class Calculator implements Serializable {
 		
 		calculateBankPowerOutput(banks[0]);
 		calculateBankPowerOutput(banks[1]);
-		
+
 		calculateDayLightElectricityUsage();
+		
 		
 		for(int i=0; i<25; i++){
 			double panelEfficiency = calculatePanelEfficiency(i);
@@ -327,5 +328,45 @@ public class Calculator implements Serializable {
 	 */
 	public void calculateSystemSize(){
 		equipment.setSize( (equipment.getPanels().get(0).getPowerRating() * equipment.getTotalPanels()) / 1000);
+	}
+	
+	public void calculateBankOrientationEfficiencyLoss(Bank [] banks, String orientation, int index) {
+		if(orientation.trim().equalsIgnoreCase("North"))
+			banks[index].setOrientationEfficiencyLoss(5.0);
+		else if (orientation.trim().equalsIgnoreCase("North East"))
+			banks[index].setOrientationEfficiencyLoss(0);
+		else if (orientation.trim().equalsIgnoreCase("East"))
+			banks[index].setOrientationEfficiencyLoss(5.0);
+		else if (orientation.trim().equalsIgnoreCase("South"))
+			banks[index].setOrientationEfficiencyLoss(15);
+		else if (orientation.trim().equalsIgnoreCase("South East"))
+			banks[index].setOrientationEfficiencyLoss(10);
+		else if (orientation.trim().equalsIgnoreCase("West"))
+			banks[index].setOrientationEfficiencyLoss(15);
+		else if(orientation.trim().equalsIgnoreCase("North West"))
+			banks[index].setOrientationEfficiencyLoss(10);
+		else
+			banks[index].setOrientationEfficiencyLoss(20);
+	}
+	
+	public void calculateBankAngleEfficiencyLoss(Bank [] banks, double angle, int index) {
+		if((angle >= 0 && angle < 22.5) || (angle > 337.5 && angle <= 360))
+			banks[index].setAngleEfficiencyLoss(0.0);
+		else if (angle >= 22.5 && angle < 67.5)
+			banks[index].setAngleEfficiencyLoss(5.0);
+		else if (angle >= 67.5 && angle < 112.5)
+			banks[index].setAngleEfficiencyLoss(10.0);
+		else if (angle >= 112.5 && angle < 157.5)
+			banks[index].setAngleEfficiencyLoss(15.0);
+		else if (angle >= 157.5 && angle < 202.5)
+			banks[index].setAngleEfficiencyLoss(20);
+		else if (angle >= 202.5 && angle < 247.5)
+			banks[index].setAngleEfficiencyLoss(15);
+		else if(angle >= 247.5 && angle < 292.5)
+			banks[index].setAngleEfficiencyLoss(10);
+		else if(angle >= 292.5 && angle < 337.5)
+			banks[index].setAngleEfficiencyLoss(5.0);
+		//else
+			//banks[index].setOrientationEfficiencyLoss(0);
 	}
 }

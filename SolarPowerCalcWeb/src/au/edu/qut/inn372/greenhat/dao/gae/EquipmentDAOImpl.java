@@ -29,6 +29,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		panel1.setPowerRating(250);
 		panel1.setEfficiencyLoss(0.5);
 		panel1.setCost(100);
+		panel1.setSize(2.25);
 		
 		Battery battery1 = new Battery();
 		battery1.setCost(500);
@@ -63,6 +64,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		panel2.setEfficiency(100);
 		panel2.setEfficiencyLoss(0.7);
 		panel2.setCost(500);
+		panel2.setSize(2.25);
 		
 		Battery battery2 = new Battery();
 		battery2.setCost(500);
@@ -94,6 +96,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 		panel3.setEfficiencyLoss(0.8);
 		panel3.setPowerRating(300);
 		panel3.setCost(400);
+		panel3.setSize(2.25);
 		
 		Battery battery3 = new Battery();
 		battery3.setCost(500);

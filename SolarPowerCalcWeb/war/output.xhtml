@@ -40,10 +40,11 @@
 	
 	<h:body>
     <f:view>
+    <center>
     <h:form styleClass="input" >
     	<h4 align = "center"> General System Description</h4>
     	<h:panelGrid columns="2"  styleClass="input">
-	 		<h:outputText value="Size (KWh)"></h:outputText>
+	 		<h:outputText value="Size (KW)"></h:outputText>
 	 		<h:outputText value="#{calculatorController.calculator.equipment.size}">
 	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
 	 		</h:outputText>
@@ -115,11 +116,12 @@
    			</h:column>	
    			
    			<h:column>
-   				<f:facet name="header">Return on Investment ($)</f:facet>
+   				<f:facet name="header">Return on Investment</f:facet>
    				#{c.returnOnInvestment}
    			</h:column>	
    		</h:dataTable>
 	</h:form>
+	</center>
 	</f:view>
 	</h:body>
 </html>

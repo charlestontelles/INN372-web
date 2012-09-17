@@ -33,6 +33,16 @@
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
+
+			</h:panelGrid>
+			
+			<br />
+			
+			<h:panelGrid columns="1"  styleClass="input">
+				<h:outputText value="Number of Panels Your Roof can Install:" />
+				<h:outputText value="#{calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size}">
+					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
+				</h:outputText>
 			</h:panelGrid>
 		</h:form>
 	</h:body>
