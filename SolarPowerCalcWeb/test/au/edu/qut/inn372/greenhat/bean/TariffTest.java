@@ -23,36 +23,24 @@ public class TariffTest {
 		tariff = new Tariff();
 	}
 
-	/**
-	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Tariff#getTariff11Fee()}.
-	 */
 	@Test
 	public void testSetGetTariff11Fee() {
 		tariff.setTariff11Fee(0.1941);
 		assertEquals(0.1941, tariff.getTariff11Fee(), 0.1);
 	}
 
-	/**
-	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Tariff#getAnnualTariffIncrease()}.
-	 */
 	@Test
 	public void testSetGetAnnualTariffIncrease() {
 		tariff.setAnnualTariffIncrease(0.5);
 		assertEquals(0.5, tariff.getAnnualTariffIncrease(), 0.1);
 	}
 
-	/**
-	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Tariff#getFeedInFee()}.
-	 */
 	@Test
 	public void testSetGetFeedInFee() {
 		tariff.setFeedInFee(0.3);
 		assertEquals(0.3, tariff.getFeedInFee(), 0.1);
 	}
-
-	/**
-	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Tariff#getTariffFeePerYear()}.
-	 */
+	
 	@Test
 	public void testGetTariffFeePerYear() {
 		tariff.setTariffFeePerYear(1.2);

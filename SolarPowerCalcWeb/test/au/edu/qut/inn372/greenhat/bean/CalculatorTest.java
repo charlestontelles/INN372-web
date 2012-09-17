@@ -11,7 +11,6 @@ public class CalculatorTest {
 	private Calculator calculator;
 	private Equipment equipment;
 	private Customer customer;
-	private Calculation calculation;
 	private Calculation[] calculations;
 	private Panel panel1;
 
@@ -21,7 +20,6 @@ public class CalculatorTest {
 		customer = new Customer();
 		equipment = new Equipment();
 		equipment.setCost(10.0);
-		calculation = new Calculation();
 		calculations = new Calculation[1];
 		Inverter inverter = new Inverter();
 		inverter.setEfficiency(95);

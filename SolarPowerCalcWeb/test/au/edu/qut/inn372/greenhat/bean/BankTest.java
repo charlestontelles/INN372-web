@@ -1,11 +1,6 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.faces.model.SelectItem;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,11 +12,6 @@ public class BankTest {
 	
 	private Bank bank;
 	private Equipment equipment;
-	private int bankId;
-	private double angle;
-	private List<SelectItem> listOfOrientation; 
-	private String selectedOrientation;
-	private int panelNo;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -71,7 +61,6 @@ public class BankTest {
 	public void testSetSelectedOrientation(){
 		bank.setSelectedOrientation("North");
 		String newSelectedOrientation = bank.getSelectedOrientation();
-		int firstElement = 0;
 		assertEquals(bank.getSelectedOrientation(), newSelectedOrientation);
 	}
 	
