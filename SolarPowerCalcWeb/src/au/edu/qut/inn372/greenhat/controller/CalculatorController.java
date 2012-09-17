@@ -33,10 +33,10 @@ import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
 public class CalculatorController implements Serializable {
 
 	private static final long serialVersionUID = 8091277788980459284L;
-	private static final int customerUsageIndex = 0;
-	private static final int equipmentTabIndex = 1;
-	private static final int roofTabIndex = 2;
-	private static final int locationTabIndex = 3;
+	private static final int customerUsageIndex = 1;
+	private static final int equipmentTabIndex = 2;
+	private static final int roofTabIndex = 3;
+	private static final int locationTabIndex = 0;
 	private static final int summaryTabIndex = 4;
 	
 	@ManagedProperty (value = "#{calculator}")
@@ -222,6 +222,13 @@ public class CalculatorController implements Serializable {
 		
 	}
 	
+	public void moveToCustomer(){
+		int currentIndex = locationTabIndex;
+		setTabIndex(currentIndex+1);
+		getTabIndex();
+		
+	}
+	
 	/**
 	 * Move to the roof tab
 	 * @return the roof tab
@@ -242,8 +249,8 @@ public class CalculatorController implements Serializable {
 	 * @return the location tab
 	 */
 	public void moveToLocation(){
-		int currentIndex = roofTabIndex;
-		setTabIndex(currentIndex+1);
+		int currentIndex = locationTabIndex;
+		setTabIndex(currentIndex);
 		getTabIndex();
 		
 		//add the banks
@@ -254,7 +261,7 @@ public class CalculatorController implements Serializable {
 	 * @return the summary tab
 	 */
 	public void moveToSummary(){
-		int currentIndex = locationTabIndex;
+		int currentIndex = roofTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 	}

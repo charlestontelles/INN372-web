@@ -11,23 +11,19 @@
 	</h:head>	
 	<h:body>	
 		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}" styleClass="centreTab">	
-			<p:tab id="tab1" title="Customer Usage">
-				<ui:include src="customerUsage.xhtml" />
-			</p:tab>		
-			<p:tab id="tab2" title="Equipment">
-				<ui:include src="equipment.xhtml" />
-			</p:tab>	
-			<p:tab id="tab3" title="Roof">
-				<ui:include src="roof.xhtml" />
-			</p:tab>  		
-			<p:tab id="tab4" title="Location">
+			<p:tab id="tab1" title="Location">
 				<ui:include src="location.xhtml" />
 		    </p:tab>
-			<!-- <p:tab id="tab4" title="Location (map)">
-				<p:gmap center="-27.40, 153" zoom="15" type="HYBRID" 
-						style="width:600px;height:400px" /> 
-		    </p:tab>
-		    -->
+			<p:tab id="tab2" title="Customer Usage">
+				<ui:include src="customerUsage.xhtml" />
+			</p:tab>		
+			<p:tab id="tab3" title="Equipment">
+				<ui:include src="equipment.xhtml" />
+			</p:tab>	
+			<p:tab id="tab4" title="Bank">
+				<ui:include src="roof.xhtml" />
+			</p:tab>  		
+			
 		    
 		    <p:tab id="tab5" title="Summary">
 				<ui:include src="input.xhtml" />

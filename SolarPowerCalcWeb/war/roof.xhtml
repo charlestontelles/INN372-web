@@ -13,41 +13,45 @@
 	<f:view>
 	    <h:form>
 			<h:panelGrid columns="2" styleClass="input">
-				<h:outputText value="Roof Size Width (cm):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.width}" id="width"></h:inputText>
 				
-				<h:outputText value="Roof Size Height (cm):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.height}" id="height"></h:inputText>
 			
 				<h:outputText value="Total Number of Panels"></h:outputText>
 				<h:outputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:outputText>
-
-				<h:outputText value="Banks:"> </h:outputText>
-        		<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[0].bankId}" onchange="submit()"
-        				valueChangeListener="#{calculatorController.handleBankIdChange}">  
-            		<f:selectItem itemLabel="Select a Bank" itemValue="" />  
-            		<f:selectItem itemLabel="Bank 1" itemValue="1" />  
-            		<f:selectItem itemLabel="Bank 2" itemValue="2" />  
-             	</h:selectOneMenu> 
+             	
+             	<h:outputText value="Bank 1:"></h:outputText>
+				<h:outputText></h:outputText>
              	
              	<h:outputText value="Number of Panels"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].numberOfPanels}"  onchange="submit()"
-             		valueChangeListener="#{calculatorController.handleBankNumPanelsChange}">
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].numberOfPanels}">
              	</h:inputText>	
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].angle}" onchange="submit()"
-             		valueChangeListener="#{calculatorController.handleBankAngleChange}"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].angle}" ></h:inputText>
 				
 				<h:outputText value="Orientation of Bank (degrees)"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[0].selectedOrientation}"  onchange="submit()"
-						valueChangeListener="#{calculatorController.handleBankChange}">	
+				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[0].selectedOrientation}">	
+					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
+					<f:selectItems value="#{calculatorController.listOfOrientation}" />	
+				</h:selectOneMenu>
+				
+				<h:outputText value="Bank 2:"></h:outputText>
+				<h:outputText></h:outputText>
+             	
+             	<h:outputText value="Number of Panels"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].numberOfPanels}">
+             	</h:inputText>	
+				
+				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].angle}"></h:inputText>
+				
+				<h:outputText value="Orientation of Bank (degrees)"></h:outputText>
+				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[1].selectedOrientation}">	
 					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
 					<f:selectItems value="#{calculatorController.listOfOrientation}" />	
 				</h:selectOneMenu>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToLocation}" oncomplete="location.xhtml?faces-redirect=true" value="OK"></h:commandButton>
+				<h:commandButton action="#{calculatorController.moveToSummary}" oncomplete="location.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 
 			</h:panelGrid>
 		</h:form>

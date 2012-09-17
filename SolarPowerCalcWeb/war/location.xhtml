@@ -12,7 +12,12 @@
 	<h:body>
 	<f:view>
 	    <h:form>
-			<h:panelGrid columns="2" styleClass="input">
+	    	
+	    	
+			<h:panelGrid columns="2" styleClass="input" style="width= 300px">
+				
+				<h:outputText value="Location:"></h:outputText>
+				<h:outputText></h:outputText>
 				
 				<h:outputText value="City:"></h:outputText>
 				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.city}" onchange="submit()"
@@ -24,10 +29,25 @@
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.location.sunLightHours}" id="locationSunlightHours" readonly="true"></h:inputText>
 
+				<h:outputText value="Roof size:"></h:outputText>
+				<h:outputText></h:outputText>
+
+				<h:outputText style="width:250px" value="Roof Size Width (cm):"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.width}" id="width"></h:inputText>
+				
+				<h:outputText style="width:250px"  value="Roof Size Height (cm):"></h:outputText>
+				<h:inputText  value="#{calculatorController.calculator.customer.location.roof.height}" id="height"></h:inputText>
+		
+			
+			
+
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToSummary}" oncomplete="summary.xhtml?faces-redirect=true" value="OK"></h:commandButton>
+				<h:commandButton action="#{calculatorController.moveToCustomer}" oncomplete="summary.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 			
 			</h:panelGrid>
+			
+			
+		
 		</h:form>
 	</f:view>
 	

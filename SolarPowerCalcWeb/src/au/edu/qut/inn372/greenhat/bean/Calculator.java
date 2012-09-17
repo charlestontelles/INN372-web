@@ -89,8 +89,8 @@ public class Calculator implements Serializable {
 		double cumulativeSaving = 0.0;
 		double replacementGeneration = 0.0;
 		
+		calculateBankPowerOutput(banks[0]);
 		calculateBankPowerOutput(banks[1]);
-		calculateBankPowerOutput(banks[2]);
 		
 		calculateDayLightElectricityUsage();
 		
