@@ -1,5 +1,6 @@
 package au.edu.qut.inn372.greenhat.dao.gae;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,12 @@ import au.edu.qut.inn372.greenhat.bean.Inverter;
 import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 
-public class EquipmentDAOImpl implements EquipmentDAO {
+public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -250530584611730415L;
 
 	@Override
 	public List<Equipment> getEquipments() {
