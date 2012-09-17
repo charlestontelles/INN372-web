@@ -23,7 +23,7 @@ public class Calculator implements Serializable {
 	@ManagedProperty (value = "#{customer}")
 	private Customer customer;
 	
-	private double paybackPeriod;
+	//private double paybackPeriod;
 	
 	private Calculation [] calculations;
 	
@@ -277,24 +277,24 @@ public class Calculator implements Serializable {
 				paybackPeriod++;
 			}
 		}
-		setPaybackPeriod(paybackPeriod);
+		calculations[0].setPaybackPeriod(paybackPeriod);
 	}
 
 	/**
 	 * Get the payback period
 	 * @return the paybackPeriod
 	 */
-	public double getPaybackPeriod() {
-		return paybackPeriod;
-	}
+	//public double getPaybackPeriod() {
+	//	return paybackPeriod;
+	//}
 
 	/**
 	 * Set the payback period
 	 * @param paybackPeriod the paybackPeriod to set
 	 */
-	public void setPaybackPeriod(double paybackPeriod) {
-		this.paybackPeriod = paybackPeriod;
-	}
+	//public void setPaybackPeriod(double paybackPeriod) {
+	//	this.paybackPeriod = paybackPeriod;
+	//}
 
 	/**
 	 * Calculate a bank's power output
