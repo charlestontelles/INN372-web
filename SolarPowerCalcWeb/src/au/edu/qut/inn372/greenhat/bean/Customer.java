@@ -83,6 +83,7 @@ public class Customer implements Serializable {
 	}
 
 	/**
+	 * Get the day light electricity usage
 	 * @return the dayLightElectricityUsage
 	 */
 	public double getDayLightElectricityUsage() {
@@ -90,6 +91,7 @@ public class Customer implements Serializable {
 	}
 
 	/**
+	 * Set the day light electricity usage
 	 * @param dayLightElectricityUsage the dayLightElectricityUsage to set
 	 */
 	public void setDayLightElectricityUsage(double dayLightElectricityUsage) {

@@ -5,19 +5,23 @@ import java.util.List;
 import au.edu.qut.inn372.greenhat.bean.Location;
 
 /**
- * Equipment Data Access Object
+ * Location Data Access Object
  * 
- * @author Charleston
+ * @author Martin Daniel
  *
  */
 public interface LocationDAO {
+	
 	/**
-	 * Returns a list of Equipments
-	 * 
-	 * @return Equipment List
+	 * Get the average hours of sunlight for a city
+	 * @return average hours of sunlight
 	 */
 	public double getAverageSunlightHours(String city);
 	
+	/**
+	 * Return a list of locations
+	 * @return location lost
+	 */
 	public List<Location> getLocations();
 	
 }

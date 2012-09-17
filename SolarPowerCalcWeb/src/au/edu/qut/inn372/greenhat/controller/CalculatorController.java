@@ -80,7 +80,7 @@ public class CalculatorController implements Serializable {
 	}
 	/**
 	 * Gets Tab Index
-	 * @return
+	 * @return tab index
 	 */
 	public int getTabIndex() {
 		return tabIndex;
@@ -99,7 +99,7 @@ public class CalculatorController implements Serializable {
 
 
 	/**
-	 * Get the daily solar power generated and return the page to navigate to
+	 * Perform calculations and return the page to navigate to
 	 * @return
 	 */
 	public void calculate(){
@@ -109,15 +109,24 @@ public class CalculatorController implements Serializable {
 		
 	}
 
+	/**
+	 * Set the equipments
+	 * @param equipments
+	 */
 	public void setEquipments(Map<String, String> equipments) {
 		this.equipments = equipments;
 	}
 
+	/**
+	 * Get the equipments
+	 * @return equipments
+	 */
 	public Map<String, String> getEquipments() {
 		return equipments;
 	}
 	
 	/**
+	 * Get the locations
 	 * @return the locations
 	 */
 	public Map<String, String> getLocations() {
@@ -125,6 +134,7 @@ public class CalculatorController implements Serializable {
 	}
 
 	/**
+	 * Set the locations
 	 * @param locations the locations to set
 	 */
 	public void setLocations(Map<String, String> locations) {
@@ -185,7 +195,7 @@ public class CalculatorController implements Serializable {
 	}
 	
 	/**
-	 * Loads selected equipment to calculator
+	 * Loads selected location to calculator
 	 */
 	public void handleCityChange(ValueChangeEvent event){
 		Roof r = calculator.getCustomer().getLocation().getRoof();
@@ -237,7 +247,6 @@ public class CalculatorController implements Serializable {
 		getTabIndex();
 		
 		//add the banks
-		
 	}
 	
 	/**

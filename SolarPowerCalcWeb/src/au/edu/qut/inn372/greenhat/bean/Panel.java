@@ -28,7 +28,7 @@ public class Panel implements Serializable {
 	private double cost;// = 500;
 	
 	/**
-	 * Get the id
+	 * Get the panel id
 	 * @return id of the panel
 	 */
 	public int getId() {
@@ -36,7 +36,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Set the id
+	 * Set the panel id
 	 * @param id new value for the panel id
 	 */
 	public void setId(int id) {
@@ -44,7 +44,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Get the width
+	 * Get the panel width
 	 * @return width of the panel
 	 */
 	public double getWidth() {
@@ -52,7 +52,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Set the width
+	 * Set the panel width
 	 * @param width new width for the panel
 	 */
 	public void setWidth(double width) {
@@ -60,7 +60,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Get the height
+	 * Get the panel height
 	 * @return height of the panel
 	 */
 	public double getHeight() {
@@ -68,7 +68,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Set the height
+	 * Set the panel height
 	 * @param height new height for the panel
 	 */
 	public void setHeight(double height) {
@@ -76,7 +76,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Get the efficiency
+	 * Get the panel efficiency
 	 * @return efficiency of the panel
 	 */
 	public double getEfficiency() {
@@ -84,7 +84,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Set the efficiency
+	 * Set the panel efficiency
 	 * @param efficiency new panel efficiency
 	 */
 	public void setEfficiency(double efficiency) {
@@ -92,7 +92,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Get the efficiency
+	 * Get the panel efficiency loss
 	 * @return efficiencyLoss of the panel
 	 */
 	public double getEfficiencyLoss() {
@@ -100,7 +100,7 @@ public class Panel implements Serializable {
 	}
 	
 	/**
-	 * Set the efficiency loss
+	 * Set the panel efficiency loss
 	 * @param efficiencyLoss new efficiency loss of the panel
 	 */
 	public void setEfficiencyLoss(double effiLoss) {
@@ -108,6 +108,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Get the panel power rating
 	 * @return the panelPower
 	 */
 	public double getPowerRating() {
@@ -115,6 +116,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Set the panel power rating
 	 * @param panelPower the panelPower to set
 	 */
 	public void setPowerRating(double powerRating) {
@@ -122,6 +124,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Get the panel size
 	 * @return the size
 	 */
 	public double getSize() {
@@ -129,6 +132,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Set the panel size
 	 * @param size the size to set
 	 */
 	public void setSize(double size) {
@@ -136,6 +140,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Get the panel cost
 	 * @return the cost
 	 */
 	public double getCost() {
@@ -143,6 +148,7 @@ public class Panel implements Serializable {
 	}
 
 	/**
+	 * Set the panel cost
 	 * @param cost the cost to set
 	 */
 	public void setCost(double cost) {

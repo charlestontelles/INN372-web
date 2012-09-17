@@ -87,6 +87,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the efficiency
 	 * @return the efficiency
 	 */
 	public Double getEfficiency() {
@@ -94,6 +95,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the efficiency
 	 * @param efficiency the efficiency to set
 	 */
 	public void setEfficiency(Double efficiency) {
@@ -101,6 +103,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the number of panels
 	 * @return the numberOfPanels
 	 */
 	public int getNumberOfPanels() {
@@ -108,6 +111,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the number of panels
 	 * @param numberOfPanels the numberOfPanels to set
 	 */
 	public void setNumberOfPanels(int numberOfPanels) {
@@ -115,6 +119,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Get the efficiency loss due to orientation
 	 * @return the orientationEfficiencyLoss
 	 */
 	public double getOrientationEfficiencyLoss() {
@@ -122,6 +127,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
+	 * Set the efficiency loss due to orientation
 	 * @param orientationEfficiencyLoss the orientationEfficiencyLoss to set
 	 */
 	public void setOrientationEfficiencyLoss(double orientationEfficiencyLoss) {
@@ -129,7 +135,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
-	 * Get the angle efficiency loss
+	 * Get the efficiency loss due to the angle
 	 * @return the angleEfficiencyLoss
 	 */
 	public double getAngleEfficiencyLoss() {
@@ -137,7 +143,7 @@ public class Bank implements Serializable {
 	}
 
 	/**
-	 * Set the angle efficiency loss
+	 * Set the efficiency loss due to the angle
 	 * @param angleEfficiencyLoss the angleEfficiencyLoss to set
 	 */
 	public void setAngleEfficiencyLoss(double angleEfficiencyLoss) {

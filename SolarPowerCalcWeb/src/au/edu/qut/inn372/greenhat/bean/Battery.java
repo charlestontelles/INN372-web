@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * Bean that represents an Equipment
+ * Bean that represents a Battery
  * 
  * @author Charleston Telles
  * @version 1.0

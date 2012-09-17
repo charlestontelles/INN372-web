@@ -8,7 +8,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 /**
- * Bean that represents a Calculator
+ * Bean that represents an Inverter
  * 
  * @author Martin Daniel
  * @version 1.0
@@ -34,7 +34,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
-	 * Set the efficiency
+	 * Set the efficiency of the inverter
 	 * @param efficiency new value for the inverter efficiency
 	 */
 	public void setEfficiency(double efficiency) {
@@ -42,7 +42,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
-	 * Get the lifespan
+	 * Get the lifespan of the inverter
 	 * @return lifespan value for the lifespan
 	 */
 	public double getLifespan() {
@@ -50,7 +50,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
-	 * Set the lifespan
+	 * Set the lifespan of the inverter
 	 * @param lifespan new value for the lifespan
 	 */
 	public void setLifespan(double lifespan) {
@@ -58,7 +58,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
-	 * Get the replacement cost
+	 * Get the replacement cost of the inverter
 	 * @return replacementCost value of the replacement cost
 	 */
 	public double getReplacementCost() {
@@ -66,7 +66,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
-	 * Set the replacementCost
+	 * Set the replacementCost of the inverter
 	 * @param replacementCost new value for the replacement cost
 	 */
 	public void setReplacementCost(double replacementCost) {
@@ -74,6 +74,7 @@ public class Inverter implements Serializable{
 	}
 
 	/**
+	 * Get the cost of the inverter
 	 * @return the cost
 	 */
 	public double getCost() {
@@ -81,6 +82,7 @@ public class Inverter implements Serializable{
 	}
 
 	/**
+	 * Set the cost of the inverter
 	 * @param cost the cost to set
 	 */
 	public void setCost(double cost) {
@@ -88,6 +90,7 @@ public class Inverter implements Serializable{
 	}
 	
 	/**
+	 * Get the efficiency loss of the inverter
 	 * @return the efficiencyLoss
 	 */
 	public double getEfficiencyLoss() {
@@ -95,6 +98,7 @@ public class Inverter implements Serializable{
 	}
 
 	/**
+	 * Set the efficiency loss of the inverter
 	 * @param efficiencyLoss to set
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {

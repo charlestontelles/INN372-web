@@ -72,7 +72,7 @@ public class Roof implements Serializable {
 	}
 	
 	/**
-	 * Get the width
+	 * Get the roof width
 	 * @return width of the roof
 	 */
 	public double getWidth() {
@@ -80,7 +80,7 @@ public class Roof implements Serializable {
 	}
 	
 	/**
-	 * Set the width
+	 * Set the roof width
 	 * @param width new value of the roof
 	 */
 	public void setWidth(double width) {
@@ -88,7 +88,7 @@ public class Roof implements Serializable {
 	}
 	
 	/**
-	 * Get the height
+	 * Get the roof height
 	 * @return height of the roof
 	 */
 	public double getHeight() {
@@ -96,7 +96,7 @@ public class Roof implements Serializable {
 	}
 	
 	/**
-	 * Set the height
+	 * Set the roof height
 	 * @param height new value for the roof
 	 */
 	public void setHeight(double height) {
@@ -136,6 +136,7 @@ public class Roof implements Serializable {
 	}
 
 	/**
+	 * Get the banks on the roof
 	 * @return the banks
 	 */
 	public Bank[] getBanks() {
@@ -143,6 +144,7 @@ public class Roof implements Serializable {
 	}
 
 	/**
+	 * Set the banks on the roof
 	 * @param banks the banks to set
 	 */
 	public void setBanks(Bank [] banks) {

@@ -52,15 +52,15 @@ public class Equipment implements Serializable{
 	
 	
 	/**
-	 * Gets Battery Bean
+	 * Get the battery
 	 * @return Battery
 	 */
 	public Battery getBattery() {
 		return battery;
 	}
 	/**
-	 * Sets Battery Bean
-	 * @param battery
+	 * Set the battery
+	 * @param battery to set
 	 */
 	public void setBattery(Battery battery) {
 		this.battery = battery;
@@ -81,6 +81,7 @@ public class Equipment implements Serializable{
 	public void setPanels(List<Panel> panels) {
 		this.panels = panels;
 	}
+	
 	/**
 	 * Add panel to Panel List
 	 * @param panel
@@ -88,6 +89,7 @@ public class Equipment implements Serializable{
 	public void addPanel (Panel panel){
 		this.panels.add(panel);
 	}
+	
 	/**
 	 * Remove panel from Panel List
 	 * @param panel
@@ -95,22 +97,22 @@ public class Equipment implements Serializable{
 	public void removePanel (Panel panel){
 		this.panels.remove(panel);
 	}
+	
 	/**
-	 * Gets Kit name
+	 * Get Kit name
 	 * @return kit name
 	 */
 	public String getKitName() {
 		return kitName;
 	}
+	
 	/**
-	 * Sets kit name
-	 * 
+	 * Set kit name
 	 * @param kitName
 	 */
 	public void setKitName(String kitName) {
 		this.kitName = kitName;
 	}
-
 
 	/**
 	 * Get the selected panel

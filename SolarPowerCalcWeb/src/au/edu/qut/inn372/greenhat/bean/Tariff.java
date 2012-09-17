@@ -25,7 +25,7 @@ public class Tariff implements Serializable {
 	private double tariffFeePerYear;
 
 	/**
-	 * Get tariff 11 fee
+	 * Get tariff fee
 	 * @return the tariff11Fee
 	 */
 	public double getTariff11Fee() {

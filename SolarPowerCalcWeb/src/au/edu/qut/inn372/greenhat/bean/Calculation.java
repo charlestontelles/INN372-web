@@ -10,7 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * Bean that represents a list of calculations
+ * Bean that represents a Calculation
  * @author Martin Daniel
  * @version 1.0
  */
@@ -38,6 +38,8 @@ public class Calculation implements Serializable{
 	double cumulativeSaving;
 	double returnOnInvestment;
 	double paybackPeriod;
+	
+	public Calculation(){}
 		
 	/**
 	 * A calculation object contains info about year, tariff, solar power generation and savings.
@@ -50,9 +52,6 @@ public class Calculation implements Serializable{
 	 * @param annualSaving
 	 * @param cumulativeSaving
 	 */
-	
-	public Calculation(){}
-	
 	public Calculation(Integer year, double panelEfficiency, double bank1Efficiency, 
 			double bank2Efficiency, double bank1DailySolarPower, double bank2DailySolarPower,
 			double tariff11Fee, double dailySolarPower, double annualSolarPower, double replacementGeneration, double exportedGeneration, 
