@@ -313,5 +313,4 @@ public class CalculatorController implements Serializable {
 		} catch (Exception ex) {}
 		
 	}
-	
 }

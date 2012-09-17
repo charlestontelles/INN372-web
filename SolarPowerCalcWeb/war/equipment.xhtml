@@ -40,7 +40,7 @@
 			
 			<h:panelGrid columns="1"  styleClass="input">
 				<h:outputText value="Number of Panels Your Roof can Install:" />
-				<h:outputText value="#{calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size}">
+				<h:outputText value="#{(calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size)}">
 					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
 				</h:outputText>
 			</h:panelGrid>

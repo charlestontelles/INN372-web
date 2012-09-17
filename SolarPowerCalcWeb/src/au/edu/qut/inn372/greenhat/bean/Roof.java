@@ -21,8 +21,8 @@ public class Roof implements Serializable {
 
 	private static final long serialVersionUID = -5620428438578639760L;
 	
-	private double width;
-	private double height;
+	private double width = 500;
+	private double height = 600;
 	private double percentageNorth;
 	private double percentageWest;
 	private double efficiencyLossNorth;
@@ -34,6 +34,7 @@ public class Roof implements Serializable {
 		banks = new Bank[2];
 		for (int i=0; i < banks.length; i++){
 			banks[i] = new Bank();
+			banks[i].setAngle(45);
 		}
 	}
 	
