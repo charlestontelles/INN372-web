@@ -96,10 +96,10 @@ public class Calculator implements Serializable {
 		
 		for(int i=0; i<25; i++){
 			double panelEfficiency = calculatePanelEfficiency(i);
-			double bank1Efficiency = calculateBankEfficiency(banks, panelEfficiency, 1);
-			double bank2Efficiency = calculateBankEfficiency(banks, panelEfficiency, 2);
-			double bank1DailySolarPower = calculateBankDailySolarPower(location, banks, bank1Efficiency, 1);
-			double bank2DailySolarPower = calculateBankDailySolarPower(location, banks, bank2Efficiency, 2);	
+			double bank1Efficiency = calculateBankEfficiency(banks, panelEfficiency, 0);
+			double bank2Efficiency = calculateBankEfficiency(banks, panelEfficiency, 1);
+			double bank1DailySolarPower = calculateBankDailySolarPower(location, banks, bank1Efficiency, 0);
+			double bank2DailySolarPower = calculateBankDailySolarPower(location, banks, bank2Efficiency, 1);	
 			double dailySolarPower = calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
 			double annualSolarPower = Math.round( (dailySolarPower *365)*1000.0)/1000.0;
 			double tariff11Fee = calculateTariff11Fee(tariff, i);

@@ -30,7 +30,7 @@ public class Roof implements Serializable {
 	private Bank [] banks;
 	
 	public Roof(){
-		banks = new Bank[3];
+		banks = new Bank[2];
 		for (int i=0; i < banks.length; i++){
 			banks[i] = new Bank();
 		}
