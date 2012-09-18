@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsf-impl-2.1.7.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/primefaces-3.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/iText-2.1.7.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

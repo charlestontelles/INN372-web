@@ -43,7 +43,7 @@
     <center>
     <h:form styleClass="input" >
     	<h4 align = "center"> General System Description</h4>
-    	<h:panelGrid columns="2"  styleClass="input">
+    	<h:panelGrid id="final_report" columns="2"  styleClass="input">
 	 		<h:outputText value="Size (KW)"></h:outputText>
 	 		<h:outputText value="#{calculatorController.calculator.equipment.size}">
 	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
@@ -91,35 +91,43 @@
 	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
 	 		</h:outputText> 
 	 	</h:panelGrid>
-   		<br />
    		
+   		<p align = "right">
+	    <h:commandButton value="Print" type="button" icon="ui-icon-print">  
+	        <p:printer target="calculations_table" />  
+	    </h:commandButton>  
+    	 <h:commandLink>  
+            <p:graphicImage value="/images/pdf.png" />  
+            <p:dataExporter type="pdf" target="calculations_table" fileName="calculations_table"/>  
+        </h:commandLink> 
+   		</p>
    		<h4 align = "center"> Financial Output</h4>
-   		<h:dataTable value="#{calculator.calculations}" var="c"
+   		<p:dataTable id="calculations_table" value="#{calculator.calculations}" var="c"
    			    styleClass="calculations-table"
     			headerClass="calculations-table-header"
     			rowClasses="calculations-table-odd-row,calculations-table-even-row">
-   			<h:column>
+   			<p:column>
    				<f:facet name="header">Year</f:facet>
-   				#{c.year}
-   			</h:column>
-   	   		<h:column>
+   				<h:outputText value="#{c.year}"/>   				
+   			</p:column>
+   	   		<p:column>
    				<f:facet name="header">Daily Savings ($)</f:facet>
-   				#{c.dailySaving}
-   			</h:column>	
-   	   		<h:column>
+   				<h:outputText value="#{c.dailySaving}"/>   				
+   			</p:column>	
+   	   		<p:column>
    				<f:facet name="header">Annual Savings ($)</f:facet>
-   				#{c.annualSaving}
-   			</h:column>	
-   			<h:column>
+   				<h:outputText value="#{c.annualSaving}"/>    				
+   			</p:column>	
+   			<p:column>
    				<f:facet name="header">Cumulative Savings ($)</f:facet>
-   				#{c.cumulativeSaving}
-   			</h:column>	
+   				<h:outputText value="#{c.cumulativeSaving}"/>   				
+   			</p:column>	
    			
-   			<h:column>
+   			<p:column>
    				<f:facet name="header">Return on Investment</f:facet>
-   				#{c.returnOnInvestment}
-   			</h:column>	
-   		</h:dataTable>
+   				<h:outputText value="#{c.returnOnInvestment}"/>    				
+   			</p:column>	
+   		</p:dataTable>
 	</h:form>
 	</center>
 	</f:view>
