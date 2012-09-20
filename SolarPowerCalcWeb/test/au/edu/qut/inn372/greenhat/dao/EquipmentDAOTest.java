@@ -22,7 +22,7 @@ public class EquipmentDAOTest {
 		List<Equipment> equipments = dao.getEquipments();
 		Equipment[] list = new Equipment[equipments.size()];
 		equipments.toArray(list);
-		assertEquals(equipments.size(), 3);
+		assertEquals(equipments.size(), 4);
 		
 	}
 }
