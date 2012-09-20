@@ -182,6 +182,25 @@ public class CalculatorController implements Serializable {
 	}
 	
 	/**
+	 * Returns a list of panel brands
+	 * @return list of panel brands
+	 */
+	public List<SelectItem> getListOfPanelBrands() {
+		List<SelectItem> list = new ArrayList<SelectItem>();
+	    list.add(new SelectItem("BP Solar Panels", "BP Solar Panels"));
+	    list.add(new SelectItem("Sharp Solar Panels", "Sharp Solar Panels"));
+	    list.add(new SelectItem("Sunlinq Portable Solar Panels", "Sunlinq Portable Solar Panels"));
+	    list.add(new SelectItem("SunPower Solar Panels", "SunPower Solar Panels"));
+	    list.add(new SelectItem("SunTech Solar Panels", "SunTech Solar Panels"));
+	    list.add(new SelectItem("Powerfilm Flexible Solar Panels", "Powerfilm Flexible Solar Panels"));
+	    list.add(new SelectItem("Sanyo Solar Panels", "Sanyo Solar Panels"));
+	    list.add(new SelectItem("Global Solar Panels", "Global Solar Panels"));
+	    list.add(new SelectItem("Solarfun", "Solarfun"));
+	    list.add(new SelectItem("REC Solar Panels", "REC Solar Panels"));
+	    return list;
+	}
+	
+	/**
 	 * Loads selected equipment to calculator
 	 */
 	public void handleEquipmentChange(ValueChangeEvent event){
@@ -192,20 +211,22 @@ public class CalculatorController implements Serializable {
 						//was producing null pointer exception for the panel	
 			}
 		}
+		//Set default for number of panels for bank 1
+		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 		moveToEquipment();
 	}
 	
 	/**
 	 * Loads selected location to calculator
 	 */
-	public void handleCityChange(ValueChangeEvent event){
-		Roof r = calculator.getCustomer().getLocation().getRoof();
-		Bank [] b = calculator.getCustomer().getLocation().getRoof().getBanks();
+	public void handleLocationChange(ValueChangeEvent event){
+		//Roof r = calculator.getCustomer().getLocation().getRoof();
+		//Bank [] b = calculator.getCustomer().getLocation().getRoof().getBanks();
 		for (Location location : listLocations) {
 			if (location.getCity().equalsIgnoreCase(event.getNewValue().toString())){
 				this.calculator.getCustomer().setLocation(location);
-				this.calculator.getCustomer().getLocation().setRoof(r);
-				this.calculator.getCustomer().getLocation().getRoof().setBanks(b);
+				//this.calculator.getCustomer().getLocation().setRoof(r);
+				//this.calculator.getCustomer().getLocation().getRoof().setBanks(b);
 				
 			}
 		}
@@ -285,32 +306,5 @@ public class CalculatorController implements Serializable {
 		int currentIndex = summaryTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex(); 
-	}
-	
-	public void handleBankIdChange(ValueChangeEvent event){
-		int id = Integer.parseInt(event.getNewValue().toString());
-		calculator.getCustomer().getLocation().getRoof().getBanks()[0].setBankId(id);
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setBankId(id);
-	}
-	
-	public void handleBankNumPanelsChange(ValueChangeEvent event){
-		int numPanels = Integer.parseInt(event.getNewValue().toString());
-		int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setNumberOfPanels(numPanels);
-	}
-	
-	public void handleBankAngleChange(ValueChangeEvent event){
-		double angle = Double.parseDouble(event.getNewValue().toString());
-		int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
-		calculator.getCustomer().getLocation().getRoof().getBanks()[id].setAngle(angle);
-	}
-	
-	public void handleBankChange(ValueChangeEvent event){
-		try {
-			String orientation = event.getNewValue().toString();
-			int id = calculator.getCustomer().getLocation().getRoof().getBanks()[0].getBankId();
-			calculator.getCustomer().getLocation().getRoof().getBanks()[id].setSelectedOrientation(orientation);
-		} catch (Exception ex) {}
-		
 	}
 }

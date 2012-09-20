@@ -32,8 +32,6 @@ public class Equipment implements Serializable{
 	@ManagedProperty (value = "#{battery}")
 	private Battery battery;
 	
-	//Added by Martin - what if customer wants to enter number of panels, instead of selecting from kit
-	//private int totalPanels;
 	/**
 	 * Get the inverter
 	 * @return the inverter value of the inverter property
@@ -123,15 +121,7 @@ public class Equipment implements Serializable{
 			return this.panels.size();
 		else
 			return 0;
-		//return totalPanels;
 	} 
-	
-	/**
-	 * @param totalPanels the totalPanels to set
-	 */
-	//public void setTotalPanels(int totalPanels) {
-		//this.totalPanels = totalPanels;
-	//}
 
 	/**
 	 * Get the cost

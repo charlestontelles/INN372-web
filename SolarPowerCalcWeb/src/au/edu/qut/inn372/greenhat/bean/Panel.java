@@ -26,6 +26,7 @@ public class Panel implements Serializable {
 	private double powerRating; // = 700; //assuming all panels have the same power rating
 	private double size = 0; 
 	private double cost;// = 500;
+	private String brand;
 	
 	/**
 	 * Get the panel id
@@ -153,5 +154,19 @@ public class Panel implements Serializable {
 	 */
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 }

@@ -124,6 +124,44 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		
 		equipments.add(equipment3);
 		
+		
+		
+		Equipment equipment4 = new Equipment();
+		equipment4.setKitName("Kit 5KWh - 10 panels(500W)");
+		equipment4.setCost(5000);
+		equipment4.setSize(5);
+		
+		Inverter inverter4 = new Inverter();
+		inverter4.setEfficiency(95);
+		inverter4.setCost(500);
+		
+		Panel panel4 = new Panel();
+		panel4.setEfficiency(95);
+		panel4.setEfficiencyLoss(0.8);
+		panel4.setPowerRating(500);
+		panel4.setCost(450);
+		panel4.setSize(2.25);
+		
+		Battery battery4 = new Battery();
+		battery4.setCost(500);
+		
+		equipment4.setInverter(inverter4);
+		equipment4.setBattery(battery4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		equipment4.addPanel(panel4);
+		
+		equipments.add(equipment4);
+		
 		return equipments;
 	}
 

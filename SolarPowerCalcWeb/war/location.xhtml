@@ -21,7 +21,7 @@
 				
 				<h:outputText value="City:"></h:outputText>
 				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.city}" onchange="submit()"
-							valueChangeListener="#{calculatorController.handleCityChange}">  
+							valueChangeListener="#{calculatorController.handleLocationChange}">  
                 	<f:selectItem itemLabel="Select City" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.locations}" />  
             	</h:selectOneMenu> 	

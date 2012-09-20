@@ -12,13 +12,14 @@
 	<h:body>
 	    <h:form>
 			<h:panelGrid columns="2"  styleClass="input">
+			
 				<h:outputText value="List of Equipment"></h:outputText>
 				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}" onchange="submit()"
 							valueChangeListener="#{calculatorController.handleEquipmentChange}">  
                 	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.equipments}" />  
-            	</h:selectOneMenu> 	
-				
+            	</h:selectOneMenu> 
+    		
 				<h:outputText value="Number of Panels"></h:outputText>				
 				<h:inputText value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true"></h:inputText>
 				
@@ -31,6 +32,12 @@
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" readonly="true"></h:inputText>
 
+				<h:outputText value="List of Panel Brands"></h:outputText>
+				<h:selectOneMenu value="#{calculatorController.calculator.equipment.panels[0].brand}">	
+					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
+					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
+				</h:selectOneMenu>
+				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 
@@ -44,6 +51,8 @@
 					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
 				</h:outputText>
 			</h:panelGrid>
+			
+
 		</h:form>
 	</h:body>
 </html>
