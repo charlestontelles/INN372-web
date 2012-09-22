@@ -58,7 +58,9 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testSetGetDayLightElectricityUsage() {
-		customer.setDayLightElectricityUsage(1.45);
-		assertEquals(1.45, customer.getDayLightElectricityUsage(), 0.1);
+		ElectricityUsage usage = new ElectricityUsage();
+		customer.setElectricityUsage(usage);
+		customer.getElectricityUsage().setDayLightElectricityUsage(1.45);
+		assertEquals(1.45, customer.getElectricityUsage().getDayLightElectricityUsage(), 0.1);
 	}
 }

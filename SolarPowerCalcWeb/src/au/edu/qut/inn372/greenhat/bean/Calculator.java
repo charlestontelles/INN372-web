@@ -23,8 +23,6 @@ public class Calculator implements Serializable {
 	@ManagedProperty (value = "#{customer}")
 	private Customer customer;
 	
-	//private double paybackPeriod;
-	
 	private Calculation [] calculations;
 	
 	DecimalFormat df = new DecimalFormat("#.###");
@@ -195,11 +193,11 @@ public class Calculator implements Serializable {
 	 */
 	public double calculateReplacementGeneration(double dailySolarPower) throws NumberFormatException {
 		double replacementGeneration;
-		if(customer.getDayLightElectricityUsage() > dailySolarPower){
+		if(customer.getElectricityUsage().getDayLightElectricityUsage() > dailySolarPower){
 			replacementGeneration = Math.round (dailySolarPower *1000.0)/1000.0;
 		}
 		else {
-			replacementGeneration = Math.round (customer.getDayLightElectricityUsage() *1000.0)/1000.0;
+			replacementGeneration = Math.round (customer.getElectricityUsage().getDayLightElectricityUsage() *1000.0)/1000.0;
 		}
 		return replacementGeneration;
 	}
@@ -282,28 +280,11 @@ public class Calculator implements Serializable {
 	}
 
 	/**
-	 * Get the payback period
-	 * @return the paybackPeriod
-	 */
-	//public double getPaybackPeriod() {
-	//	return paybackPeriod;
-	//}
-
-	/**
-	 * Set the payback period
-	 * @param paybackPeriod the paybackPeriod to set
-	 */
-	//public void setPaybackPeriod(double paybackPeriod) {
-	//	this.paybackPeriod = paybackPeriod;
-	//}
-
-	/**
 	 * Calculate a bank's power output
 	 * @param bank
 	 * @param numOfPanels
 	 */
 	public void calculateBankPowerOutput(Bank bank){
-		//bank.setNumberOfPanels(equipment.getPanels().size());
 		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
 	}
 	
@@ -313,7 +294,8 @@ public class Calculator implements Serializable {
 	public void calculateDayLightElectricityUsage(){
 		double dayLightElectricityUsage = customer.getElectricityUsage().getDayTimeHourlyUsage() 
 				* customer.getLocation().getSunLightHours();
-		customer.setDayLightElectricityUsage(dayLightElectricityUsage);
+		//customer.setDayLightElectricityUsage(dayLightElectricityUsage);
+		customer.getElectricityUsage().setDayLightElectricityUsage(dayLightElectricityUsage);
 	}
 	
 	/**

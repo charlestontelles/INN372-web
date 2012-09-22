@@ -106,8 +106,8 @@ public class CalculatorTest {
 	public void testCalculateDayLightElectricityUsage(){
 		double dayLightElectricityUsage = customer.getElectricityUsage().getDayTimeHourlyUsage() 
 				* customer.getLocation().getSunLightHours();
-		customer.setDayLightElectricityUsage(dayLightElectricityUsage);
-		assertEquals(240.0, customer.getDayLightElectricityUsage(), 0.1);
+		customer.getElectricityUsage().setDayLightElectricityUsage(dayLightElectricityUsage);
+		assertEquals(240.0, customer.getElectricityUsage().getDayLightElectricityUsage(), 0.1);
 	}
 	
 	@Test
@@ -164,13 +164,13 @@ public class CalculatorTest {
 	
 	@Test
 	public void testCalculateReplacementGeneration() { 
-		customer.setDayLightElectricityUsage(12);
+		customer.getElectricityUsage().setDayLightElectricityUsage(12);
 		assertEquals(12, calculator.calculateReplacementGeneration(14), 0.1);
 	}
 	
 	@Test
 	public void testCalculateExportedGeneration(){ 
-		customer.setDayLightElectricityUsage(12);
+		customer.getElectricityUsage().setDayLightElectricityUsage(12);
 		double replacementGeneration = calculator.calculateReplacementGeneration(14);
 		double exportedGeneration = calculator.calculateExportedGeneration(replacementGeneration, 14);
 		assertEquals(2, exportedGeneration, 0.1);

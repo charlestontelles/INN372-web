@@ -157,8 +157,6 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment4.addPanel(panel4);
 		equipment4.addPanel(panel4);
 		equipment4.addPanel(panel4);
-		equipment4.addPanel(panel4);
-		equipment4.addPanel(panel4);
 		
 		equipments.add(equipment4);
 		

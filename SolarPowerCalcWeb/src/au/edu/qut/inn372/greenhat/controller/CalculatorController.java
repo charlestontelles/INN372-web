@@ -11,11 +11,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.event.SelectEvent;
+
 import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.Location;
-import au.edu.qut.inn372.greenhat.bean.Roof;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.LocationDAO;
@@ -44,8 +45,12 @@ public class CalculatorController implements Serializable {
 	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	
-	private Map<String,String> equipments = new HashMap<String, String>();
+	//private Map<String,String> equipments = new HashMap<String, String>(); //does not work when implementing selectableDataModel, instead use list
+	private List<Equipment> equipments = new ArrayList<Equipment>();
 	List<Equipment> listEquipments;
+	private EquipmentDataModel equipmentDataModel;
+	private Equipment selectedEquipment; 
+	
 	private Map<String, String> locations = new HashMap<String, String>();
 	List<Location> listLocations;
 	private int tabIndex = 0;
@@ -54,8 +59,11 @@ public class CalculatorController implements Serializable {
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
 		listEquipments = equipmentDAO.getEquipments();
 		for (Equipment equipment : listEquipments) {
-			this.equipments.put(equipment.getKitName(), equipment.getKitName());
+			//this.equipments.put(equipment.getKitName(), equipment.getKitName());
+			this.equipments.add(equipment);
 		}
+		
+		equipmentDataModel = new EquipmentDataModel(equipments);
 		
 		LocationDAO locationDAO = new LocationDAOImpl();
 		listLocations = locationDAO.getLocations();
@@ -92,11 +100,6 @@ public class CalculatorController implements Serializable {
 	public void setTabIndex(int tabIndex) {
 		this.tabIndex = tabIndex;
 	}
-	/**
-	 * Gets Selected Equipment
-	 * @return
-	 */
-
 
 	/**
 	 * Perform calculations and return the page to navigate to
@@ -114,7 +117,10 @@ public class CalculatorController implements Serializable {
 	 * Set the equipments
 	 * @param equipments
 	 */
-	public void setEquipments(Map<String, String> equipments) {
+	//public void setEquipments(Map<String, String> equipments) {
+		//this.equipments = equipments;
+	//}
+	public void setEquipment(List<Equipment> equipments){
 		this.equipments = equipments;
 	}
 
@@ -122,7 +128,10 @@ public class CalculatorController implements Serializable {
 	 * Get the equipments
 	 * @return equipments
 	 */
-	public Map<String, String> getEquipments() {
+	//public Map<String, String> getEquipments() {
+		//return equipments;
+	//}
+	public List<Equipment> getEquipments(){
 		return equipments;
 	}
 	
@@ -206,9 +215,7 @@ public class CalculatorController implements Serializable {
 	public void handleEquipmentChange(ValueChangeEvent event){
 		for (Equipment equipment : listEquipments) {
 			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
-				this.calculator.setEquipment(equipment);
-				//this.calculator.getEquipment().setPanel(equipment.getPanels().get(0)); //Added because selecting equipment kit 
-						//was producing null pointer exception for the panel	
+				this.calculator.setEquipment(equipment);	
 			}
 		}
 		//Set default for number of panels for bank 1
@@ -220,14 +227,9 @@ public class CalculatorController implements Serializable {
 	 * Loads selected location to calculator
 	 */
 	public void handleLocationChange(ValueChangeEvent event){
-		//Roof r = calculator.getCustomer().getLocation().getRoof();
-		//Bank [] b = calculator.getCustomer().getLocation().getRoof().getBanks();
 		for (Location location : listLocations) {
 			if (location.getCity().equalsIgnoreCase(event.getNewValue().toString())){
 				this.calculator.getCustomer().setLocation(location);
-				//this.calculator.getCustomer().getLocation().setRoof(r);
-				//this.calculator.getCustomer().getLocation().getRoof().setBanks(b);
-				
 			}
 		}
 		moveToLocation();
@@ -259,11 +261,6 @@ public class CalculatorController implements Serializable {
 		int currentIndex = equipmentTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
-		
-		//need these two to display the result in the summary tab
-		//system cost is now based on the selected equipment kit
-		//calculator.calculateSystemCost();
-		//calculator.calculateSystemSize();
 	}
 	
 	/**
@@ -287,10 +284,6 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex+1);
 		getTabIndex();
 		Bank [] banks = calculator.getCustomer().getLocation().getRoof().getBanks();
-		//calculator.calculateBankOrientationEfficiencyLoss(banks, banks[0].getSelectedOrientation(), 0);
-		//calculator.calculateBankOrientationEfficiencyLoss(banks, banks[1].getSelectedOrientation(), 1);
-		//calculator.calculateBankAngleEfficiencyLoss(banks, banks[0].getAngle(), 0);
-		//calculator.calculateBankAngleEfficiencyLoss(banks, banks[1].getAngle(), 1);
 		
 		for(int i=0; i<banks.length; i++){
 			calculator.calculateBankOrientationEfficiencyLoss(banks, banks[i].getSelectedOrientation(), i);
@@ -307,4 +300,36 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex+1);
 		getTabIndex(); 
 	}
+
+	/**
+	 * @return the equipmentDataModel
+	 */
+	public EquipmentDataModel getEquipmentDataModel() {
+		return equipmentDataModel;
+	}
+
+	/**
+	 * @return the selectedEquipment
+	 */
+	public Equipment getSelectedEquipment() {
+		return selectedEquipment;
+	}
+
+	/**
+	 * @param selectedEquipment the selectedEquipment to set
+	 */
+	public void setSelectedEquipment(Equipment selectedEquipment) {
+		this.selectedEquipment = selectedEquipment;
+	}
+	
+    public void onRowSelect(SelectEvent event) {  
+		for (Equipment equipment : listEquipments) {
+			if (equipment.getKitName().equalsIgnoreCase(((Equipment)event.getObject()).getKitName())){
+				this.calculator.setEquipment(equipment);
+			}
+		}
+		//Set default for number of panels for bank 1
+		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
+		moveToEquipment();
+    }  
 }

@@ -32,8 +32,6 @@ public class Customer implements Serializable {
 	@ManagedProperty (value = "#{electricityUsage}")
 	private ElectricityUsage electricityUsage;
 	
-	private double dayLightElectricityUsage; //electricity used during day light hours
-	
 	/**
 	 * Get the location
 	 * @return location value of the location property
@@ -80,22 +78,5 @@ public class Customer implements Serializable {
 	 */
 	public void setElectricityUsage(ElectricityUsage electricityUsage) {
 		this.electricityUsage = electricityUsage;
-	}
-
-	/**
-	 * Get the day light electricity usage
-	 * @return the dayLightElectricityUsage
-	 */
-	public double getDayLightElectricityUsage() {
-		return dayLightElectricityUsage;
-	}
-
-	/**
-	 * Set the day light electricity usage
-	 * @param dayLightElectricityUsage the dayLightElectricityUsage to set
-	 */
-	public void setDayLightElectricityUsage(double dayLightElectricityUsage) {
-		this.dayLightElectricityUsage = dayLightElectricityUsage;
-		
 	}
 }

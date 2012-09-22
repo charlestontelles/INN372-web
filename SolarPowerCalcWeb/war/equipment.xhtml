@@ -7,31 +7,34 @@
 	<h:head>
 	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+
 	</h:head>
 	
 	<h:body>
-	    <h:form>
-			<h:panelGrid columns="2"  styleClass="input">
-			
-				<h:outputText value="List of Equipment"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}" onchange="submit()"
-							valueChangeListener="#{calculatorController.handleEquipmentChange}">  
-                	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
-                	<f:selectItems value="#{calculatorController.equipments}" />  
-            	</h:selectOneMenu> 
-    		
-				<h:outputText value="Number of Panels"></h:outputText>				
-				<h:inputText value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true"></h:inputText>
-				
-				<h:outputText value="System Cost"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.cost}" id="systemCost" readonly="true"></h:inputText>
+		<h:form id="form" styleClass="input">
+		    <p:dataTable id="equipments" var="equipment1" value="#{calculatorController.equipmentDataModel}" paginator="true" rows="10"
+		                 selection="#{calculatorController.selectedEquipment}" selectionMode="single">
+		
+		        <p:ajax event="rowSelect" listener="#{calculatorController.onRowSelect}" 
+		            update=":tabView:form:display :tabView:form:panelGridPanels" />
+
+		        <p:column headerText="List of Equipment">
+		            #{equipment1.kitName}
+		        </p:column>
+		    </p:dataTable>
+		    
+		    <h:panelGrid id="display" columns="2" cellpadding="4" styleClass="input">
+				<h:outputText value="Number of Panels"></h:outputText>	
+			   	<h:inputText id="totalPanels" value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true"></h:inputText>
+		        <h:outputText value="System Cost"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.cost}" readonly="true"></h:inputText>
 				
 				<h:outputText value="System Size (KWh):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.size}" id="equipmentSize" readonly="true"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.equipment.size}" readonly="true"></h:inputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" readonly="true"></h:inputText>
-
+	
 				<h:outputText value="List of Panel Brands"></h:outputText>
 				<h:selectOneMenu value="#{calculatorController.calculator.equipment.panels[0].brand}">	
 					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
@@ -40,19 +43,18 @@
 				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
-
-			</h:panelGrid>
+	        </h:panelGrid>
+	        
+	      	<br />
 			
-			<br />
-			
-			<h:panelGrid columns="1"  styleClass="input">
+			<h:panelGrid id="panelGridPanels" columns="1"  styleClass="input">
 				<h:outputText value="Number of Panels Your Roof can Install:" />
 				<h:outputText value="#{(calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size)}">
 					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
 				</h:outputText>
 			</h:panelGrid>
-			
-
+	        
 		</h:form>
+                    
 	</h:body>
 </html>
