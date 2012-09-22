@@ -260,9 +260,12 @@ public class Calculator implements Serializable {
 	 * @return panel efficiency
 	 */
 	public double calculatePanelEfficiency(int i) {
-		//double panelEfficiency = Math.round( (100 - (equipment.getPanel().getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
-		double panelEfficiency = Math.round( (100 - (equipment.getPanels().get(0).getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
+		double panelEfficiency = 0;
+		try {
+			panelEfficiency = Math.round( (100 - (equipment.getPanels().get(0).getEfficiencyLoss() * (i-1+1))) * 100.0) /100.0;
+		} catch (Exception e){}
 		return panelEfficiency;
+
 	}
 
 	/**
@@ -285,7 +288,10 @@ public class Calculator implements Serializable {
 	 * @param numOfPanels
 	 */
 	public void calculateBankPowerOutput(Bank bank){
-		bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
+		try{
+			bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
+		} catch (Exception e){
+		}
 	}
 	
 	/**

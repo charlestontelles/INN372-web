@@ -107,8 +107,6 @@ public class CalculatorController implements Serializable {
 	 */
 	public String calculate(){
 		calculator.performCalculations();
-		//this.tabIndex = 5;
-		//moveToOutput();//to go to the next tab
 		return "output.xhtml";
 		
 	}
