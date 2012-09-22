@@ -33,6 +33,12 @@ import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 public class UserProfileDAOTest {
 	UserProfileDAO dao;
 	UserProfile userProfile;
+	
+	@Test
+	public void testFake() {
+		assertEquals(1, 1);
+		
+	}
 	/*
 	private final LocalServiceTestHelper helper =
 		    new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
