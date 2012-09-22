@@ -16,6 +16,8 @@ import javax.xml.transform.dom.DOMSource;
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProduction;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
+import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
+import au.edu.qut.inn372.greenhat.ws.jaxws.ValidateCredentials;
 
 /**
  * 
@@ -27,6 +29,8 @@ public class CalculatorSOAPHandler {
 	  private static final QName CALC_ENERGY_PRODUCTION_QNAME = new QName(NAMESPACE_URI, "calcEnergyProduction");
 	  private static final QName SAVE_CALCULATION_QNAME = new QName(NAMESPACE_URI, "saveCalculation");
 	  private static final QName GET_EQUIPMENTS_QNAME = new QName(NAMESPACE_URI, "getEquipments");
+	  private static final QName SAVE_USER_PROFILE_QNAME = new QName(NAMESPACE_URI, "saveUserProfile");
+	  private static final QName VALIDATE_CREDENTIALS_QNAME = new QName(NAMESPACE_URI, "validateCredentials");
 	  
 	  private MessageFactory messageFactory;
 	  private CalculatorAdapter calculatorAdapter;
@@ -51,6 +55,12 @@ public class CalculatorSOAPHandler {
 		          } else if (SAVE_CALCULATION_QNAME.equals(qname)) {
 		            responsePojo = handleSaveCalculationRequest(soapElement);
 		            break;
+		          } else if (SAVE_USER_PROFILE_QNAME.equals(qname)) {
+			            responsePojo = handleSaveUserProfileRequest(soapElement);
+			            break;
+		          } else if (VALIDATE_CREDENTIALS_QNAME.equals(qname)) {
+			            responsePojo = handleValidateCredentialsRequest(soapElement);
+			            break;
 		          } else if (GET_EQUIPMENTS_QNAME.equals(qname)) {
 			            responsePojo = handleGetEquipmentsRequest(soapElement);
 			            break;
@@ -81,6 +91,16 @@ public class CalculatorSOAPHandler {
 	  private Object handleGetEquipmentsRequest(SOAPElement soapElement) {
 		    GetEquipments request = JAXB.unmarshal(new DOMSource(soapElement), GetEquipments.class);
 		    return calculatorAdapter.getEquipments(request);
+	  }
+	  
+	  private Object handleSaveUserProfileRequest(SOAPElement soapElement) {
+		    SaveUserProfile request = JAXB.unmarshal(new DOMSource(soapElement), SaveUserProfile.class);
+		    return calculatorAdapter.saveUserProfile(request);
+	  }
+	  
+	  private Object handleValidateCredentialsRequest(SOAPElement soapElement) {
+		    ValidateCredentials request = JAXB.unmarshal(new DOMSource(soapElement), ValidateCredentials.class);
+		    return calculatorAdapter.validateCredentials(request);
 	  }
 	  
 }

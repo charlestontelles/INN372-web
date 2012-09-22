@@ -9,10 +9,13 @@ import javax.jws.WebService;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
+import au.edu.qut.inn372.greenhat.dao.UserProfileDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 
 /**
  * 
@@ -24,6 +27,7 @@ public class CalculatorControllerWS {
 	private Calculator calculator = new Calculator();	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	private EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
+	private UserProfileDAO userProfileDAO = new UserProfileDAOImpl();
 	
 	@WebMethod
 	@WebResult(name = "result") 
@@ -54,4 +58,24 @@ public class CalculatorControllerWS {
 		return list;
 	}
 	
+	@WebMethod
+	@WebResult(name = "userProfile") 
+	public UserProfile saveUserProfile(@WebParam(name = "userProfile") UserProfile userProfile){
+		try {
+			userProfileDAO.save(userProfile);
+			return userProfile;
+		} catch (Exception e) {
+			return new UserProfile();
+		}		
+	}
+	
+	@WebMethod
+	@WebResult(name = "result") 
+	public String validateCredentials(@WebParam(name = "email") String email, @WebParam(name = "password") String password){
+		try {
+			return userProfileDAO.validateCredential(email, password);
+		} catch (Exception e) {
+			return "error: " + e;
+		}		
+	}
 }

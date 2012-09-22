@@ -16,16 +16,18 @@ public class GetEquipmentsResponse {
     private au.edu.qut.inn372.greenhat.bean.Equipment[] equipments;
 
     /**
-     * Get the list of equipment
-     * @return Equipment[]
+     * 
+     * @return
+     *     returns Equipment[]
      */
     public au.edu.qut.inn372.greenhat.bean.Equipment[] getEquipments() {
         return this.equipments;
     }
 
     /**
-     * Set the list of equipment
-     * @param equipments value for the equipments property
+     * 
+     * @param equipments
+     *     the value for the equipments property
      */
     public void setEquipments(au.edu.qut.inn372.greenhat.bean.Equipment[] equipments) {
         this.equipments = equipments;

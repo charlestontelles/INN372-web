@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+	<h:head>
+	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+
+	</h:head>
+	
+	<h:body>
+	
+ 	<h4 align = "center"> Provide the following details: </h4>
+	<f:view>
+	    <h:form styleClass="input">
+	    <table align="center" style="width: 500px"> 
+		<tr>
+		<td style="border-width:0px"> 
+			<fieldset>
+			<legend style ="align: center"> User Profile</legend>
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Name"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{calculatorController.calculator.customer.userProfile.name}"></h:inputText></td>
+				</tr>
+				
+				<tr>
+					<td class="borderWidth"><h:outputText value="Email:"></h:outputText></td>
+					<td class="borderWidth"><h:inputText value="#{calculatorController.calculator.customer.userProfile.email}" id="userProfileEmail"></h:inputText></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Password:"></h:outputText></td>
+					<td class="borderWidth"><h:inputSecret value="#{calculatorController.calculator.customer.userProfile.password}" id="userProfilePassword"></h:inputSecret></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Repeat Password:"></h:outputText></td>
+					<td class="borderWidth"><h:inputSecret id="repeatPassword"></h:inputSecret></td>
+				</tr>
+				<tr>
+					<td class="borderWidth"><h:outputText value="Type"></h:outputText></td>
+					<td class="borderWidth">
+						<h:selectOneMenu value="#{calculatorController.calculator.customer.userProfile.type}">	
+							<f:selectItems value="#{calculatorController.userTypeList}" />	
+						</h:selectOneMenu>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+			
+			
+			<fieldset> 
+			<table>
+				<tr>
+					<td class="borderWidth"><h:outputText value="#{calculatorController.responseMessage}"></h:outputText></td>
+					<td class="borderWidth" align="right">
+						<h:commandButton action="#{calculatorController.saveUserProfile}" value="Save"></h:commandButton>
+						<h:commandButton action="#{calculatorController.showLoginScreen}"  value="Login"></h:commandButton>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+		</td>
+		</tr>
+		</table>
+				
+		</h:form>
+	</f:view>
+		
+	</h:body>
+</html>

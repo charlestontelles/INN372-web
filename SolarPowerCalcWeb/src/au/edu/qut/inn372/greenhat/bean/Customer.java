@@ -11,7 +11,7 @@ import javax.faces.bean.SessionScoped;
 
 
 /**
- * Bean that represents a Customer
+ * Bean that represents a Customer and his User Profile
  * 
  * @author Martin Daniel
  * @version 1.0
@@ -31,6 +31,9 @@ public class Customer implements Serializable {
 	
 	@ManagedProperty (value = "#{electricityUsage}")
 	private ElectricityUsage electricityUsage;
+	
+	@ManagedProperty (value = "#{userProfile}")
+	private UserProfile userProfile;
 	
 	/**
 	 * Get the location
@@ -79,4 +82,21 @@ public class Customer implements Serializable {
 	public void setElectricityUsage(ElectricityUsage electricityUsage) {
 		this.electricityUsage = electricityUsage;
 	}
+	
+	/**
+	 * Get the user profile in the bean hierarchy
+	 * @return user profile
+	 */
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	/**
+	 * Sets the user profile to the bean hierarchy
+	 * @param userProfile
+	 */
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+	
 }

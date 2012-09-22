@@ -17,12 +17,15 @@ import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.Location;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.LocationDAO;
+import au.edu.qut.inn372.greenhat.dao.UserProfileDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 
 /**
  * Bean that represents a Calcualtor Controller
@@ -44,6 +47,7 @@ public class CalculatorController implements Serializable {
 	private Calculator calculator;
 	
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
+	private UserProfileDAO userProfileDAO = new UserProfileDAOImpl();
 	
 	//private Map<String,String> equipments = new HashMap<String, String>(); //does not work when implementing selectableDataModel, instead use list
 	private List<Equipment> equipments = new ArrayList<Equipment>();
@@ -53,7 +57,8 @@ public class CalculatorController implements Serializable {
 	
 	private Map<String, String> locations = new HashMap<String, String>();
 	List<Location> listLocations;
-	private int tabIndex = 0;
+	private int tabIndex = 0;	
+	private String responseMessage = "";
 	
 	public CalculatorController(){
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
@@ -72,6 +77,23 @@ public class CalculatorController implements Serializable {
 		}
 	}
 	
+	/**
+	 * Gets the Response Message
+	 * @return response message
+	 */
+	public String getResponseMessage() {
+		return responseMessage;
+	}
+
+	/**
+	 * Sets the response message
+	 * @param responseMessage
+	 */
+	public void setResponseMessage(String responseMessage) {
+		this.responseMessage = responseMessage;
+	}
+
+
 	/**
 	 * Get the calculator
 	 * @return calculator value of the calculator property
@@ -186,6 +208,19 @@ public class CalculatorController implements Serializable {
 	    list.add(new SelectItem("West", "West"));
 	    list.add(new SelectItem("East", "East"));
 	    return list;
+	}
+	
+	/**
+	 * Get the list of panels
+	 * @return list of panels
+	 */
+	public List<SelectItem> getUserTypeList() {
+		    List<SelectItem> list = new ArrayList<SelectItem>();
+		    list.add(new SelectItem(0, "<< Select Type >>"));
+		    list.add(new SelectItem(1, "Customer"));
+		    list.add(new SelectItem(2, "Seller"));
+		    list.add(new SelectItem(3, "Admin"));
+		    return list;
 	}
 	
 	/**
@@ -330,4 +365,46 @@ public class CalculatorController implements Serializable {
 		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 		moveToEquipment();
     }  
+    
+	/**
+	 * Save UserProfile
+	 */
+	public void saveUserProfile() {
+		userProfileDAO.save(calculator.getCustomer().getUserProfile());
+		responseMessage = "User profile created!";
+	}
+
+	/**
+	 * Show user profile creation screen
+	 * 
+	 * @return
+	 */
+	public String showUserProfileScreen() {
+		calculator.getCustomer().setUserProfile(new UserProfile());
+		responseMessage = "";
+		return "userprofile.xhtml";
+	}
+
+	public String showLoginScreen() {
+		responseMessage = "";
+		return "login.xhtml";
+	}
+
+	/**
+	 * Validate login credentials
+	 * 
+	 * @return
+	 */
+	public String validateCredentials() {
+		String response = userProfileDAO.validateCredential(calculator
+				.getCustomer().getUserProfile().getEmail(), calculator
+				.getCustomer().getUserProfile().getPassword());
+		if (response.equalsIgnoreCase("valid")) {
+			responseMessage = "";
+			return "tabinput.xhtml";
+		} else {
+			responseMessage = "Invalid Email or Password.";
+			return "login.xhtml";
+		}
+	}
 }

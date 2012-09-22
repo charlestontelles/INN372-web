@@ -24,6 +24,18 @@
   <message name="getEquipmentsResponse">
     <part name="parameters" element="tns:getEquipmentsResponse"/>
   </message>
+  <message name="saveUserProfile">
+    <part name="parameters" element="tns:saveUserProfile"/>
+  </message>
+  <message name="saveUserProfileResponse">
+    <part name="parameters" element="tns:saveUserProfileResponse"/>
+  </message>
+  <message name="validateCredentials">
+    <part name="parameters" element="tns:validateCredentials"/>
+  </message>
+  <message name="validateCredentialsResponse">
+    <part name="parameters" element="tns:validateCredentialsResponse"/>
+  </message>
   <portType name="CalculatorControllerWS">
     <operation name="saveCalculation">
       <input message="tns:saveCalculation"/>
@@ -36,6 +48,14 @@
     <operation name="getEquipments">
       <input message="tns:getEquipments"/>
       <output message="tns:getEquipmentsResponse"/>
+    </operation>
+    <operation name="saveUserProfile">
+      <input message="tns:saveUserProfile"/>
+      <output message="tns:saveUserProfileResponse"/>
+    </operation>
+    <operation name="validateCredentials">
+      <input message="tns:validateCredentials"/>
+      <output message="tns:validateCredentialsResponse"/>
     </operation>
   </portType>
   <binding name="CalculatorControllerWSPortBinding" type="tns:CalculatorControllerWS">
@@ -59,6 +79,24 @@
       </output>
     </operation>
     <operation name="getEquipments">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="saveUserProfile">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="validateCredentials">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

@@ -13,6 +13,14 @@
 
   <xs:element name="saveCalculationResponse" type="tns:saveCalculationResponse"/>
 
+  <xs:element name="saveUserProfile" type="tns:saveUserProfile"/>
+
+  <xs:element name="saveUserProfileResponse" type="tns:saveUserProfileResponse"/>
+
+  <xs:element name="validateCredentials" type="tns:validateCredentials"/>
+
+  <xs:element name="validateCredentialsResponse" type="tns:validateCredentialsResponse"/>
+
   <xs:complexType name="calcEnergyProduction">
     <xs:sequence>
       <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
@@ -52,10 +60,10 @@
 
   <xs:complexType name="customer">
     <xs:sequence>
-      <xs:element name="dayLightElectricityUsage" type="xs:double"/>
       <xs:element name="electricityUsage" type="tns:electricityUsage" minOccurs="0"/>
       <xs:element name="location" type="tns:location" minOccurs="0"/>
       <xs:element name="tariff" type="tns:tariff" minOccurs="0"/>
+      <xs:element name="userProfile" type="tns:userProfile" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -111,6 +119,16 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="userProfile">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="key" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="equipment">
     <xs:sequence>
       <xs:element name="battery" type="tns:battery" minOccurs="0"/>
@@ -140,6 +158,7 @@
 
   <xs:complexType name="panel">
     <xs:sequence>
+      <xs:element name="brand" type="xs:string" minOccurs="0"/>
       <xs:element name="cost" type="xs:double"/>
       <xs:element name="efficiency" type="xs:double"/>
       <xs:element name="efficiencyLoss" type="xs:double"/>
@@ -154,6 +173,18 @@
   <xs:complexType name="calcEnergyProductionResponse">
     <xs:sequence>
       <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveUserProfile">
+    <xs:sequence>
+      <xs:element name="userProfile" type="tns:userProfile" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveUserProfileResponse">
+    <xs:sequence>
+      <xs:element name="userProfile" type="tns:userProfile" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -174,6 +205,19 @@
   </xs:complexType>
 
   <xs:complexType name="saveCalculationResponse">
+    <xs:sequence>
+      <xs:element name="result" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validateCredentials">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validateCredentialsResponse">
     <xs:sequence>
       <xs:element name="result" type="xs:string" minOccurs="0"/>
     </xs:sequence>

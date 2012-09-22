@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "saveCalculationResponse", namespace = "http://ws.greenhat.inn372.qut.edu.au/")
+@XmlRootElement(name = "validateCredentialsResponse", namespace = "http://ws.greenhat.inn372.qut.edu.au/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "saveCalculationResponse", namespace = "http://ws.greenhat.inn372.qut.edu.au/")
-public class SaveCalculationResponse {
+@XmlType(name = "validateCredentialsResponse", namespace = "http://ws.greenhat.inn372.qut.edu.au/")
+public class ValidateCredentialsResponse {
 
     @XmlElement(name = "result", namespace = "")
     private String result;
