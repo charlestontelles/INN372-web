@@ -38,6 +38,8 @@ public interface UserProfileDAO {
 	/**
 	 * Validates login credentials
 	 * @param email, password
+	 * @return Full UserProfile if credential is valid
+	 * 			Empty UserProfile is credential is invalid
 	 */
-	public String validateCredential(String email, String password);
+	public UserProfile validateCredential(String email, String password);
 }

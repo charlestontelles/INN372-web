@@ -1,6 +1,10 @@
 package au.edu.qut.inn372.greenhat.dao;
 
+import java.util.List;
+
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
+
 /**
  * Data Access Object to provide operations related to the Calculator
  * 
@@ -9,34 +13,26 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
  */
 public interface CalculatorDAO {
 	/**
-	 * Save the calculation
+	 * Save a Calculator hierarchy
+	 * If key is null create a new one,
+	 * otherwise update a existent one
 	 * @param calculator
 	 */
-	public void saveCalculation(Calculator calculator);
-	
+	public String save(Calculator calculator);
 	/**
-	 * Delete the calculation
+	 * Remove a calculator
 	 * @param calculator
 	 */
-	public void deleteCalculation (Calculator calculator);
+	public String remove(Calculator calculator);
 	
 	/**
-	 * Update the calculation
-	 * @param calculator
+	 * Get all calculators by user profile from data store
+	 * 
 	 */
-	public void updateCalculation (Calculator calculator);
-	
+	public List<Calculator> getAllByUserProfile(UserProfile userProfile);
 	/**
-	 * Get the calculation
-	 * @param filter
-	 * @return calculation
+	 * Get calculator by name from data store
+	 * 
 	 */
-	public Calculator getCalculation (String[][] filter);
-	
-	/**
-	 * Get the calculations
-	 * @param filter
-	 * @return calculations
-	 */
-	public Calculator[] getCalculations (String[][] filter);
+	public Calculator getByName(String name);
 }

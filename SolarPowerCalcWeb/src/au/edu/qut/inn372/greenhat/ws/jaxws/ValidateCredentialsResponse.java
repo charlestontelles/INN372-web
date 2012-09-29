@@ -13,14 +13,14 @@ import javax.xml.bind.annotation.XmlType;
 public class ValidateCredentialsResponse {
 
     @XmlElement(name = "result", namespace = "")
-    private String result;
+    private au.edu.qut.inn372.greenhat.bean.UserProfile result;
 
     /**
      * 
      * @return
-     *     returns String
+     *     returns UserProfile
      */
-    public String getResult() {
+    public au.edu.qut.inn372.greenhat.bean.UserProfile getResult() {
         return this.result;
     }
 
@@ -29,7 +29,7 @@ public class ValidateCredentialsResponse {
      * @param result
      *     the value for the result property
      */
-    public void setResult(String result) {
+    public void setResult(au.edu.qut.inn372.greenhat.bean.UserProfile result) {
         this.result = result;
     }
 

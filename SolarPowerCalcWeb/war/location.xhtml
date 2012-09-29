@@ -12,7 +12,7 @@
 	<h:body>
 	<f:view>
 	    <h:form>
-	    	
+	    	<p:growl id="growl" showDetail="true" sticky="true" />  
 	    	
 			<h:panelGrid columns="2" styleClass="input" style="width= 300px">
 				
@@ -41,7 +41,7 @@
 			
 			
 
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToCustomer}" oncomplete="summary.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 			
 			</h:panelGrid>

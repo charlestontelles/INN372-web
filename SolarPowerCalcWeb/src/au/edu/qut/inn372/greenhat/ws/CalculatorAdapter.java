@@ -1,10 +1,18 @@
 package au.edu.qut.inn372.greenhat.ws;
 
+import java.util.List;
+
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProduction;
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProductionResponse;
+import au.edu.qut.inn372.greenhat.ws.jaxws.DeleteCalculation;
+import au.edu.qut.inn372.greenhat.ws.jaxws.DeleteCalculationResponse;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculation;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculationResponse;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculations;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculationsResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipmentsResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
@@ -78,9 +86,45 @@ public class CalculatorAdapter {
 	 * @return
 	 */
 	public ValidateCredentialsResponse validateCredentials(ValidateCredentials validateCredentials){
-		String result = controller.validateCredentials(validateCredentials.getEmail(), validateCredentials.getPassword());
+		UserProfile result = controller.validateCredentials(validateCredentials.getEmail(), validateCredentials.getPassword());
 		ValidateCredentialsResponse response = new ValidateCredentialsResponse();
 		response.setResult(result);
+		return response;
+	}
+	/**
+	 * Deletes a Calculation
+	 * 
+	 * @param calculation
+	 * @return success or fail
+	 */
+	public DeleteCalculationResponse deleteCalculation(DeleteCalculation deleteCalculation){
+		String result = controller.deleteCalculation(deleteCalculation.getCalculator());
+		DeleteCalculationResponse response = new DeleteCalculationResponse();
+		response.setResult(result);
+		return response;
+	}
+	/**
+	 * Gets a calculation by calculation name
+	 * 
+	 * @param calculation
+	 * @return calculator
+	 */
+	public GetCalculationResponse getCalculation(GetCalculation getCalculation){
+		Calculator result = controller.getCalculation(getCalculation.getName());
+		GetCalculationResponse response = new GetCalculationResponse();
+		response.setCalculator(result);
+		return response;
+	}
+	/**
+	 * Gets a calculations by user profile
+	 * 
+	 * @param user profile
+	 * @return calculator list
+	 */
+	public GetCalculationsResponse getCalculations(GetCalculations getCalculations){
+		List<Calculator> result = controller.getCalculations(getCalculations.getUserProfile());
+		GetCalculationsResponse response = new GetCalculationsResponse();
+		response.setCalculators(result);
 		return response;
 	}
 }

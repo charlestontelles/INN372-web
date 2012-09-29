@@ -16,6 +16,7 @@
  	<h4 align = "center"> Your Provided System Details</h4>
 	<f:view>
 	    <h:form styleClass="input">
+	    <p:growl id="growl" showDetail="true" sticky="true" />  
 	    <h:panelGrid columns="2" styleClass="input">
 				<h:outputText value="Equipment Details"></h:outputText>
 				<h:outputText></h:outputText>
@@ -61,7 +62,7 @@
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.tariff11Fee}" id="tariff11"></h:inputText>
 
 
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.calculate}" value="Calculate" id="calculate"></h:commandButton>
 			</h:panelGrid>
 			

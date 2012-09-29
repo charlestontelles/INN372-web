@@ -8,24 +8,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+
 //import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 //import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 /**
- * ATTENTION: to run this test suit 4 libraries must be added to the classpath:
- * COPY FROM: C:\apps\eclipse\plugins\com.google.appengine.eclipse.sdkbundle_1.7.0\appengine-java-sdk-1.7.0\lib\impl
- * TO: C:\Users\Charleston\git\INN372-web\SolarPowerCalcWeb\war\WEB-INF\lib
- * 
- * appengine-testing.jar
- * appengine-api.jar
- * appengine-api-labs.jar
- * appengine-api-stubs.jar
- * 
- * However for some bizarre reason after adding these libraries the project can't be
- * deployed to GAE anymore, so the test cases are comment, and must only be run
- * locally
+ * UserProfile Test Suite
  * 
  * @author Charleston Telles
  *
@@ -33,13 +25,8 @@ import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 public class UserProfileDAOTest {
 	UserProfileDAO dao;
 	UserProfile userProfile;
+
 	
-	@Test
-	public void testFake() {
-		assertEquals(1, 1);
-		
-	}
-	/*
 	private final LocalServiceTestHelper helper =
 		    new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
@@ -101,8 +88,8 @@ public class UserProfileDAOTest {
 		dao.save(userProfile);
 		List<UserProfile> userProfiles = dao.getAll();
 		UserProfile userProfile = dao.getByEmail("charles@greenhat.com");
-		String result = dao.validateCredential("charles@greenhat.com", "1234");
-		assertEquals(result, "valid");
+		UserProfile result = dao.validateCredential("charles@greenhat.com", "1234");
+		assertEquals(result.getKey()!=null, true);
 		
 	}
 	
@@ -118,5 +105,5 @@ public class UserProfileDAOTest {
 		assertEquals(userProfiles.size(), 1);
 		
 	}
-	*/
+	
 }

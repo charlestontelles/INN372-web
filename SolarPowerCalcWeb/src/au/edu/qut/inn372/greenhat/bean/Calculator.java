@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,7 +25,27 @@ public class Calculator implements Serializable {
 	private Customer customer;
 	
 	private Calculation [] calculations;
-	
+	/**
+	 * Calculator's Name.
+	 * For example sellers can name a calculator using customer name, e.g. Calc_John
+	 * Customer can use names to remember the calculator, e.g. Calc01, MyCalc, etc
+	 */
+	private String name;
+	/**
+	 * Unique identifier used by Google data store
+	 */
+	private String key;
+	/**
+	 * Datetime of the latest calculator's update
+	 */
+	private Date datetime;
+	/**
+	 * Calculator status.
+	 * 0 = incomplete
+	 * 1 = complete
+	 * 2 = template
+	 */
+	private int status = 0; //0=incomplete, 1=complete, 2=template
 	DecimalFormat df = new DecimalFormat("#.###");
 	
 	/**
@@ -72,6 +93,63 @@ public class Calculator implements Serializable {
 	 */
 	public void setCalculations(Calculation[] calculations) {
 		this.calculations = calculations;
+	}
+
+	/**
+	 * Gets the calculator's name
+	 * @return name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * Sets the calculator's name
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * Gets the calculator's database key
+	 * @return database key
+	 */
+	public String getKey() {
+		return key;
+	}
+	/**
+	 * Sets the calculator's database key
+	 * @param key
+	 */
+	public void setKey(String key) {
+		this.key = key;
+	}
+	/**
+	 * Gets the latest calculator's datetime
+	 * @return latest datetime
+	 */
+	public Date getDatetime() {
+		return datetime;
+	}
+	/**
+	 * Sets the latest calculator's datetime
+	 * @param datetime
+	 */
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
+	/**
+	 * Gets the calculator's status
+	 * @return status
+	 */
+	public int getStatus() {
+		return status;
+	}
+	/**
+	 * Sets the calculator's status
+	 * @param status
+	 */
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	/**

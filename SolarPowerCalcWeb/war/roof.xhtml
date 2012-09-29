@@ -12,6 +12,7 @@
 	<h:body>
 	<f:view>
 	    <h:form>
+	    	<p:growl id="growl" showDetail="true" sticky="true" />  
 			<h:panelGrid columns="2" styleClass="input">
 				
 			
@@ -50,7 +51,7 @@
 					<f:selectItems value="#{calculatorController.listOfOrientation}" />	
 				</h:selectOneMenu>
 
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToSummary}" oncomplete="location.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 			</h:panelGrid>
 		</h:form>

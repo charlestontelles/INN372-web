@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -15,6 +18,7 @@ import org.primefaces.event.SelectEvent;
 
 import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Customer;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
@@ -175,7 +179,13 @@ public class CalculatorController implements Serializable {
 	 * Save the calculation
 	 */
 	public void saveCalculation(){
-		calculatorDAO.saveCalculation(calculator);
+		FacesContext context = FacesContext.getCurrentInstance();
+		try{
+			calculatorDAO.save(calculator);
+			context.addMessage(null, new FacesMessage("Calculation Saved."));
+		} catch (Exception e){
+			context.addMessage(null, new FacesMessage("Error: " + e));
+		}
 	}
 	
 	/**
@@ -396,15 +406,19 @@ public class CalculatorController implements Serializable {
 	 * @return
 	 */
 	public String validateCredentials() {
-		String response = userProfileDAO.validateCredential(calculator
+		UserProfile response = userProfileDAO.validateCredential(calculator
 				.getCustomer().getUserProfile().getEmail(), calculator
 				.getCustomer().getUserProfile().getPassword());
-		if (response.equalsIgnoreCase("valid")) {
-			responseMessage = "";
-			return "tabinput.xhtml";
-		} else {
+		if (response.getKey() == null) {
 			responseMessage = "Invalid Email or Password.";
 			return "login.xhtml";
+		} else {
+			if (calculator.getCustomer() == null)
+				calculator.setCustomer(new Customer());
+			calculator.getCustomer().setUserProfile(response);
+			responseMessage = "";
+			return "tabinput.xhtml";
+
 		}
 	}
 }

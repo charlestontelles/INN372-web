@@ -1,14 +1,20 @@
 package au.edu.qut.inn372.greenhat.controller;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.model.ListDataModel;
 import org.primefaces.model.SelectableDataModel;
 
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 
-public class EquipmentDataModel extends ListDataModel<Equipment> implements SelectableDataModel<Equipment> {  
+public class EquipmentDataModel extends ListDataModel<Equipment> implements Serializable, SelectableDataModel<Equipment> {  
 
-    public EquipmentDataModel() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1961324370319227557L;
+
+	public EquipmentDataModel() {
     }
 
     public EquipmentDataModel(List<Equipment> data) {

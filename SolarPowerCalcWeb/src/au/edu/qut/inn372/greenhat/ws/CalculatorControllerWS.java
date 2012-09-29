@@ -1,5 +1,6 @@
 package au.edu.qut.inn372.greenhat.ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -33,10 +34,41 @@ public class CalculatorControllerWS {
 	@WebResult(name = "result") 
 	public String saveCalculation(@WebParam(name = "calculator") Calculator calculator){
 		try {
-			calculatorDAO.saveCalculation(calculator);
+			calculatorDAO.save(calculator);
 			return "ok";
 		} catch (Exception e) {
 			return "error: " + e;
+		}		
+	}
+	
+	@WebMethod
+	@WebResult(name = "result") 
+	public String deleteCalculation(@WebParam(name = "calculator") Calculator calculator){
+		try {
+			calculatorDAO.remove(calculator);
+			return "ok";
+		} catch (Exception e) {
+			return "error: " + e;
+		}		
+	}
+	
+	@WebMethod
+	@WebResult(name = "calculators") 
+	public List<Calculator> getCalculations(@WebParam(name = "userProfile") UserProfile userProfile){
+		try {
+			return calculatorDAO.getAllByUserProfile(userProfile);
+		} catch (Exception e) {
+			return new ArrayList<Calculator>();
+		}		
+	}
+	
+	@WebMethod
+	@WebResult(name = "calculator") 
+	public Calculator getCalculation(@WebParam(name = "name") String name){
+		try {
+			return calculatorDAO.getByName(name);
+		} catch (Exception e) {
+			return new Calculator();
 		}		
 	}
 	
@@ -71,11 +103,11 @@ public class CalculatorControllerWS {
 	
 	@WebMethod
 	@WebResult(name = "result") 
-	public String validateCredentials(@WebParam(name = "email") String email, @WebParam(name = "password") String password){
+	public UserProfile validateCredentials(@WebParam(name = "email") String email, @WebParam(name = "password") String password){
 		try {
 			return userProfileDAO.validateCredential(email, password);
 		} catch (Exception e) {
-			return "error: " + e;
+			return new UserProfile();
 		}		
 	}
 }

@@ -12,6 +12,7 @@
 	
 	<h:body>
 		<h:form id="form" styleClass="input">
+			<p:growl id="growl" showDetail="true" sticky="true" />  
 		    <p:dataTable id="equipments" var="equipment1" value="#{calculatorController.equipmentDataModel}" paginator="true" rows="10"
 		                 selection="#{calculatorController.selectedEquipment}" selectionMode="single">
 		
@@ -41,7 +42,7 @@
 					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
 				</h:selectOneMenu>
 				
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 	        </h:panelGrid>
 	        

@@ -5,6 +5,18 @@
 
   <xs:element name="calcEnergyProductionResponse" type="tns:calcEnergyProductionResponse"/>
 
+  <xs:element name="deleteCalculation" type="tns:deleteCalculation"/>
+
+  <xs:element name="deleteCalculationResponse" type="tns:deleteCalculationResponse"/>
+
+  <xs:element name="getCalculation" type="tns:getCalculation"/>
+
+  <xs:element name="getCalculationResponse" type="tns:getCalculationResponse"/>
+
+  <xs:element name="getCalculations" type="tns:getCalculations"/>
+
+  <xs:element name="getCalculationsResponse" type="tns:getCalculationsResponse"/>
+
   <xs:element name="getEquipments" type="tns:getEquipments"/>
 
   <xs:element name="getEquipmentsResponse" type="tns:getEquipmentsResponse"/>
@@ -21,7 +33,7 @@
 
   <xs:element name="validateCredentialsResponse" type="tns:validateCredentialsResponse"/>
 
-  <xs:complexType name="calcEnergyProduction">
+  <xs:complexType name="deleteCalculation">
     <xs:sequence>
       <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
     </xs:sequence>
@@ -31,7 +43,11 @@
     <xs:sequence>
       <xs:element name="calculations" type="tns:calculation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="customer" type="tns:customer" minOccurs="0"/>
+      <xs:element name="datetime" type="xs:dateTime" minOccurs="0"/>
       <xs:element name="equipment" type="tns:equipment" minOccurs="0"/>
+      <xs:element name="key" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -170,6 +186,18 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="deleteCalculationResponse">
+    <xs:sequence>
+      <xs:element name="result" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calcEnergyProduction">
+    <xs:sequence>
+      <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="calcEnergyProductionResponse">
     <xs:sequence>
       <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
@@ -210,6 +238,30 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="getCalculation">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCalculationResponse">
+    <xs:sequence>
+      <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCalculations">
+    <xs:sequence>
+      <xs:element name="userProfile" type="tns:userProfile" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCalculationsResponse">
+    <xs:sequence>
+      <xs:element name="calculators" type="tns:calculator" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="validateCredentials">
     <xs:sequence>
       <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -219,7 +271,7 @@
 
   <xs:complexType name="validateCredentialsResponse">
     <xs:sequence>
-      <xs:element name="result" type="xs:string" minOccurs="0"/>
+      <xs:element name="result" type="tns:userProfile" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

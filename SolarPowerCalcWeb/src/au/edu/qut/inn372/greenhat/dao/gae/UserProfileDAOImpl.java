@@ -35,7 +35,7 @@ public class UserProfileDAOImpl implements Serializable, UserProfileDAO {
 	private static final long serialVersionUID = 8892093927010701287L;
 	/**
 	 * Google Data store Entity.
-	 * UserProfile bean must be converted to entity before excuting
+	 * UserProfile bean must be converted to entity before executing
 	 * DS operations
 	 */
 	private Entity entity;
@@ -106,16 +106,15 @@ public class UserProfileDAOImpl implements Serializable, UserProfileDAO {
 	 * see interface documentation
 	 */
 	@Override
-	public String validateCredential(String email, String password) {
+	public UserProfile validateCredential(String email, String password) {
 		UserProfile userProfile = getByEmail(email);
 		if (userProfile == null){
-			return "invalid";
+			return new UserProfile();
 		} else {
-			if (userProfile.getPassword().equalsIgnoreCase(password)){
-				return "valid";
-			} else {
-				return "invalid";
-			}
+			if (userProfile.getPassword().equalsIgnoreCase(password))
+				return userProfile;
+			else
+				return new UserProfile();
 		}
 	}
 

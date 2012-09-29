@@ -14,6 +14,9 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.dom.DOMSource;
 
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProduction;
+import au.edu.qut.inn372.greenhat.ws.jaxws.DeleteCalculation;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculation;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculations;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
@@ -31,6 +34,9 @@ public class CalculatorSOAPHandler {
 	  private static final QName GET_EQUIPMENTS_QNAME = new QName(NAMESPACE_URI, "getEquipments");
 	  private static final QName SAVE_USER_PROFILE_QNAME = new QName(NAMESPACE_URI, "saveUserProfile");
 	  private static final QName VALIDATE_CREDENTIALS_QNAME = new QName(NAMESPACE_URI, "validateCredentials");
+	  private static final QName DELETE_CALCULATION_QNAME = new QName(NAMESPACE_URI, "deleteCalculation");
+	  private static final QName GET_CALCULATION_QNAME = new QName(NAMESPACE_URI, "getCalculation");
+	  private static final QName GET_CALCULATIONS_QNAME = new QName(NAMESPACE_URI, "getCalculations");
 	  
 	  private MessageFactory messageFactory;
 	  private CalculatorAdapter calculatorAdapter;
@@ -60,6 +66,15 @@ public class CalculatorSOAPHandler {
 			            break;
 		          } else if (VALIDATE_CREDENTIALS_QNAME.equals(qname)) {
 			            responsePojo = handleValidateCredentialsRequest(soapElement);
+			            break;
+		          } else if (DELETE_CALCULATION_QNAME.equals(qname)) {
+			            responsePojo = handleDeleteCalculationRequest(soapElement);
+			            break;
+		          } else if (GET_CALCULATION_QNAME.equals(qname)) {
+			            responsePojo = handleGetCalculationRequest(soapElement);
+			            break;
+		          } else if (GET_CALCULATIONS_QNAME.equals(qname)) {
+			            responsePojo = handleGetCalculationsRequest(soapElement);
 			            break;
 		          } else if (GET_EQUIPMENTS_QNAME.equals(qname)) {
 			            responsePojo = handleGetEquipmentsRequest(soapElement);
@@ -101,6 +116,21 @@ public class CalculatorSOAPHandler {
 	  private Object handleValidateCredentialsRequest(SOAPElement soapElement) {
 		    ValidateCredentials request = JAXB.unmarshal(new DOMSource(soapElement), ValidateCredentials.class);
 		    return calculatorAdapter.validateCredentials(request);
+	  }
+	  
+	  private Object handleDeleteCalculationRequest(SOAPElement soapElement) {
+		    DeleteCalculation request = JAXB.unmarshal(new DOMSource(soapElement), DeleteCalculation.class);
+		    return calculatorAdapter.deleteCalculation(request);
+	  }
+	  
+	  private Object handleGetCalculationRequest(SOAPElement soapElement) {
+		    GetCalculation request = JAXB.unmarshal(new DOMSource(soapElement), GetCalculation.class);
+		    return calculatorAdapter.getCalculation(request);
+	  }
+	  
+	  private Object handleGetCalculationsRequest(SOAPElement soapElement) {
+		    GetCalculations request = JAXB.unmarshal(new DOMSource(soapElement), GetCalculations.class);
+		    return calculatorAdapter.getCalculations(request);
 	  }
 	  
 }

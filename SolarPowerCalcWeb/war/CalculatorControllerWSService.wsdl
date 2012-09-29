@@ -12,6 +12,24 @@
   <message name="saveCalculationResponse">
     <part name="parameters" element="tns:saveCalculationResponse"/>
   </message>
+  <message name="deleteCalculation">
+    <part name="parameters" element="tns:deleteCalculation"/>
+  </message>
+  <message name="deleteCalculationResponse">
+    <part name="parameters" element="tns:deleteCalculationResponse"/>
+  </message>
+  <message name="getCalculations">
+    <part name="parameters" element="tns:getCalculations"/>
+  </message>
+  <message name="getCalculationsResponse">
+    <part name="parameters" element="tns:getCalculationsResponse"/>
+  </message>
+  <message name="getCalculation">
+    <part name="parameters" element="tns:getCalculation"/>
+  </message>
+  <message name="getCalculationResponse">
+    <part name="parameters" element="tns:getCalculationResponse"/>
+  </message>
   <message name="calcEnergyProduction">
     <part name="parameters" element="tns:calcEnergyProduction"/>
   </message>
@@ -41,6 +59,18 @@
       <input message="tns:saveCalculation"/>
       <output message="tns:saveCalculationResponse"/>
     </operation>
+    <operation name="deleteCalculation">
+      <input message="tns:deleteCalculation"/>
+      <output message="tns:deleteCalculationResponse"/>
+    </operation>
+    <operation name="getCalculations">
+      <input message="tns:getCalculations"/>
+      <output message="tns:getCalculationsResponse"/>
+    </operation>
+    <operation name="getCalculation">
+      <input message="tns:getCalculation"/>
+      <output message="tns:getCalculationResponse"/>
+    </operation>
     <operation name="calcEnergyProduction">
       <input message="tns:calcEnergyProduction"/>
       <output message="tns:calcEnergyProductionResponse"/>
@@ -61,6 +91,33 @@
   <binding name="CalculatorControllerWSPortBinding" type="tns:CalculatorControllerWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
     <operation name="saveCalculation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="deleteCalculation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCalculations">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCalculation">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
