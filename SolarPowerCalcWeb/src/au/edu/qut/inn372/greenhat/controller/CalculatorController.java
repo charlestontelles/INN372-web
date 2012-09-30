@@ -53,9 +53,7 @@ public class CalculatorController implements Serializable {
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	private UserProfileDAO userProfileDAO = new UserProfileDAOImpl();
 	
-	//private Map<String,String> equipments = new HashMap<String, String>(); //does not work when implementing selectableDataModel, instead use list
 	private List<Equipment> equipments = new ArrayList<Equipment>();
-	List<Equipment> listEquipments;
 	private EquipmentDataModel equipmentDataModel;
 	private Equipment selectedEquipment; 
 	
@@ -66,12 +64,7 @@ public class CalculatorController implements Serializable {
 	
 	public CalculatorController(){
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
-		listEquipments = equipmentDAO.getEquipments();
-		for (Equipment equipment : listEquipments) {
-			//this.equipments.put(equipment.getKitName(), equipment.getKitName());
-			this.equipments.add(equipment);
-		}
-		
+		equipments = equipmentDAO.getEquipments();
 		equipmentDataModel = new EquipmentDataModel(equipments);
 		
 		LocationDAO locationDAO = new LocationDAOImpl();
@@ -111,6 +104,15 @@ public class CalculatorController implements Serializable {
 	 */
 	public void setCalculator(Calculator calculator) {
 		this.calculator = calculator;
+		setDefaultEquipmentSelection();
+	}
+	
+	/**
+	 * First equipment kit selected by default
+	 */
+	public  void setDefaultEquipmentSelection(){
+		selectedEquipment = equipments.get(0);
+		this.calculator.setEquipment(selectedEquipment);
 	}
 	/**
 	 * Gets Tab Index
@@ -134,16 +136,12 @@ public class CalculatorController implements Serializable {
 	public String calculate(){
 		calculator.performCalculations();
 		return "output.xhtml";
-		
 	}
 
 	/**
 	 * Set the equipments
 	 * @param equipments
 	 */
-	//public void setEquipments(Map<String, String> equipments) {
-		//this.equipments = equipments;
-	//}
 	public void setEquipment(List<Equipment> equipments){
 		this.equipments = equipments;
 	}
@@ -152,9 +150,6 @@ public class CalculatorController implements Serializable {
 	 * Get the equipments
 	 * @return equipments
 	 */
-	//public Map<String, String> getEquipments() {
-		//return equipments;
-	//}
 	public List<Equipment> getEquipments(){
 		return equipments;
 	}
@@ -256,13 +251,11 @@ public class CalculatorController implements Serializable {
 	 * Loads selected equipment to calculator
 	 */
 	public void handleEquipmentChange(ValueChangeEvent event){
-		for (Equipment equipment : listEquipments) {
+		for (Equipment equipment : equipments) {
 			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
 				this.calculator.setEquipment(equipment);	
 			}
 		}
-		//Set default for number of panels for bank 1
-		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 		moveToEquipment();
 	}
 	
@@ -304,6 +297,8 @@ public class CalculatorController implements Serializable {
 		int currentIndex = equipmentTabIndex;
 		setTabIndex(currentIndex+1);
 		getTabIndex();
+		//Set default for number of panels for bank 1
+		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 	}
 	
 	/**
@@ -314,8 +309,6 @@ public class CalculatorController implements Serializable {
 		int currentIndex = locationTabIndex;
 		setTabIndex(currentIndex);
 		getTabIndex();
-		
-		//add the banks
 	}
 	
 	/**
@@ -366,13 +359,11 @@ public class CalculatorController implements Serializable {
 	}
 	
     public void onRowSelect(SelectEvent event) {  
-		for (Equipment equipment : listEquipments) {
+		for (Equipment equipment : equipments) {
 			if (equipment.getKitName().equalsIgnoreCase(((Equipment)event.getObject()).getKitName())){
 				this.calculator.setEquipment(equipment);
 			}
 		}
-		//Set default for number of panels for bank 1
-		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0].setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 		moveToEquipment();
     }  
     

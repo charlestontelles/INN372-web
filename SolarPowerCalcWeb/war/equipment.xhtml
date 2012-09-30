@@ -12,17 +12,20 @@
 	
 	<h:body>
 		<h:form id="form" styleClass="input">
-			<p:growl id="growl" showDetail="true" sticky="true" />  
-		    <p:dataTable id="equipments" var="equipment1" value="#{calculatorController.equipmentDataModel}" paginator="true" rows="10"
-		                 selection="#{calculatorController.selectedEquipment}" selectionMode="single">
-		
-		        <p:ajax event="rowSelect" listener="#{calculatorController.onRowSelect}" 
-		            update=":tabView:form:display :tabView:form:panelGridPanels" />
-
-		        <p:column headerText="List of Equipment">
-		            #{equipment1.kitName}
-		        </p:column>
-		    </p:dataTable>
+			<h:panelGrid id="equpmentGrid" columns="2" cellpadding="4" styleClass="input">
+			    <p:dataTable id="equipments" var="equipment1" value="#{calculatorController.equipmentDataModel}" paginator="true" rows="10"
+			                 selection="#{calculatorController.selectedEquipment}" selectionMode="single">
+			
+			        <p:ajax event="rowSelect" listener="#{calculatorController.onRowSelect}" 
+			            update=":tabView:form:display :tabView:form:panelGridPanels" />
+	
+			        <p:column headerText="Select an Equipment Kit" styleClass="input">
+			            #{equipment1.kitName}
+			        </p:column>
+			    </p:dataTable>
+		    </h:panelGrid>
+		    
+		    <br />
 		    
 		    <h:panelGrid id="display" columns="2" cellpadding="4" styleClass="input">
 				<h:outputText value="Number of Panels"></h:outputText>	
@@ -42,7 +45,7 @@
 					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
 				</h:selectOneMenu>
 				
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK"></h:commandButton>
 	        </h:panelGrid>
 	        
