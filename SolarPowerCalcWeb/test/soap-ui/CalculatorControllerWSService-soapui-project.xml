@@ -534,17 +534,21 @@
    <soapenv:Body>
       <ws:getEquipments/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getEquipmentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveCalculation" bindingOperationName="saveCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getEquipmentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveCalculation" bindingOperationName="saveCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:saveCalculation>
     <calculator>
             <customer>
          <userProfile>
-            <email>user12@greenhat.com</email>
-            <key>UserProfile_5</key>
-            <name>User12</name>
-            <password>2222</password>
+            <email>charles@greenhat.com</email>
+
+            <key>UserProfile_1</key>
+
+            <name>Charles</name>
+
+            <password>1234</password>
+
             <type>1</type>
          </userProfile>
 
@@ -673,21 +677,24 @@
          </calculator>
       </ws:saveCalculation>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/saveCalculationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveUserProfile" bindingOperationName="saveUserProfile" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/saveCalculationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="saveUserProfile" bindingOperationName="saveUserProfile" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:saveUserProfile>
+         <!--Optional:-->
          <userProfile>
-            <email>user14@greenhat.com</email>
-            <name>User14</name>
-            <password>4444</password>
+            <!--Optional:-->
+            <email>charles@greenhat.com</email>
+    
+            <!--Optional:-->
+            <name>Charles</name>
+            <!--Optional:-->
+            <password>1234</password>
             <type>1</type>
          </userProfile>
       </ws:saveUserProfile>
    </soapenv:Body>
-</soapenv:Envelope>
-
->]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/saveUserProfileRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="validateCredentials" bindingOperationName="validateCredentials" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/saveUserProfileRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="validateCredentials" bindingOperationName="validateCredentials" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:validateCredentials>
@@ -824,29 +831,25 @@
          </calculator>
       </ws:deleteCalculation>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/deleteCalculationRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getCalculations" bindingOperationName="getCalculations" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>REPLACE_WITH_ACTUAL_URL</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/deleteCalculationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getCalculations" bindingOperationName="getCalculations" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:getCalculations>
          <!--Optional:-->
          <userProfile>
-            <!--Optional:-->
-            <email>?</email>
-            <!--Optional:-->
-            <key>?</key>
-            <!--Optional:-->
-            <name>?</name>
-            <!--Optional:-->
-            <password>?</password>
-            <type>?</type>
+            <email>charles@greenhat.com</email>
+            <key>UserProfile_5</key>
+            <name>Charles</name>
+            <password>1234</password>
+            <type>1</type>
          </userProfile>
       </ws:getCalculations>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getCalculationsRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getCalculation" bindingOperationName="getCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://solarpowercalcwebtest.appspot.com/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getCalculationsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getCalculation" bindingOperationName="getCalculation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">
    <soapenv:Header/>
    <soapenv:Body>
       <ws:getCalculation>
-           <name>Calc_Calculator1</name>
+           <name>Calc_Calculator2</name>
       </ws:getCalculation>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.greenhat.inn372.qut.edu.au/CalculatorControllerWS/getCalculationRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorControllerWSPortBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="calcEnergyProduction TestCase" searchProperties="true" id="d4bcfe6f-80fb-4570-8a58-6c5066444790"><con:settings/><con:testStep type="request" name="calcEnergyProduction"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorControllerWSPortBinding</con:interface><con:operation>calcEnergyProduction</con:operation><con:request name="calcEnergyProduction"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/calculatorsoapserver</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.greenhat.inn372.qut.edu.au/">

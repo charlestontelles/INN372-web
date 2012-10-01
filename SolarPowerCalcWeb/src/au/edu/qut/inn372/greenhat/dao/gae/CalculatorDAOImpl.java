@@ -116,7 +116,8 @@ public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
 		Blob bean;
 		Calculator calculator = null;
 		List<Calculator> calculators = new ArrayList<Calculator>();
-		if(records.hasNext()){
+		
+		while(records.hasNext()){
 			bean = (Blob)records.next().getProperty("bean");
 			calculator = (Calculator)Util.unserialize(new String(bean.getBytes()));
 			calculators.add(calculator);
