@@ -21,14 +21,17 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Customer;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.Location;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
 import au.edu.qut.inn372.greenhat.dao.LocationDAO;
+import au.edu.qut.inn372.greenhat.dao.PanelDAO;
 import au.edu.qut.inn372.greenhat.dao.UserProfileDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.PanelDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 
 /**
@@ -59,6 +62,10 @@ public class CalculatorController implements Serializable {
 	
 	private Map<String, String> locations = new HashMap<String, String>();
 	List<Location> listLocations;
+	
+	private List<Panel> panelList = new ArrayList<Panel>();
+	private Panel selectedPanel;
+	
 	private int tabIndex = 0;	
 	private String responseMessage = "";
 	
@@ -72,6 +79,9 @@ public class CalculatorController implements Serializable {
 		for(Location location : listLocations){
 			this.locations.put(location.getCity(), location.getCity());
 		}
+		
+		PanelDAO panelDAO = new PanelDAOImpl();
+		panelList = panelDAO.getPanels();
 	}
 	
 	/**
@@ -272,6 +282,22 @@ public class CalculatorController implements Serializable {
 	}
 	
 	/**
+	 * Loads selected panel to calculator
+	 */
+	public void handlePanelChange(ValueChangeEvent event){
+		for (Panel panel : panelList) {
+			if (panel.getBrand().equalsIgnoreCase(event.getNewValue().toString())){
+				for(int index=0; index < this.calculator.getEquipment().getPanels().size(); index++){
+					this.calculator.getEquipment().getPanels().set(index, panel);
+				}
+				this.calculator.getEquipment().setCost(this.calculator.getEquipment().getTotalPanels() * panel.getCost() + this.calculator.getEquipment().getInverter().getCost());
+			}
+		}
+		
+		moveToEquipment();
+	}
+	
+	/**
 	 * Move to the equipment tab
 	 * @return the equipment tab
 	 */
@@ -411,5 +437,33 @@ public class CalculatorController implements Serializable {
 			return "tabinput.xhtml";
 
 		}
+	}
+
+	/**
+	 * @return the panelList
+	 */
+	public List<Panel> getPanelList() {
+		return panelList;
+	}
+
+	/**
+	 * @param panelList the panelList to set
+	 */
+	public void setPanelList(List<Panel> panelList) {
+		this.panelList = panelList;
+	}
+
+	/**
+	 * @return the selectedPanel
+	 */
+	public Panel getSelectedPanel() {
+		return selectedPanel;
+	}
+
+	/**
+	 * @param selectedPanel the selectedPanel to set
+	 */
+	public void setSelectedPanel(Panel selectedPanel) {
+		this.selectedPanel = selectedPanel;
 	}
 }

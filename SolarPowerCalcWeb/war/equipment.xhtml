@@ -40,7 +40,8 @@
 				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" readonly="true"></h:inputText>
 	
 				<h:outputText value="List of Panel Brands"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.panels[0].brand}">	
+				<h:selectOneMenu value="#{calculatorController.calculator.equipment.panels[0].brand}"
+						onchange="submit()" valueChangeListener="#{calculatorController.handlePanelChange}">	
 					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
 					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
 				</h:selectOneMenu>

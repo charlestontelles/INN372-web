@@ -22,9 +22,6 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		List<Equipment> equipments = new ArrayList<Equipment>();
 		
 		Equipment equipment1 = new Equipment();
-		equipment1.setKitName("Kit 2.5KWh - 10 panels(250W)");
-		equipment1.setCost(2500);
-		equipment1.setSize(2.5);
 		
 		Inverter inverter1 = new Inverter();
 		inverter1.setEfficiency(85);
@@ -36,6 +33,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		panel1.setEfficiencyLoss(0.5);
 		panel1.setCost(100);
 		panel1.setSize(2.25);
+		panel1.setBrand("BP Solar Panels");
 		
 		Battery battery1 = new Battery();
 		battery1.setCost(500);
@@ -53,13 +51,15 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment1.addPanel(panel1);
 		equipment1.addPanel(panel1);
 		
+		equipment1.setKitName("Kit 2.5KWh - 10 panels(250W)");
+		//equipment1.setCost(2500);
+		equipment1.setCost(equipment1.getTotalPanels() * panel1.getCost() + inverter1.getCost());
+		equipment1.setSize(2.5);
+		
 		equipments.add(equipment1);
 		
 		
 		Equipment equipment2 = new Equipment();
-		equipment2.setKitName("Kit 5.6KWh - 8 panels(700W)");
-		equipment2.setCost(9000);
-		equipment2.setSize(5.6);
 		
 		Inverter inverter2 = new Inverter();
 		inverter2.setEfficiency(95);
@@ -71,6 +71,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		panel2.setEfficiencyLoss(0.7);
 		panel2.setCost(500);
 		panel2.setSize(2.25);
+		panel2.setBrand("Sharp Solar Panels");
 		
 		Battery battery2 = new Battery();
 		battery2.setCost(500);
@@ -86,12 +87,15 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment2.addPanel(panel2);
 		equipment2.addPanel(panel2);
 		
+		equipment2.setKitName("Kit 5.6KWh - 8 panels(700W)");
+		//equipment2.setCost(9000);
+		equipment2.setCost(equipment2.getTotalPanels() * panel2.getCost() + inverter2.getCost());
+		equipment2.setSize(5.6);
+		
 		equipments.add(equipment2);
 		
+		
 		Equipment equipment3 = new Equipment();
-		equipment3.setKitName("Kit 3.6KWh - 12 panels(300W)");
-		equipment3.setCost(4000);
-		equipment3.setSize(3.6);
 		
 		Inverter inverter3 = new Inverter();
 		inverter3.setEfficiency(90);
@@ -103,6 +107,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		panel3.setPowerRating(300);
 		panel3.setCost(400);
 		panel3.setSize(2.25);
+		panel3.setBrand("SunPower Solar Panels");
 		
 		Battery battery3 = new Battery();
 		battery3.setCost(500);
@@ -122,14 +127,19 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment3.addPanel(panel3);
 		equipment3.addPanel(panel3);
 		
+		equipment3.setKitName("Kit 3.6KWh - 12 panels(300W)");
+		//equipment3.setCost(4000);
+		equipment3.setCost(equipment3.getTotalPanels() * panel3.getCost() + inverter3.getCost());
+		equipment3.setSize(3.6);
+		
 		equipments.add(equipment3);
 		
 		
 		
+		
+		
+		
 		Equipment equipment4 = new Equipment();
-		equipment4.setKitName("Kit 5KWh - 10 panels(500W)");
-		equipment4.setCost(5000);
-		equipment4.setSize(5);
 		
 		Inverter inverter4 = new Inverter();
 		inverter4.setEfficiency(95);
@@ -141,10 +151,12 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		panel4.setPowerRating(500);
 		panel4.setCost(450);
 		panel4.setSize(2.25);
+		panel4.setBrand("Sanyo Solar Panels");
 		
 		Battery battery4 = new Battery();
 		battery4.setCost(500);
 		
+
 		equipment4.setInverter(inverter4);
 		equipment4.setBattery(battery4);
 		equipment4.addPanel(panel4);
@@ -157,6 +169,11 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment4.addPanel(panel4);
 		equipment4.addPanel(panel4);
 		equipment4.addPanel(panel4);
+		
+		equipment4.setKitName("Kit 5KWh - 10 panels(500W)");
+		//equipment4.setCost(5000);
+		equipment4.setCost(equipment4.getTotalPanels() * panel4.getCost() + inverter4.getCost());
+		equipment4.setSize(5);
 		
 		equipments.add(equipment4);
 		
