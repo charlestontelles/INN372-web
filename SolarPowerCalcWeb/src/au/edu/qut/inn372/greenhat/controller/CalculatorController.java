@@ -56,8 +56,10 @@ public class CalculatorController implements Serializable {
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	private UserProfileDAO userProfileDAO = new UserProfileDAOImpl();
 	
-	private List<Equipment> equipments = new ArrayList<Equipment>();
-	private EquipmentDataModel equipmentDataModel;
+	//private List<Equipment> equipments = new ArrayList<Equipment>();
+	//private EquipmentDataModel equipmentDataModel;
+	private Map<String,String> equipments = new HashMap<String, String>();
+	List<Equipment> listEquipments;
 	private Equipment selectedEquipment; 
 	
 	private Map<String, String> locations = new HashMap<String, String>();
@@ -71,8 +73,12 @@ public class CalculatorController implements Serializable {
 	
 	public CalculatorController(){
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
-		equipments = equipmentDAO.getEquipments();
-		equipmentDataModel = new EquipmentDataModel(equipments);
+		//equipments = equipmentDAO.getEquipments();
+		//equipmentDataModel = new EquipmentDataModel(equipments);
+		listEquipments = equipmentDAO.getEquipments();
+		for (Equipment equipment : listEquipments) {
+			this.equipments.put(equipment.getKitName(), equipment.getKitName());
+		}
 		
 		LocationDAO locationDAO = new LocationDAOImpl();
 		listLocations = locationDAO.getLocations();
@@ -121,7 +127,7 @@ public class CalculatorController implements Serializable {
 	 * First equipment kit selected by default
 	 */
 	public  void setDefaultEquipmentSelection(){
-		selectedEquipment = equipments.get(0);
+		selectedEquipment = listEquipments.get(0);
 		this.calculator.setEquipment(selectedEquipment);
 	}
 	/**
@@ -152,18 +158,28 @@ public class CalculatorController implements Serializable {
 	 * Set the equipments
 	 * @param equipments
 	 */
-	public void setEquipment(List<Equipment> equipments){
-		this.equipments = equipments;
-	}
+	//public void setEquipment(List<Equipment> equipments){
+		//this.equipments = equipments;
+	//}
 
 	/**
 	 * Get the equipments
 	 * @return equipments
 	 */
-	public List<Equipment> getEquipments(){
+	//public List<Equipment> getEquipments(){
+		//return equipments;
+	//}
+	
+	public Map<String, String> getEquipments(){
 		return equipments;
 	}
-	
+	/**
+	 * @param equipments the equipments to set
+	 */
+	public void setEquipments(Map<String, String> equipments) {
+		this.equipments = equipments;
+	}
+
 	/**
 	 * Get the locations
 	 * @return the locations
@@ -261,40 +277,45 @@ public class CalculatorController implements Serializable {
 	 * Loads selected equipment to calculator
 	 */
 	public void handleEquipmentChange(ValueChangeEvent event){
-		for (Equipment equipment : equipments) {
-			if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
-				this.calculator.setEquipment(equipment);	
+		try{
+			for (Equipment equipment : listEquipments) { 
+				if (equipment.getKitName().equalsIgnoreCase(event.getNewValue().toString())){
+					this.calculator.setEquipment(equipment);	
+				}
 			}
-		}
-		moveToEquipment();
+			moveToEquipment();
+		} catch (Exception e) {}
 	}
 	
 	/**
 	 * Loads selected location to calculator
 	 */
 	public void handleLocationChange(ValueChangeEvent event){
-		for (Location location : listLocations) {
-			if (location.getCity().equalsIgnoreCase(event.getNewValue().toString())){
-				this.calculator.getCustomer().setLocation(location);
+		try{
+			for (Location location : listLocations) {
+				if (location.getCity().equalsIgnoreCase(event.getNewValue().toString())){
+					this.calculator.getCustomer().setLocation(location);
+				}
 			}
-		}
-		moveToLocation();
+			moveToLocation();
+		} catch (Exception e){}
 	}
 	
 	/**
 	 * Loads selected panel to calculator
 	 */
 	public void handlePanelChange(ValueChangeEvent event){
-		for (Panel panel : panelList) {
-			if (panel.getBrand().equalsIgnoreCase(event.getNewValue().toString())){
-				for(int index=0; index < this.calculator.getEquipment().getPanels().size(); index++){
-					this.calculator.getEquipment().getPanels().set(index, panel);
+		try{
+			for (Panel panel : panelList) {
+				if (panel.getBrand().equalsIgnoreCase(event.getNewValue().toString())){
+					for(int index=0; index < this.calculator.getEquipment().getPanels().size(); index++){
+						this.calculator.getEquipment().getPanels().set(index, panel);
+					}
+					this.calculator.getEquipment().setCost(this.calculator.getEquipment().getTotalPanels() * panel.getCost() + this.calculator.getEquipment().getInverter().getCost());
 				}
-				this.calculator.getEquipment().setCost(this.calculator.getEquipment().getTotalPanels() * panel.getCost() + this.calculator.getEquipment().getInverter().getCost());
 			}
-		}
-		
-		moveToEquipment();
+			moveToEquipment();
+		} catch (Exception e){}
 	}
 	
 	/**
@@ -366,9 +387,9 @@ public class CalculatorController implements Serializable {
 	/**
 	 * @return the equipmentDataModel
 	 */
-	public EquipmentDataModel getEquipmentDataModel() {
-		return equipmentDataModel;
-	}
+	//public EquipmentDataModel getEquipmentDataModel() {
+		//return equipmentDataModel;
+	//}
 
 	/**
 	 * @return the selectedEquipment
@@ -385,7 +406,7 @@ public class CalculatorController implements Serializable {
 	}
 	
     public void onRowSelect(SelectEvent event) {  
-		for (Equipment equipment : equipments) {
+		for (Equipment equipment : listEquipments) {
 			if (equipment.getKitName().equalsIgnoreCase(((Equipment)event.getObject()).getKitName())){
 				this.calculator.setEquipment(equipment);
 			}
