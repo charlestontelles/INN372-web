@@ -71,6 +71,9 @@ public class CalculatorController implements Serializable {
 	private int tabIndex = 0;	
 	private String responseMessage = "";
 	
+	private CalculatorDataModel savedCalculators;
+	private Calculator[] selectedCalculators;  
+	
 	public CalculatorController(){
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
 		//equipments = equipmentDAO.getEquipments();
@@ -90,6 +93,39 @@ public class CalculatorController implements Serializable {
 		panelList = panelDAO.getPanels();
 	}
 	
+	/**
+	 * Gets a list of saved calculators
+	 * @return
+	 */
+	public CalculatorDataModel getSavedCalculators() {
+		this.savedCalculators = new CalculatorDataModel(calculatorDAO.getAllByUserProfile(calculator.getCustomer().getUserProfile()));
+		return savedCalculators;
+	}
+	/**
+	 * Sets a list of saved calculators 
+	 * @param savedCalculators
+	 */
+	public void setSavedCalculators(CalculatorDataModel savedCalculators) {
+		this.savedCalculators = savedCalculators;
+	}
+
+	/**
+	 * Gets a list of selected calculators from UI
+	 * @return
+	 */
+	public Calculator[] getSelectedCalculators() {
+		return selectedCalculators;
+	}
+
+	/**
+	 * Sets a list of selected calculators to UI
+	 * @param selectedCalculators
+	 */
+	public void setSelectedCalculators(Calculator[] selectedCalculators) {
+		this.selectedCalculators = selectedCalculators;
+	}
+
+
 	/**
 	 * Gets the Response Message
 	 * @return response message
@@ -437,7 +473,43 @@ public class CalculatorController implements Serializable {
 		responseMessage = "";
 		return "login.xhtml";
 	}
-
+	/**
+	 * Open input screen to a new calculation
+	 * @return
+	 */
+	public String newCalculation(){
+		Customer persistedCustomer = calculator.getCustomer();
+		this.calculator = new Calculator();
+		this.calculator.setCustomer(persistedCustomer);
+		return "tabinput.xhtml";
+	}
+	/**
+	 * delete selected calculations
+	 */
+	public void deleteCalculation(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		try{
+			for(Calculator calc : selectedCalculators)
+				calculatorDAO.remove(calc);
+			context.addMessage(null, new FacesMessage("Calculation(s) deleted."));
+		} catch (Exception e){
+			context.addMessage(null, new FacesMessage("Error: " + e));
+		}		
+	}
+	/**
+	 * Open a selected Calculation
+	 * @return
+	 */
+	public String openCalculation(){
+		return "tabinput.xhtml";
+	}
+	/**
+	 * Compares two or more calculations
+	 */
+	public void compareCalculation(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("To be implemented (Iteration #4)"));
+	}
 	/**
 	 * Validate login credentials
 	 * 
@@ -455,7 +527,7 @@ public class CalculatorController implements Serializable {
 				calculator.setCustomer(new Customer());
 			calculator.getCustomer().setUserProfile(response);
 			responseMessage = "";
-			return "tabinput.xhtml";
+			return "home.xhtml";
 
 		}
 	}

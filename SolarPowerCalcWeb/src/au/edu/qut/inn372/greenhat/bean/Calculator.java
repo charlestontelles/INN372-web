@@ -1,8 +1,12 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -47,6 +51,42 @@ public class Calculator implements Serializable {
 	 */
 	private int status = 0; //0=incomplete, 1=complete, 2=template
 	DecimalFormat df = new DecimalFormat("#.###");
+	/**
+	 * Return the Calculator status name
+	 * 0 = incomplete
+	 * 1 = complete
+	 * 2 = template
+	 * @return
+	 */
+	public String getStatusName(){
+		switch (this.status) {
+		case 0:
+			return "Incomplete";
+		case 1:
+			return "Complete";
+		case 2:
+			return "Template";
+		default:
+			return "unknow";
+		}
+	}
+	/**
+	 * Formats the date time to Brisbane TimeZone
+	 * 
+	 * TODO: date format should be based on customer location
+	 * 
+	 * @return
+	 */
+	public String getFormatedDateTime(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+		try {
+			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
+			return dateFormat.format(this.datetime);			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "unknow";
+		}
+	}
 	
 	/**
 	 * Get the customer

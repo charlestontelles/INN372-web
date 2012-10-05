@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	
+	<h:body>
+	<f:view>
+	    <h:form styleClass="input">
+	    	<p:growl id="growl" showDetail="true" sticky="true" />  
+	    	
+		    <p:dataTable styleClass="input" id="savedCalculators" var="calc" value="#{calculatorController.savedCalculators}" paginator="true" rows="10"  
+		                 selection="#{calculatorController.selectedCalculators}">  
+		  
+		        <f:facet name="header">  
+		            Saved Calculations  
+		        </f:facet>  
+		  
+		        <p:column selectionMode="multiple" style="width:18px" />  
+		  
+		        <p:column headerText="Name">  
+		            #{calc.name}  
+		        </p:column>  
+		  
+		        <p:column headerText="Date">  
+		            #{calc.formatedDateTime}  
+		        </p:column>  
+		  
+		        <p:column headerText="Kit" >  
+		            #{calc.equipment.kitName}  
+		        </p:column>  
+		  
+		        <p:column headerText="Status">  
+		            #{calc.statusName}  
+		        </p:column>  
+		  
+		        <f:facet name="footer">  
+		            <h:commandButton action="#{calculatorController.newCalculation}" value="New" update="growl"></h:commandButton>  
+		            <h:commandButton action="#{calculatorController.openCalculation}" value="Open" update="growl"></h:commandButton>
+		            <h:commandButton action="#{calculatorController.deleteCalculation}" value="Delete" update="growl"></h:commandButton>
+		            <h:commandButton action="#{calculatorController.compareCalculation}" value="Compare" update="growl"></h:commandButton>
+		        </f:facet>  
+		    </p:dataTable>			
+		
+		</h:form>
+	</f:view>
+	
+	</h:body>
+</html>
