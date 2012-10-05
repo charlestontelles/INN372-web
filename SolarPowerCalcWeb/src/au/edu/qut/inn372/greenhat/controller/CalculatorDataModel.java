@@ -1,5 +1,6 @@
 package au.edu.qut.inn372.greenhat.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.model.ListDataModel;
@@ -8,9 +9,14 @@ import org.primefaces.model.SelectableDataModel;
 
 import au.edu.qut.inn372.greenhat.bean.*;
 
-public class CalculatorDataModel extends ListDataModel<Calculator> implements SelectableDataModel<Calculator> {    
+public class CalculatorDataModel extends ListDataModel<Calculator> implements Serializable, SelectableDataModel<Calculator> {    
   
-    public CalculatorDataModel() {  
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6059564447193594557L;
+
+	public CalculatorDataModel() {  
     }  
   
     public CalculatorDataModel(List<Calculator> data) {  
