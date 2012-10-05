@@ -18,6 +18,7 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.DeleteCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculations;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanels;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
 import au.edu.qut.inn372.greenhat.ws.jaxws.ValidateCredentials;
@@ -37,6 +38,7 @@ public class CalculatorSOAPHandler {
 	  private static final QName DELETE_CALCULATION_QNAME = new QName(NAMESPACE_URI, "deleteCalculation");
 	  private static final QName GET_CALCULATION_QNAME = new QName(NAMESPACE_URI, "getCalculation");
 	  private static final QName GET_CALCULATIONS_QNAME = new QName(NAMESPACE_URI, "getCalculations");
+	  private static final QName GET_PANELS_QNAME = new QName(NAMESPACE_URI, "getPanels");
 	  
 	  private MessageFactory messageFactory;
 	  private CalculatorAdapter calculatorAdapter;
@@ -79,7 +81,10 @@ public class CalculatorSOAPHandler {
 		          } else if (GET_EQUIPMENTS_QNAME.equals(qname)) {
 			            responsePojo = handleGetEquipmentsRequest(soapElement);
 			            break;
-			          } 
+		          } else if (GET_PANELS_QNAME.equals(qname)) {
+			            responsePojo = handleGetPanelsRequest(soapElement);
+			            break;
+		          } 
 		      }
 		    }
 		    SOAPMessage soapResponse = messageFactory.createMessage();
@@ -131,6 +136,11 @@ public class CalculatorSOAPHandler {
 	  private Object handleGetCalculationsRequest(SOAPElement soapElement) {
 		    GetCalculations request = JAXB.unmarshal(new DOMSource(soapElement), GetCalculations.class);
 		    return calculatorAdapter.getCalculations(request);
+	  }
+	  
+	  private Object handleGetPanelsRequest(SOAPElement soapElement) {
+		    GetPanels request = JAXB.unmarshal(new DOMSource(soapElement), GetPanels.class);
+		    return calculatorAdapter.getPanels(request);
 	  }
 	  
 }

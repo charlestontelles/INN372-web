@@ -4,6 +4,7 @@ import java.util.List;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProduction;
 import au.edu.qut.inn372.greenhat.ws.jaxws.CalcEnergyProductionResponse;
@@ -15,6 +16,8 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculations;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculationsResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipmentsResponse;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanels;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanelsResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculationResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
@@ -125,6 +128,19 @@ public class CalculatorAdapter {
 		List<Calculator> result = controller.getCalculations(getCalculations.getUserProfile());
 		GetCalculationsResponse response = new GetCalculationsResponse();
 		response.setCalculators(result);
+		return response;
+	}
+	
+	/**
+	 * Gets a list of panels from database
+	 * 
+	 * @param getEquipments
+	 * @return
+	 */
+	public GetPanelsResponse getPanels(GetPanels getPanels){
+		Panel[] panels = controller.getPanels();
+		GetPanelsResponse response = new GetPanelsResponse();
+		response.setPanels(panels);
 		return response;
 	}
 }

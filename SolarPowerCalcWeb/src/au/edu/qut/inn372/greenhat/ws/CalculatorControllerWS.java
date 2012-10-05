@@ -10,13 +10,16 @@ import javax.jws.WebService;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
+import au.edu.qut.inn372.greenhat.dao.PanelDAO;
 import au.edu.qut.inn372.greenhat.dao.UserProfileDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.PanelDAOImpl;;
 
 /**
  * 
@@ -29,6 +32,7 @@ public class CalculatorControllerWS {
 	private CalculatorDAO calculatorDAO = new CalculatorDAOImpl();
 	private EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
 	private UserProfileDAO userProfileDAO = new UserProfileDAOImpl();
+	private PanelDAO panelDAO = new PanelDAOImpl();
 	
 	@WebMethod
 	@WebResult(name = "result") 
@@ -109,5 +113,14 @@ public class CalculatorControllerWS {
 		} catch (Exception e) {
 			return new UserProfile();
 		}		
+	}
+	
+	@WebMethod
+	@WebResult(name = "panels") 
+	public Panel[] getPanels(){
+		List<Panel> arrayList = panelDAO.getPanels();		
+		Panel[] list = new Panel[arrayList.size()];
+		arrayList.toArray(list);
+		return list;
 	}
 }

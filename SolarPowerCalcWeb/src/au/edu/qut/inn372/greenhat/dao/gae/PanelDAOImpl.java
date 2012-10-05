@@ -12,17 +12,18 @@ public class PanelDAOImpl implements Serializable, PanelDAO {
 	 * 
 	 */
 	private static final long serialVersionUID = -8132528384505235206L;
-	List<Panel> panelList = new ArrayList<Panel>();
+	
 	
 	public Panel getPanel(String brand){
-		for(Panel p : panelList)
+		/*for(Panel p : panelList)
 			if(p.getBrand() == brand)
-				return p;
+				return p; */
 		return null;
-	}
+	} 
 	
 	@Override
 	public List<Panel> getPanels() {
+		List<Panel> panelList = new ArrayList<Panel>();
 		Panel bPSolarPanel = new Panel();
 		bPSolarPanel.setId(1);
 		bPSolarPanel.setBrand("BP Solar Panels");

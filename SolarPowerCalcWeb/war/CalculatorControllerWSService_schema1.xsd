@@ -21,6 +21,10 @@
 
   <xs:element name="getEquipmentsResponse" type="tns:getEquipmentsResponse"/>
 
+  <xs:element name="getPanels" type="tns:getPanels"/>
+
+  <xs:element name="getPanelsResponse" type="tns:getPanelsResponse"/>
+
   <xs:element name="saveCalculation" type="tns:saveCalculation"/>
 
   <xs:element name="saveCalculationResponse" type="tns:saveCalculationResponse"/>
@@ -247,6 +251,16 @@
   <xs:complexType name="getCalculationResponse">
     <xs:sequence>
       <xs:element name="calculator" type="tns:calculator" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPanels">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getPanelsResponse">
+    <xs:sequence>
+      <xs:element name="panels" type="tns:panel" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
