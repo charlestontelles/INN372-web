@@ -328,7 +328,7 @@ public class Calculator implements Serializable {
 	 */
 	public double calculateTariff11Fee(Tariff tariff, int i) {
 		double tariff11Fee = Math.round( (tariff.getTariff11Fee() * ( 
-								Math.pow( (1+tariff.getAnnualTariffIncrease()/100.0), ((i+1)-1) ) ) ) * 100.0)/100.0 ;
+								Math.pow( (1+tariff.getAnnualTariffIncrease()/100.0), ((i+1)-1) ) ) ) * 10000.0)/10000.0 ;
 		return tariff11Fee;
 	}
 
