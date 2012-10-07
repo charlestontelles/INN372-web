@@ -10,6 +10,12 @@
 	
 	</h:head>	
 	<h:body>	
+		<f:view>
+	    <h:form styleClass="input">
+	    	<h:commandButton action="#{calculatorController.backToHome}" value="Home"></h:commandButton>
+	    	logged user: <h:outputText value="#{calculatorController.calculator.customer.userProfile.email}"/>
+		</h:form>
+		</f:view>
 		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}" styleClass="centreTab">	
 			<p:tab id="tab1" title="Location">
 				<ui:include src="location.xhtml" />

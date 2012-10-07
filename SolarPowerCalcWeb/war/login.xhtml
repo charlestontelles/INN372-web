@@ -3,7 +3,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
 	<h:head>
 	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
@@ -11,6 +10,7 @@
 	<h:body>
 	<f:view>
 	    <h:form>
+	     <p:growl id="growl_login" showDetail="true" sticky="true" /> 
 			<h:panelGrid columns="2" styleClass="input">
 				<h:outputText value="Email"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.userProfile.email}"></h:inputText>
@@ -19,7 +19,7 @@
 				<h:inputSecret value="#{calculatorController.calculator.customer.userProfile.password}"></h:inputSecret>
 				
 				<h:outputText value=""></h:outputText>
-				<h:commandButton action="#{calculatorController.validateCredentials}" value="Login"></h:commandButton>
+				<h:commandButton action="#{calculatorController.validateCredentials}" value="Login" update="growl_login"></h:commandButton>
 				
 				<h:outputText value="New User?"></h:outputText>
 				<h:commandLink styleClass="center" action="#{calculatorController.showUserProfileScreen}">Register</h:commandLink>				

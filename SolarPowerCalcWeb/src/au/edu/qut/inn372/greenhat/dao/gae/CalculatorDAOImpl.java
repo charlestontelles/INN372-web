@@ -73,6 +73,8 @@ public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
 		if(calculator.getCustomer().getUserProfile()==null){
 			UserProfile userProfile = new UserProfile();
 			userProfile.setKey("UNKNOW");
+			userProfile.setName("UNKNOW");
+			userProfile.setEmail("UNKNOW");
 			calculator.getCustomer().setUserProfile(userProfile);
 		}
 		if (calculator.getCustomer().getUserProfile().getKey()==null){
@@ -80,11 +82,17 @@ public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
 			UserProfile userProfile = userProfileDAO.getByEmail(calculator.getCustomer().getUserProfile().getEmail());
 			calculator.getCustomer().setUserProfile(userProfile);
 		}
-		entity.setProperty("user", calculator.getCustomer().getUserProfile().getKey());
-		entity.setProperty("status", calculator.getStatus());
-		entity.setProperty("datetime", calculator.getDatetime());
-		entity.setProperty("bean", new Blob(Util.serialize(calculator).getBytes()));
-		
+		try{
+			entity.setProperty("user", calculator.getCustomer().getUserProfile().getKey());
+			entity.setProperty("status", calculator.getStatus());
+			entity.setProperty("datetime", calculator.getDatetime());
+			entity.setProperty("bean", new Blob(Util.serialize(calculator).getBytes()));
+		} catch(Exception e){	
+			entity.setProperty("user", "Unknow");
+			entity.setProperty("status", calculator.getStatus());
+			entity.setProperty("datetime", calculator.getDatetime());
+			entity.setProperty("bean", new Blob(Util.serialize(calculator).getBytes()));
+		}
 		datastore.put(entity);
 		return "";
 	}
