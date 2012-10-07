@@ -559,4 +559,13 @@ public class CalculatorController implements Serializable {
 	public void setSelectedPanel(Panel selectedPanel) {
 		this.selectedPanel = selectedPanel;
 	}
+	
+	/**
+	 * Create a chart and navigate to the chart page to display it.
+	 * @return
+	 */
+	public String createChart(){
+		calculator.createChart();
+		return "chart.xhtml";
+	}
 }

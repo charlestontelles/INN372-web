@@ -11,6 +11,11 @@ import java.util.TimeZone;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartSeries;
+
+import au.edu.qut.inn372.greenhat.controller.Chart;
 /**
  * Bean that represents a Calculator
  * 
@@ -29,6 +34,10 @@ public class Calculator implements Serializable {
 	private Customer customer;
 	
 	private Calculation [] calculations;
+	
+	@ManagedProperty (value = "#{chart}")
+	private Chart chart;
+	
 	/**
 	 * Calculator's Name.
 	 * For example sellers can name a calculator using customer name, e.g. Calc_John
@@ -474,5 +483,68 @@ public class Calculator implements Serializable {
 			banks[index].setAngleEfficiencyLoss(5.0);
 		//else
 			//banks[index].setOrientationEfficiencyLoss(0);
+	}
+	
+	/**
+	 * @return the chart
+	 */
+	public Chart getChart() {
+		return chart;
+	}
+	/**
+	 * @param chart the chart to set
+	 */
+	public void setChart(Chart chart) {
+		this.chart = chart;
+	}
+	
+	public void createChart(){
+		CartesianChartModel categoryModelPower;
+		CartesianChartModel categoryModelFinancial;
+		categoryModelPower = new CartesianChartModel();
+		categoryModelFinancial = new CartesianChartModel();
+		
+		ChartSeries dailyPowerOutput = new ChartSeries();
+		dailyPowerOutput.setLabel("Daily Power Output");
+		
+		ChartSeries quarterPowerOutput = new ChartSeries();
+		quarterPowerOutput.setLabel("Quarterly Solar Power");
+		
+		ChartSeries annualPowerOutput = new ChartSeries();
+		annualPowerOutput.setLabel("Annual Solar Power");
+        
+		String year_range = "1 - " + calculations.length + " years";
+        //for (int i=0; i<calculations.length; i++){
+        	dailyPowerOutput.set(year_range, calculations[0].getDailySolarPower());
+        	quarterPowerOutput.set(year_range, (calculations[0].getDailySolarPower() * 91));
+        	annualPowerOutput.set(year_range, calculations[0].getAnnualSolarPower());
+        //}
+        
+        ChartSeries annualSavings = new ChartSeries();
+        annualSavings.setLabel("Annual Savings");
+        
+        ChartSeries cumulativeSavings = new ChartSeries();
+        cumulativeSavings.setLabel("Cumulative Savings");
+        
+        //ChartSeries returnOnInvestment = new ChartSeries();
+        //returnOnInvestment.setLabel("Return On Investment");
+        
+        
+        for (int i=0; i<calculations.length; i++){
+        	annualSavings.set(calculations[i].getYear() + "", calculations[i].getAnnualSaving());
+        	cumulativeSavings.set(calculations[i].getYear() + "", calculations[i].getCumulativeSaving());
+        	//returnOnInvestment.set(calculations[i].getYear() + "", calculations[i].getReturnOnInvestment());
+        }
+
+        categoryModelPower.addSeries(dailyPowerOutput);
+        categoryModelPower.addSeries(quarterPowerOutput);
+        categoryModelPower.addSeries(annualPowerOutput);
+        
+        categoryModelFinancial.addSeries(annualSavings);
+        categoryModelFinancial.addSeries(cumulativeSavings);
+        //categoryModelFinancial.addSeries(returnOnInvestment);
+        
+        this.chart.setCategoryModelPower(categoryModelPower);
+        this.chart.setCategoryModelFinancial(categoryModelFinancial);
 	}
 }

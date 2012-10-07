@@ -100,6 +100,9 @@
             <p:graphicImage value="/images/pdf.png" />  
             <p:dataExporter type="pdf" target="calculations_table" fileName="calculations_table"/>  
         </h:commandLink> 
+        
+        <h:commandButton action="#{calculatorController.createChart}" value="Chart" id="chart"></h:commandButton>
+        
    		</p>
    		<h4 align = "center"> Financial Output</h4>
    		<p:dataTable id="calculations_table" value="#{calculator.calculations}" var="c"
