@@ -12,7 +12,7 @@
 	<h:body>
 	<f:view>
 	    <h:form>
-	   		<p:growl id="growl" showDetail="true" sticky="true" />  
+	   		<p:growl id="growl_pan" showDetail="true" sticky="true" />  
 			<h:panelGrid columns="2" styleClass="input">
 			
 				
@@ -32,7 +32,7 @@
 				
 					
 				<h:commandButton action="#{calculatorController.calcEnergyProduction}" value="Calculate"></h:commandButton>
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl_pan"></h:commandButton>
 					
 			
 				

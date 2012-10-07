@@ -64,6 +64,9 @@
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.calculate}" value="Calculate" id="calculate"></h:commandButton>
+				
+				<h:commandButton action="#{calculatorController.backToHome}" value="Home"></h:commandButton>
+				<h:outputText style="width:250px"  value=" "></h:outputText>
 			</h:panelGrid>
 			
 		</h:form>

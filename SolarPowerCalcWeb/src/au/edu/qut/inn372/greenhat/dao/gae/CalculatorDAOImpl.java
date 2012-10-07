@@ -111,7 +111,7 @@ public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
 	public List<Calculator> getAllByUserProfile(UserProfile userProfile) {
 		@SuppressWarnings("deprecation")
 		Query query = new Query("Calculator").addFilter("user",
-				Query.FilterOperator.EQUAL, userProfile.getKey());
+				Query.FilterOperator.EQUAL, userProfile.getKey()).addSort("datetime", Query.SortDirection.ASCENDING);
 		Iterator<Entity> records = datastore.prepare(query).asIterable().iterator();
 		Blob bean;
 		Calculator calculator = null;
@@ -148,7 +148,12 @@ public class CalculatorDAOImpl implements Serializable, CalculatorDAO {
 	 */
 	@SuppressWarnings("deprecation")
 	private int countEntities(){
-		Query query = new Query("Calculator");
-		return datastore.prepare(query).countEntities();
+		Query query = new Query("Calculator").addSort("datetime", Query.SortDirection.DESCENDING);
+		Iterator<Entity> records = datastore.prepare(query).asIterable().iterator();
+		int lastIndex = 0;
+		if(records.hasNext()){
+			lastIndex = new Integer(((String)records.next().getProperty("name")).replace("Calc_Calculator", ""));
+		}
+		return lastIndex;
 	}
 }

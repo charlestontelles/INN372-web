@@ -55,7 +55,7 @@
 	 		</h:outputText>
 	 		
 	 		<h:outputText value="Payback Period (years)"></h:outputText>
-	 		<h:outputText value="#{calculator.calculations[0].paybackPeriod}"> </h:outputText>
+	 		<h:outputText value="#{calculatorController.calculator.calculations[0].paybackPeriod}"> </h:outputText>
    		</h:panelGrid>
    		<br />
    		
@@ -93,6 +93,7 @@
 	 	</h:panelGrid>
    		
    		<p align = "right">
+   		<h:commandButton action="#{calculatorController.backToHome}" value="Home"></h:commandButton>
 	    <h:commandButton value="Print" type="button" icon="ui-icon-print">  
 	        <p:printer target="calculations_table" />  
 	    </h:commandButton>  
@@ -105,7 +106,7 @@
         
    		</p>
    		<h4 align = "center"> Financial Output</h4>
-   		<p:dataTable id="calculations_table" value="#{calculator.calculations}" var="c"
+   		<p:dataTable id="calculations_table" value="#{calculatorController.calculator.calculations}" var="c"
    			    styleClass="calculations-table"
     			headerClass="calculations-table-header"
     			rowClasses="calculations-table-odd-row,calculations-table-even-row">

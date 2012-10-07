@@ -15,6 +15,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.TabChangeEvent;
 
 import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
@@ -187,6 +188,7 @@ public class CalculatorController implements Serializable {
 	 */
 	public String calculate(){
 		calculator.performCalculations();
+		calculator.setStatus(1);
 		return "output.xhtml";
 	}
 
@@ -481,20 +483,25 @@ public class CalculatorController implements Serializable {
 		Customer persistedCustomer = calculator.getCustomer();
 		this.calculator = new Calculator();
 		this.calculator.setCustomer(persistedCustomer);
+		this.calculator.setEquipment(new Equipment());
+		this.calculator.getEquipment().addPanel(new Panel());
+		moveToLocation();
 		return "tabinput.xhtml";
 	}
 	/**
 	 * delete selected calculations
 	 */
-	public void deleteCalculation(){
+	public String deleteCalculation(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		try{
 			for(Calculator calc : selectedCalculators)
 				calculatorDAO.remove(calc);
-			context.addMessage(null, new FacesMessage("Calculation(s) deleted."));
+			context.addMessage(null, new FacesMessage("Successful",
+					"Calculation(s) deleted."));
 		} catch (Exception e){
 			context.addMessage(null, new FacesMessage("Error: " + e));
 		}		
+		return "home.xhtml";
 	}
 	/**
 	 * Open a selected Calculation
@@ -508,7 +515,14 @@ public class CalculatorController implements Serializable {
 	 */
 	public void compareCalculation(){
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("To be implemented (Iteration #4)"));
+		context.addMessage(null, new FacesMessage("Successful",
+				"To be implemented - Iteration #4"));
+	}
+	/**
+	 * Back to Home Page
+	 */
+	public String backToHome(){
+		return "home.xhtml?faces-redirect=true";
 	}
 	/**
 	 * Validate login credentials
@@ -521,13 +535,13 @@ public class CalculatorController implements Serializable {
 				.getCustomer().getUserProfile().getPassword());
 		if (response.getKey() == null) {
 			responseMessage = "Invalid Email or Password.";
-			return "login.xhtml";
+			return "login.xhtml?faces-redirect=true";
 		} else {
 			if (calculator.getCustomer() == null)
 				calculator.setCustomer(new Customer());
 			calculator.getCustomer().setUserProfile(response);
 			responseMessage = "";
-			return "home.xhtml";
+			return "home.xhtml?faces-redirect=true";
 
 		}
 	}
