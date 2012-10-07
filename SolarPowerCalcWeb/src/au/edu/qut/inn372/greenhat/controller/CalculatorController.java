@@ -508,6 +508,8 @@ public class CalculatorController implements Serializable {
 	 * @return
 	 */
 	public String openCalculation(){
+		for(Calculator calc : selectedCalculators)
+			this.calculator = calculatorDAO.getByName(calc.getName());
 		return "tabinput.xhtml";
 	}
 	/**
