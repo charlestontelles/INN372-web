@@ -65,12 +65,16 @@
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.tariff11Fee}" id="tariff11"></h:inputText>
 
 
+				
+				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave" update="growl"></h:commandButton>
 				<h:commandButton action="#{calculatorController.calculate}" value="Calculate" id="calculate">
 					<f:setPropertyActionListener target="#{calculatorController.calculator}"
              						 value="#{calculatorController.calculator}" />
 				</h:commandButton>
 				
+				<h:commandButton action="#{calculatorController.saveTemplate}" value="Save as Template" id="templateSave" update="growl"></h:commandButton>
+				<h:outputText value=" "></h:outputText>
 			</h:panelGrid>
 			
 		</h:form>

@@ -276,8 +276,28 @@ public class CalculatorController implements Serializable {
 	public void saveCalculation() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
+			if(calculator.getStatus() == 2){
+				calculator.setName(null);
+				calculator.setKey(null);
+			}
+			if (calculator.getCalculations() == null || calculator.getCalculations().length <= 0)
+				calculator.setStatus(0);
+			else
+				calculator.setStatus(1);
 			calculatorDAO.save(calculator);
 			context.addMessage(null, new FacesMessage("Calculation Saved."));
+		} catch (Exception e) {
+			context.addMessage(null, new FacesMessage("Error: " + e));
+			throw new Exception(e);
+		}
+	}
+	
+	public void saveTemplate() throws Exception {
+		FacesContext context = FacesContext.getCurrentInstance();
+		try {
+			calculator.setStatus(2);
+			calculatorDAO.save(calculator);
+			context.addMessage(null, new FacesMessage("Template Saved."));
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage("Error: " + e));
 			throw new Exception(e);
