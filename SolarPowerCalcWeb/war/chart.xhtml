@@ -10,18 +10,18 @@
 	</h:head>	
 	<h:body>
 			<h4 align = "center"> Graphical Output </h4>
-			<table class="input" align="center" width="80%"><tr><td>
+			<table class="input" align="center" width="95%"><tr><td>
            		<p:lineChart id="costsChart" value="#{calculatorController.calculator.chart.costsCategoryModel}" legendPosition="e"
      				title="Costs" minY="0" maxY="10000" style="height:500px; wdith:100%"/>
-
+				<center>Year</center>
 			</td></tr></table>
         
 			<br />
 			
-			<table class="input" align="center" width="80%"><tr><td>
+			<table class="input" align="center" width="95%"><tr><td>
 			<p:lineChart id="savingsChart" value="#{calculatorController.calculator.chart.savingsCategoryModel}" legendPosition="e"
      			title="Savings" minY="0" maxY="16000" style="height:500px; wdith:100%"/>
-
+				<center>Year</center>
           	</td></tr></table>      
           	    
 	</h:body>
