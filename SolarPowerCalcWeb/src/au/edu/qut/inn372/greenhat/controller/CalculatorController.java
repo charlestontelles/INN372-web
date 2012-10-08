@@ -380,18 +380,24 @@ public class CalculatorController implements Serializable {
 	 * @return list of inverter brands
 	 */
 	public List<SelectItem> getListOfInverterBrands() {
-		List<SelectItem> list = new ArrayList<SelectItem>();
-	    list.add(new SelectItem("BP Solar Inverters", "BP Solar Inverters"));
-	    list.add(new SelectItem("Sharp Solar Inverters", "Sharp Solar Inverters"));
-	    list.add(new SelectItem("Sunlinq Portable Solar Inverters", "Sunlinq Portable Solar Inverters"));
-	    list.add(new SelectItem("SunPower Solar Inverters", "SunPower Solar Inverters"));
-	    list.add(new SelectItem("SunTech Solar Inverters", "SunTech Solar Inverters"));
-	    list.add(new SelectItem("Powerfilm Flexible Solar Inverters", "Powerfilm Flexible Solar Inverters"));
-	    list.add(new SelectItem("Sanyo Solar Inverters", "Sanyo Solar Inverters"));
-	    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
-	    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
-	    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
-	    return list;
+		for (Equipment equipment : listEquipments) {
+			if (calculator.getEquipment().getKitName().equals(equipment.getKitName()) ){
+				List<SelectItem> list = new ArrayList<SelectItem>();
+			    list.add(new SelectItem("BP Solar Inverters", "BP Solar Inverters"));
+			    list.add(new SelectItem("Sharp Solar Inverters", "Sharp Solar Inverters"));
+			    list.add(new SelectItem("Sunlinq Portable Solar Inverters", "Sunlinq Portable Solar Inverters"));
+			    list.add(new SelectItem("SunPower Solar Inverters", "SunPower Solar Inverters"));
+			    list.add(new SelectItem("SunTech Solar Inverters", "SunTech Solar Inverters"));
+			    list.add(new SelectItem("Powerfilm Flexible Solar Inverters", "Powerfilm Flexible Solar Inverters"));
+			    list.add(new SelectItem("Sanyo Solar Inverters", "Sanyo Solar Inverters"));
+			    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
+			    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
+			    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
+			    return list;
+			}
+		}
+		
+		return null;
 	}
 
 	/**
