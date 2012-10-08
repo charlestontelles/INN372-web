@@ -13,32 +13,34 @@ import org.primefaces.model.chart.ChartSeries;
 @SessionScoped
 public class Chart implements Serializable {
 
-    private CartesianChartModel categoryModelPower;
-    private CartesianChartModel categoryModelFinancial;
+	private static final long serialVersionUID = -5553240037289506783L;
+	
+	private CartesianChartModel costsCategoryModel;
+    private CartesianChartModel savingsCategoryModel;
 
-    public CartesianChartModel getCategoryModelPower() {
-        return categoryModelPower;
+    public CartesianChartModel getCostsCategoryModel() {
+        return costsCategoryModel;
     }
     
     /**
 	 * @param categoryModel the categoryModel to set
 	 */
-	public void setCategoryModelPower(CartesianChartModel categoryModelPower) {
-		this.categoryModelPower = categoryModelPower;
+	public void setCostsCategoryModel(CartesianChartModel costsCategoryModel) {
+		this.costsCategoryModel = costsCategoryModel;
 	}
 
 	/**
 	 * @return the categoryModelFinancial
 	 */
-	public CartesianChartModel getCategoryModelFinancial() {
-		return categoryModelFinancial;
+	public CartesianChartModel getSavingsCategoryModel() {
+		return savingsCategoryModel;
 	}
 
 	/**
 	 * @param categoryModelFinancial the categoryModelFinancial to set
 	 */
-	public void setCategoryModelFinancial(CartesianChartModel categoryModelFinancial) {
-		this.categoryModelFinancial = categoryModelFinancial;
+	public void setSavingsCategoryModel(CartesianChartModel savingsCategoryModel) {
+		this.savingsCategoryModel = savingsCategoryModel;
 	}
 }
                     

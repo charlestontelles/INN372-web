@@ -9,17 +9,20 @@
 	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
 	</h:head>	
 	<h:body>
-		<table class="input" align="center" width="100%"> <tr><td>
-			<table class="input" align="center"><tr><td>
-				<p:barChart id="powerOutput" value="#{chart.categoryModelPower}" legendPosition="ne"
-            		title="Average Solar Power Generation" min="0" max="3200" style="height:600px"/>
+			<h4 align = "center"> Graphical Output </h4>
+			<table class="input" align="center" width="80%"><tr><td>
+           		<p:lineChart id="costsChart" value="#{calculatorController.calculator.chart.costsCategoryModel}" legendPosition="e"
+     				title="Costs" minY="0" maxY="10000" style="height:500px; wdith:100%"/>
+
 			</td></tr></table>
         
 			<br />
-			<table width="100%" class="input"><tr><td>
-				<p:barChart id="financialOutput" value="#{chart.categoryModelFinancial}" legendPosition="ne"
-           			title="Financial Calculations" min="0" max="30000" style="height:600px"/>
-			</td></tr></table>  
-		</td></tr></table>      
+			
+			<table class="input" align="center" width="80%"><tr><td>
+			<p:lineChart id="savingsChart" value="#{calculatorController.calculator.chart.savingsCategoryModel}" legendPosition="e"
+     			title="Savings" minY="0" maxY="16000" style="height:500px; wdith:100%"/>
+
+          	</td></tr></table>      
+          	    
 	</h:body>
 </html>

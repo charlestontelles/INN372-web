@@ -499,52 +499,46 @@ public class Calculator implements Serializable {
 	}
 	
 	public void createChart(){
-		CartesianChartModel categoryModelPower;
-		CartesianChartModel categoryModelFinancial;
-		categoryModelPower = new CartesianChartModel();
-		categoryModelFinancial = new CartesianChartModel();
+		CartesianChartModel CostCategoryModel;
+		CartesianChartModel savingsCategoryModel;
+		CostCategoryModel = new CartesianChartModel();
+		savingsCategoryModel = new CartesianChartModel();
 		
-		ChartSeries dailyPowerOutput = new ChartSeries();
-		dailyPowerOutput.setLabel("Daily Power Output");
+		ChartSeries costsWithOutSolarSeries = new ChartSeries();
+		costsWithOutSolarSeries.setLabel("Cost Without Solar");
 		
-		ChartSeries quarterPowerOutput = new ChartSeries();
-		quarterPowerOutput.setLabel("Quarterly Solar Power");
-		
-		ChartSeries annualPowerOutput = new ChartSeries();
-		annualPowerOutput.setLabel("Annual Solar Power");
+		ChartSeries costsWithSolarSeries = new ChartSeries();
+		costsWithSolarSeries.setLabel("Costs With Solar");
         
-		String year_range = "1 - " + calculations.length + " years";
-        //for (int i=0; i<calculations.length; i++){
-        	dailyPowerOutput.set(year_range, calculations[0].getDailySolarPower());
-        	quarterPowerOutput.set(year_range, (calculations[0].getDailySolarPower() * 91));
-        	annualPowerOutput.set(year_range, calculations[0].getAnnualSolarPower());
-        //}
+		for(Calculation curCalculation : calculations) {			
+			double annualCost = curCalculation.getTariff11Fee()*this.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+			costsWithOutSolarSeries.set(curCalculation.getYear() + "", annualCost);			
+			costsWithSolarSeries.set(curCalculation.getYear()+"", annualCost - curCalculation.getAnnualSaving());		
+		}
+        	
+        ChartSeries savings = new ChartSeries();
+        savings.setLabel("Cumulative Savings");
         
-        ChartSeries annualSavings = new ChartSeries();
-        annualSavings.setLabel("Annual Savings");
+        ChartSeries paybackPeriod = new ChartSeries();
+        paybackPeriod.setLabel("Initial Investment");
         
-        ChartSeries cumulativeSavings = new ChartSeries();
-        cumulativeSavings.setLabel("Cumulative Savings");
+		double systemCost = this.getEquipment().getCost();		
         
-        //ChartSeries returnOnInvestment = new ChartSeries();
-        //returnOnInvestment.setLabel("Return On Investment");
-        
-        
-        for (int i=0; i<calculations.length; i++){
-        	annualSavings.set(calculations[i].getYear() + "", calculations[i].getAnnualSaving());
-        	cumulativeSavings.set(calculations[i].getYear() + "", calculations[i].getCumulativeSaving());
-        	//returnOnInvestment.set(calculations[i].getYear() + "", calculations[i].getReturnOnInvestment());
-        }
+		for(Calculation curCalculation : calculations) {			
+			savings.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+			paybackPeriod.set(curCalculation.getYear()+"", systemCost);	
+		}
 
-        categoryModelPower.addSeries(dailyPowerOutput);
-        categoryModelPower.addSeries(quarterPowerOutput);
-        categoryModelPower.addSeries(annualPowerOutput);
+		CostCategoryModel.addSeries(costsWithOutSolarSeries);
+		CostCategoryModel.addSeries(costsWithSolarSeries);
         
-        categoryModelFinancial.addSeries(annualSavings);
-        categoryModelFinancial.addSeries(cumulativeSavings);
-        //categoryModelFinancial.addSeries(returnOnInvestment);
+		savingsCategoryModel.addSeries(savings);
+		savingsCategoryModel.addSeries(paybackPeriod);
         
-        this.chart.setCategoryModelPower(categoryModelPower);
-        this.chart.setCategoryModelFinancial(categoryModelFinancial);
+        if(this.chart == null){
+        	this.chart = new Chart();
+        }
+		this.chart.setCostsCategoryModel(CostCategoryModel);
+        this.chart.setSavingsCategoryModel(savingsCategoryModel);
 	}
 }
