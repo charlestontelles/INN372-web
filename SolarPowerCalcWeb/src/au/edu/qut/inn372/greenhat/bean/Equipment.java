@@ -29,6 +29,9 @@ public class Equipment implements Serializable{
 	@ManagedProperty (value = "#{inverter}")
 	private Inverter inverter;
 	
+	@ManagedProperty (value = "#{inverters}")
+	private List<Inverter> inverters = new ArrayList<Inverter>();
+	
 	@ManagedProperty (value = "#{battery}")
 	private Battery battery;
 	
@@ -48,6 +51,37 @@ public class Equipment implements Serializable{
 		this.inverter = inverter;
 	}
 	
+	/**
+	 * Get the inverters
+	 * @return inverters value of the inverters property
+	 */
+	public List<Inverter> getInverters() {
+		return inverters;
+	}
+	
+	/**
+	 * Set the inverters
+	 * @param inverters new value for the inverters property
+	 */
+	public void setInverters(List<Inverter> inverters) {
+		this.inverters = inverters;
+	}
+	
+	/**
+	 * Add panel to Inverter List
+	 * @param panel
+	 */
+	public void addInverter (Inverter inverter){
+		this.inverters.add(inverter);
+	}
+	
+	/**
+	 * Remove panel from Panel List
+	 * @param panel
+	 */
+	public void removeInverter(Inverter inverter){
+		this.inverters.remove(inverter);
+	}
 	
 	/**
 	 * Get the battery

@@ -41,6 +41,13 @@
 					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
 				</h:selectOneMenu>
 				
+				<h:outputText value="List of Inverter Brands"></h:outputText>
+				<h:selectOneMenu value="#{calculatorController.calculator.equipment.inverter.brand}"
+						onchange="submit()" valueChangeListener="#{calculatorController.handleInverterChange}">	
+					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
+					<f:selectItems value="#{calculatorController.listOfInverterBrands}" />	
+				</h:selectOneMenu>
+				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK">
 					<f:setPropertyActionListener target="#{calculatorController.calculator}" value="#{calculatorController.calculator}" />

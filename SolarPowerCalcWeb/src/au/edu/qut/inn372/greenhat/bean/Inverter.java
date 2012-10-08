@@ -24,6 +24,24 @@ public class Inverter implements Serializable{
 	private double replacementCost;
 	private double cost;// = 5000;
 	private double efficiencyLoss;
+	private String brand;
+	private int id;
+	
+	/**
+	 * Get the panel id
+	 * @return id of the panel
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
+	 * Set the panel id
+	 * @param id new value for the panel id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	/**
 	 * Get the efficiency
@@ -103,5 +121,19 @@ public class Inverter implements Serializable{
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {
 		this.efficiencyLoss = efficiencyLoss;
+	}
+	
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 }

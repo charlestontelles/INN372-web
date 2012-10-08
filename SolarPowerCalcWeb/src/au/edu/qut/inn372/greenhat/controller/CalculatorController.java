@@ -22,16 +22,19 @@ import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Customer;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Inverter;
 import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
 import au.edu.qut.inn372.greenhat.dao.EquipmentDAO;
+import au.edu.qut.inn372.greenhat.dao.InverterDAO;
 import au.edu.qut.inn372.greenhat.dao.LocationDAO;
 import au.edu.qut.inn372.greenhat.dao.PanelDAO;
 import au.edu.qut.inn372.greenhat.dao.UserProfileDAO;
 import au.edu.qut.inn372.greenhat.dao.gae.CalculatorDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.EquipmentDAOImpl;
+import au.edu.qut.inn372.greenhat.dao.gae.InverterDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.PanelDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
@@ -70,6 +73,9 @@ public class CalculatorController implements Serializable {
 
 	private List<Panel> panelList = new ArrayList<Panel>();
 	private Panel selectedPanel;
+	
+	private List<Inverter> inverterList = new ArrayList<Inverter>();
+	private Inverter selectedInverter;
 
 	private int tabIndex = 0;
 	private String responseMessage = "";
@@ -94,6 +100,9 @@ public class CalculatorController implements Serializable {
 
 		PanelDAO panelDAO = new PanelDAOImpl();
 		panelList = panelDAO.getPanels();
+		
+		InverterDAO inverterDAO = new InverterDAOImpl();
+		inverterList = inverterDAO.getInverters();
 	}
 
 	/**
@@ -345,6 +354,25 @@ public class CalculatorController implements Serializable {
 		list.add(new SelectItem("REC Solar Panels", "REC Solar Panels"));
 		return list;
 	}
+	
+	/**
+	 * Returns a list of inverter brands
+	 * @return list of inverter brands
+	 */
+	public List<SelectItem> getListOfInverterBrands() {
+		List<SelectItem> list = new ArrayList<SelectItem>();
+	    list.add(new SelectItem("BP Solar Inverters", "BP Solar Inverters"));
+	    list.add(new SelectItem("Sharp Solar Inverters", "Sharp Solar Inverters"));
+	    list.add(new SelectItem("Sunlinq Portable Solar Inverters", "Sunlinq Portable Solar Inverters"));
+	    list.add(new SelectItem("SunPower Solar Inverters", "SunPower Solar Inverters"));
+	    list.add(new SelectItem("SunTech Solar Inverters", "SunTech Solar Inverters"));
+	    list.add(new SelectItem("Powerfilm Flexible Solar Inverters", "Powerfilm Flexible Solar Inverters"));
+	    list.add(new SelectItem("Sanyo Solar Inverters", "Sanyo Solar Inverters"));
+	    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
+	    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
+	    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
+	    return list;
+	}
 
 	/**
 	 * Loads selected location to calculator
@@ -385,6 +413,20 @@ public class CalculatorController implements Serializable {
 			moveToEquipment();
 		} catch (Exception e) {
 		}
+	}
+	
+	public void handleInverterChange(ValueChangeEvent event){
+		try{
+			for (Inverter inverter : inverterList) {
+				if (inverter.getBrand().equalsIgnoreCase(event.getNewValue().toString())){
+					for(int index=0; index < this.calculator.getEquipment().getInverters().size(); index++){
+						this.calculator.getEquipment().getInverters().set(index, inverter);
+					}
+					this.calculator.getEquipment().getInverter().setEfficiency(inverter.getEfficiency());	
+				}
+			}
+			moveToEquipment();
+		} catch (Exception e){}
 	}
 
 	/**
@@ -641,6 +683,34 @@ public class CalculatorController implements Serializable {
 	 */
 	public void setSelectedPanel(Panel selectedPanel) {
 		this.selectedPanel = selectedPanel;
+	}
+	
+	/**
+	 * @return the InverterList
+	 */
+	public List<Inverter> getInverterList() {
+		return inverterList;
+	}
+
+	/**
+	 * @param panelList the inverterList to set
+	 */
+	public void setInverterList(List<Inverter> inverterList) {
+		this.inverterList = inverterList;
+	}
+
+	/**
+	 * @return the selectedInverter
+	 */
+	public Inverter getSelectedInverter() {
+		return selectedInverter;
+	}
+
+	/**
+	 * @param selectedInverter the selectedInverter to set
+	 */
+	public void setSelectedInverter(Inverter selectedInverter) {
+		this.selectedInverter = selectedInverter;
 	}
 
 	/**
