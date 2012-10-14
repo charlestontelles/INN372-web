@@ -28,7 +28,8 @@
              	<h:outputText value="Number of Panels"></h:outputText>
 				<h:inputText id="bank1NumberOfPanels" value="#{calculatorController.calculator.customer.location.roof.banks[0].numberOfPanels}"
 					>
-             	</h:inputText>	
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank1Panels" />
+             	</h:inputText>
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
 				<h:inputText id="bank1Angle" value="#{calculatorController.calculator.customer.location.roof.banks[0].angle}" 
@@ -50,6 +51,7 @@
              	<h:outputText value="Number of Panels"></h:outputText>
 				<h:inputText id="bank2NumberOfPanels" value="#{calculatorController.calculator.customer.location.roof.banks[1].numberOfPanels}"
 					>
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank2Panels" />
              	</h:inputText>	
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
