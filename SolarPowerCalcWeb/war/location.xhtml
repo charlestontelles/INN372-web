@@ -48,10 +48,8 @@
 					<p:ajax update=":tabView:equipmentForm:panelsOnRoof" />
 				</h:inputText>
 
+				<h:outputText></h:outputText>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl_loc"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToCustomer}" value="OK">
-					<f:setPropertyActionListener target="#{calculatorController.calculator.customer.location.city}" value="#{calculatorController.calculator.customer.location.city}" />
-				</h:commandButton>
 				
 			</h:panelGrid>
 	

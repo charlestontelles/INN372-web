@@ -66,10 +66,8 @@
 					<p:ajax event="change" update=":tabView:summaryInputForm:bank2OrientationLoss" />
 				</h:selectOneMenu>
 
+				<h:outputText></h:outputText>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl_roof"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToSummary}" value="OK">
-					<f:setPropertyActionListener target="#{calculatorController.calculator}" value="#{calculatorController.calculator}" />
-				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</f:view>

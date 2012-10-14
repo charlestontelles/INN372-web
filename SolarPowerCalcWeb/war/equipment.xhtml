@@ -56,10 +56,8 @@
 					<p:ajax event="change" update="inverterEfficiency"/>
 				</h:selectOneMenu>
 				
+				<h:outputText></h:outputText>
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToRoof}" oncomplete="roof.xhtml?faces-redirect=true" value="OK">
-					<f:setPropertyActionListener target="#{calculatorController.calculator}" value="#{calculatorController.calculator}" />
-				</h:commandButton>
 	        </h:panelGrid>
 	        
 	      	<br />

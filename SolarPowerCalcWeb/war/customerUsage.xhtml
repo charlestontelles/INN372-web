@@ -40,11 +40,9 @@
 				
 				<h:outputText value="Feed in fee:"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.feedInFee}"></h:inputText>
-					
+				
+				<h:outputText></h:outputText>	
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
-				<h:commandButton action="#{calculatorController.moveToEquipment}" value="OK">
-					<f:setPropertyActionListener target="#{calculatorController.calculator.customer}" value="#{calculatorController.calculator.customer}" />
-				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</f:view>
