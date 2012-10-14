@@ -273,7 +273,8 @@ public class CalculatorController implements Serializable {
 				calculator.setName(null);
 				calculator.setKey(null);
 			}
-			if (calculator.getCalculations() == null || calculator.getCalculations().length <= 0)
+			if (calculator.getCalculations() == null || calculator.getCalculations().length <= 0
+					|| calculator.getCalculations()[0] == null)
 				calculator.setStatus(0);
 			else
 				calculator.setStatus(1);
