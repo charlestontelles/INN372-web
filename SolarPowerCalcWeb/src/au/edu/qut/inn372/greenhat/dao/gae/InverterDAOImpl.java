@@ -27,15 +27,15 @@ public class InverterDAOImpl implements Serializable, InverterDAO {
 		Inverter bPSolarInverter = new Inverter();
 		bPSolarInverter.setId(1);
 		bPSolarInverter.setBrand("BP Solar Inverters");
-		bPSolarInverter.setCost(100);
-		bPSolarInverter.setEfficiency(91);
+		bPSolarInverter.setCost(500);
+		bPSolarInverter.setEfficiency(85);
 		bPSolarInverter.setEfficiencyLoss(0.5);
 		
 		Inverter sharpSolarInverter = new Inverter();
 		sharpSolarInverter.setId(1);
 		sharpSolarInverter.setBrand("Sharp Solar Inverters");
-		sharpSolarInverter.setCost(500);
-		sharpSolarInverter.setEfficiency(92);
+		sharpSolarInverter.setCost(600);
+		sharpSolarInverter.setEfficiency(95);
 		sharpSolarInverter.setEfficiencyLoss(0.7);
 		
 		Inverter sunlinqSolarInverter = new Inverter();
@@ -49,7 +49,7 @@ public class InverterDAOImpl implements Serializable, InverterDAO {
 		sunPowerSolarInverter.setId(1);
 		sunPowerSolarInverter.setBrand("SunPower Solar Inverters");
 		sunPowerSolarInverter.setCost(400);
-		sunPowerSolarInverter.setEfficiency(94);
+		sunPowerSolarInverter.setEfficiency(95);
 		sunPowerSolarInverter.setEfficiencyLoss(0.8);
 		
 		Inverter sunTechSolarInverter = new Inverter();
@@ -70,7 +70,7 @@ public class InverterDAOImpl implements Serializable, InverterDAO {
 		sanyoSolarPanel.setId(1);
 		sanyoSolarPanel.setBrand("Sanyo Solar Inverters");
 		sanyoSolarPanel.setCost(450);
-		sanyoSolarPanel.setEfficiency(98);
+		sanyoSolarPanel.setEfficiency(95);
 		sanyoSolarPanel.setEfficiencyLoss(0.8);
 		
 		Inverter globalSolarPanel = new Inverter();

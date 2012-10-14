@@ -14,7 +14,7 @@
 	
 	<h:body>
 	<f:view>
-	    <h:form>
+	    <h:form id="locationForm">
 	    	<p:growl id="growl_loc" showDetail="true" sticky="true" />  
 	    	
 			<h:panelGrid columns="2" styleClass="input" style="width= 300px">
@@ -23,26 +23,30 @@
 				<h:outputText></h:outputText>
 				
 				<h:outputText value="City:"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.city}" onchange="submit()"
+				<h:selectOneMenu id="city" value="#{calculatorController.calculator.customer.location.city}"
 							valueChangeListener="#{calculatorController.handleLocationChange}">  
                 	<f:selectItem itemLabel="Select City" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.locations}" />  
+                	<p:ajax event="change" 
+                		update="city: sunlightHours: :tabView:summaryInputForm:sunlightHours: 
+                			:tabView:roofForm:bank1Orientation: :tabView:roofForm:bank2Orientation" />
             	</h:selectOneMenu> 	
 				
 				<h:outputText value="Average Daily Hours of Sunlight:"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.sunLightHours}" id="locationSunlightHours" readonly="true"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.sunLightHours}" id="sunlightHours" readonly="true"></h:inputText>
 
 				<h:outputText value="Roof size:"></h:outputText>
 				<h:outputText></h:outputText>
 
 				<h:outputText style="width:250px" value="Roof Size Width (cm):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.width}" id="width"></h:inputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.width}" id="width">
+					<p:ajax update=":tabView:equipmentForm:panelsOnRoof" />
+				</h:inputText>
 				
 				<h:outputText style="width:250px"  value="Roof Size Height (cm):"></h:outputText>
-				<h:inputText  value="#{calculatorController.calculator.customer.location.roof.height}" id="height"></h:inputText>
-		
-			
-			
+				<h:inputText  value="#{calculatorController.calculator.customer.location.roof.height}" id="height">
+					<p:ajax update=":tabView:equipmentForm:panelsOnRoof" />
+				</h:inputText>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl_loc"></h:commandButton>
 				<h:commandButton action="#{calculatorController.moveToCustomer}" value="OK">

@@ -14,38 +14,46 @@
 	</h:head>
 	
 	<h:body>
-		<h:form id="form" styleClass="input">
+		<h:form id="equipmentForm" styleClass="input">
 		    <h:panelGrid id="display" columns="2" cellpadding="4" styleClass="input">
 		    	<h:outputText value="List of Equipment"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}" onchange="submit()"
+				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}"
 							valueChangeListener="#{calculatorController.handleEquipmentChange}" >  
                 	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.equipments}" /> 
+                	<p:ajax event="change" 
+                		update="totalPanels: systemCost: systemSize: inverterEfficiency: panelBrand: inverterBrand
+                			:tabView:roofForm:numberOfPanels: :tabView:roofForm:bank1NumberOfPanels: 
+                			:tabView:summaryInputForm:bank1Panels: :tabView:summaryInputForm:equipmentSize: :tabView:summaryInputForm:inverterEfficiency"/>
             	</h:selectOneMenu> 	
 		    
 				<h:outputText value="Number of Panels"></h:outputText>	
-			   	<h:inputText id="totalPanels" value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true"></h:inputText>
-		        <h:outputText value="System Cost"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.cost}" readonly="true"></h:inputText>
+			   	<h:inputText id="totalPanels" value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true">
+			   	</h:inputText>
+		        
+		        <h:outputText  value="System Cost"></h:outputText>
+				<h:inputText id="systemCost" value="#{calculatorController.calculator.equipment.cost}" readonly="true"></h:inputText>
 				
 				<h:outputText value="System Size (KWh):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.size}" readonly="true"></h:inputText>
+				<h:inputText id="systemSize" value="#{calculatorController.calculator.equipment.size}" readonly="true"></h:inputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.equipment.inverter.efficiency}" readonly="true"></h:inputText>
+				<h:inputText id="inverterEfficiency" value="#{calculatorController.calculator.equipment.inverter.efficiency}" readonly="true"></h:inputText>
 	
 				<h:outputText value="List of Panel Brands"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.panels[0].brand}"
-						onchange="submit()" valueChangeListener="#{calculatorController.handlePanelChange}">	
+				<h:selectOneMenu id="panelBrand" value="#{calculatorController.calculator.equipment.panels[0].brand}"
+						valueChangeListener="#{calculatorController.handlePanelChange}">	
 					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
 					<f:selectItems value="#{calculatorController.listOfPanelBrands}" />	
+					<p:ajax event="change" update="systemCost: systemSize"/>
 				</h:selectOneMenu>
 				
 				<h:outputText value="List of Inverter Brands"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.inverter.brand}"
-						onchange="submit()" valueChangeListener="#{calculatorController.handleInverterChange}">	
+				<h:selectOneMenu id="inverterBrand" value="#{calculatorController.calculator.equipment.inverter.brand}"
+						valueChangeListener="#{calculatorController.handleInverterChange}">	
 					<f:selectItem itemValue="" itemLabel="Select the brand"/>	
 					<f:selectItems value="#{calculatorController.listOfInverterBrands}" />	
+					<p:ajax event="change" update="inverterEfficiency"/>
 				</h:selectOneMenu>
 				
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
@@ -58,7 +66,7 @@
 			
 			<h:panelGrid id="panelGridPanels" columns="1"  styleClass="input">
 				<h:outputText value="Number of Panels Your Roof can Install:" />
-				<h:outputText value="#{(calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size)}">
+				<h:outputText id="panelsOnRoof" value="#{(calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size)}">
 					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
 				</h:outputText>
 			</h:panelGrid>

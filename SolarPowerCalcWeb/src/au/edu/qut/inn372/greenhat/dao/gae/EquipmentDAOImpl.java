@@ -26,6 +26,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		Inverter inverter1 = new Inverter();
 		inverter1.setEfficiency(85);
 		inverter1.setCost(500);
+		inverter1.setBrand("BP Solar Inverters");
 		
 		Panel panel1 = new Panel();
 		panel1.setEfficiency(95);
@@ -63,7 +64,8 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		
 		Inverter inverter2 = new Inverter();
 		inverter2.setEfficiency(95);
-		inverter2.setCost(5000);
+		inverter2.setCost(600);
+		inverter2.setBrand("Sharp Solar Inverters");
 		
 		Panel panel2 = new Panel();
 		panel2.setPowerRating(700);
@@ -99,7 +101,8 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		
 		Inverter inverter3 = new Inverter();
 		inverter3.setEfficiency(90);
-		inverter3.setCost(500);
+		inverter3.setCost(400);
+		inverter3.setBrand("SunPower Solar Inverters");
 		
 		Panel panel3 = new Panel();
 		panel3.setEfficiency(95);
@@ -143,7 +146,8 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		
 		Inverter inverter4 = new Inverter();
 		inverter4.setEfficiency(95);
-		inverter4.setCost(500);
+		inverter4.setCost(450);
+		inverter4.setBrand("Sanyo Solar Inverters");
 		
 		Panel panel4 = new Panel();
 		panel4.setEfficiency(95);

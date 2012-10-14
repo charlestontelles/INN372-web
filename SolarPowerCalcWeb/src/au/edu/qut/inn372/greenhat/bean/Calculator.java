@@ -33,10 +33,12 @@ public class Calculator implements Serializable {
 	@ManagedProperty (value = "#{customer}")
 	private Customer customer;
 	
-	private Calculation [] calculations;
+
+	private Calculation [] calculations  =  new Calculation[25];
 	
 	@ManagedProperty (value = "#{chart}")
 	private Chart chart;
+	
 	
 	/**
 	 * Calculator's Name.
@@ -210,12 +212,12 @@ public class Calculator implements Serializable {
 		Location location = customer.getLocation();
 		Roof roof = location.getRoof();
 		Bank[] banks = roof.getBanks();
-		calculations = new Calculation[25];
+		
 		double cumulativeSaving = 0.0;
 		double replacementGeneration = 0.0;
 		
-		calculateBankPowerOutput(banks[0]);
-		calculateBankPowerOutput(banks[1]);
+		calculateBankPowerOutput(banks,0);
+		calculateBankPowerOutput(banks,1);
 
 		calculateDayLightElectricityUsage();
 		
@@ -238,7 +240,7 @@ public class Calculator implements Serializable {
 			cumulativeSaving = Math.round( (cumulativeSaving + annualSaving) *100.0)/100.0;
 			double returnOnInvestment = calculateReturnOnInvestment(cumulativeSaving);
 			
-			calculations[i] = new Calculation(i+2012, panelEfficiency, bank1Efficiency, 
+			this.calculations[i] = new Calculation(i+2012, panelEfficiency, bank1Efficiency, 
 					bank2Efficiency, bank1DailySolarPower, bank2DailySolarPower,
 					tariff11Fee, dailySolarPower, annualSolarPower, replacementGeneration, exportedGeneration, 
 					moneySaved, moneyEarned, dailySaving, annualSaving, cumulativeSaving, returnOnInvestment);
@@ -414,9 +416,10 @@ public class Calculator implements Serializable {
 	 * @param bank
 	 * @param numOfPanels
 	 */
-	public void calculateBankPowerOutput(Bank bank){
+	public void calculateBankPowerOutput(Bank [] banks, int i){
 		try{
-			bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
+			//bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
+			banks[i].setPowerOutput((banks[0].getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
 		} catch (Exception e){
 		}
 	}
@@ -510,8 +513,8 @@ public class Calculator implements Serializable {
 		ChartSeries costsWithSolarSeries = new ChartSeries();
 		costsWithSolarSeries.setLabel("Costs With Solar");
         
-		for(Calculation curCalculation : calculations) {			
-			double annualCost = curCalculation.getTariff11Fee()*this.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+		for(Calculation curCalculation : this.calculations) {			
+			double annualCost = curCalculation.getTariff11Fee() * this.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
 			costsWithOutSolarSeries.set(curCalculation.getYear() + "", annualCost);			
 			costsWithSolarSeries.set(curCalculation.getYear()+"", annualCost - curCalculation.getAnnualSaving());		
 		}
@@ -524,7 +527,7 @@ public class Calculator implements Serializable {
         
 		double systemCost = this.getEquipment().getCost();		
         
-		for(Calculation curCalculation : calculations) {			
+		for(Calculation curCalculation : this.calculations) {			
 			savings.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
 			paybackPeriod.set(curCalculation.getYear()+"", systemCost);	
 		}
@@ -540,5 +543,6 @@ public class Calculator implements Serializable {
         }
 		this.chart.setCostsCategoryModel(CostCategoryModel);
         this.chart.setSavingsCategoryModel(savingsCategoryModel);
+        this.setChart(chart);
 	}
 }

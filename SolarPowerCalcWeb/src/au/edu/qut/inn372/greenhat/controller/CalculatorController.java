@@ -15,10 +15,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import au.edu.qut.inn372.greenhat.bean.Bank;
+import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Customer;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
@@ -74,8 +78,11 @@ public class CalculatorController implements Serializable {
 	private List<Panel> panelList = new ArrayList<Panel>();
 	private Panel selectedPanel;
 	
-	private List<Inverter> inverterList = new ArrayList<Inverter>();
-	private Inverter selectedInverter;
+	//private List<Inverter> inverterList = new ArrayList<Inverter>();
+	//private Inverter selectedInverter;
+	
+	private Map<String, String> inverters = new HashMap<String, String>();
+	List<Inverter> listInverters;
 
 	private int tabIndex = 0;
 	private String responseMessage = "";
@@ -85,8 +92,6 @@ public class CalculatorController implements Serializable {
 
 	public CalculatorController() {
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
-		// equipments = equipmentDAO.getEquipments();
-		// equipmentDataModel = new EquipmentDataModel(equipments);
 		listEquipments = equipmentDAO.getEquipments();
 		for (Equipment equipment : listEquipments) {
 			this.equipments.put(equipment.getKitName(), equipment.getKitName());
@@ -101,8 +106,13 @@ public class CalculatorController implements Serializable {
 		PanelDAO panelDAO = new PanelDAOImpl();
 		panelList = panelDAO.getPanels();
 		
+		//InverterDAO inverterDAO = new InverterDAOImpl();
+		//inverterList = inverterDAO.getInverters();
 		InverterDAO inverterDAO = new InverterDAOImpl();
-		inverterList = inverterDAO.getInverters();
+		listInverters = inverterDAO.getInverters();
+		for (Inverter inverter : listInverters) {
+			this.inverters.put(inverter.getBrand(), inverter.getBrand());
+		}
 	}
 
 	/**
@@ -215,27 +225,10 @@ public class CalculatorController implements Serializable {
 	 */
 	public String calculate() {
 		calculator.performCalculations();
+		//calculator.createChart();
 		calculator.setStatus(1);
 		return "output.xhtml";
 	}
-
-	/**
-	 * Set the equipments
-	 * 
-	 * @param equipments
-	 */
-	// public void setEquipment(List<Equipment> equipments){
-	// this.equipments = equipments;
-	// }
-
-	/**
-	 * Get the equipments
-	 * 
-	 * @return equipments
-	 */
-	// public List<Equipment> getEquipments(){
-	// return equipments;
-	// }
 
 	public Map<String, String> getEquipments() {
 		return equipments;
@@ -380,24 +373,18 @@ public class CalculatorController implements Serializable {
 	 * @return list of inverter brands
 	 */
 	public List<SelectItem> getListOfInverterBrands() {
-		for (Equipment equipment : listEquipments) {
-			if (calculator.getEquipment().getKitName().equals(equipment.getKitName()) ){
-				List<SelectItem> list = new ArrayList<SelectItem>();
-			    list.add(new SelectItem("BP Solar Inverters", "BP Solar Inverters"));
-			    list.add(new SelectItem("Sharp Solar Inverters", "Sharp Solar Inverters"));
-			    list.add(new SelectItem("Sunlinq Portable Solar Inverters", "Sunlinq Portable Solar Inverters"));
-			    list.add(new SelectItem("SunPower Solar Inverters", "SunPower Solar Inverters"));
-			    list.add(new SelectItem("SunTech Solar Inverters", "SunTech Solar Inverters"));
-			    list.add(new SelectItem("Powerfilm Flexible Solar Inverters", "Powerfilm Flexible Solar Inverters"));
-			    list.add(new SelectItem("Sanyo Solar Inverters", "Sanyo Solar Inverters"));
-			    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
-			    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
-			    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
-			    return list;
-			}
-		}
-		
-		return null;
+		List<SelectItem> list = new ArrayList<SelectItem>();
+	    list.add(new SelectItem("BP Solar Inverters", "BP Solar Inverters"));
+	    list.add(new SelectItem("Sharp Solar Inverters", "Sharp Solar Inverters"));
+	    list.add(new SelectItem("Sunlinq Portable Solar Inverters", "Sunlinq Portable Solar Inverters"));
+	    list.add(new SelectItem("SunPower Solar Inverters", "SunPower Solar Inverters"));
+	    list.add(new SelectItem("SunTech Solar Inverters", "SunTech Solar Inverters"));
+	    list.add(new SelectItem("Powerfilm Flexible Solar Inverters", "Powerfilm Flexible Solar Inverters"));
+	    list.add(new SelectItem("Sanyo Solar Inverters", "Sanyo Solar Inverters"));
+	    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
+	    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
+	    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
+	    return list;
 	}
 
 	/**
@@ -411,7 +398,6 @@ public class CalculatorController implements Serializable {
 					this.calculator.getCustomer().setLocation(location);
 				}
 			}
-			moveToLocation();
 		} catch (Exception e) {
 		}
 	}
@@ -436,23 +422,20 @@ public class CalculatorController implements Serializable {
 											.getInverter().getCost());
 				}
 			}
-			moveToEquipment();
 		} catch (Exception e) {
 		}
 	}
 	
 	public void handleInverterChange(ValueChangeEvent event){
-		try{
-			for (Inverter inverter : inverterList) {
-				if (inverter.getBrand().equalsIgnoreCase(event.getNewValue().toString())){
-					for(int index=0; index < this.calculator.getEquipment().getInverters().size(); index++){
-						this.calculator.getEquipment().getInverters().set(index, inverter);
-					}
-					this.calculator.getEquipment().getInverter().setEfficiency(inverter.getEfficiency());	
+		try {
+			for (Inverter inverter : listInverters) {
+				if (inverter.getBrand().equalsIgnoreCase(
+						event.getNewValue().toString())) {
+					this.calculator.getEquipment().setInverter(inverter);
 				}
 			}
-			moveToEquipment();
-		} catch (Exception e){}
+		} catch (Exception e) {
+		}
 	}
 
 	/**
@@ -483,10 +466,6 @@ public class CalculatorController implements Serializable {
 		int currentIndex = equipmentTabIndex;
 		setTabIndex(currentIndex + 1);
 		getTabIndex();
-		// Set default for number of panels for bank 1
-		this.calculator.getCustomer().getLocation().getRoof().getBanks()[0]
-				.setNumberOfPanels(this.calculator.getEquipment()
-						.getTotalPanels());
 	}
 
 	/**
@@ -509,15 +488,6 @@ public class CalculatorController implements Serializable {
 		int currentIndex = roofTabIndex;
 		setTabIndex(currentIndex + 1);
 		getTabIndex();
-		Bank[] banks = calculator.getCustomer().getLocation().getRoof()
-				.getBanks();
-
-		for (int i = 0; i < banks.length; i++) {
-			calculator.calculateBankOrientationEfficiencyLoss(banks,
-					banks[i].getSelectedOrientation(), i);
-			calculator.calculateBankAngleEfficiencyLoss(banks,
-					banks[i].getAngle(), i);
-		}
 	}
 
 	/**
@@ -530,13 +500,6 @@ public class CalculatorController implements Serializable {
 		setTabIndex(currentIndex + 1);
 		getTabIndex();
 	}
-
-	/**
-	 * @return the equipmentDataModel
-	 */
-	// public EquipmentDataModel getEquipmentDataModel() {
-	// return equipmentDataModel;
-	// }
 
 	/**
 	 * @return the selectedEquipment
@@ -593,14 +556,19 @@ public class CalculatorController implements Serializable {
 	 * @return
 	 */
 	public String newCalculation() {
-		Customer persistedCustomer = calculator.getCustomer();
-		this.calculator = new Calculator();
+		Customer persistedCustomer = this.calculator.getCustomer();
+				//Calculation calc [] = this.calculator.getCalculations();
+				//this.calculator = new Calculator();
+				//this.calculator.setCalculations(calc);
 		this.calculator.setCustomer(persistedCustomer);
 		this.calculator.setEquipment(new Equipment());
+				//this.calculator.setEquipment(listEquipments.get(0));
+				//this.calculator.setCalculations(calc);
 		this.calculator.getEquipment().addPanel(new Panel());
-		moveToLocation();
+		this.calculator.getEquipment().setInverter(new Inverter()); //added by martin
+				//moveToLocation();
 
-		return "tabinput.xhtml?faces-redirect=true";
+		return "tabinput.xhtml";
 	}
 
 	/**
@@ -710,44 +678,6 @@ public class CalculatorController implements Serializable {
 	public void setSelectedPanel(Panel selectedPanel) {
 		this.selectedPanel = selectedPanel;
 	}
-	
-	/**
-	 * @return the InverterList
-	 */
-	public List<Inverter> getInverterList() {
-		return inverterList;
-	}
-
-	/**
-	 * @param panelList the inverterList to set
-	 */
-	public void setInverterList(List<Inverter> inverterList) {
-		this.inverterList = inverterList;
-	}
-
-	/**
-	 * @return the selectedInverter
-	 */
-	public Inverter getSelectedInverter() {
-		return selectedInverter;
-	}
-
-	/**
-	 * @param selectedInverter the selectedInverter to set
-	 */
-	public void setSelectedInverter(Inverter selectedInverter) {
-		this.selectedInverter = selectedInverter;
-	}
-
-	/**
-	 * Create a chart and navigate to the chart page to display it.
-	 * 
-	 * @return
-	 */
-	public String createChart() {
-		calculator.createChart();
-		return "chart.xhtml";
-	}
 
 	/**
 	 * Loads selected equipment to calculator
@@ -758,10 +688,104 @@ public class CalculatorController implements Serializable {
 				if (equipment.getKitName().equalsIgnoreCase(
 						event.getNewValue().toString())) {
 					this.calculator.setEquipment(equipment);
+					// Set default for number of panels for bank 1
 				}
 			}
-			moveToEquipment();
+			this.calculator.getCustomer().getLocation().getRoof().getBanks()[0]
+					.setNumberOfPanels(this.calculator.getEquipment().getTotalPanels());
 		} catch (Exception e) {
 		}
+	}
+	
+	public void handleBankOrientationChange(ValueChangeEvent event) {
+		try {
+			Bank[] banks = calculator.getCustomer().getLocation().getRoof().getBanks();
+			javax.faces.component.html.HtmlSelectOneMenu sel = (javax.faces.component.html.HtmlSelectOneMenu)event.getSource();
+			int index = 0;
+			if(sel.getValue() != null && !sel.getValue().equals("")){
+				if(sel.getId().equalsIgnoreCase("bank1Orientation")){
+					index = 0;
+				} else if (sel.getId().equalsIgnoreCase("bank2Orientation")){
+					index = 1;
+				}
+				calculator.calculateBankOrientationEfficiencyLoss(banks, sel.getValue().toString() , index);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void calculateAngleEfficiency(ValueChangeEvent event){
+		try {
+			Bank[] banks = calculator.getCustomer().getLocation().getRoof().getBanks();
+			javax.faces.component.html.HtmlInputText sel = (javax.faces.component.html.HtmlInputText)event.getSource();
+			int index = 0;
+			if(sel.getValue() != null && !sel.getValue().equals("")){
+				if(sel.getId().equalsIgnoreCase("bank1Angle")){
+					index = 0;
+				} else if (sel.getId().equalsIgnoreCase("bank2Angle")){
+					index = 1;
+				}
+				calculator.calculateBankAngleEfficiencyLoss(banks, new Double (sel.getValue().toString()) , index);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void handleNumOfPanelsChange(ValueChangeEvent event){
+		try {
+			Bank[] banks = calculator.getCustomer().getLocation().getRoof().getBanks();
+			javax.faces.component.html.HtmlInputText sel = (javax.faces.component.html.HtmlInputText)event.getSource();
+			
+			if(sel.getValue() != null && !sel.getValue().equals("")){
+				if(sel.getId().equalsIgnoreCase("bank1NumberOfPanels")){
+					banks[1].setNumberOfPanels(calculator.getEquipment().getTotalPanels() - new Integer(sel.getValue().toString()));
+				} else if (sel.getId().equalsIgnoreCase("bank2NumberOfPanels")){
+					banks[0].setNumberOfPanels(calculator.getEquipment()
+							.getTotalPanels() - new Integer(sel.getValue().toString()));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @return the inverters
+	 */
+	public Map<String, String> getInverters() {
+		return inverters;
+	}
+
+	/**
+	 * @param inverters the inverters to set
+	 */
+	public void setInverters(Map<String, String> inverters) {
+		this.inverters = inverters;
+	}
+
+	/**
+	 * @return the listInverters
+	 */
+	public List<Inverter> getListInverters() {
+		return listInverters;
+	}
+
+	/**
+	 * @param listInverters the listInverters to set
+	 */
+	public void setListInverters(List<Inverter> listInverters) {
+		this.listInverters = listInverters;
+	}
+	
+	/**
+	 * Create a chart and navigate to the chart page to display it.
+	 * 
+	 * @return
+	 */
+	public String createChart() {
+		calculator.createChart();
+		return "chart.xhtml";
 	}
 }

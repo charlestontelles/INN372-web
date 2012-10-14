@@ -14,44 +14,56 @@
 	
 	<h:body>
 	<f:view>
-	    <h:form>
+	    <h:form id="roofForm">
 	    	<p:growl id="growl_roof" showDetail="true" sticky="true" />  
 			<h:panelGrid columns="2" styleClass="input">
 				
 			
 				<h:outputText value="Total Number of Panels"></h:outputText>
-				<h:outputText value="#{calculatorController.calculator.equipment.totalPanels}"></h:outputText>
+				<h:outputText id="numberOfPanels" value="#{calculatorController.calculator.equipment.totalPanels}"></h:outputText>
              	
              	<h:outputText value="Bank 1:"></h:outputText>
 				<h:outputText></h:outputText>
              	
              	<h:outputText value="Number of Panels"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].numberOfPanels}">
+				<h:inputText id="bank1NumberOfPanels" value="#{calculatorController.calculator.customer.location.roof.banks[0].numberOfPanels}"
+					>
              	</h:inputText>	
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[0].angle}" ></h:inputText>
+				<h:inputText id="bank1Angle" value="#{calculatorController.calculator.customer.location.roof.banks[0].angle}" 
+					valueChangeListener="#{calculatorController.calculateAngleEfficiency}">
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank1AngleLoss:" />
+				</h:inputText>
 				
 				<h:outputText value="Orientation of Bank"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[0].selectedOrientation}">	
+				<h:selectOneMenu id="bank1Orientation" value="#{calculatorController.calculator.customer.location.roof.banks[0].selectedOrientation}"
+					valueChangeListener="#{calculatorController.handleBankOrientationChange}">	
 					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
 					<f:selectItems value="#{calculatorController.listOfOrientation}" />	
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank1OrientationLoss" />
 				</h:selectOneMenu>
 				
 				<h:outputText value="Bank 2:"></h:outputText>
 				<h:outputText></h:outputText>
              	
              	<h:outputText value="Number of Panels"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].numberOfPanels}">
+				<h:inputText id="bank2NumberOfPanels" value="#{calculatorController.calculator.customer.location.roof.banks[1].numberOfPanels}"
+					>
              	</h:inputText>	
 				
 				<h:outputText value="Angle of Bank (degrees)"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.location.roof.banks[1].angle}"></h:inputText>
+				<h:inputText id="bank2Angle" value="#{calculatorController.calculator.customer.location.roof.banks[1].angle}"
+					valueChangeListener="#{calculatorController.calculateAngleEfficiency}">
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank2AngleLoss:" />
+				</h:inputText>
 				
 				<h:outputText value="Orientation of Bank"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.customer.location.roof.banks[1].selectedOrientation}">	
+				<h:selectOneMenu id="bank2Orientation" value="#{calculatorController.calculator.customer.location.roof.banks[1].selectedOrientation}"
+					valueChangeListener="#{calculatorController.handleBankOrientationChange}">	
 					<f:selectItem itemValue="" itemLabel="Select the orientation"/>	
 					<f:selectItems value="#{calculatorController.listOfOrientation}" />	
+					<p:ajax event="change" update=":tabView:summaryInputForm:bank2OrientationLoss" />
 				</h:selectOneMenu>
 
 				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl_roof"></h:commandButton>

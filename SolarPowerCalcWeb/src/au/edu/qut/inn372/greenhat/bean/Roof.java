@@ -35,6 +35,10 @@ public class Roof implements Serializable {
 		for (int i=0; i < banks.length; i++){
 			banks[i] = new Bank();
 			banks[i].setAngle(45);
+			banks[i].setAngleEfficiencyLoss(5.0);
+			banks[i].setSelectedOrientation("North");
+			banks[i].setOrientationEfficiencyLoss(5.0);
+			
 		}
 	}
 	
