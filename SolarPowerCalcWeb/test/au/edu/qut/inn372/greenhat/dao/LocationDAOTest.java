@@ -29,7 +29,6 @@ public class LocationDAOTest {
 		locationDAO = new LocationDAOImpl();
 	}
 
-
 	@Test
 	public void testGetLocations() {
 		List<Location> locations = locationDAO.getLocations();
@@ -37,5 +36,10 @@ public class LocationDAOTest {
 		locations.toArray(list);
 		assertEquals(7, locations.size());
 	}
-
+	
+	@Test
+	public void testGetAverageSunlightHours(){
+		assertEquals(4.5, locationDAO.getAverageSunlightHours("Brisbane"), 0.0);
+		assertEquals("Darwin", locationDAO.getLocations().get(6));
+	}
 }

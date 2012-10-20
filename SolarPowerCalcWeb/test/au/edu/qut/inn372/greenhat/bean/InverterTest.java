@@ -14,11 +14,19 @@ public class InverterTest {
 	@Before
 	public void setUp() throws Exception {
 		inverter = new Inverter();
+		inverter.setId(1);
 		inverter.setEfficiency(EFFICIENCY);
 		inverter.setLifespan(LIFESPAN);
 		inverter.setReplacementCost(REPLACEMENT_COST);
 		inverter.setCost(300);
 		inverter.setEfficiencyLoss(0.5);
+		inverter.setBrand("Solarfun Inverters");
+	}
+	
+	@Test
+	public void testSetGetId(){
+		inverter.setId(2);
+		assertEquals(2,inverter.getId(), 0.0);
 	}
 
 	@Test
@@ -47,15 +55,22 @@ public class InverterTest {
 	
 	@Test
 	public void testSetGetCost(){
-		assertEquals(300, inverter.getCost(), 0.1);
+		assertEquals(300, inverter.getCost(), 0.0);
 		inverter.setCost(345);
-		assertEquals(345, inverter.getCost(), 0.1);
+		assertEquals(345, inverter.getCost(), 0.0);
 	}
 	
 	@Test
 	public void testSetGetEfficiencyLoss() {
-		assertEquals(300, inverter.getCost(), 0.1);
-		inverter.setCost(400);
-		assertEquals(400, inverter.getCost(), 0.1);
+		assertEquals(0.5, inverter.getEfficiencyLoss(), 0.0);
+		inverter.setEfficiencyLoss(0.7);
+		assertEquals(0.7, inverter.getEfficiencyLoss(), 0.0);
+	}
+	
+	@Test
+	public void testSetGetBrand(){
+		assertEquals("Solarfun Inverters", inverter.getBrand());
+		inverter.setBrand("brand");
+		assertEquals("brand", inverter.getBrand());
 	}
 }

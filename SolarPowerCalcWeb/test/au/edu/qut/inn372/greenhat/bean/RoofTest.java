@@ -12,17 +12,19 @@ public class RoofTest {
 	private static final double HEIGHT = 10.0;
 	private static final double EFFICIENCY_LOSS_WEST = 0.8;
 	private static final double EFFICIENCY_LOSS_NORTH = 0.9;
+	private Bank [] bank;
 	private Roof roof;
 
 	@Before
 	public void setUp() throws Exception {
 		roof = new Roof();
+		bank = new Bank[2];
 		roof.setEfficiencyLossNorth(EFFICIENCY_LOSS_NORTH);
 		roof.setEfficiencyLossWest(EFFICIENCY_LOSS_WEST);
+		roof.setWidth(WIDTH);
 		roof.setHeight(HEIGHT);
 		roof.setPercentageNorth(PERCENTAGE_NORTH);
 		roof.setPercentageWest(PERCENTAGE_WEST);
-		roof.setWidth(WIDTH);
 	}
 	
 	@Test
@@ -75,6 +77,7 @@ public class RoofTest {
 	
 	@Test
 	public void testSetGetBanks(){
+		assertEquals(2, bank.length);
 		Bank[] banks = new Bank[2];
 		roof.setBanks(banks);
 		assertEquals(2, banks.length);

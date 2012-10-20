@@ -5,28 +5,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PanelTest {
-
-	private static final double WIDTH = 2.0;
-	private static final int ID = 0;
-	private static final double HEIGHT = 4.0;
-	private static final double EFFICIENCY_LOSS = 0.7;
-	private static final double EFFICIENCY = 0.3;
 	private Panel panel;
 	
-
 	@Before
 	public void setUp() throws Exception {
 		panel = new Panel();
-		panel.setEfficiency(EFFICIENCY);
-		panel.setEfficiencyLoss(EFFICIENCY_LOSS);
-		panel.setHeight(HEIGHT);
-		panel.setId(ID);
-		panel.setWidth(WIDTH);
+		panel.setEfficiency(0.3);
+		panel.setEfficiencyLoss(0.7);
+		panel.setHeight(4.0);
+		panel.setId(0);
+		panel.setWidth(2.0);
+		panel.setPowerRating(250);
+		panel.setSize(4);
+		panel.setCost(500);
+		panel.setBrand("Solarfun Solar Panels");
 	}
 	
 	@Test
 	public void testSetGetEfficiency() {
-		assertEquals(panel.getEfficiency(), EFFICIENCY, 0.0);
+		assertEquals(panel.getEfficiency(), 0.3, 0.0);
 		Double newEfficiency = 0.4;
 		panel.setEfficiency(newEfficiency);
 		assertEquals(panel.getEfficiency(), newEfficiency, 0.0);
@@ -34,7 +31,7 @@ public class PanelTest {
 	
 	@Test
 	public void testSetGetEfficiencyLoss() {
-		assertEquals(panel.getEfficiencyLoss(), EFFICIENCY_LOSS, 0.0);
+		assertEquals(panel.getEfficiencyLoss(), 0.7, 0.0);
 		Double newEfficiencyLoss = 0.6;
 		panel.setEfficiencyLoss(newEfficiencyLoss);
 		assertEquals(panel.getEfficiencyLoss(), newEfficiencyLoss, 0.0);
@@ -42,7 +39,7 @@ public class PanelTest {
 	
 	@Test
 	public void testSetGetHeight() {
-		assertEquals(panel.getHeight(), HEIGHT, 0.0);
+		assertEquals(panel.getHeight(), 4.0, 0.0);
 		Double newHeight = 3.0;
 		panel.setHeight(newHeight);
 		assertEquals(panel.getHeight(), newHeight, 0.0);
@@ -50,7 +47,7 @@ public class PanelTest {
 	
 	@Test
 	public void testSetGetWidth() {
-		assertEquals(panel.getWidth(), WIDTH, 0.0);
+		assertEquals(panel.getWidth(), 2.0, 0.0);
 		Double newWidth = 2.5;
 		panel.setWidth(newWidth);
 		assertEquals(panel.getWidth(), newWidth, 0.0);
@@ -58,7 +55,7 @@ public class PanelTest {
 	
 	@Test
 	public void testSetGetId() {
-		assertEquals(panel.getId(), ID);
+		assertEquals(panel.getId(), 0);
 		int newId = 2;
 		panel.setId(newId);
 		assertEquals(panel.getId(), newId);
@@ -66,19 +63,29 @@ public class PanelTest {
 	
 	@Test
 	public void testSetGetPowerRating() {
+		assertEquals(250, panel.getPowerRating(), 0.0);
 		panel.setPowerRating(700);
 		assertEquals(700, panel.getPowerRating(), 0.1);
 	}
 	
 	@Test
 	public void testSetGetSize(){
+		assertEquals(4, panel.getSize(), 0.0);
 		panel.setSize(2);
 		assertEquals(2, panel.getSize(), 0.1);
 	}
 	
 	@Test
 	public void testSetGetCost(){
+		assertEquals(500, panel.getCost(), 0.0);
 		panel.setCost(400);
 		assertEquals(400, panel.getCost(), 0.1);
+	}
+	
+	@Test
+	public void testSetGetBrand(){
+		assertEquals("Solarfun Solar Panels", panel.getBrand());
+		panel.setBrand("Sanyo Solar Panels");
+		assertEquals("Sanyo Solar Panels", panel.getBrand());
 	}
 }

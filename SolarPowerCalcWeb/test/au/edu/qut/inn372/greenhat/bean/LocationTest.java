@@ -8,13 +8,16 @@ public class LocationTest {
 
 	private static final double SUNLIGHT_HOURS = 8.0;
 	private Location location;
+	private String city;
 	private Roof roof;
 
 	@Before
 	public void setUp() throws Exception {
 		location = new Location();
-		location.setSunLightHours(SUNLIGHT_HOURS);
 		roof = new Roof();
+		location.setSunLightHours(SUNLIGHT_HOURS);
+		location.setRegion("Queensland");
+		location.setCity("Brisbane");
 		location.setRoof(roof);
 	}
 
@@ -36,13 +39,15 @@ public class LocationTest {
 	
 	@Test
 	public void testSetGetCity(){
-		location.setCity("Brisbane");
 		assertEquals("Brisbane", location.getCity());
+		location.setCity("Sydney");
+		assertEquals("Sydney", location.getCity());
 	}
 	
 	@Test
 	public void testSetGetRegion(){
-		location.setRegion("Queensland");
 		assertEquals("Queensland", location.getRegion());
+		location.setRegion("Victoria");
+		assertEquals("Victoria", location.getRegion());
 	}
 }

@@ -195,7 +195,7 @@ public class CalculatorController implements Serializable {
 	/**
 	 * First equipment kit selected by default
 	 */
-	public void setDefaultEquipmentSelection() {
+	public void setDefaultEquipmentSelection(){
 		selectedEquipment = listEquipments.get(0);
 		this.calculator.setEquipment(selectedEquipment);
 	}
