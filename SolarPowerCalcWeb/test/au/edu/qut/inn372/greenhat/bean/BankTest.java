@@ -38,13 +38,8 @@ public class BankTest {
 		assertEquals(equipment.getSize(), newSize, 0.0);
 	}
 	
-	@Test
-	public void testGetAngle(){
-		assertEquals(bank.getAngle(), ANGLE, 0.0);
-	}
-	
 	@Test 
-	public void testSetAngle(){
+	public void testGetSetAngle(){
 		Double newAngle = 40.0;
 		bank.setAngle(newAngle);
 		assertEquals(bank.getAngle(), newAngle, 0.0);
@@ -64,20 +59,42 @@ public class BankTest {
 		assertEquals(bank.getSelectedOrientation(), newSelectedOrientation);
 	}
 	
-	/* removed by charles - that test does not make sense anymore
-	@Test	
-	public void testASelectionOfOrientation(){
-		bank.setSelectedOrientation("North");
-		String newSelectedOrientation = bank.getSelectedOrientation();
-		int firstElement = 0;
-		assertEquals(bank.getListOfOrientation().get(firstElement).getLabel(), newSelectedOrientation);
-	}
-	*/
-	
 	@Test
-	public void testGetSetBankId(){
+	public void testSetGetBankId(){
 		int newBankId = 2;
 		bank.setBankId(newBankId);
 		assertEquals(bank.getBankId(), newBankId);
+	}
+	
+	@Test
+	public void testSetGetEfficiency(){
+		//double newEfficiency = 20.0;
+		//bank.setEfficiency(newEfficiency);
+		
+	}
+	
+	@Test
+	public void testSetGetNumberOfPanels(){
+		
+	}
+	
+	@Test
+	public void testSetGetOrientationEfficiency(){
+		
+	}
+	
+	@Test
+	public void testSetGetAngleEfficiencyLoss(){
+		
+	}
+	
+	@Test
+	public void testSetGetPowerOutput(){
+		
+	}
+	
+	@Test
+	public void testSetGetOrientation(){
+		
 	}
 }
