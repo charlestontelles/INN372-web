@@ -20,6 +20,7 @@ import au.edu.qut.inn372.greenhat.dao.gae.LocationDAOImpl;
  */
 public class LocationDAOTest {
 	private LocationDAO locationDAO;
+	private List<Location> locations;
 
 	/**
 	 * @throws java.lang.Exception
@@ -27,11 +28,11 @@ public class LocationDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		locationDAO = new LocationDAOImpl();
+		locations = locationDAO.getLocations();
 	}
 
 	@Test
 	public void testGetLocations() {
-		List<Location> locations = locationDAO.getLocations();
 		Location[] list = new Location[locations.size()];
 		locations.toArray(list);
 		assertEquals(7, locations.size());
@@ -40,6 +41,6 @@ public class LocationDAOTest {
 	@Test
 	public void testGetAverageSunlightHours(){
 		assertEquals(4.5, locationDAO.getAverageSunlightHours("Brisbane"), 0.0);
-		assertEquals("Darwin", locationDAO.getLocations().get(6));
+		assertEquals("Darwin", locationDAO.getLocations().get(6).getCity());
 	}
 }
