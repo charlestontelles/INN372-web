@@ -28,8 +28,23 @@ public class ElectricityUsageTest {
 	 */
 	@Test
 	public void testSetGetDailyAverageUsage() {
-		electricityUsage.setDailyAverageUsage(2.3);
-		assertEquals(2.3, electricityUsage.getDailyAverageUsage(), 0.1);
+		double newDailyAverageUsage = 2.3;
+		electricityUsage.setDailyAverageUsage(newDailyAverageUsage);
+		assertEquals(newDailyAverageUsage, electricityUsage.getDailyAverageUsage(), 0.1);
+	}
+	
+	@Test
+	public void testDailyAverageUsageOf0() {
+		double newDailyAverageUsage = 0.0;
+		electricityUsage.setDailyAverageUsage(newDailyAverageUsage);
+		assertEquals(newDailyAverageUsage, electricityUsage.getDailyAverageUsage(), 0.1);
+	}
+	
+	@Test
+	public void testHighDailyAverageUsage() {
+		double newDailyAverageUsage = 999.999;
+		electricityUsage.setDailyAverageUsage(newDailyAverageUsage);
+		assertEquals(newDailyAverageUsage, electricityUsage.getDailyAverageUsage(), 0.1);
 	}
 
 	/**
@@ -37,8 +52,23 @@ public class ElectricityUsageTest {
 	 */
 	@Test
 	public void testSetGetDayTimeHourlyUsage() {
-		electricityUsage.setDayTimeHourlyUsage(1.2);
-		assertEquals(1.2, electricityUsage.getDayTimeHourlyUsage(), 0.1);
+		double newDayTimeHourlyUsage = 1.2;
+		electricityUsage.setDayTimeHourlyUsage(newDayTimeHourlyUsage);
+		assertEquals(newDayTimeHourlyUsage, electricityUsage.getDayTimeHourlyUsage(), 0.1);
+	}
+	
+	@Test
+	public void testDayTimeHourlyUsageOf0() {
+		double newDayTimeHourlyUsage = 0.0;
+		electricityUsage.setDayTimeHourlyUsage(newDayTimeHourlyUsage);
+		assertEquals(newDayTimeHourlyUsage, electricityUsage.getDayTimeHourlyUsage(), 0.1);
+	}
+	
+	@Test
+	public void testHighDayTimeHourlyUsage() {
+		double newDayTimeHourlyUsage = 999.999;
+		electricityUsage.setDayTimeHourlyUsage(newDayTimeHourlyUsage);
+		assertEquals(newDayTimeHourlyUsage, electricityUsage.getDayTimeHourlyUsage(), 0.1);
 	}
 
 	/**
@@ -46,7 +76,22 @@ public class ElectricityUsageTest {
 	 */
 	@Test
 	public void testSetGetDayLightElectricityUsage() {
-		electricityUsage.setDayLightElectricityUsage(2.4);
-		assertEquals(2.4, electricityUsage.getDayLightElectricityUsage(), 0.1);
+		double newDayLightElectricityUsage = 2.4;
+		electricityUsage.setDayLightElectricityUsage(newDayLightElectricityUsage);
+		assertEquals(newDayLightElectricityUsage, electricityUsage.getDayLightElectricityUsage(), 0.1);
+	}
+	
+	@Test
+	public void testDayLightElectricityUsageOf0() {
+		double newDayLightElectricityUsage = 0.0;
+		electricityUsage.setDayLightElectricityUsage(newDayLightElectricityUsage);
+		assertEquals(newDayLightElectricityUsage, electricityUsage.getDayLightElectricityUsage(), 0.1);
+	}
+	
+	@Test
+	public void testHighDayLightElectricityUsage() {
+		double newDayLightElectricityUsage = 999.999;
+		electricityUsage.setDayLightElectricityUsage(newDayLightElectricityUsage);
+		assertEquals(newDayLightElectricityUsage, electricityUsage.getDayLightElectricityUsage(), 0.1);
 	}
 }

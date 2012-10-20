@@ -54,13 +54,12 @@ public class CustomerTest {
 	}
 
 	/**
-	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Customer#getDayLightElectricityUsage()}.
+	 * Test method for {@link au.edu.qut.inn372.greenhat.bean.Customer#getUserProfile()}.
 	 */
 	@Test
-	public void testSetGetDayLightElectricityUsage() {
-		ElectricityUsage usage = new ElectricityUsage();
-		customer.setElectricityUsage(usage);
-		customer.getElectricityUsage().setDayLightElectricityUsage(1.45);
-		assertEquals(1.45, customer.getElectricityUsage().getDayLightElectricityUsage(), 0.1);
+	public void testSetGetUserProfile(){
+		UserProfile userProfile = new UserProfile();
+		customer.setUserProfile(userProfile);
+		assertEquals(userProfile, customer.getUserProfile());
 	}
 }

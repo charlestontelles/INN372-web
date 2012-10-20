@@ -31,4 +31,19 @@ public class BatteryTest {
 		battery.setCost(400.0);
 		assertEquals(400.0, battery.getCost(), 0.1);
 	}
+	
+	@Test
+	public void testCostOf0() {
+		double newBattery = 0.0;
+		battery.setCost(newBattery);
+		assertEquals(newBattery, battery.getCost(), 0.0);
+	}
+	
+	@Test
+	public void testOfHighCost() {
+		double newBattery = 9999.9999;
+		battery.setCost(newBattery);
+		assertEquals(newBattery, battery.getCost(), 0.0);
+	}
+	
 }

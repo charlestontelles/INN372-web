@@ -1,9 +1,15 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import static org.junit.Assert.*;
+
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import au.edu.qut.inn372.greenhat.controller.Chart;
 
 public class CalculatorTest {
 
@@ -61,10 +67,51 @@ public class CalculatorTest {
 		panel1.setCost(100);
 		panel1.setEfficiencyLoss(0.7);
 		//equipment.setPanel(panel1);
+		calculator.performCalculations();
+		
+	}
+	
+	@Test
+	public void testGetStatusNameIncomplete(){
+		int status = 0;
+		calculator.setStatus(status);
+		assertEquals(calculator.getStatusName(), "Incomplete");
+	}
+	
+	@Test
+	public void testGetStatusNameComplete(){
+		int status = 1;
+		calculator.setStatus(status);
+		assertEquals(calculator.getStatusName(), "Complete");
+	}
+	
+	@Test
+	public void testGetStatusNameTemplate(){
+		int status = 2;
+		calculator.setStatus(status);
+		assertEquals(calculator.getStatusName(), "Template");
+	}
+	
+	@Test
+	public void testGetStatusNameUnknown(){
+		int status = 5;
+		calculator.setStatus(status);
+		assertEquals(calculator.getStatusName(), "unknow");
+	}
+	
+	
+	@Test 
+	public void testGetFormatedDateTimeException(){
+		//calculator.getFormatedDateTime();
+		//assertEquals(calculator.getFormatedDateTime(),"unknow");
+		//assertFail(calculator.getFormatedDateTime());
+		Date dateTime = new Date();
+		calculator.setDatetime(dateTime);
+		//System.out.println(calculator.getFormatedDateTime());
 	}
 
 	@Test 
-	public void testGetSetCustomer() {
+	public void testSetGetCustomer() {
 		assertEquals(calculator.getCustomer(), customer);
 		Customer newCustomer = new Customer();
 		calculator.setCustomer(newCustomer);
@@ -72,7 +119,7 @@ public class CalculatorTest {
 	}
 
 	@Test
-	public void testGetSetEquipment() {
+	public void testSeGettEquipment() {
 		assertEquals(calculator.getEquipment(), equipment);
 		Equipment newEquipment = new Equipment();
 		calculator.setEquipment(newEquipment);
@@ -80,8 +127,37 @@ public class CalculatorTest {
 	}
 	
 	@Test
-	public void testGetSetCalculations(){
+	public void testSetGetCalculations(){
 		assertEquals(1, calculations.length);
+	}
+	
+	@Test
+	public void testSetGetName(){
+		String newName = "Jack";
+		calculator.setName(newName);
+		assertEquals(calculator.getName(), newName);
+	}
+	
+	@Test
+	public void testSetGetKey(){
+		String newKey = "username";
+		calculator.setKey(newKey);
+		assertEquals(calculator.getKey(), newKey);
+	}
+	
+	
+	@Test
+	public void testSetGetDateTime(){
+		Date newDateTime = new Date();
+		calculator.setDatetime(newDateTime);
+		assertEquals(calculator.getDatetime(), newDateTime);
+	}
+	
+	@Test
+	public void testSetGetStatus(){
+		int newStatus = 2;
+		calculator.setStatus(newStatus);
+		assertEquals(calculator.getStatus(), newStatus);
 	}
 	
 	@Test
@@ -91,47 +167,55 @@ public class CalculatorTest {
 	}
 	
 	@Test
-	public void testCalculateSystemSize(){
-		calculator.calculateSystemSize();
-		assertEquals(0.1, equipment.getSize() , 0.1);
+	public void testCalculateAnnualSaving(){
+		assertEquals(3650, calculator.calculateAnnualSaving(10), 0.1);
 	}
 	
 	@Test
-	public void testCalculateSystemCost(){
-		calculator.calculateSystemCost();
-		assertEquals(200, equipment.getCost(),0.1);
+	public void testCalculateDailySaving() {
+		assertEquals(31, calculator.calculateDailySaving(15.50, 15.50), 0.1);
 	}
 	
 	@Test
-	public void testCalculateDayLightElectricityUsage(){
-		double dayLightElectricityUsage = customer.getElectricityUsage().getDayTimeHourlyUsage() 
-				* customer.getLocation().getSunLightHours();
-		customer.getElectricityUsage().setDayLightElectricityUsage(dayLightElectricityUsage);
-		assertEquals(240.0, customer.getElectricityUsage().getDayLightElectricityUsage(), 0.1);
+	public void testCalculateMoneyEarned(){
+		Tariff tariff = new Tariff();
+		tariff.setFeedInFee(0.5);
+		assertEquals(5, calculator.calculateMoneyEarned(tariff, 10), 0.1);
 	}
 	
 	@Test
-	public void testCalculateBankPowerOutput(){
-		Bank bank = new Bank();
-		bank.setNumberOfPanels(2);
-		bank.setPowerOutput((bank.getNumberOfPanels() * panel1.getPowerRating())/ 1000);
-		assertEquals(0.2, bank.getPowerOutput(), 0.1);
+	public void testCalculateMoneySaved() {
+		assertEquals(1.2, calculator.calculateMoneySaved(12, 0.1), 0.1);
 	}
 	
 	@Test
-	public void testCalculatePanelEfficiency(){ 
-		double panelEfficiency = calculator.calculatePanelEfficiency(0);
-		assertEquals(100, panelEfficiency, 0.1);
+	public void testCalculateExportedGeneration(){ 
+		customer.getElectricityUsage().setDayLightElectricityUsage(12);
+		double replacementGeneration = calculator.calculateReplacementGeneration(14);
+		double exportedGeneration = calculator.calculateExportedGeneration(replacementGeneration, 14);
+		assertEquals(2, exportedGeneration, 0.1);
 	}
 	
 	@Test
-	public void calculateBankEfficiency() {
-		Bank[] banks = new Bank[1];
-		banks[0] = new Bank();
-		banks[0].setOrientationEfficiencyLoss(0.5);
-		banks[0].setAngleEfficiencyLoss(0.5);
-		double bankEfficiency = calculator.calculateBankEfficiency(banks, 100.0, 0);
-		assertEquals(99.0, bankEfficiency, 0.1);
+	public void testCalculateReplacementGeneration() { 
+		customer.getElectricityUsage().setDayLightElectricityUsage(12);
+		assertEquals(12, calculator.calculateReplacementGeneration(14), 0.1);
+	}
+	
+	@Test
+	public void calculateTariff11Fee () { 
+		Tariff tariff = new Tariff();
+		tariff.setTariff11Fee(0.2);
+		tariff.setAnnualTariffIncrease(5);
+		double tariffFee = calculator.calculateTariff11Fee(tariff, 1);
+		assertEquals(0.21, tariffFee, 0.1);
+	}
+	
+	@Test
+	public void calculateDailySolarPower() {
+		double bank1DailySolarPower = 2.5, bank2DailySolarPower = 1.3;
+		double dailySolarPower = calculator.calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
+		assertEquals(3.61, dailySolarPower, 0.1);
 	}
 	
 	@Test
@@ -147,54 +231,69 @@ public class CalculatorTest {
 	}
 	
 	@Test
-	public void calculateDailySolarPower() {
-		double bank1DailySolarPower = 2.5, bank2DailySolarPower = 1.3;
-		double dailySolarPower = calculator.calculateDailySolarPower(bank1DailySolarPower, bank2DailySolarPower);
-		assertEquals(3.61, dailySolarPower, 0.1);
+	public void calculateBankEfficiency() {
+		Bank[] banks = new Bank[1];
+		banks[0] = new Bank();
+		banks[0].setOrientationEfficiencyLoss(0.5);
+		banks[0].setAngleEfficiencyLoss(0.5);
+		double bankEfficiency = calculator.calculateBankEfficiency(banks, 100.0, 0);
+		assertEquals(99.0, bankEfficiency, 0.1);
 	}
 	
 	@Test
-	public void calculateTariff11Fee () { 
-		Tariff tariff = new Tariff();
-		tariff.setTariff11Fee(0.2);
-		tariff.setAnnualTariffIncrease(5);
-		double tariffFee = calculator.calculateTariff11Fee(tariff, 1);
-		assertEquals(0.21, tariffFee, 0.1);
+	public void testCalculatePanelEfficiency(){ 
+		double panelEfficiency = calculator.calculatePanelEfficiency(0);
+		assertEquals(100, panelEfficiency, 0.1);
 	}
 	
 	@Test
-	public void testCalculateReplacementGeneration() { 
-		customer.getElectricityUsage().setDayLightElectricityUsage(12);
-		assertEquals(12, calculator.calculateReplacementGeneration(14), 0.1);
+	public void testCalculatePaybackPeriod(){
+		calculator.calculatePaybackPeriod();
+		//System.out.println(calculations[0].getPaybackPeriod());
 	}
 	
 	@Test
-	public void testCalculateExportedGeneration(){ 
-		customer.getElectricityUsage().setDayLightElectricityUsage(12);
-		double replacementGeneration = calculator.calculateReplacementGeneration(14);
-		double exportedGeneration = calculator.calculateExportedGeneration(replacementGeneration, 14);
-		assertEquals(2, exportedGeneration, 0.1);
+	public void testCalculateBankPowerOutput(){
+		Bank bank = new Bank();
+		bank.setNumberOfPanels(2);
+		bank.setPowerOutput((bank.getNumberOfPanels() * panel1.getPowerRating())/ 1000);
+		assertEquals(0.2, bank.getPowerOutput(), 0.1);
 	}
 	
 	@Test
-	public void testCalculateMoneySaved() {
-		assertEquals(1.2, calculator.calculateMoneySaved(12, 0.1), 0.1);
+	public void testCalculateSystemCost(){
+		calculator.calculateSystemCost();
+		assertEquals(200, equipment.getCost(),0.1);
 	}
 	
 	@Test
-	public void testCalculateMoneyEarned(){
-		Tariff tariff = new Tariff();
-		tariff.setFeedInFee(0.5);
-		assertEquals(5, calculator.calculateMoneyEarned(tariff, 10), 0.1);
+	public void testCalculateSystemSize(){
+		calculator.calculateSystemSize();
+		assertEquals(0.1, equipment.getSize() , 0.1);
 	}
 	
 	@Test
-	public void testCalculateDailySaving() {
-		assertEquals(31, calculator.calculateDailySaving(15.50, 15.50), 0.1);
+	public void testCalculateBankOrientationEfficiencyLoss(){
+		
 	}
 	
 	@Test
-	public void testCalculateAnnualSaving(){
-		assertEquals(3650, calculator.calculateAnnualSaving(10), 0.1);
+	public void testCalculateBankAngleEfficiencyLoss(){
+		
+		
+		//String orientation = "North";
+		//int index = 0;
+		//calculator.calculateBankOrientationEfficiencyLoss(banks, orientation, index);
+		//assertEquals(banks[0].getOrientationEfficiencyLoss(), 5.0);
+		
+		//System.out.println(banks[0].getOrientationEfficiencyLoss());
 	}
+	
+	@Test
+	public void testSetGetChart(){
+		Chart newChart = new Chart();
+		calculator.setChart(newChart);
+		assertEquals(calculator.getChart(), newChart);
+	}
+		
 }
