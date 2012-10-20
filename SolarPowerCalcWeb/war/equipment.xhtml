@@ -17,14 +17,14 @@
 		<h:form id="equipmentForm" styleClass="input">
 		    <h:panelGrid id="display" columns="2" cellpadding="4" styleClass="input">
 		    	<h:outputText value="List of Equipment"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.calculator.equipment.kitName}"
+				<h:selectOneMenu value="#{calculatorController.selectedKit}"
 							valueChangeListener="#{calculatorController.handleEquipmentChange}" >  
                 	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.equipments}" /> 
-                	<p:ajax event="change" 
+                	<p:ajax 
                 		update="totalPanels: systemCost: systemSize: inverterEfficiency: panelBrand: inverterBrand
                 			:tabView:roofForm:numberOfPanels: :tabView:roofForm:bank1NumberOfPanels: 
-                			:tabView:summaryInputForm:bank1Panels: :tabView:summaryInputForm:equipmentSize: :tabView:summaryInputForm:inverterEfficiency"/>
+                			:tabView:summaryInputForm:bank1Panels: :tabView:summaryInputForm:equipmentSize: :tabView:summaryInputForm:inverterEfficiency  :tabView:outputForm"/>
             	</h:selectOneMenu> 	
 		    
 				<h:outputText value="Number of Panels"></h:outputText>	

@@ -11,7 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -44,13 +47,13 @@ import au.edu.qut.inn372.greenhat.dao.gae.PanelDAOImpl;
 import au.edu.qut.inn372.greenhat.dao.gae.UserProfileDAOImpl;
 
 /**
- * Bean that represents a Calcualtor Controller
+ * Bean that represents a Calculator Controller
  * 
  * @author Charleston Telles
  * @version 1.0
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CalculatorController implements Serializable {
 
 	private static final long serialVersionUID = 8091277788980459284L;
@@ -89,6 +92,9 @@ public class CalculatorController implements Serializable {
 
 	private CalculatorDataModel savedCalculators;
 	private Calculator[] selectedCalculators;
+	
+	// parameters after refactoring
+	private String selectedKit;
 
 	public CalculatorController() {
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
@@ -114,6 +120,20 @@ public class CalculatorController implements Serializable {
 			this.inverters.put(inverter.getBrand(), inverter.getBrand());
 		}
 	}
+	
+	
+
+	public String getSelectedKit() {
+		return selectedKit;
+	}
+
+
+
+	public void setSelectedKit(String selectedKit) {
+		this.selectedKit = selectedKit;
+	}
+
+
 
 	/**
 	 * Gets a list of saved calculators
@@ -189,7 +209,7 @@ public class CalculatorController implements Serializable {
 	 */
 	public void setCalculator(Calculator calculator) {
 		this.calculator = calculator;
-		setDefaultEquipmentSelection();
+		//setDefaultEquipmentSelection(); // CRAZY LINE
 	}
 
 	/**
@@ -223,11 +243,13 @@ public class CalculatorController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String calculate() {
+	public void calculate(ActionEvent event) {
 		calculator.performCalculations();
 		//calculator.createChart();
 		calculator.setStatus(1);
-		return "output.xhtml";
+		//return "output.xhtml";
+
+		this.tabIndex = 7;
 	}
 
 	public Map<String, String> getEquipments() {
@@ -280,6 +302,8 @@ public class CalculatorController implements Serializable {
 				calculator.setStatus(1);
 			calculatorDAO.save(calculator);
 			context.addMessage(null, new FacesMessage("Calculation Saved."));
+			
+			this.tabIndex = 1;
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage("Error: " + e));
 			throw new Exception(e);
@@ -548,7 +572,7 @@ public class CalculatorController implements Serializable {
 
 	public String showLoginScreen() {
 		responseMessage = "";
-		return "login.xhtml";
+		return "tabinput.xhtml";
 	}
 
 	/**
@@ -556,26 +580,25 @@ public class CalculatorController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String newCalculation() {
+	public void newCalculation() {
 		Customer persistedCustomer = this.calculator.getCustomer();
 				//Calculation calc [] = this.calculator.getCalculations();
 				//this.calculator = new Calculator();
 				//this.calculator.setCalculations(calc);
+		this.calculator = new Calculator();
+		this.selectedKit="";
+		this.calculator.setChart(new Chart());
 		this.calculator.setCustomer(persistedCustomer);
-		this.calculator.setEquipment(new Equipment());
-				//this.calculator.setEquipment(listEquipments.get(0));
-				//this.calculator.setCalculations(calc);
-		this.calculator.getEquipment().addPanel(new Panel());
-		this.calculator.getEquipment().setInverter(new Inverter()); //added by martin
-				//moveToLocation();
+				
+		this.tabIndex = 2;
 
-		return "tabinput.xhtml";
+		//return "tabinput.xhtml";
 	}
 
 	/**
 	 * delete selected calculations
 	 */
-	public String deleteCalculation() {
+	public void deleteCalculation() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			for (Calculator calc : selectedCalculators)
@@ -585,7 +608,7 @@ public class CalculatorController implements Serializable {
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage("Error: " + e));
 		}
-		return "home.xhtml";
+		//return "home.xhtml";
 	}
 
 	/**
@@ -593,11 +616,13 @@ public class CalculatorController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String openCalculation() {
+	public void openCalculation() {
 		for (Calculator calc : selectedCalculators)
 			this.calculator = calculatorDAO.getByName(calc.getName());
-		moveToLocation();
-		return "tabinput.xhtml?faces-redirect=true";
+		this.selectedKit = this.calculator.getEquipment().getKitName();
+		this.tabIndex = 2;
+		//moveToLocation();
+		//return "tabinput.xhtml?faces-redirect=true";
 	}
 
 	/**
@@ -621,7 +646,7 @@ public class CalculatorController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String validateCredentials() {
+	public void validateCredentials() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			UserProfile response = userProfileDAO.validateCredential(calculator
@@ -630,7 +655,7 @@ public class CalculatorController implements Serializable {
 			
 			if (response.getKey() == null) {
 				context.addMessage(null, new FacesMessage("Invalid Email or Password."));
-				return "login.xhtml";
+				//
 			} else {
 				if (response.getPassword()
 						.equalsIgnoreCase(
@@ -638,15 +663,15 @@ public class CalculatorController implements Serializable {
 										.getPassword())) {
 					calculator.getCustomer().setUserProfile(response);
 					responseMessage = "";
-					return "home.xhtml";
+					this.tabIndex = 1;
 				} else {
 					context.addMessage(null, new FacesMessage("Invalid Email or Password."));
-					return "login.xhtml";
+					//return "login.xhtml";
 				}
 			}
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage("Invalid Email or Password."));
-			return "login.xhtml";
+			//return "login.xhtml";
 		}
 	}
 
@@ -785,8 +810,9 @@ public class CalculatorController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String createChart() {
+	public void createChart() {
 		calculator.createChart();
-		return "chart.xhtml";
+		this.tabIndex = 8;
+		//return "chart.xhtml";
 	}
 }

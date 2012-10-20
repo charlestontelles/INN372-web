@@ -9,8 +9,8 @@
 	</h:head>	
 	<h:body>
 	<f:view>
-	    <h:form>
-	     <p:growl id="growl_login" showDetail="true" sticky="true" /> 
+	    <h:form>'
+	     <p:growl id="growl_login" summary="false" showDetail="true" sticky="true" /> 
 			<h:panelGrid columns="2" styleClass="input">
 				<h:outputText value="Email"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.userProfile.email}"></h:inputText>

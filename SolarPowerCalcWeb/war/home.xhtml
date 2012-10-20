@@ -15,7 +15,7 @@
 	<h:body>
 	<f:view>
 	    <h:form styleClass="input">
-	    	<p:growl id="growl" showDetail="true" sticky="true" />  
+	    	<p:growl id="growl" summary="false" showDetail="true" sticky="true" />  
 	    	
 		    <p:dataTable styleClass="input" id="savedCalculators" var="calc" value="#{calculatorController.savedCalculators}" paginator="true" rows="10"  
 		                 selection="#{calculatorController.selectedCalculators}">  

@@ -15,8 +15,8 @@ public class Chart implements Serializable {
 
 	private static final long serialVersionUID = -5553240037289506783L;
 	
-	private CartesianChartModel costsCategoryModel;
-    private CartesianChartModel savingsCategoryModel;
+	private CartesianChartModel costsCategoryModel = new CartesianChartModel();
+    private CartesianChartModel savingsCategoryModel = new CartesianChartModel();
 
     public CartesianChartModel getCostsCategoryModel() {
         return costsCategoryModel;

@@ -12,11 +12,19 @@
 	<h:body>	
 		<f:view>
 	    <h:form styleClass="input">
-	    	<h:commandButton action="#{calculatorController.backToHome}" value="Home"></h:commandButton>
 	    	logged user: <h:outputText value="#{calculatorController.calculator.customer.userProfile.email}"/>
 		</h:form>
 		</f:view>
 		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}" styleClass="centreTab">	
+			
+			<p:tab id="tab7" title="Login">
+				<ui:include src="login.xhtml" />
+			</p:tab>	
+			
+			<p:tab id="tab8" title="Home">
+				<ui:include src="home.xhtml" />
+			</p:tab>
+			
 			<p:tab id="tab1" title="Location">
 				<ui:include src="location.xhtml" />
 		    </p:tab>
@@ -35,9 +43,15 @@
 				<ui:include src="input.xhtml" />
 		    </p:tab>
 
-		   <!-- <p:tab id="tab6" title="Output">
+		    <p:tab id="tab6" title="Output">
 				<ui:include src="output.xhtml" />
-			</p:tab> -->			
+			</p:tab>
+			
+			<p:tab id="tab9" title="Chart">
+				<ui:include src="chart.xhtml" />
+			</p:tab>
+			
+		
 		</p:tabView>		
 	</h:body>
 </html>
