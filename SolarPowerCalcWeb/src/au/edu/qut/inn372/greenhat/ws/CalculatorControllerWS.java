@@ -39,7 +39,7 @@ public class CalculatorControllerWS {
 	public String saveCalculation(@WebParam(name = "calculator") Calculator calculator){
 		try {
 			calculatorDAO.save(calculator);
-			return "ok";
+			return calculator.getKey();
 		} catch (Exception e) {
 			return "error: " + e;
 		}		
