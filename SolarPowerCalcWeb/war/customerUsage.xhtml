@@ -18,7 +18,7 @@
 	    	<p:growl id="growl" showDetail="true" sticky="true" />  
 			<h:panelGrid columns="2" styleClass="input">
 				<h:outputText value="Current Usage:"></h:outputText>
-				<h:outputText></h:outputText>
+				<h:outputText value="HINT: Check your power bills for this information"></h:outputText>
 				
 				<h:outputText value="Energy Used Per Day:"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.electricityUsage.dailyAverageUsage}">
@@ -33,12 +33,12 @@
 				<h:outputText value="Current Tariff:"></h:outputText>
 				<h:outputText></h:outputText>
 				
-				<h:outputText value="Tariff 11 Fee:"></h:outputText>
+				<h:outputText value="Tariff 11 Fee ($):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.tariff11Fee}">
 					<p:ajax update=":tabView:summaryInputForm:tariff11Fee" />
 				</h:inputText>
 				
-				<h:outputText value="Feed in fee:"></h:outputText>
+				<h:outputText value="Feed in fee ($):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.feedInFee}"></h:inputText>
 				
 				<h:outputText></h:outputText>	

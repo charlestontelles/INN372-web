@@ -10,6 +10,7 @@ import javax.jws.WebService;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.MapBeanOld;
 import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.dao.CalculatorDAO;
@@ -122,5 +123,11 @@ public class CalculatorControllerWS {
 		Panel[] list = new Panel[arrayList.size()];
 		arrayList.toArray(list);
 		return list;
+	}
+	
+	@WebMethod
+	@WebResult(name = "sunLightHours") 
+	public double getSunLightHours(@WebParam(name = "latitude") double latitude,@WebParam(name = "longitude") double longitude){
+		return calculator.getSunLightHours(latitude, longitude);
 	}
 }

@@ -5,7 +5,27 @@
     <xsd:schema>
       <xsd:import namespace="http://ws.greenhat.inn372.qut.edu.au/" schemaLocation="CalculatorControllerWSService_schema1.xsd"/>
     </xsd:schema>
-  </types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.greenhat.inn372.qut.edu.au/">
+        	<xsd:element name="getSunLightHours">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="latitude"
+        					type="xsd:double">
+        				</xsd:element>
+        				<xsd:element name="longitude"
+        					type="xsd:double">
+        				</xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	<xsd:element name="getSunLightHoursResponse">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="sunLinghtHours" type="xsd:double"></xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element></xsd:schema>
+    </types>
   <message name="saveCalculation">
     <part name="parameters" element="tns:saveCalculation"/>
   </message>
@@ -60,6 +80,12 @@
   <message name="getPanelsResponse">
     <part name="parameters" element="tns:getPanelsResponse"/>
   </message>
+  <message name="getSunLightHoursRequest">
+  	<part name="parameters" element="tns:getSunLightHours"></part>
+  </message>
+  <message name="getSunLightHoursResponse">
+  	<part name="parameters" element="tns:getSunLightHoursResponse"></part>
+  </message>
   <portType name="CalculatorControllerWS">
     <operation name="saveCalculation">
       <input message="tns:saveCalculation"/>
@@ -96,6 +122,10 @@
     <operation name="getPanels">
       <input message="tns:getPanels"/>
       <output message="tns:getPanelsResponse"/>
+    </operation>
+    <operation name="getSunLightHours">
+    	<input message="tns:getSunLightHoursRequest"></input>
+    	<output message="tns:getSunLightHoursResponse"></output>
     </operation>
   </portType>
   <binding name="CalculatorControllerWSPortBinding" type="tns:CalculatorControllerWS">
@@ -173,6 +203,15 @@
       </output>
     </operation>
     <operation name="getPanels">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getSunLightHours">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

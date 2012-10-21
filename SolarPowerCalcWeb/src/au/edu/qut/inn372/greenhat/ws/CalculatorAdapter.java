@@ -18,6 +18,8 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipmentsResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanels;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanelsResponse;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetSunLightHours;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetSunLightHoursResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculationResponse;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
@@ -141,6 +143,19 @@ public class CalculatorAdapter {
 		Panel[] panels = controller.getPanels();
 		GetPanelsResponse response = new GetPanelsResponse();
 		response.setPanels(panels);
+		return response;
+	}
+	
+	/**
+	 * Gets a list of panels from database
+	 * 
+	 * @param getEquipments
+	 * @return
+	 */
+	public GetSunLightHoursResponse getSunLightHours(GetSunLightHours getSunLightHours){
+		double sunLightHours = controller.getSunLightHours(getSunLightHours.getLatitude(), getSunLightHours.getLongitude());
+		GetSunLightHoursResponse response = new GetSunLightHoursResponse();
+		response.setSunLightHours(sunLightHours);
 		return response;
 	}
 }

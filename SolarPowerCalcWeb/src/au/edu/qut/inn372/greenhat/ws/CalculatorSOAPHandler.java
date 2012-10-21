@@ -19,6 +19,7 @@ import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetCalculations;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetEquipments;
 import au.edu.qut.inn372.greenhat.ws.jaxws.GetPanels;
+import au.edu.qut.inn372.greenhat.ws.jaxws.GetSunLightHours;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveCalculation;
 import au.edu.qut.inn372.greenhat.ws.jaxws.SaveUserProfile;
 import au.edu.qut.inn372.greenhat.ws.jaxws.ValidateCredentials;
@@ -39,6 +40,7 @@ public class CalculatorSOAPHandler {
 	  private static final QName GET_CALCULATION_QNAME = new QName(NAMESPACE_URI, "getCalculation");
 	  private static final QName GET_CALCULATIONS_QNAME = new QName(NAMESPACE_URI, "getCalculations");
 	  private static final QName GET_PANELS_QNAME = new QName(NAMESPACE_URI, "getPanels");
+	  private static final QName GET_SUNLIGHTHOURS_QNAME = new QName(NAMESPACE_URI, "getSunLightHours");
 	  
 	  private MessageFactory messageFactory;
 	  private CalculatorAdapter calculatorAdapter;
@@ -83,6 +85,9 @@ public class CalculatorSOAPHandler {
 			            break;
 		          } else if (GET_PANELS_QNAME.equals(qname)) {
 			            responsePojo = handleGetPanelsRequest(soapElement);
+			            break;
+		          } else if (GET_SUNLIGHTHOURS_QNAME.equals(qname)) {
+			            responsePojo = handleGetSunLightHours(soapElement);
 			            break;
 		          } 
 		      }
@@ -143,4 +148,8 @@ public class CalculatorSOAPHandler {
 		    return calculatorAdapter.getPanels(request);
 	  }
 	  
+	  private Object handleGetSunLightHours(SOAPElement soapElement) {
+		    GetSunLightHours request = JAXB.unmarshal(new DOMSource(soapElement), GetSunLightHours.class);
+		    return calculatorAdapter.getSunLightHours(request);
+	  }
 }

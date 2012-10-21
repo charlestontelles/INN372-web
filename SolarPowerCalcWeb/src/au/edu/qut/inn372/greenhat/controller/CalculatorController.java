@@ -1,7 +1,10 @@
 package au.edu.qut.inn372.greenhat.controller;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +24,18 @@ import javax.faces.model.SelectItem;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.representation.Form;
 
 import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
@@ -95,6 +108,9 @@ public class CalculatorController implements Serializable {
 	
 	// parameters after refactoring
 	private String selectedKit;
+	private MapModel draggableModel;	
+	private Marker marker;
+	private String currentLatLong = "";
 
 	public CalculatorController() {
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
@@ -118,6 +134,19 @@ public class CalculatorController implements Serializable {
 		listInverters = inverterDAO.getInverters();
 		for (Inverter inverter : listInverters) {
 			this.inverters.put(inverter.getBrand(), inverter.getBrand());
+		}
+		
+		// Map features
+		draggableModel = new DefaultMapModel();
+		
+		//Shared coordinates
+		LatLng coord1 = new LatLng(-27.4667, 153.0333); // default location brisbane
+		
+		//Draggable
+		draggableModel.addOverlay(new Marker(coord1, "My House"));
+		
+		for(Marker marker : draggableModel.getMarkers()) {
+			marker.setDraggable(true);
 		}
 	}
 	
@@ -815,4 +844,44 @@ public class CalculatorController implements Serializable {
 		this.tabIndex = 8;
 		//return "chart.xhtml";
 	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public MapModel getDraggableModel() {
+		return draggableModel;
+	}
+	/**
+	 * 
+	 * @param event
+	 */
+	private double sunLightHours = 0;
+	public void onMarkerDrag(MarkerDragEvent event) {
+		marker = event.getMarker();
+		String newLatLong = marker.getLatlng().getLat()+"#"+ marker.getLatlng().getLng();
+		
+		if (!currentLatLong.equalsIgnoreCase(newLatLong)){			
+			sunLightHours = calculator.getSunLightHours(marker.getLatlng().getLat(), marker.getLatlng().getLng());
+		
+			calculator.getCustomer().getLocation().setSunLightHours(sunLightHours);	
+			
+			currentLatLong = newLatLong;			
+			addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Sun Light Hours", "Average: " + sunLightHours));	
+		}
+		
+		
+	}
+	
+	/**
+	 * Add new message to map
+	 * 
+	 * @param message
+	 */
+	public void addMessage(FacesMessage message) {
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+	
+	
 }

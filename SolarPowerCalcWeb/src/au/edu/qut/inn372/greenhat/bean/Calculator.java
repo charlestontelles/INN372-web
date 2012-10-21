@@ -15,6 +15,11 @@ import javax.faces.bean.SessionScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.representation.Form;
+
 import au.edu.qut.inn372.greenhat.controller.Chart;
 /**
  * Bean that represents a Calculator
@@ -38,7 +43,6 @@ public class Calculator implements Serializable {
 	
 	@ManagedProperty (value = "#{chart}")
 	private Chart chart;
-	
 	
 	/**
 	 * Calculator's Name.
@@ -501,6 +505,7 @@ public class Calculator implements Serializable {
 		this.chart = chart;
 	}
 	
+	
 	public void createChart(){
 		CartesianChartModel CostCategoryModel;
 		CartesianChartModel savingsCategoryModel;
@@ -545,4 +550,72 @@ public class Calculator implements Serializable {
         this.chart.setSavingsCategoryModel(savingsCategoryModel);
         this.setChart(chart);
 	}
+	/**
+	 * Gets the sunLightHours based on an specific location
+	 * 
+	 * @param latitude
+	 * @param longitude
+	 * 
+	 * @return sunLightHours
+	 */
+	public double getSunLightHours(double latitude, double longitude){
+		return getDayLightHours(latitude, longitude);
+	}
+	
+	
+	/**
+	 * Call a restful webservice to get the total daylighthours based on
+	 * the latitude and longitude
+	 * 
+	 * @param latitude
+	 * @param longitude
+	 * 
+	 * @return daylighthours
+	 */
+	private double getDayLightHours (double latitude, double longitude){
+		Client client = new Client();
+		try {
+			
+			
+			WebResource webResource = client.resource("http://www.earthtools.org/sun/"+latitude+"/"+longitude+"/22/10/+10/0");
+			client.setConnectTimeout(3000);
+			client.setReadTimeout(3000);
+			
+			com.sun.jersey.api.representation.Form input = new Form();
+
+			// send HTTP POST
+			ClientResponse response = webResource.type("text/xml")
+			        .post(ClientResponse.class, input);
+			
+			
+			String output = response.getEntity(String.class);
+			
+			String sunrise = output.substring(output.indexOf("<sunrise>")+9,output.indexOf("</sunrise>"));
+			String sunset = output.substring(output.indexOf("<sunset>")+8,output.indexOf("</sunset>"));
+			
+			
+			System.out.println("sunrise: " + sunrise);
+			System.out.println("sunset: " + sunset);
+			
+			DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+			Date date1 = formatter.parse(sunrise);
+			Date date2 = formatter.parse(sunset);
+
+			// Get msec from each, and subtract.
+			long diff = date2.getTime() - date1.getTime();
+			double diffInHours = diff / ((double) 1000 * 60 * 60);
+
+			System.out.println("diff: " + diffInHours / 3);
+			
+			client.destroy();
+			
+			return diffInHours / 3;		
+			
+		} catch (Exception e) {
+			client.destroy();
+			System.out.println("error: " + e);
+		}
+		return 1;
+	}
+
 }
