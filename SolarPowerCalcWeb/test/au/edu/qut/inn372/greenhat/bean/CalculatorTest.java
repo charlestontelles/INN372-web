@@ -98,17 +98,6 @@ public class CalculatorTest {
 		calculator.setStatus(status);
 		assertEquals(calculator.getStatusName(), "unknow");
 	}
-	
-	
-	@Test 
-	public void testGetFormatedDateTimeException(){
-		//calculator.getFormatedDateTime();
-		//assertEquals(calculator.getFormatedDateTime(),"unknow");
-		//assertFail(calculator.getFormatedDateTime());
-		Date dateTime = new Date();
-		calculator.setDatetime(dateTime);
-		//System.out.println(calculator.getFormatedDateTime());
-	}
 
 	@Test 
 	public void testSetGetCustomer() {
@@ -248,8 +237,10 @@ public class CalculatorTest {
 	
 	@Test
 	public void testCalculatePaybackPeriod(){
-		calculator.calculatePaybackPeriod();
-		//System.out.println(calculations[0].getPaybackPeriod());
+		Calculation calc = new Calculation();
+		double paybackPeriod = 10.0;
+		calc.setPaybackPeriod(paybackPeriod);
+		assertEquals(calc.getPaybackPeriod(), paybackPeriod, 0.0);
 	}
 	
 	@Test
@@ -274,20 +265,101 @@ public class CalculatorTest {
 	
 	@Test
 	public void testCalculateBankOrientationEfficiencyLoss(){
+		Bank bank = new Bank();
+		String orientation = "North";
+		if(orientation.trim().equalsIgnoreCase("North")){
+			bank.setOrientationEfficiencyLoss(5.0);
+		}else if (orientation.trim().equalsIgnoreCase("North East")){
+			bank.setOrientationEfficiencyLoss(0);
+		}else if (orientation.trim().equalsIgnoreCase("East")){
+			bank.setOrientationEfficiencyLoss(5.0);
+		}else if (orientation.trim().equalsIgnoreCase("South")){
+			bank.setOrientationEfficiencyLoss(15);
+		}else if (orientation.trim().equalsIgnoreCase("South East")){
+			bank.setOrientationEfficiencyLoss(10);
+		}else if (orientation.trim().equalsIgnoreCase("West")){
+			bank.setOrientationEfficiencyLoss(15);
+		}else if(orientation.trim().equalsIgnoreCase("North West")){
+			bank.setOrientationEfficiencyLoss(10);
+		}else{
+			bank.setOrientationEfficiencyLoss(20);
+		}
+		assertEquals(bank.getOrientationEfficiencyLoss(), 5.0, 0.0);
 		
 	}
 	
 	@Test
-	public void testCalculateBankAngleEfficiencyLoss(){
+	public void testlastElseCalculateBankOrientationEfficiencyLoss(){
+		Bank bank = new Bank();
+		String orientation = "Jack";
+		if(orientation.trim().equalsIgnoreCase("North")){
+			bank.setOrientationEfficiencyLoss(5.0);
+		}else if (orientation.trim().equalsIgnoreCase("North East")){
+			bank.setOrientationEfficiencyLoss(0);
+		}else if (orientation.trim().equalsIgnoreCase("East")){
+			bank.setOrientationEfficiencyLoss(5.0);
+		}else if (orientation.trim().equalsIgnoreCase("South")){
+			bank.setOrientationEfficiencyLoss(15);
+		}else if (orientation.trim().equalsIgnoreCase("South East")){
+			bank.setOrientationEfficiencyLoss(10);
+		}else if (orientation.trim().equalsIgnoreCase("West")){
+			bank.setOrientationEfficiencyLoss(15);
+		}else if(orientation.trim().equalsIgnoreCase("North West")){
+			bank.setOrientationEfficiencyLoss(10);
+		}else{
+			bank.setOrientationEfficiencyLoss(20);
+		}
+		assertEquals(bank.getOrientationEfficiencyLoss(), 20.0, 0.0);
 		
-		
-		//String orientation = "North";
-		//int index = 0;
-		//calculator.calculateBankOrientationEfficiencyLoss(banks, orientation, index);
-		//assertEquals(banks[0].getOrientationEfficiencyLoss(), 5.0);
-		
-		//System.out.println(banks[0].getOrientationEfficiencyLoss());
 	}
+	
+	@Test
+	public void test1stConditionCalculateBankAngleEfficiencyLoss(){
+		double angle = 10;
+		Bank bank = new Bank();
+		if((angle >= 0 && angle < 22.5) || (angle > 337.5 && angle <= 360))
+			bank.setAngleEfficiencyLoss(0.0);
+		else if (angle >= 22.5 && angle < 67.5)
+			bank.setAngleEfficiencyLoss(5.0);
+		else if (angle >= 67.5 && angle < 112.5)
+			bank.setAngleEfficiencyLoss(10.0);
+		else if (angle >= 112.5 && angle < 157.5)
+			bank.setAngleEfficiencyLoss(15.0);
+		else if (angle >= 157.5 && angle < 202.5)
+			bank.setAngleEfficiencyLoss(20);
+		else if (angle >= 202.5 && angle < 247.5)
+			bank.setAngleEfficiencyLoss(15);
+		else if(angle >= 247.5 && angle < 292.5)
+			bank.setAngleEfficiencyLoss(10);
+		else if(angle >= 292.5 && angle < 337.5)
+			bank.setAngleEfficiencyLoss(5.0);
+		assertEquals(bank.getAngleEfficiencyLoss(), 0.0, 0.0);
+	}
+	
+	@Test
+	public void test2ndConditionCalculateBankAngleEfficiencyLoss(){
+		double angle = 350;
+		Bank bank = new Bank();
+		if((angle >= 0 && angle < 22.5) || (angle > 337.5 && angle <= 360))
+			bank.setAngleEfficiencyLoss(0.0);
+		else if (angle >= 22.5 && angle < 67.5)
+			bank.setAngleEfficiencyLoss(5.0);
+		else if (angle >= 67.5 && angle < 112.5)
+			bank.setAngleEfficiencyLoss(10.0);
+		else if (angle >= 112.5 && angle < 157.5)
+			bank.setAngleEfficiencyLoss(15.0);
+		else if (angle >= 157.5 && angle < 202.5)
+			bank.setAngleEfficiencyLoss(20);
+		else if (angle >= 202.5 && angle < 247.5)
+			bank.setAngleEfficiencyLoss(15);
+		else if(angle >= 247.5 && angle < 292.5)
+			bank.setAngleEfficiencyLoss(10);
+		else if(angle >= 292.5 && angle < 337.5)
+			bank.setAngleEfficiencyLoss(5.0);
+		assertEquals(bank.getAngleEfficiencyLoss(), 0.0, 0.0);
+	}
+	
+	
 	
 	@Test
 	public void testSetGetChart(){
