@@ -1,0 +1,215 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+	<h:head>
+	<link href="/css/greenhat_style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/default.css" rel="stylesheet" type="text/css"/>
+	<style>
+		.calculations-table{   
+			border-collapse:collapse;
+		}
+		 
+		.calculations-table-header{
+			text-align:center;
+			background:none repeat scroll 0 0 #E5E5E5;
+			border-bottom:1px solid #BBBBBB;
+			padding:16px;
+		}
+		 
+		.calculations-table-odd-row{
+			text-align:right;
+			background:none repeat scroll 0 0 #FFFFFFF;
+			border-top:1px solid #BBBBBB;
+		}
+		 
+		.calculations-table-even-row{
+			text-align:right;
+			background:none repeat scroll 0 0 #F9F9F9;
+			border-top:1px solid #BBBBBB;
+		}
+		
+		td,th	{
+			border-style: solid;
+			border-width: 1px;
+		}
+	</style>
+	</h:head>
+	
+	<h:body>
+    <f:view>
+    <center>
+    <h:form id="comparisonForm" styleClass="input" >
+    	<h4 align = "center"> General System Descriptions</h4>
+    	<h:panelGrid id="comparison_report" columns="3"  styleClass="input">
+    		<h:outputText value="Calculation"></h:outputText>
+    		<h:outputText value="#{calculatorController.calculatorsToCompare[0].name}"></h:outputText>
+    		<h:outputText value="#{calculatorController.calculatorsToCompare[1].name}"></h:outputText>
+    		
+	 		<h:outputText value="Size (KW)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].equipment.size}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].equipment.size}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
+	 		
+	 		<h:outputText styleClass="right" value="Cost ($)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].equipment.cost}"> 
+	 			<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>  
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].equipment.cost}"> 
+	 			<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>  
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Payback Period (years)"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].calculations[0].paybackPeriod}"> </h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].calculations[0].paybackPeriod}"> </h:outputText>
+	 		
+   		</h:panelGrid>
+   		<br />
+   		
+    	<h4 align = "center"> Average Solar Power Generations (KWh)</h4>
+    	<h:panelGrid columns="3"  styleClass="input">
+    		<h:outputText value="Calculation"></h:outputText>
+    		<h:outputText value="#{calculatorController.calculatorsToCompare[0].name}"></h:outputText>
+    		<h:outputText value="#{calculatorController.calculatorsToCompare[1].name}"></h:outputText>
+    		
+	 		<h:outputText value="Daily"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>  
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Quaterly"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Annually"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Daily Net"></h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		<h:outputText value="#{calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Quaterly Net"></h:outputText>
+	 		<h:outputText value="#{(calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		<h:outputText value="#{(calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *91}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText>
+	 		
+	 		<h:outputText value="Annually Net"></h:outputText>
+	 		<h:outputText value="#{(calculatorController.calculatorsToCompare[0].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText> 
+	 		<h:outputText value="#{(calculatorController.calculatorsToCompare[1].calculations[0].dailySolarPower - electricityUsage.dailyAverageUsage) *365}">
+	 			<f:convertNumber minFractionDigits="3" maxFractionDigits="3"/>
+	 		</h:outputText> 
+	 	</h:panelGrid>
+   		
+   		<h4 align = "center"> Financial Comparisons</h4>
+   		
+   		<h:panelGrid columns="2" wdith="30%">
+   			
+	   		<p:dataTable id="calculations_table1" value="#{calculatorController.calculatorsToCompare[0].calculations}" var="c"
+   			    styleClass="calculations-table"
+    			headerClass="calculations-table-header"
+    			rowClasses="calculations-table-odd-row,calculations-table-even-row" wdith="50%">
+    			<p:columnGroup type="header">  
+		            <p:row>  
+		                <p:column colspan="5" headerText="#{calculatorController.calculatorsToCompare[0].name}" />  
+		            </p:row>  
+		            <p:row>  
+		                <p:column headerText="Year" />  
+		                <p:column headerText="Daily Savings ($)" />  
+		                <p:column headerText="Annual Savings ($)" />  
+		                <p:column headerText="Cumulative Savings ($)" />  
+		                <p:column headerText="ROI" />  
+		            </p:row>  
+        		</p:columnGroup>  
+    			<p:column>
+	   				<h:outputText value="#{c.year}"/>   				
+	   			</p:column>	
+	   	   		<p:column>
+	   				<h:outputText value="#{c.dailySaving}"/>   				
+	   			</p:column>	
+	   	   		<p:column>
+	   				<h:outputText value="#{c.annualSaving}"/>    				
+	   			</p:column>	
+	   			<p:column>
+	   				<h:outputText value="#{c.cumulativeSaving}"/>   				
+	   			</p:column>	
+	   			<p:column>
+	   				<h:outputText value="#{c.returnOnInvestment}"/>    				
+	   			</p:column>  	
+	   		</p:dataTable>  
+	   		
+   		   		<p:dataTable id="calculations_table2" value="#{calculatorController.calculatorsToCompare[1].calculations}" var="c"
+   			    styleClass="calculations-table"
+    			headerClass="calculations-table-header"
+    			rowClasses="calculations-table-odd-row,calculations-table-even-row" width="50%">
+    			<p:columnGroup type="header">  
+		            <p:row>  
+		                <p:column colspan="4" headerText="#{calculatorController.calculatorsToCompare[1].name}" />  
+		            </p:row>  
+		            <p:row>  
+		                <p:column headerText="Daily Savings ($)" />  
+		                <p:column headerText="Annual Savings ($)" />  
+		                <p:column headerText="Cumulative Savings ($)" />  
+		                <p:column headerText="ROI" />  
+		            </p:row>  
+        		</p:columnGroup>  
+	   	   		<p:column>
+	   				<h:outputText value="#{c.dailySaving}"/>   				
+	   			</p:column>	
+	   	   		<p:column>
+	   				<h:outputText value="#{c.annualSaving}"/>    				
+	   			</p:column>	
+	   			<p:column>
+	   				<h:outputText value="#{c.cumulativeSaving}"/>   				
+	   			</p:column>	
+	   			<p:column>
+	   				<h:outputText value="#{c.returnOnInvestment}"/>    				
+	   			</p:column>  	
+	   		</p:dataTable>
+   		</h:panelGrid>	
+	</h:form>
+	</center>
+	</f:view>
+	
+		<h4 align = "center"> Graphical Outputs</h4>
+		<table class="input" align="center" width="95%"><tr><td>
+          		<p:lineChart id="comparisonCostsChart" value="#{calculatorController.comparisonChart.costsCategoryModel}" legendPosition="e"
+    				title="Costs" minY="0" maxY="10000" style="height:500px; wdith:100%"/>
+			<center>Year</center>
+		</td></tr></table>
+       
+		<br />
+		
+		<table class="input" align="center" width="95%"><tr><td>
+		<p:lineChart id="comparisonSavingsChart" value="#{calculatorController.comparisonChart.savingsCategoryModel}" legendPosition="e"
+    			title="Savings" minY="0" maxY="16000" style="height:500px; wdith:100%"/>
+			<center>Year</center>
+         	</td></tr></table> 
+          	
+	</h:body>
+</html>

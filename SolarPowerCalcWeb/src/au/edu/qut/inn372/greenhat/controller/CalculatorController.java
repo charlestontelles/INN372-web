@@ -105,6 +105,10 @@ public class CalculatorController implements Serializable {
 
 	private CalculatorDataModel savedCalculators;
 	private Calculator[] selectedCalculators;
+	private List<Calculation> calculationsToCompare = new ArrayList<Calculation>();
+	private Calculator [] calculatorsToCompare = null;
+	@ManagedProperty (value="#{comparisonChart}")
+	private ComparisonChart comparisonChart;
 	
 	// parameters after refactoring
 	private String selectedKit;
@@ -637,6 +641,7 @@ public class CalculatorController implements Serializable {
 		} catch (Exception e) {
 			context.addMessage(null, new FacesMessage("Error: " + e));
 		}
+		this.tabIndex = 1;
 		//return "home.xhtml";
 	}
 
@@ -659,8 +664,27 @@ public class CalculatorController implements Serializable {
 	 */
 	public void compareCalculation() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Successful",
-				"To be implemented - Iteration #4"));
+		if(selectedCalculators.length > 1){
+			try {
+				calculatorsToCompare = new Calculator[selectedCalculators.length]; 
+				for (int i=0; i<selectedCalculators.length; i++)
+					calculatorsToCompare[i] = calculatorDAO.getByName(selectedCalculators[i].getName());
+				
+				for(int i=0; i<calculatorsToCompare.length; i++){
+					for(int j=0; j<calculatorsToCompare[i].getCalculations().length; j++){
+						calculationsToCompare.add(calculatorsToCompare[i].getCalculations()[j]);
+					}
+					
+				}
+				createComparisonChart();
+				this.tabIndex = 9;
+			} catch (Exception e) {
+				context.addMessage(null, new FacesMessage("Error occured."));
+			}
+		} else {
+			context.addMessage(null, new FacesMessage("Please, select 2 calculations."));
+			this.tabIndex = 1;
+		}
 	}
 
 	/**
@@ -884,4 +908,113 @@ public class CalculatorController implements Serializable {
 	}
 	
 	
+	/**
+	 * @return the calculatorsToCompare
+	 */
+	public Calculator[] getCalculatorsToCompare() {
+		return calculatorsToCompare;
+	}
+
+
+
+	/**
+	 * @param calculatorsToCompare the calculatorsToCompare to set
+	 */
+	public void setCalculatorsToCompare(Calculator[] calculatorsToCompare) {
+		this.calculatorsToCompare = calculatorsToCompare;
+	}
+	
+	
+	public void createComparisonChart(){
+		CartesianChartModel CostCategoryModel;
+		CartesianChartModel savingsCategoryModel;
+		CostCategoryModel = new CartesianChartModel();
+		savingsCategoryModel = new CartesianChartModel();
+		
+		ChartSeries costWithOutSolarCalculation1Series = new ChartSeries();
+		costWithOutSolarCalculation1Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[0].getName());
+		ChartSeries costsWithSolarCalculation1Series = new ChartSeries();
+		costsWithSolarCalculation1Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[0].getName());
+		
+		
+		ChartSeries costsWithOutSolarCalculation2Series = new ChartSeries();
+		costsWithOutSolarCalculation2Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[1].getName());
+		ChartSeries costsWithSolarCalculation2Series = new ChartSeries();
+		costsWithSolarCalculation2Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[1].getName());
+        
+		for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
+			double annualCost1 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[0].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+			costWithOutSolarCalculation1Series.set(curCalculation.getYear() + "", annualCost1);			
+			costsWithSolarCalculation1Series.set(curCalculation.getYear()+"", annualCost1 - curCalculation.getAnnualSaving());		
+		}
+		
+		for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
+			double annualCost2 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[1].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+			costsWithOutSolarCalculation2Series.set(curCalculation.getYear() + "", annualCost2);			
+			costsWithSolarCalculation2Series.set(curCalculation.getYear()+"", annualCost2 - curCalculation.getAnnualSaving());		
+		}
+
+        	
+        ChartSeries savings1 = new ChartSeries();
+        savings1.setLabel("Cumulative Savings - " + this.calculatorsToCompare[0].getName());
+        ChartSeries paybackPeriod1 = new ChartSeries();
+        paybackPeriod1.setLabel("Initial Investment - " + this.calculatorsToCompare[0].getName());
+        
+        ChartSeries savings2 = new ChartSeries();
+        savings2.setLabel("Cumulative Savings - " + this.calculatorsToCompare[1].getName());
+        ChartSeries paybackPeriod2 = new ChartSeries();
+        paybackPeriod2.setLabel("Initial Investment - " + this.calculatorsToCompare[1].getName());
+        
+		double systemCost1 = this.calculatorsToCompare[0].getEquipment().getCost();		
+        
+		for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
+			savings1.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+			paybackPeriod1.set(curCalculation.getYear()+"", systemCost1);	
+		}
+
+		double systemCost2 = this.calculatorsToCompare[1].getEquipment().getCost();		
+        
+		for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
+			savings2.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+			paybackPeriod2.set(curCalculation.getYear()+"", systemCost2);	
+		}
+		
+		CostCategoryModel.addSeries(costWithOutSolarCalculation1Series);
+		CostCategoryModel.addSeries(costsWithSolarCalculation1Series);
+		
+		CostCategoryModel.addSeries(costsWithOutSolarCalculation2Series);
+		CostCategoryModel.addSeries(costsWithSolarCalculation2Series);
+        
+		savingsCategoryModel.addSeries(savings1);
+		savingsCategoryModel.addSeries(paybackPeriod1);
+		
+		savingsCategoryModel.addSeries(savings2);
+		savingsCategoryModel.addSeries(paybackPeriod2);
+        
+        if(this.comparisonChart == null){
+        	this.comparisonChart = new ComparisonChart();
+        }
+		this.comparisonChart.setCostsCategoryModel(CostCategoryModel);
+        this.comparisonChart.setSavingsCategoryModel(savingsCategoryModel);
+        //this.setComparisonChart(comparisonChart);
+        this.tabIndex = 10;
+	}
+
+
+
+	/**
+	 * @return the comparisonChart
+	 */
+	public ComparisonChart getComparisonChart() {
+		return comparisonChart;
+	}
+
+
+
+	/**
+	 * @param comparisonChart the comparisonChart to set
+	 */
+	public void setComparisonChart(ComparisonChart comparisonChart) {
+		this.comparisonChart = comparisonChart;
+	}
 }
