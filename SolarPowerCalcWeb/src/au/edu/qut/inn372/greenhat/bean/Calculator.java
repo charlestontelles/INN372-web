@@ -611,7 +611,7 @@ public class Calculator implements Serializable {
 			
 			client.destroy();
 			
-			return diffInHours / 3;		
+			return diffInHours / 2.5;		
 			
 		} catch (Exception e) {
 			client.destroy();
