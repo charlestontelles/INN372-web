@@ -20,12 +20,12 @@
 				<h:outputText value="Current Usage:"></h:outputText>
 				<h:outputText value="HINT: Check your power bills for this information"></h:outputText>
 				
-				<h:outputText value="Energy Used Per Day:"></h:outputText>
+				<h:outputText value="Energy Used Per Day (KWh):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.electricityUsage.dailyAverageUsage}">
 					<p:ajax update=":tabView:summaryInputForm:dailyAverageUsage" />
 				</h:inputText>
 				
-				<h:outputText value="Energy Used Per Hour During Daylight:"></h:outputText>
+				<h:outputText value="Energy Used Per Daylight Hours (KWh):"></h:outputText>
 				<h:inputText value="#{calculatorController.calculator.customer.electricityUsage.dayTimeHourlyUsage}">
 					<p:ajax update=":tabView:summaryInputForm:daylightEnergyUsage" />
 				</h:inputText>

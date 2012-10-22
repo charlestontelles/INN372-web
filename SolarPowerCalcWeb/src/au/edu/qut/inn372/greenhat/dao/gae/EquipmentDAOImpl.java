@@ -52,7 +52,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment1.addPanel(panel1);
 		equipment1.addPanel(panel1);
 		
-		equipment1.setKitName("Kit 2.5KWh - 10 panels(250W)");
+		equipment1.setKitName("Kit 2.5KW - 10 panels(250W)");
 		//equipment1.setCost(2500);
 		equipment1.setCost(equipment1.getTotalPanels() * panel1.getCost() + inverter1.getCost());
 		equipment1.setSize(2.5);
@@ -89,7 +89,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment2.addPanel(panel2);
 		equipment2.addPanel(panel2);
 		
-		equipment2.setKitName("Kit 5.6KWh - 8 panels(700W)");
+		equipment2.setKitName("Kit 5.6KW - 8 panels(700W)");
 		//equipment2.setCost(9000);
 		equipment2.setCost(equipment2.getTotalPanels() * panel2.getCost() + inverter2.getCost());
 		equipment2.setSize(5.6);
@@ -130,7 +130,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment3.addPanel(panel3);
 		equipment3.addPanel(panel3);
 		
-		equipment3.setKitName("Kit 3.6KWh - 12 panels(300W)");
+		equipment3.setKitName("Kit 3.6KW - 12 panels(300W)");
 		//equipment3.setCost(4000);
 		equipment3.setCost(equipment3.getTotalPanels() * panel3.getCost() + inverter3.getCost());
 		equipment3.setSize(3.6);
@@ -174,7 +174,7 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 		equipment4.addPanel(panel4);
 		equipment4.addPanel(panel4);
 		
-		equipment4.setKitName("Kit 5KWh - 10 panels(500W)");
+		equipment4.setKitName("Kit 5KW - 10 panels(500W)");
 		//equipment4.setCost(5000);
 		equipment4.setCost(equipment4.getTotalPanels() * panel4.getCost() + inverter4.getCost());
 		equipment4.setSize(5);

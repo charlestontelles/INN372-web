@@ -22,7 +22,7 @@
                 	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.equipments}" /> 
                 	<p:ajax 
-                		update="totalPanels: systemCost: systemSize: inverterEfficiency: panelBrand: inverterBrand
+                		update="totalPanels: systemCost: systemSize: inverterEfficiency: panelBrand: inverterBrand: panelsOnRoof
                 			:tabView:roofForm:numberOfPanels: :tabView:roofForm:bank1NumberOfPanels: 
                 			:tabView:summaryInputForm:bank1Panels: :tabView:summaryInputForm:equipmentSize: :tabView:summaryInputForm:inverterEfficiency  :tabView:outputForm"/>
             	</h:selectOneMenu> 	
@@ -31,10 +31,10 @@
 			   	<h:inputText id="totalPanels" value="#{calculatorController.calculator.equipment.totalPanels}" readonly="true">
 			   	</h:inputText>
 		        
-		        <h:outputText  value="System Cost"></h:outputText>
+		        <h:outputText  value="System Cost ($):"></h:outputText>
 				<h:inputText id="systemCost" value="#{calculatorController.calculator.equipment.cost}" readonly="true"></h:inputText>
 				
-				<h:outputText value="System Size (KWh):"></h:outputText>
+				<h:outputText value="System Size (KW):"></h:outputText>
 				<h:inputText id="systemSize" value="#{calculatorController.calculator.equipment.size}" readonly="true"></h:inputText>
 				
 				<h:outputText value="Inverter Efficiency (%):"></h:outputText>
