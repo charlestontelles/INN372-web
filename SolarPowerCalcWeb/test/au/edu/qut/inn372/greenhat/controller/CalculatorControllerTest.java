@@ -255,12 +255,16 @@ public class CalculatorControllerTest {
 	
 	@Test
 	public void testShowLoginScreen(){
-		//assertEquals("login.xhtml", calculatorController.showLoginScreen());
+		assertEquals("tabinput.xhtml", calculatorController.showLoginScreen());
 	}
 	
 	@Test
 	public void testNewCalculation(){
-		//assertEquals("tabinput.xhtml", calculatorController.newCalculation());
+		Customer persistedCustomer = this.calculator.getCustomer();
+		this.calculator = new Calculator();
+		this.calculator.setChart(new Chart());
+		this.calculator.setCustomer(persistedCustomer);
+		assertEquals(calculator.getCustomer(), persistedCustomer);
 	}
 	
 	@Test
@@ -357,16 +361,6 @@ public class CalculatorControllerTest {
 		calculator.setCalculations(calculations);
 		//assertEquals("chart.xhtml", calculatorController.createChart());
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Test
 	public void testSaveCalculation() throws Exception {
