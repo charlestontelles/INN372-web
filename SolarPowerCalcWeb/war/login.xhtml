@@ -12,17 +12,17 @@
 	    <h:form id="loginForm">
 	     <p:growl id="growl_login" summary="false" showDetail="true" sticky="true" /> 
 			<h:panelGrid columns="2" styleClass="input">
-				<h:outputText value="Email"></h:outputText>
-				<h:inputText value="#{calculatorController.calculator.customer.userProfile.email}"></h:inputText>
+				<h:outputText id="outputTextEmail" value="Email"></h:outputText>
+				<h:inputText id="inputTextEmail" value="#{calculatorController.calculator.customer.userProfile.email}"></h:inputText>
 				
-				<h:outputText value="Password"></h:outputText>
-				<h:inputSecret value="#{calculatorController.calculator.customer.userProfile.password}"></h:inputSecret>
+				<h:outputText id="outputTextPassword" value="Password"></h:outputText>
+				<h:inputSecret id="inputSecretPassword" value="#{calculatorController.calculator.customer.userProfile.password}"></h:inputSecret>
 				
 				<h:outputText value=""></h:outputText>
-				<h:commandButton action="#{calculatorController.validateCredentials}" value="Login" update="growl_login"></h:commandButton>
+				<h:commandButton id="buttonLogin" action="#{calculatorController.validateCredentials}" value="Login" update="growl_login"></h:commandButton>
 				
 				<h:outputText value="New User?"></h:outputText>
-				<h:commandLink styleClass="center" action="#{calculatorController.showUserProfileScreen}">Register</h:commandLink>				
+				<h:commandButton id="register" styleClass="center" action="#{calculatorController.showUserProfileScreen}" value="Register"></h:commandButton>				
 			</h:panelGrid>
 			
 			<h:panelGrid columns="1" styleClass="disclaimer">

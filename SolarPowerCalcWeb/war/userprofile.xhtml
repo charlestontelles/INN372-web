@@ -14,16 +14,16 @@
 	
  	<h4 align = "center"> Provide the following details: </h4>
 	<f:view>
-	    <h:form styleClass="input">
-	    <table align="center" style="width: 500px"> 
+	    <h:form styleClass="input" id="form">
+	    <table align="center" style="width: 500px" id="bigTable"> 
 		<tr>
 		<td style="border-width:0px"> 
-			<fieldset>
+			<fieldset id="field">
 			<legend style ="align: center"> User Profile</legend>
-			<table>
+			<table id="table">
 				<tr>
 					<td class="borderWidth"><h:outputText value="Name"></h:outputText></td>
-					<td class="borderWidth"><h:inputText value="#{calculatorController.calculator.customer.userProfile.name}"></h:inputText></td>
+					<td class="borderWidth"><h:inputText id="name" value="#{calculatorController.calculator.customer.userProfile.name}"></h:inputText></td>
 				</tr>
 				
 				<tr>
@@ -55,8 +55,8 @@
 				<tr>
 					<td class="borderWidth"><h:outputText value="#{calculatorController.responseMessage}"></h:outputText></td>
 					<td class="borderWidth" align="right">
-						<h:commandButton action="#{calculatorController.saveUserProfile}" value="Save"></h:commandButton>
-						<h:commandButton action="#{calculatorController.showLoginScreen}"  value="Login"></h:commandButton>
+						<h:commandButton id="save" action="#{calculatorController.saveUserProfile}" value="Save"></h:commandButton>
+						<h:commandButton id="login" action="#{calculatorController.showLoginScreen}"  value="Login"></h:commandButton>
 					</td>
 				</tr>
 			</table>

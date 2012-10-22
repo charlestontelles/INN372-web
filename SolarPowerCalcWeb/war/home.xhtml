@@ -14,7 +14,7 @@
 	
 	<h:body>
 	<f:view>
-	    <h:form styleClass="input">
+	    <h:form styleClass="input" id="form">
 	    	<p:growl id="growl" summary="false" showDetail="true" sticky="true" />  
 	    	
 		    <p:dataTable styleClass="input" id="savedCalculators" var="calc" value="#{calculatorController.savedCalculators}" paginator="true" rows="10"  
@@ -43,19 +43,19 @@
 		        </p:column>  
 		  
 		        <f:facet name="footer">  
-		            <h:commandButton action="#{calculatorController.newCalculation}" value="New" update="growl">
+		            <h:commandButton id="new" action="#{calculatorController.newCalculation}" value="New" update="growl">
 		           		 <f:setPropertyActionListener target="#{calculatorController.calculator.customer.userProfile}"
              						 value="#{calculatorController.calculator.customer.userProfile}" />
 		            </h:commandButton>  
-		            <h:commandButton action="#{calculatorController.openCalculation}" value="Open" update="growl">
+		            <h:commandButton id="open" action="#{calculatorController.openCalculation}" value="Open" update="growl">
 		            <f:setPropertyActionListener target="#{calculatorController.calculator.customer.userProfile}"
              						 value="#{calculatorController.calculator.customer.userProfile}" />
 		            </h:commandButton>
-		            <h:commandButton action="#{calculatorController.deleteCalculation}" value="Delete" update="growl">
+		            <h:commandButton id="delete" action="#{calculatorController.deleteCalculation}" value="Delete" update="growl">
 		            <f:setPropertyActionListener target="#{calculatorController.calculator.customer.userProfile}"
              						 value="#{calculatorController.calculator.customer.userProfile}" />
 		            </h:commandButton>
-		            <h:commandButton action="#{calculatorController.compareCalculation}" value="Compare" update="growl">
+		            <h:commandButton id="compare" action="#{calculatorController.compareCalculation}" value="Compare" update="growl">
 		            <f:setPropertyActionListener target="#{calculatorController.calculator.customer.userProfile}"
              						 value="#{calculatorController.calculator.customer.userProfile}" />
 		            </h:commandButton>

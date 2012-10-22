@@ -17,7 +17,7 @@
 		<h:form id="equipmentForm" styleClass="input">
 		    <h:panelGrid id="display" columns="2" cellpadding="4" styleClass="input">
 		    	<h:outputText value="List of Equipment"></h:outputText>
-				<h:selectOneMenu value="#{calculatorController.selectedKit}"
+				<h:selectOneMenu id="select" value="#{calculatorController.selectedKit}"
 							valueChangeListener="#{calculatorController.handleEquipmentChange}" >  
                 	<f:selectItem itemLabel="Select Equipment" itemValue="" />  
                 	<f:selectItems value="#{calculatorController.equipments}" /> 
