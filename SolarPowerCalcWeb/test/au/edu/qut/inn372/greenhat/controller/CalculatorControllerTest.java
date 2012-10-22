@@ -136,7 +136,7 @@ public class CalculatorControllerTest {
 	public void testSetDefaultEquipment(){
 		//listEquipments.add(new Equipment());
 		calculatorController.setDefaultEquipmentSelection();
-		assertEquals("Kit 2.5KWh - 10 panels(250W)", calculatorController.getCalculator().getEquipment().getKitName());
+		assertEquals("Kit 2.5KW - 10 panels(250W)", calculatorController.getCalculator().getEquipment().getKitName());
 	}
 	
 	@Test
