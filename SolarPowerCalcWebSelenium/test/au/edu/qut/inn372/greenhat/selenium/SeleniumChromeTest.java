@@ -26,22 +26,17 @@ public class SeleniumChromeTest extends SeleniumTests {
 		driver.get("http://solarpowercalcweb.appspot.com/");
 	}
 	
+	/*
 	@Test
 	public void dataEntryTest(){
+
+		register();
 		
 		verifyLogin();
 		
-		verifyEquipmentDetails();
+		createNewCalculation();
 		
-		verifyRoofDetails();
-		
-		verifySunlightDetails();
-		
-		verifyCurrentEnergyUsageDetails();
-		
-		verifyCalculate();
-		
-	}		
+	}	*/
 
 }
 

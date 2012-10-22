@@ -27,23 +27,18 @@ public class SeleniumIETest extends SeleniumTests {
 		driver.get("http://solarpowercalcweb.appspot.com/");
 	}
 	
+	/*
 	@Ignore
 	@Test
 	public void dataEntryTest(){
+
+		register();
 		
 		verifyLogin();
 		
-		verifyEquipmentDetails();
+		createNewCalculation();
 		
-		verifyRoofDetails();
-		
-		verifySunlightDetails();
-		
-		verifyCurrentEnergyUsageDetails();
-		
-		verifyCalculate();
-		
-	}
+	}*/
 		
 
 }

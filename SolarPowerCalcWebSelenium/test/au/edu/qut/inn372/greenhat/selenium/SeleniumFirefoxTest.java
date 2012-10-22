@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.selenium;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -36,17 +37,7 @@ public class SeleniumFirefoxTest extends SeleniumTests {
 		verifyLogin();
 		
 		createNewCalculation();
-		/*
-		verifyEquipmentDetails();
 		
-		verifyRoofDetails();
-		
-		verifySunlightDetails();
-		
-		verifyCurrentEnergyUsageDetails();
-		
-		verifyCalculate();
-		*/
 	}
 
 }
