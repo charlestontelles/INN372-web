@@ -507,48 +507,50 @@ public class Calculator implements Serializable {
 	
 	
 	public void createChart(){
-		CartesianChartModel CostCategoryModel;
-		CartesianChartModel savingsCategoryModel;
-		CostCategoryModel = new CartesianChartModel();
-		savingsCategoryModel = new CartesianChartModel();
-		
-		ChartSeries costsWithOutSolarSeries = new ChartSeries();
-		costsWithOutSolarSeries.setLabel("Cost Without Solar");
-		
-		ChartSeries costsWithSolarSeries = new ChartSeries();
-		costsWithSolarSeries.setLabel("Costs With Solar");
-        
-		for(Calculation curCalculation : this.calculations) {			
-			double annualCost = curCalculation.getTariff11Fee() * this.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
-			costsWithOutSolarSeries.set(curCalculation.getYear() + "", annualCost);			
-			costsWithSolarSeries.set(curCalculation.getYear()+"", annualCost - curCalculation.getAnnualSaving());		
-		}
-        	
-        ChartSeries savings = new ChartSeries();
-        savings.setLabel("Cumulative Savings");
-        
-        ChartSeries paybackPeriod = new ChartSeries();
-        paybackPeriod.setLabel("Initial Investment");
-        
-		double systemCost = this.getEquipment().getCost();		
-        
-		for(Calculation curCalculation : this.calculations) {			
-			savings.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
-			paybackPeriod.set(curCalculation.getYear()+"", systemCost);	
-		}
+		try {
+			CartesianChartModel CostCategoryModel;
+			CartesianChartModel savingsCategoryModel;
+			CostCategoryModel = new CartesianChartModel();
+			savingsCategoryModel = new CartesianChartModel();
+			
+			ChartSeries costsWithOutSolarSeries = new ChartSeries();
+			costsWithOutSolarSeries.setLabel("Cost Without Solar");
+			
+			ChartSeries costsWithSolarSeries = new ChartSeries();
+			costsWithSolarSeries.setLabel("Costs With Solar");
+	        
+			for(Calculation curCalculation : this.calculations) {			
+				double annualCost = curCalculation.getTariff11Fee() * this.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+				costsWithOutSolarSeries.set(curCalculation.getYear() + "", annualCost);			
+				costsWithSolarSeries.set(curCalculation.getYear()+"", annualCost - curCalculation.getAnnualSaving());		
+			}
+	        	
+	        ChartSeries savings = new ChartSeries();
+	        savings.setLabel("Cumulative Savings");
+	        
+	        ChartSeries paybackPeriod = new ChartSeries();
+	        paybackPeriod.setLabel("Initial Investment");
+	        
+			double systemCost = this.getEquipment().getCost();		
+	        
+			for(Calculation curCalculation : this.calculations) {			
+				savings.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+				paybackPeriod.set(curCalculation.getYear()+"", systemCost);	
+			}
 
-		CostCategoryModel.addSeries(costsWithOutSolarSeries);
-		CostCategoryModel.addSeries(costsWithSolarSeries);
-        
-		savingsCategoryModel.addSeries(savings);
-		savingsCategoryModel.addSeries(paybackPeriod);
-        
-        if(this.chart == null){
-        	this.chart = new Chart();
-        }
-		this.chart.setCostsCategoryModel(CostCategoryModel);
-        this.chart.setSavingsCategoryModel(savingsCategoryModel);
-        this.setChart(chart);
+			CostCategoryModel.addSeries(costsWithOutSolarSeries);
+			CostCategoryModel.addSeries(costsWithSolarSeries);
+	        
+			savingsCategoryModel.addSeries(savings);
+			savingsCategoryModel.addSeries(paybackPeriod);
+	        
+	        if(this.chart == null){
+	        	this.chart = new Chart();
+	        }
+			this.chart.setCostsCategoryModel(CostCategoryModel);
+	        this.chart.setSavingsCategoryModel(savingsCategoryModel);
+	        this.setChart(chart);
+		} catch(Exception e){}
 	}
 	/**
 	 * Gets the sunLightHours based on an specific location
