@@ -11,12 +11,14 @@
 	</h:head>	
 	<h:body>	
 		<f:view>
-	    <h:form styleClass="input">
+	    <h:form id="tabForm" styleClass="input">
+	    	
 	    	logged user: <h:outputText value="#{calculatorController.calculator.customer.userProfile.email}"/>
 		</h:form>
 		</f:view>
 		<p:tabView id="tabView" activeIndex="#{calculatorController.tabIndex}" styleClass="centreTab">	
 			
+			<p:ajax event="tabChange" listener="#{calculatorController.onTabChange}" update=":tabView:loginForm:growl_login" />  
 			<p:tab id="tab7" title="Login">
 				<ui:include src="login.xhtml" />
 			</p:tab>	

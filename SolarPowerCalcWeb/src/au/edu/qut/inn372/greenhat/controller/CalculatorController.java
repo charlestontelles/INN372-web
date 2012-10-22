@@ -115,6 +115,7 @@ public class CalculatorController implements Serializable {
 	private MapModel draggableModel;	
 	private Marker marker;
 	private String currentLatLong = "";
+	private String buttonDisabled = "true";
 
 	public CalculatorController() {
 		EquipmentDAO equipmentDAO = new EquipmentDAOImpl();
@@ -717,6 +718,7 @@ public class CalculatorController implements Serializable {
 					calculator.getCustomer().setUserProfile(response);
 					responseMessage = "";
 					this.tabIndex = 1;
+					this.buttonDisabled = "false";
 				} else {
 					context.addMessage(null, new FacesMessage("Invalid Email or Password."));
 					//return "login.xhtml";
@@ -926,78 +928,80 @@ public class CalculatorController implements Serializable {
 	
 	
 	public void createComparisonChart(){
-		CartesianChartModel CostCategoryModel;
-		CartesianChartModel savingsCategoryModel;
-		CostCategoryModel = new CartesianChartModel();
-		savingsCategoryModel = new CartesianChartModel();
-		
-		ChartSeries costWithOutSolarCalculation1Series = new ChartSeries();
-		costWithOutSolarCalculation1Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[0].getName());
-		ChartSeries costsWithSolarCalculation1Series = new ChartSeries();
-		costsWithSolarCalculation1Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[0].getName());
-		
-		
-		ChartSeries costsWithOutSolarCalculation2Series = new ChartSeries();
-		costsWithOutSolarCalculation2Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[1].getName());
-		ChartSeries costsWithSolarCalculation2Series = new ChartSeries();
-		costsWithSolarCalculation2Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[1].getName());
-        
-		for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
-			double annualCost1 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[0].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
-			costWithOutSolarCalculation1Series.set(curCalculation.getYear() + "", annualCost1);			
-			costsWithSolarCalculation1Series.set(curCalculation.getYear()+"", annualCost1 - curCalculation.getAnnualSaving());		
-		}
-		
-		for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
-			double annualCost2 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[1].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
-			costsWithOutSolarCalculation2Series.set(curCalculation.getYear() + "", annualCost2);			
-			costsWithSolarCalculation2Series.set(curCalculation.getYear()+"", annualCost2 - curCalculation.getAnnualSaving());		
-		}
+		try {
+			CartesianChartModel CostCategoryModel;
+			CartesianChartModel savingsCategoryModel;
+			CostCategoryModel = new CartesianChartModel();
+			savingsCategoryModel = new CartesianChartModel();
+			
+			ChartSeries costWithOutSolarCalculation1Series = new ChartSeries();
+			costWithOutSolarCalculation1Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[0].getName());
+			ChartSeries costsWithSolarCalculation1Series = new ChartSeries();
+			costsWithSolarCalculation1Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[0].getName());
+			
+			
+			ChartSeries costsWithOutSolarCalculation2Series = new ChartSeries();
+			costsWithOutSolarCalculation2Series.setLabel("Cost Without Solar - " + this.calculatorsToCompare[1].getName());
+			ChartSeries costsWithSolarCalculation2Series = new ChartSeries();
+			costsWithSolarCalculation2Series.setLabel("Costs With Solar - " + this.calculatorsToCompare[1].getName());
+	        
+			for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
+				double annualCost1 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[0].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+				costWithOutSolarCalculation1Series.set(curCalculation.getYear() + "", annualCost1);			
+				costsWithSolarCalculation1Series.set(curCalculation.getYear()+"", annualCost1 - curCalculation.getAnnualSaving());		
+			}
+			
+			for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
+				double annualCost2 = curCalculation.getTariff11Fee() * this.calculatorsToCompare[1].getCustomer().getElectricityUsage().getDailyAverageUsage()*365;			
+				costsWithOutSolarCalculation2Series.set(curCalculation.getYear() + "", annualCost2);			
+				costsWithSolarCalculation2Series.set(curCalculation.getYear()+"", annualCost2 - curCalculation.getAnnualSaving());		
+			}
 
-        	
-        ChartSeries savings1 = new ChartSeries();
-        savings1.setLabel("Cumulative Savings - " + this.calculatorsToCompare[0].getName());
-        ChartSeries paybackPeriod1 = new ChartSeries();
-        paybackPeriod1.setLabel("Initial Investment - " + this.calculatorsToCompare[0].getName());
-        
-        ChartSeries savings2 = new ChartSeries();
-        savings2.setLabel("Cumulative Savings - " + this.calculatorsToCompare[1].getName());
-        ChartSeries paybackPeriod2 = new ChartSeries();
-        paybackPeriod2.setLabel("Initial Investment - " + this.calculatorsToCompare[1].getName());
-        
-		double systemCost1 = this.calculatorsToCompare[0].getEquipment().getCost();		
-        
-		for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
-			savings1.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
-			paybackPeriod1.set(curCalculation.getYear()+"", systemCost1);	
-		}
+	        	
+	        ChartSeries savings1 = new ChartSeries();
+	        savings1.setLabel("Cumulative Savings - " + this.calculatorsToCompare[0].getName());
+	        ChartSeries paybackPeriod1 = new ChartSeries();
+	        paybackPeriod1.setLabel("Initial Investment - " + this.calculatorsToCompare[0].getName());
+	        
+	        ChartSeries savings2 = new ChartSeries();
+	        savings2.setLabel("Cumulative Savings - " + this.calculatorsToCompare[1].getName());
+	        ChartSeries paybackPeriod2 = new ChartSeries();
+	        paybackPeriod2.setLabel("Initial Investment - " + this.calculatorsToCompare[1].getName());
+	        
+			double systemCost1 = this.calculatorsToCompare[0].getEquipment().getCost();		
+	        
+			for(Calculation curCalculation : this.calculatorsToCompare[0].getCalculations()) {			
+				savings1.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+				paybackPeriod1.set(curCalculation.getYear()+"", systemCost1);	
+			}
 
-		double systemCost2 = this.calculatorsToCompare[1].getEquipment().getCost();		
-        
-		for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
-			savings2.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
-			paybackPeriod2.set(curCalculation.getYear()+"", systemCost2);	
-		}
-		
-		CostCategoryModel.addSeries(costWithOutSolarCalculation1Series);
-		CostCategoryModel.addSeries(costsWithSolarCalculation1Series);
-		
-		CostCategoryModel.addSeries(costsWithOutSolarCalculation2Series);
-		CostCategoryModel.addSeries(costsWithSolarCalculation2Series);
-        
-		savingsCategoryModel.addSeries(savings1);
-		savingsCategoryModel.addSeries(paybackPeriod1);
-		
-		savingsCategoryModel.addSeries(savings2);
-		savingsCategoryModel.addSeries(paybackPeriod2);
-        
-        if(this.comparisonChart == null){
-        	this.comparisonChart = new ComparisonChart();
-        }
-		this.comparisonChart.setCostsCategoryModel(CostCategoryModel);
-        this.comparisonChart.setSavingsCategoryModel(savingsCategoryModel);
-        //this.setComparisonChart(comparisonChart);
-        this.tabIndex = 10;
+			double systemCost2 = this.calculatorsToCompare[1].getEquipment().getCost();		
+	        
+			for(Calculation curCalculation : this.calculatorsToCompare[1].getCalculations()) {			
+				savings2.set(curCalculation.getYear()+"", curCalculation.getCumulativeSaving());	
+				paybackPeriod2.set(curCalculation.getYear()+"", systemCost2);	
+			}
+			
+			CostCategoryModel.addSeries(costWithOutSolarCalculation1Series);
+			CostCategoryModel.addSeries(costsWithSolarCalculation1Series);
+			
+			CostCategoryModel.addSeries(costsWithOutSolarCalculation2Series);
+			CostCategoryModel.addSeries(costsWithSolarCalculation2Series);
+	        
+			savingsCategoryModel.addSeries(savings1);
+			savingsCategoryModel.addSeries(paybackPeriod1);
+			
+			savingsCategoryModel.addSeries(savings2);
+			savingsCategoryModel.addSeries(paybackPeriod2);
+	        
+	        if(this.comparisonChart == null){
+	        	this.comparisonChart = new ComparisonChart();
+	        }
+			this.comparisonChart.setCostsCategoryModel(CostCategoryModel);
+	        this.comparisonChart.setSavingsCategoryModel(savingsCategoryModel);
+	        //this.setComparisonChart(comparisonChart);
+	        this.tabIndex = 10;
+		} catch (Exception e) {}
 	}
 
 
@@ -1016,5 +1020,36 @@ public class CalculatorController implements Serializable {
 	 */
 	public void setComparisonChart(ComparisonChart comparisonChart) {
 		this.comparisonChart = comparisonChart;
+	}
+	
+    public void onTabChange(TabChangeEvent event) {
+    	FacesContext context = FacesContext.getCurrentInstance();
+    	//org.primefaces.component.tabview.TabView tabView = (org.primefaces.component.tabview.TabView)event.getSource();
+    	
+        try {
+        	if(this.calculator.getCustomer().getUserProfile().getEmail() == null ||
+        			this.calculator.getCustomer().getUserProfile().getEmail().equalsIgnoreCase("")){
+        		context.addMessage(null, new FacesMessage("Please, login", "Otherwise, you can't save!"));
+        		//this.tabIndex = 0;
+        	}
+        } catch (Exception e) {}
+    }
+
+
+
+	/**
+	 * @return the buttonDisabled
+	 */
+	public String getButtonDisabled() {
+		return buttonDisabled;
+	}
+
+
+
+	/**
+	 * @param buttonDisabled the buttonDisabled to set
+	 */
+	public void setButtonDisabled(String buttonDisabled) {
+		this.buttonDisabled = buttonDisabled;
 	}
 }

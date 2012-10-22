@@ -71,12 +71,12 @@
 				<h:outputText value="Tariff 11 Fee"></h:outputText>
 				<h:inputText id="tariff11Fee" value="#{calculatorController.calculator.customer.tariff.tariff11Fee}" ></h:inputText>
 
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" id="summarySave" update="growl"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" disabled="#{calculatorController.buttonDisabled}" value="Save" id="summarySave" update="growl"></h:commandButton>
 				<h:commandButton actionListener="#{calculatorController.calculate}" value="Calculate" update=":tabView">
 					<f:param name="currentCalc" value="#{calculatorController.calculator}" />
 				</h:commandButton>
 				
-				<h:commandButton action="#{calculatorController.saveTemplate}" value="Save as Template" id="templateSave" update="growl"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveTemplate}" disabled="#{calculatorController.buttonDisabled}" value="Save as Template" id="templateSave" update="growl"></h:commandButton>
 				<h:outputText value=" "></h:outputText>
 			</h:panelGrid>
 			

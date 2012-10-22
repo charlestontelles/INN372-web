@@ -42,7 +42,7 @@
 				<h:inputText value="#{calculatorController.calculator.customer.tariff.feedInFee}"></h:inputText>
 				
 				<h:outputText></h:outputText>	
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save" update="growl"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" disabled="#{calculatorController.buttonDisabled}" value="Save" update="growl"></h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</f:view>

@@ -579,7 +579,7 @@ public class Calculator implements Serializable {
 		try {
 			
 			
-			WebResource webResource = client.resource("http://www.earthtools.org/sun/"+latitude+"/"+longitude+"/22/10/+10/0");
+			WebResource webResource = client.resource("http://www.earthtools.org/sun/"+latitude+"/"+longitude+"/22/4/0/0");
 			client.setConnectTimeout(3000);
 			client.setReadTimeout(3000);
 			

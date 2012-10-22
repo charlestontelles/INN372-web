@@ -57,13 +57,24 @@
 				</h:selectOneMenu>
 				
 				<h:outputText></h:outputText>
-				<h:commandButton action="#{calculatorController.saveCalculation}" value="Save"></h:commandButton>
+				<h:commandButton action="#{calculatorController.saveCalculation}" disabled="#{calculatorController.buttonDisabled}" value="Save"></h:commandButton>
 	        </h:panelGrid>
 	        
 	      	<br />
 			
-			<h:panelGrid id="panelGridPanels" columns="1"  styleClass="input">
-				<h:outputText value="Number of Panels Your Roof can Install:" />
+			<h:panelGrid id="panelGridPanels" columns="2"  styleClass="input">
+
+				<h:outputText style="width:250px" value="Roof Size Width (cm):"></h:outputText>
+				<h:inputText value="#{calculatorController.calculator.customer.location.roof.width}" id="width">
+					<p:ajax update="panelsOnRoof" />
+				</h:inputText>
+				
+				<h:outputText style="width:250px"  value="Roof Size Height (cm):"></h:outputText>
+				<h:inputText  value="#{calculatorController.calculator.customer.location.roof.height}" id="height">
+					<p:ajax update="panelsOnRoof" />
+				</h:inputText>
+				
+				<h:outputText value="No of Panels You can Install:" />
 				<h:outputText id="panelsOnRoof" value="#{(calculatorController.calculator.customer.location.roof.size / calculatorController.calculator.equipment.panels[0].size)}">
 					<f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>  
 				</h:outputText>
