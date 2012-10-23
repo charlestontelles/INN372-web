@@ -23,9 +23,10 @@ public class SeleniumFirefoxTest extends SeleniumTests {
 	public void setUp() {
 		// Create a new instance of the firefox unit driver
 		driver = new FirefoxDriver();
-		driver.get("http://localhost:8888/");
+		//For testing locally
+		//driver.get("http://localhost:8888/");
 		//Navigate to desired web page
-		//driver.get("http://solarpowercalcweb.appspot.com/");
+		driver.get("http://greenhatsolarcalculatortest.appspot.com/");
 		
 	}
 	
@@ -37,6 +38,14 @@ public class SeleniumFirefoxTest extends SeleniumTests {
 		verifyLogin();
 		
 		createNewCalculation();
+		
+		verifyCustomerUsage();
+		
+		verifyEquipement();
+		
+		verifyBanks();
+		
+		verifyCalculate();
 		
 	}
 
