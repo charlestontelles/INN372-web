@@ -26,7 +26,7 @@ public class SeleniumFirefoxTest extends SeleniumTests {
 		//For testing locally
 		//driver.get("http://localhost:8888/");
 		//Navigate to desired web page
-		driver.get("http://greenhatsolarcalculatortest.appspot.com/");
+		driver.get("http://solarpowercalcweb.appspot.com");
 		
 	}
 	
