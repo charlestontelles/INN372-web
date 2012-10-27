@@ -18,7 +18,7 @@
 		  
 		    <p:growl id="growl0" showDetail="true"/>  
 		  
-		    <p:gmap center="-27.4667, 153.0333" zoom="13" type="HYBRID"  model="#{calculatorController.draggableModel}" style="width:600px;height:400px">  
+		    <p:gmap center="-27.4667, 153.0333" zoom="4" type="HYBRID"  model="#{calculatorController.draggableModel}" style="width:600px;height:400px">  
 		        <p:ajax event="markerDrag" listener="#{calculatorController.onMarkerDrag}" update="growl0, :tabView:summaryInputForm:sunlightHours:" />  
 		    </p:gmap>  
 		  
