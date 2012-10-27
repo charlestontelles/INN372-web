@@ -423,7 +423,7 @@ public class Calculator implements Serializable {
 	public void calculateBankPowerOutput(Bank [] banks, int i){
 		try{
 			//bank.setPowerOutput((bank.getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
-			banks[i].setPowerOutput((banks[0].getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
+			banks[i].setPowerOutput((banks[i].getNumberOfPanels() * equipment.getPanels().get(0).getPowerRating())/ 1000);
 		} catch (Exception e){
 		}
 	}
