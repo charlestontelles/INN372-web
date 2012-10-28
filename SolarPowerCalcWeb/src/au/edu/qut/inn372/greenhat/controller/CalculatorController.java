@@ -424,6 +424,7 @@ public class CalculatorController implements Serializable {
 		list.add(new SelectItem("Global Solar Panels", "Global Solar Panels"));
 		list.add(new SelectItem("Solarfun", "Solarfun"));
 		list.add(new SelectItem("REC Solar Panels", "REC Solar Panels"));
+		list.add(new SelectItem("Custom Panel", "Custom Panel"));
 		return list;
 	}
 	
@@ -443,6 +444,7 @@ public class CalculatorController implements Serializable {
 	    list.add(new SelectItem("Global Solar Inverters", "Global Solar Inverters"));
 	    list.add(new SelectItem("Solarfun Inverters", "Solarfun Inverters"));
 	    list.add(new SelectItem("REC Solar Inverters", "REC Solar Inverters"));
+	    list.add(new SelectItem("Custom Inverter", "Custom Inverter"));
 	    return list;
 	}
 

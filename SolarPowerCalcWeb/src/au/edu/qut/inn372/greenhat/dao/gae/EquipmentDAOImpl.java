@@ -21,6 +21,51 @@ public class EquipmentDAOImpl implements Serializable, EquipmentDAO {
 	public List<Equipment> getEquipments() {
 		List<Equipment> equipments = new ArrayList<Equipment>();
 		
+		
+		
+		Equipment equipment5 = new Equipment();
+		
+		Inverter inverter5 = new Inverter();
+		inverter5.setEfficiency(100);
+		inverter5.setCost(0);
+		inverter5.setBrand("Custom Inverter");
+		
+		Panel panel5 = new Panel();
+		panel5.setEfficiency(100);
+		panel5.setEfficiencyLoss(0);
+		panel5.setPowerRating(300);
+		panel5.setCost(0);
+		panel5.setSize(2.25);
+		panel5.setBrand("Custom Panel");
+		
+		Battery battery5 = new Battery();
+		battery5.setCost(500);
+		
+		equipment5.setInverter(inverter5);
+		equipment5.setBattery(battery5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		equipment5.addPanel(panel5);
+		//equipment5.addPanel(panel5);
+		//equipment5.addPanel(panel5);
+		
+		equipment5.setKitName("Custom Kit");
+		//equipment3.setCost(4000);
+		equipment5.setCost(equipment5.getTotalPanels() * panel5.getCost() + inverter5.getCost());
+		equipment5.setSize(3.6);
+		
+		equipments.add(equipment5);
+		
+		
+		
+		
 		Equipment equipment1 = new Equipment();
 		
 		Inverter inverter1 = new Inverter();

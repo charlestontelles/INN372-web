@@ -88,7 +88,8 @@ public class CalculatorControllerWS {
 	@WebMethod
 	@WebResult(name = "equipments") 
 	public Equipment[] getEquipments(){
-		List<Equipment> arrayList = equipmentDAO.getEquipments();		
+		List<Equipment> arrayList = equipmentDAO.getEquipments();	
+		arrayList.remove(0);//remove custom equipment
 		Equipment[] list = new Equipment[arrayList.size()];
 		arrayList.toArray(list);
 		return list;
@@ -118,7 +119,8 @@ public class CalculatorControllerWS {
 	@WebMethod
 	@WebResult(name = "panels") 
 	public Panel[] getPanels(){
-		List<Panel> arrayList = panelDAO.getPanels();		
+		List<Panel> arrayList = panelDAO.getPanels();	
+		arrayList.remove(arrayList.size()-1);// remove custom panel
 		Panel[] list = new Panel[arrayList.size()];
 		arrayList.toArray(list);
 		return list;

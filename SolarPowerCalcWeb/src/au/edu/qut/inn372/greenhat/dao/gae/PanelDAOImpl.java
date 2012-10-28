@@ -113,6 +113,15 @@ public class PanelDAOImpl implements Serializable, PanelDAO {
 		recSolarPanel.setEfficiencyLoss(0.7);
 		recSolarPanel.setPowerRating(250);
 		recSolarPanel.setSize(2.25);
+		
+		Panel recCustomPanel = new Panel();
+		recCustomPanel.setId(1);
+		recCustomPanel.setBrand("Custom Panel");
+		recCustomPanel.setCost(0);
+		recCustomPanel.setEfficiency(100);
+		recCustomPanel.setEfficiencyLoss(0);
+		recCustomPanel.setPowerRating(250);
+		recCustomPanel.setSize(2.25);
 	    
 		panelList.add(bPSolarPanel);
 		panelList.add(sharpSolarPanel);
@@ -124,6 +133,7 @@ public class PanelDAOImpl implements Serializable, PanelDAO {
 		panelList.add(globalSolarPanel);
 		panelList.add(solarFunSolarPanel);
 		panelList.add(recSolarPanel);
+		panelList.add(recCustomPanel);
 	    return panelList;
 	}
 }

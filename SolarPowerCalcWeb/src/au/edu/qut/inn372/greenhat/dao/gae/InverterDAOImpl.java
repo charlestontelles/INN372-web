@@ -93,6 +93,13 @@ public class InverterDAOImpl implements Serializable, InverterDAO {
 		recSolarPanel.setCost(400);
 		recSolarPanel.setEfficiency(95);
 		recSolarPanel.setEfficiencyLoss(0.7);
+		
+		Inverter recCustomInverter = new Inverter();
+		recCustomInverter.setId(1);
+		recCustomInverter.setBrand("Custom Inverter");
+		recCustomInverter.setCost(0);
+		recCustomInverter.setEfficiency(100);
+		recCustomInverter.setEfficiencyLoss(0);
 	    
 		panelList.add(bPSolarInverter);
 		panelList.add(sharpSolarInverter);
@@ -104,6 +111,7 @@ public class InverterDAOImpl implements Serializable, InverterDAO {
 		panelList.add(globalSolarPanel);
 		panelList.add(solarFunSolarPanel);
 		panelList.add(recSolarPanel);
+		panelList.add(recCustomInverter);
 	    return panelList;
 	}
 }
